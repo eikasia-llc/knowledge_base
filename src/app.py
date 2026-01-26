@@ -142,7 +142,7 @@ if selected_files:
     elif output_format == "List":
         content = "\n".join(f"- {f}" for f in all_resolved_paths)
     else: # Instruction
-        content = "You must read the following files in order to build your context. You may find them in different folders, but you can do a grep search through the project:\n\n"
+        content = "You must read the following files in order to build your context.\n\nYou may find them in different folders, but you can do a grep search through the project:\n\n"
         for i, f in enumerate(all_resolved_paths, 1):
             filename = os.path.basename(f)
             content += f"{i}. Read {filename}\n"
