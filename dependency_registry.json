@@ -1,0 +1,166 @@
+{
+  "version": "1.0.0",
+  "description": "Knowledge Base Dependency Registry",
+  "last_updated": "2026-01-26",
+  "files": {
+    "content/misc/INFRASTRUCTURE_DEFINITIONS.md": {
+      "path": "content/misc/INFRASTRUCTURE_DEFINITIONS.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md",
+        "project_root": "../root/README.md"
+      }
+    },
+    "content/misc/README.md": {
+      "path": "content/misc/README.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md"
+      }
+    },
+    "content/misc/MD_CONVENTIONS.md": {
+      "path": "content/misc/MD_CONVENTIONS.md",
+      "dependencies": {
+        "project_root": "README.md"
+      }
+    },
+    "content/misc/AGENTS_LOG.md": {
+      "path": "content/misc/AGENTS_LOG.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md",
+        "project_root": "README.md"
+      }
+    },
+    "content/misc/INFRASTRUCTURE_PLAN.md": {
+      "path": "content/misc/INFRASTRUCTURE_PLAN.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md",
+        "project_root": "../root/README.md"
+      }
+    },
+    "content/misc/AGENTS.md": {
+      "path": "content/misc/AGENTS.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "project_root": "README.md"
+      }
+    },
+    "content/misc/INFRASTRUCTURE_AGENT.md": {
+      "path": "content/misc/INFRASTRUCTURE_AGENT.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md",
+        "project_root": "../root/README.md"
+      }
+    },
+    "content/misc/2026-01-25_001_research-basic-game_plan.md": {
+      "path": "content/misc/2026-01-25_001_research-basic-game_plan.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md",
+        "project_root": "../root/README.md"
+      }
+    },
+    "content/plans/Phase 1 Plan.md": {
+      "path": "content/plans/Phase 1 Plan.md",
+      "dependencies": {
+        "master_plan": "MASTER_PLAN.md",
+        "conventions": "../misc/MD_CONVENTIONS.md"
+      }
+    },
+    "content/plans/Phase 2 Plan.md": {
+      "path": "content/plans/Phase 2 Plan.md",
+      "dependencies": {
+        "master_plan": "MASTER_PLAN.md",
+        "conventions": "../misc/MD_CONVENTIONS.md"
+      }
+    },
+    "content/plans/Module 2 The Chat Interface.md": {
+      "path": "content/plans/Module 2 The Chat Interface.md",
+      "dependencies": {
+        "plan": "Phase 1 Plan.md",
+        "app": "../src/app.py"
+      }
+    },
+    "content/plans/Phase 3 Plan.md": {
+      "path": "content/plans/Phase 3 Plan.md",
+      "dependencies": {
+        "master_plan": "MASTER_PLAN.md",
+        "conventions": "../misc/MD_CONVENTIONS.md"
+      }
+    },
+    "content/plans/MASTER_PLAN.md": {
+      "path": "content/plans/MASTER_PLAN.md",
+      "dependencies": {
+        "manager": "../agents/MANAGER_AGENT.md",
+        "conventions": "../misc/MD_CONVENTIONS.md"
+      }
+    },
+    "content/plans/INTER_CHATBOT_COMMUNICATION_PLAN.md": {
+      "path": "content/plans/INTER_CHATBOT_COMMUNICATION_PLAN.md",
+      "dependencies": {
+        "master_plan": "MASTER_PLAN.json",
+        "conventions": "MD_CONVENTIONS.md"
+      }
+    },
+    "content/plans/Module 1 Local Data Warehouse.md": {
+      "path": "content/plans/Module 1 Local Data Warehouse.md",
+      "dependencies": {
+        "plan": "Phase 1 Plan.md",
+        "ingestion": "../src/core/ingestion.py"
+      }
+    },
+    "content/agents/MANAGER_AGENT.md": {
+      "path": "content/agents/MANAGER_AGENT.md",
+      "dependencies": {
+        "conventions": "../misc/MD_CONVENTIONS.md",
+        "agents": "../misc/AGENTS.md"
+      }
+    },
+    "content/agents/CLEANER_AGENT.md": {
+      "path": "content/agents/CLEANER_AGENT.md",
+      "dependencies": {
+        "conventions": "../misc/MD_CONVENTIONS.md",
+        "agents": "../misc/AGENTS.md"
+      }
+    },
+    "content/agents/UPDATE_PROTOCOL.md": {
+      "path": "content/agents/UPDATE_PROTOCOL.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "project_root": "README.md"
+      }
+    },
+    "content/agents/CLOUD_SCHEDULER_AGENT.md": {
+      "path": "content/agents/CLOUD_SCHEDULER_AGENT.md",
+      "dependencies": {
+        "conventions": "../misc/MD_CONVENTIONS.md",
+        "agents": "../misc/AGENTS.md",
+        "master_plan": "../plans/MASTER_PLAN.md"
+      }
+    },
+    "content/logs/MEETING_NOTES.md": {
+      "path": "content/logs/MEETING_NOTES.md",
+      "dependencies": {
+        "conventions": "../misc/MD_CONVENTIONS.md"
+      }
+    },
+    "content/root/README.md": {
+      "path": "content/root/README.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "agents": "AGENTS.md",
+        "project_root": "README.md"
+      }
+    },
+    "content/guidelines/AGENTS.md": {
+      "path": "content/guidelines/AGENTS.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "project_root": "README.md"
+      }
+    }
+  }
+}
