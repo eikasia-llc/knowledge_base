@@ -42,7 +42,10 @@ with st.sidebar:
 
 # Main Content
 st.title("🧠 Knowledge Base Injector")
-st.markdown("Select context modules to inject into your prompt.")
+st.markdown("\n\nSelect the knowledge base to get the prompt\n\n")
+
+# Layout: Output at the top (placeholder)
+output_container = st.container()
 
 # Load Registry
 try:
@@ -74,11 +77,6 @@ for path, info in files.items():
         continue
         
     # Determine category based on path or metadata (for now simple path heuristics)
-    # Ideally we should parse 'type' from metadata, but DependencyManager currently extracts only dependencies.
-    # We will assume some naming conventions or folder structure for now, 
-    # but eventually we should update DependencyManager to return all metadata.
-    
-    # Simple heuristic fallback
     lower_path = path.lower()
     if "agent" in lower_path and "skill" in lower_path:
         categories["Skills"].append(path)
@@ -107,49 +105,44 @@ for category, items in categories.items():
                 if st.checkbox(item, key=item):
                     selected_files.append(item)
 
-# Output Generation
+# Output Generation (Rendered into the top container)
 if selected_files:
-    st.divider()
-    st.subheader("Generated Prompt Context")
-    
-    output_format = st.radio("Output Format", ["Instruction", "XML", "List"], horizontal=True)
-    
-    # Resolve all dependencies for all selected files
-    final_set = []
-    seen = set()
-    
-    # We iterate selected files and resolve dependencies for each
-    # For a robust solution, we should probably merge the lists while preserving order
-    # But usually, just concatenating the resolution of each is okay, or we can use a smarter merge.
-    # The DependencyManager resolves for a *single* file.
-    # Let's resolve each and accumulate unique ones in order.
-    
-    all_resolved_paths = []
-    
-    for f in selected_files:
-        resolved = manager.resolve_dependencies(f)
-        for r in resolved:
-            if r not in seen:
-                seen.add(r)
-                all_resolved_paths.append(r)
-    
-    # Now generate the text based on the consolidated list
-    if output_format == "XML":
-        content = "<required_readings>\n"
-        for i, f in enumerate(all_resolved_paths, 1):
-             content += f'  <dependency order="{i}">{f}</dependency>\n'
-        content += "</required_readings>"
-    elif output_format == "List":
-        content = "\n".join(f"- {f}" for f in all_resolved_paths)
-    else: # Instruction
-        content = "You must read the following files in order to build your context.\n\nYou may find them in different folders, but you can do a grep search through the project:\n\n"
-        for i, f in enumerate(all_resolved_paths, 1):
-            filename = os.path.basename(f)
-            content += f"{i}. Read {filename}\n"
-            
-    st.code(content, language="xml" if output_format == "XML" else "text")
-    
-    st.info(f"Selected {len(selected_files)} files resolved to {len(all_resolved_paths)} required readings (including hidden dependencies).")
-
+    with output_container:
+        st.divider()
+        st.subheader("Generated Prompt Context")
+        
+        output_format = st.radio("Output Format", ["Instruction", "XML", "List"], horizontal=True)
+        
+        # Resolve all dependencies for all selected files
+        final_set = []
+        seen = set()
+        
+        all_resolved_paths = []
+        
+        for f in selected_files:
+            resolved = manager.resolve_dependencies(f)
+            for r in resolved:
+                if r not in seen:
+                    seen.add(r)
+                    all_resolved_paths.append(r)
+        
+        # Now generate the text based on the consolidated list
+        if output_format == "XML":
+            content = "<required_readings>\n"
+            for i, f in enumerate(all_resolved_paths, 1):
+                 content += f'  <dependency order="{i}">{f}</dependency>\n'
+            content += "</required_readings>"
+        elif output_format == "List":
+            content = "\n".join(f"- {f}" for f in all_resolved_paths)
+        else: # Instruction
+            content = "You must read the following files in order to build your context.\n\nYou may find them in different folders, but you can do a grep search through the project:\n\n"
+            for i, f in enumerate(all_resolved_paths, 1):
+                filename = os.path.basename(f)
+                content += f"{i}. Read {filename}\n"
+                
+        st.code(content, language="xml" if output_format == "XML" else "text")
+        
+        st.info(f"Selected {len(selected_files)} files resolved to {len(all_resolved_paths)} required readings (including hidden dependencies).")
 else:
-    st.info("Select files from the categories above to build your prompt.")
+    with output_container:
+        st.info("Select files from the categories below to build your prompt.")
