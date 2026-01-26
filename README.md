@@ -19,6 +19,8 @@ This repository serves as the central nervous system for **Prompt Context Manage
 
 ### 3. The Knowledge Base Injector App
 A built-in Streamlit application allows users to visually browse and assemble prompts.
+
+🚀 **[Launch Active App](https://knowledgebases-eikasia.streamlit.app/)**
 - **Browse**: Filter knowledge by category (Skills, Logs, Plans).
 - **Build**: Select the modules you need.
 - **Inject**: Get a perfectly formatted, dependency-resolved text block ready to paste into your LLM.
