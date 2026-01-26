@@ -156,6 +156,9 @@ if selected_files:
             st.markdown("### Prompt Content")
             # Capture user edits to the generated content
             user_content = st.text_area("Prompt Content", value=content, height=600, help="Copy this content into your prompt.", label_visibility="collapsed")
+            
+            with st.expander("📋 Copy to Clipboard (Code Block)"):
+                st.code(user_content, language="text")
         
         # Token Counting (Using user_content to reflect edits)
         enc = get_encoding()
