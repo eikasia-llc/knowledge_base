@@ -140,7 +140,7 @@ if selected_files:
                 filename = os.path.basename(f)
                 content += f"{i}. Read {filename}\n"
                 
-        st.code(content, language="xml" if output_format == "XML" else "text")
+        st.text_area("Prompt Content", value=content, height=400, help="Copy this content into your prompt.")
         
         st.info(f"Selected {len(selected_files)} files resolved to {len(all_resolved_paths)} required readings (including hidden dependencies).")
 else:
