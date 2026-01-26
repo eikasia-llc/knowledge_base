@@ -112,7 +112,7 @@ if selected_files:
     st.divider()
     st.subheader("Generated Prompt Context")
     
-    output_format = st.radio("Output Format", ["XML", "List", "Instruction"], horizontal=True)
+    output_format = st.radio("Output Format", ["Instruction", "XML", "List"], horizontal=True)
     
     # Resolve all dependencies for all selected files
     final_set = []
@@ -142,9 +142,10 @@ if selected_files:
     elif output_format == "List":
         content = "\n".join(f"- {f}" for f in all_resolved_paths)
     else: # Instruction
-        content = "You must read the following files in order to build your context:\n\n"
+        content = "You must read the following files in order to build your context. You may find them in different folders, but you can do a grep search through the project:\n\n"
         for i, f in enumerate(all_resolved_paths, 1):
-            content += f"{i}. Read {f}\n"
+            filename = os.path.basename(f)
+            content += f"{i}. Read {filename}\n"
             
     st.code(content, language="xml" if output_format == "XML" else "text")
     
