@@ -33,6 +33,9 @@ A built-in Streamlit application allows users to visually browse and assemble pr
   - `core/`: Core conventions, agents, and protocols.
   - `guidelines/`: Additional guidelines and templates.
   - `logs/`: Operational logs and artifacts.
+- `manager/`: Maintenance and management tools.
+  - `cleaner/`: Pipeline for ingesting and cleaning external repositories.
+  - `language/`: Tools for Markdown parsing and schema enforcement.
 - `dependency_registry.json`: The source of truth for file relationships.
 
 ## Usage

@@ -2,9 +2,8 @@
 - status: active
 - type: plan
 - owner: antigravity
-- context_dependencies: { "conventions": "../MD_CONVENTIONS.md" }
+- context_dependencies: {"conventions": "../MD_CONVENTIONS.md"}
 <!-- content -->
-
 This document outlines the strategy for integrating **Scikit-Learn** into the Local Nexus via the **Model Context Protocol (MCP)**. This allows the chatbot to perform machine learning operations (training, prediction, data loading) in an isolated, standardized environment.
 
 ## Context & Objective
@@ -32,6 +31,12 @@ The system will follow a Client-Host-Server model.
 <!-- content -->
 
 ### Phase 1: Server Setup
+- id: mcp_scikit_learn_integration_plan.implementation_steps.phase_1_server_setup
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 1.  **Dependencies**:
     *   `mcp`
     *   `scikit-learn`
@@ -42,20 +47,50 @@ The system will follow a Client-Host-Server model.
     *   Expose tools: `train_model`, `predict`, `evaluate_model`.
 
 ### Phase 2: Tool Definitions
+- id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 Define the specific tools the LLM can call.
 
 #### 1. Data Loading
+- id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions.1_data_loading
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 *   `load_data(table_name)`: Fetch data from the local DuckDB warehouse.
 
 #### 2. Training
+- id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions.2_training
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 *   `train_model(model_type, target_column, hyperparameters)`:
     *   Supports: `RandomForestClassifier`, `LinearRegression`, `LogisticRegression`.
     *   Returns: A unique `model_id` and metrics (Accuracy/R2).
 
 #### 3. Inference
+- id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions.3_inference
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 *   `predict(model_id, input_data)`: Use a trained model to make predictions.
 
 ### Phase 3: Client Integration
+- id: mcp_scikit_learn_integration_plan.implementation_steps.phase_3_client_integration
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 1.  **Bridge Layer** (`src/core/mcp_client.py`):
     *   Start the MCP server subprocess (`stdio`).
     *   Fetch tool definitions (`list_tools`).
@@ -70,15 +105,33 @@ Define the specific tools the LLM can call.
 <!-- content -->
 
 ### Dependencies
+- id: mcp_scikit_learn_integration_plan.execution_checklist.dependencies
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - [ ] Add `mcp` to `requirements.txt`.
 - [ ] Add `scikit-learn` to `requirements.txt`.
 
 ### Server Development
+- id: mcp_scikit_learn_integration_plan.execution_checklist.server_development
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - [ ] Create `src/mcp_server/` directory.
 - [ ] Implement `sklearn_server.py` using `FastMCP`.
 - [ ] Implement `train_model` tool.
 - [ ] Implement `predict` tool.
 
 ### Client Integration
+- id: mcp_scikit_learn_integration_plan.execution_checklist.client_integration
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - [ ] Create `src/core/mcp_bridge.py`.
 - [ ] Wire up Gemini Function Calling to MCP Bridge.

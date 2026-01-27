@@ -108,21 +108,45 @@ def apply_types_to_tree(node, root_type):
              apply_types_to_tree(child, root_type)
 
 def main():
+    import argparse
+    
+    arg_parser = argparse.ArgumentParser(description="Apply types and standard formatting to Markdown files.")
+    arg_parser.add_argument("--target_dir", help="Specific directory to scan (recursive)", default=None)
+    args = arg_parser.parse_args()
+
     parser = MarkdownParser()
-    files = glob.glob('**/*.md', recursive=True)
+    
+    if args.target_dir:
+        # Resolve absolute path
+        target_path = os.path.abspath(args.target_dir)
+        if not os.path.exists(target_path):
+            print(f"Error: Target directory '{target_path}' does not exist.")
+            sys.exit(1)
+        search_pattern = os.path.join(target_path, '**/*.md')
+        print(f"Scanning directory: {target_path}")
+    else:
+        # Default: current directory recursive
+        search_pattern = '**/*.md'
+        print(f"Scanning current directory recursively.")
+
+    files = glob.glob(search_pattern, recursive=True)
     
     count = 0
     for f in files:
         if 'node_modules' in f or '.git' in f or 'brain' in f:
             continue
             
+        # If target_dir is specified, glob returns absolute paths if pattern is absolute
+        # or relative if pattern is relative.
+        # Let's ensure we work with the file.
+        
         ftype = get_file_type(f, f)
         if not ftype:
-            print(f"Skipping {f} (no type mapping)")
+            # print(f"Skipping {f} (no type mapping)")
             continue
             
         try:
-            print(f"Processing {f} as {ftype}...")
+            # print(f"Processing {f} as {ftype}...")
             root = parser.parse_file(f)
             
             apply_types_to_tree(root, ftype)

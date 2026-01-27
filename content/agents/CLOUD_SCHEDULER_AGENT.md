@@ -20,12 +20,24 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 <!-- content -->
 
 ### 1. Script Execution (Deterministic)
+- id: cloud_scheduler_agent_instructions.core_capabilities.1_script_execution_deterministic
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Target:** Cloud Run Endpoints
 - **Task:** Direct execution of Python modules or shell scripts.
 - **Workflow:** Cloud Scheduler (HTTP POST) -> FastAPI/Flask Wrapper -> Subprocess/Import execution.
 - **Primary Use Case:** Repository synchronization, telemetry log rotation, BigQuery data mirroring.
 
 ### 2. Agentic Intervention (Proactive)
+- id: cloud_scheduler_agent_instructions.core_capabilities.2_agentic_intervention_proactive
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Target:** Google ADK Agent Server
 - **Task:** Invoking an LLM-based agent with a specific "Context Snapshot."
 - **Workflow:** Cloud Scheduler -> Cloud Run (ADK Server) -> Intent Evaluation -> Action.
@@ -36,11 +48,23 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 <!-- content -->
 
 ### Phase 2: The Infrastructure Bridge
+- id: cloud_scheduler_agent_instructions.implementation_features.phase_2_the_infrastructure_bridge
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - [ ] **FastAPI Trigger:** Create a secure endpoint on Cloud Run that can receive Cloud Scheduler pings.
 - [ ] **IAM Security:** Configure Service Accounts so only Cloud Scheduler can invoke the "internal" Cloud Run triggers.
 - [ ] **Job Definitions:** Implement Terraform/gcloud templates for standard jobs (e.g., `daily-sync-2am`).
 
 ### Phase 3: Autonomous Cycles
+- id: cloud_scheduler_agent_instructions.implementation_features.phase_3_autonomous_cycles
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - [ ] **Agentic Wake-up:** Define system prompts for the "Manager Agent" when triggered by the scheduler (e.g., "Review the last 24h of telemetry and suggest 1 optimization").
 - [ ] **Feedback Loops:** Record the success/failure of scheduled agentic interventions to fine-tune the "Proactivity" weights.
 

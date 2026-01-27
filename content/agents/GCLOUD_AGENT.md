@@ -3,21 +3,31 @@
 - type: guideline
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "project_root": "README.md"}
 <!-- content -->
-
 This document serves as the authoritative guide for managing Google Cloud Platform (GCP) resources, API keys, and environment configurations for the MCMP Chatbot. It explains the relationship between the various Google services and how to effectively manage them in both local and deployed environments.
 
 ## Architecture & Relationships
 - status: active
 <!-- content -->
-
 Understanding the distinction between resources is critical for billing and access control.
 
 ### 1. The Ecosystem Map
+- id: google_cloud_api_integration_guide.architecture_relationships.1_the_ecosystem_map
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Google Cloud Platform (GCP)**: The overarching cloud provider. Projects here (like `mcmp-chatbot`) act as containers for resources (Service Accounts, APIs, Billing).
 - **Google AI Studio**: Where Gemini API keys are generated. *Crucially*, keys generated here can be associated with *no project* (resulting in a default `gen-lang-client` project) or an *existing GCP project*.
 - **Streamlit Cloud**: The hosting platform. It is *external* to Google but connects via secrets.
 
 ### 2. Service Separation
+- id: google_cloud_api_integration_guide.architecture_relationships.2_service_separation
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 In this project, we use two distinct authentication methods for two different purposes:
 
 | Feature | Service | Auth Method | Config Variable | Billing Source |
@@ -31,10 +41,15 @@ In this project, we use two distinct authentication methods for two different pu
 ## Environment & Secrets Management
 - status: active
 <!-- content -->
-
 We use a "Split-Brain" configuration strategy to separate local development from production.
 
 ### 1. Local Development
+- id: google_cloud_api_integration_guide.environment_secrets_management.1_local_development
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **File**: `.env` (for API Keys) and `.streamlit/secrets.toml` (for Service Accounts).
 - **Mechanism**: 
     - `python-dotenv` loads `.env` into environment variables.
@@ -42,6 +57,12 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - **Best Practice**: NEVER commit `.env` or `.streamlit/secrets.toml` to Git.
 
 ### 2. Streamlit Cloud Deployment
+- id: google_cloud_api_integration_guide.environment_secrets_management.2_streamlit_cloud_deployment
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Location**: App Dashboard → Settings → Secrets.
 - **Mechanism**: Streamlit Cloud injects these secrets as environment variables (`os.environ`) at runtime.
 - **Critical Rule**: You must manually verify that **BOTH** the `GEMINI_API_KEY` and the `[gcp_service_account]` block are present in the cloud secrets.
@@ -53,16 +74,34 @@ We use a "Split-Brain" configuration strategy to separate local development from
 <!-- content -->
 
 ### Issue: Billing Split (Jan 2026)
+- id: google_cloud_api_integration_guide.troubleshooting_logs.issue_billing_split_jan_2026
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Problem**: Gemini usage was billed to `gen-lang-client-0023672537` while Sheets usage went to `mcmp-chatbot`.
 - **Cause**: The `GEMINI_API_KEY` was created in Google AI Studio without linking it to the `mcmp-chatbot` project.
 - **Fix**: Generated a new API Key in AI Studio, explicitly selecting `mcmp-chatbot` from the project dropdown.
 
 ### Issue: "API Key Expired" Loop
+- id: google_cloud_api_integration_guide.troubleshooting_logs.issue_api_key_expired_loop
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Problem**: After updating `.env` locally or Secrets on Cloud, the app still returned `400 API_KEY_INVALID`.
 - **Cause**: The Python process (Streamlit server) loads environment variables *only on startup*. Hot-reloading checks code changes but not environment variable changes.
 - **Fix**: Manually stop (Ctrl+C) and restart the Streamlit server (`streamlit run app.py`). On Cloud, use the "Reboot App" button.
 
 ### Issue: Secret Precedence
+- id: google_cloud_api_integration_guide.troubleshooting_logs.issue_secret_precedence
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Problem**: Confusion over whether `secrets.toml` overrides `.env`.
 - **Resolution**: Keeps things simple. Store *only* Service Account JSON in `secrets.toml` and *only* simple strings (API Keys) in `.env`. Do not duplicate keys.
 
@@ -71,10 +110,22 @@ We use a "Split-Brain" configuration strategy to separate local development from
 <!-- content -->
 
 ### How to Monitor Usage
+- id: google_cloud_api_integration_guide.common_workflows.how_to_monitor_usage
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 1.  **For Gemini**: Go to [Google AI Studio](https://aistudio.google.com/) or the GCP Console for the project linked to your key.
 2.  **For Sheets**: Go to GCP Console → APIs & Services → Enabled APIs → Google Sheets API.
 
 ### How to Rotate Keys
+- id: google_cloud_api_integration_guide.common_workflows.how_to_rotate_keys
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 1.  Generate new key in AI Studio.
 2.  Update `.env` (Local).
 3.  Update Streamlit Cloud Secrets (Production).

@@ -23,6 +23,12 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 <!-- content -->
 
 ### 1. `update_master_plan.py`
+- id: manager_agent_context.tools_scripts.1_update_master_planpy
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Location**: `manager/planner/update_master_plan.py`
 - **Usage**:
     - `python3 update_master_plan.py --repo <url>` (Sync specific repo)
@@ -30,6 +36,12 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 - **Function**: Merges the implementation plans from various repositories into the monolithic `MASTER_PLAN.md`.
 
 ### 2. `md_parser.py` (Analysis)
+- id: manager_agent_context.tools_scripts.2_md_parserpy_analysis
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Location**: `language/md_parser.py`
 - **Usage**: `python3 ../../language/md_parser.py MASTER_PLAN.md`
 - **Function**: Converts the Markdown plan into a JSON tree.

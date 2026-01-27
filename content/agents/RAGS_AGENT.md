@@ -1177,7 +1177,6 @@ Track these metrics to evaluate RAG quality:
 - priority: low
 - estimate: 1h
 <!-- content -->
-
 ```python
 """
 Simple RAG evaluation framework.

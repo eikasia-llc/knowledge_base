@@ -74,6 +74,12 @@ The following fields are standard, but the schema allows extensibility.
 | `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. |
 
 ### Type Definitions
+- id: markdown_json_hybrid_schema_conventions.implement_user_auth.type_definitions
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **`plan`**: (Finite) A high-level objective with a clear beginning and end. Usually the root node.
 - **`task`**: (Finite) A specific, actionable unit of work. Usually a sub-node of a plan.
 - **`recurring`**: (Infinite) A maintenance loop or checklist that resets periodically (e.g. housekeeping).

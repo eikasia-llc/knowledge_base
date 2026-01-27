@@ -1219,16 +1219,34 @@ class DocumentIngester:
 Examples of using the unified system.
 
 ### Basic Usage
+- id: unified_local_nexus_rag_data_warehouse_architecture.usage_examples.basic_usage
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 
 ```python
 from src.core.unified_engine import UnifiedEngine
 import google.generativeai as genai
 
 # Configure LLM
+- id: configure_llm
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 genai.configure(api_key="your-api-key")
 llm = genai.GenerativeModel('gemini-1.5-flash')
 
 # Initialize unified engine
+- id: initialize_unified_engine
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 engine = UnifiedEngine(
     db_path="data/warehouse.db",
     vector_store_path="data/vectordb",
@@ -1236,34 +1254,82 @@ engine = UnifiedEngine(
 )
 
 # Query examples
+- id: query_examples
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 # Structured query (routes to Text2SQL)
+- id: structured_query_routes_to_text2sql
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 result = engine.query("What were our total sales last month?")
 print(result['answer'])
 
 # Unstructured query (routes to RAG)
+- id: unstructured_query_routes_to_rag
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 result = engine.query("What is our refund policy?")
 print(result['answer'])
 
 # Hybrid query (uses both)
+- id: hybrid_query_uses_both
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 result = engine.query("Which customers complained about shipping and have orders over $500?")
 print(result['answer'])
 ```
 
 ### Document Ingestion
+- id: hybrid_query_uses_both.document_ingestion
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 
 ```python
 from src.core.document_ingestion import DocumentIngester
 from src.core.vector_store import VectorStore
 
 # Initialize
+- id: initialize
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 vector_store = VectorStore("data/vectordb")
 ingester = DocumentIngester(vector_store)
 
 # Ingest a single file
+- id: ingest_a_single_file
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 result = ingester.ingest_file("docs/company_policies.pdf")
 print(f"Created {result['chunks_created']} chunks")
 
 # Ingest all documents in a directory
+- id: ingest_all_documents_in_a_directory
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 results = ingester.ingest_directory("docs/", extensions=['.pdf', '.md'])
 total_chunks = sum(r['chunks_created'] for r in results if r['success'])
 print(f"Ingested {len(results)} files, {total_chunks} total chunks")
@@ -1287,6 +1353,12 @@ from src.core.unified_engine import UnifiedEngine
 from src.core.document_ingestion import DocumentIngester
 
 # Sidebar - Data Sources section
+- id: sidebar_data_sources_section
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 with st.sidebar:
     st.header("Data Sources")
     
@@ -1324,6 +1396,12 @@ with st.sidebar:
     st.metric("Tables", len(stats['database_schema']))
 
 # Chat interface
+- id: chat_interface
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 if prompt := st.chat_input("Ask about your data or documents..."):
     with st.chat_message("user"):
         st.write(prompt)
@@ -1675,6 +1753,12 @@ Represent graph state within your existing MD conventions. This integrates natur
 <!-- content -->
 
 ### Nodes
+- id: chat_interface.entity_graph.nodes
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 | ID | Type | Name | Properties |
 |:---|:-----|:-----|:-----------|
 | P001 | Person | Alice Chen | role: VP Engineering |
@@ -1683,6 +1767,12 @@ Represent graph state within your existing MD conventions. This integrates natur
 | PR001 | Project | Atlas | status: active |
 
 ### Edges
+- id: chat_interface.entity_graph.edges
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 | Source | Relationship | Target | Properties |
 |:-------|:-------------|:-------|:-----------|
 | P001 | manages | P002 | since: 2023-01 |
@@ -1691,6 +1781,12 @@ Represent graph state within your existing MD conventions. This integrates natur
 | D001 | owns | PR001 | |
 
 ### Adjacency Summary
+- id: chat_interface.entity_graph.adjacency_summary
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 - **Alice Chen (P001)**: manages Bob Smith, leads Engineering
 - **Bob Smith (P002)**: managed by Alice Chen, works on Atlas (80%)
 - **Engineering (D001)**: led by Alice Chen, owns Atlas
@@ -2451,6 +2547,12 @@ Update the unified engine to include a graph retrieval path.
 
 ```python
 # Add to QueryRouter class
+- id: add_to_queryrouter_class
+- status: active
+- type: context
+- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
+- last_checked: 2026-01-27
+<!-- content -->
 
 GRAPH_KEYWORDS = {
     'connected', 'relationship', 'related to', 'path', 'network',

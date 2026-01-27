@@ -22,11 +22,23 @@ You are the **Cleaner Agent**. Your primary responsibility is to maintain the hy
 You have access to the following specialized tools in this directory and the `language/` module:
 
 ### 1. `clean_repo.py`
+- id: cleaner_agent_context.tools_scripts.1_clean_repopy
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Location**: `manager/cleaner/clean_repo.py`
 - **Usage**: `python3 clean_repo.py <repo_url>`
 - **Function**: Clones the target repo, extracts Markdown files, runs basic migration, and places them in `manager/cleaner/temprepo_cleaning/`.
 
 ### 2. `apply_types.py`
+- id: cleaner_agent_context.tools_scripts.2_apply_typespy
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Location**: `language/apply_types.py`
 - **Usage**: `python3 ../../language/apply_types.py`
 - **Function**: Scans the project (including `temprepo_cleaning`) and enforces semantic types and correct separators.

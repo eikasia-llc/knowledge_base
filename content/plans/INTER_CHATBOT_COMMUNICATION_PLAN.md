@@ -530,12 +530,24 @@ User: "Analyze my sales data, translate the report to Spanish, and check if our 
 Tracking key decisions and unresolved questions.
 
 ### Decision Log
+- id: inter_chatbot_communication_protocol.open_questions_decisions.decision_log
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 | Date | Question | Decision | Rationale |
 |------|----------|----------|-----------|
 | 2026-01-25 | Standard protocol? | Custom JSON over HTTPS | No universal standard exists; design for future compatibility |
 | 2026-01-25 | Default trust level? | Tier 0 (blocked) | Security-first; explicit opt-in required |
 
 ### Open Questions
+- id: inter_chatbot_communication_protocol.open_questions_decisions.open_questions
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 1. **Billing Model**: How do we handle costs when external bots charge per query?
 2. **SLA Propagation**: How do external bot SLAs affect our user-facing SLAs?
 3. **Liability**: Who is responsible when an external bot provides incorrect information?

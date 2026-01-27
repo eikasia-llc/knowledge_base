@@ -14,6 +14,12 @@ This file tracks the execution history of the cleaning process, recording import
 *(Agent should append new runs here using `date` and `repo` details)*
 
 ### 2026-01-23: Initial Setup & Import
+- id: cleaning_process_logs.execution_history.2026_01_23_initial_setup_import
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Action**: Cleaned/Imported `IgnacioOQ/e_network_inequality` (branch `ai-agents-branch`)
 - **Status**: Success
 - **Files Processed**: 8
@@ -23,6 +29,12 @@ This file tracks the execution history of the cleaning process, recording import
     - Ran `apply_types.py` to retroactively apply schema to imported files.
 
 ### 2026-01-24: Import control_algorithms
+- id: cleaning_process_logs.execution_history.2026_01_24_import_control_algorithms
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_algorithms` (default branch)
 - **Repo URL**: `https://github.com/eikasia-llc/control_algorithms`
 - **Status**: Success
@@ -32,6 +44,12 @@ This file tracks the execution history of the cleaning process, recording import
     - Ran `apply_types.py`. Note: `Guideline_Project.md` and `Reinforcement Learning Project Guideline.md` were skipped by defined rules but have valid `type: context` from migration.
 
 ### 2026-01-25: Import control_tower
+- id: cleaning_process_logs.execution_history.2026_01_25_import_control_tower
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_tower` (default branch)
 - **Repo URL**: `https://github.com/eikasia-llc/control_tower`
 - **Status**: Success
@@ -42,6 +60,12 @@ This file tracks the execution history of the cleaning process, recording import
     - Manually refined metadata for: `INFRASTRUCTURE_DEFINITIONS.md`, `INFRASTRUCTURE_AGENT.md`, `INFRASTRUCTURE_PLAN.md`, `AGENTS_ARTIFACTS.md` (updated types and IDs).
 
 ### 2026-01-25: Import multiagentrecommendation
+- id: cleaning_process_logs.execution_history.2026_01_25_import_multiagentrecommendation
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Action**: Cleaned/Imported `IgnacioOQ/multiagentrecommendation` (branch `project-reorganization`)
 - **Repo URL**: `https://github.com/IgnacioOQ/multiagentrecommendation/tree/project-reorganization`
 - **Status**: Success
@@ -53,6 +77,12 @@ This file tracks the execution history of the cleaning process, recording import
     - Manually fixed `TODOS.md` (type: task) and `MD_REPRESENTATION_CONVENTIONS.md` (type: guideline).
 
 ### 2026-01-25: Re-import control_tower
+- id: cleaning_process_logs.execution_history.2026_01_25_re_import_control_tower
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_tower` (default branch) via updated repolist.
 - **Repo URL**: `https://github.com/eikasia-llc/control_tower`
 - **Status**: Success
@@ -67,6 +97,12 @@ This file tracks the execution history of the cleaning process, recording import
         - `2026-01-25_001_research-basic-game_plan.md` (context -> plan)
 
 ### 2026-01-25: Clone empty repository
+- id: cleaning_process_logs.execution_history.2026_01_25_clone_empty_repository
+- status: active
+- type: context
+- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
+- last_checked: 2026-01-27
+<!-- content -->
 - **Action**: Cloned `eikasia-llc/empty` into `manager/cleaner/repositories/`
 - **Repo URL**: `https://github.com/eikasia-llc/empty`
 - **Status**: Success

@@ -16,6 +16,7 @@ This file contains the historical log of meetings with colleagues and collaborat
 ### [YYYY-MM-DD] - [Meeting Title]
 - status: todo
 - type: log
+<!-- content -->
 - participants: []
 <!-- content -->
 **Agenda:**
@@ -32,6 +33,7 @@ This file contains the historical log of meetings with colleagues and collaborat
 ## 2026-01-25 - Setting the Intelligent Control SaaS Roadmap
 - status: todo
 - type: log
+<!-- content -->
 - participants: ["Ignacio", "Fran"]
 - id: planner.meeting.20260125.roadmap
 - last_checked: 2026-01-25T17:45:00+01:00

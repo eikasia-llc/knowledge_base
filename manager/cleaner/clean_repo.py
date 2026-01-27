@@ -8,8 +8,8 @@ import argparse
 # Add language directory to sys.path to allow imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
-grandparent_dir = os.path.dirname(parent_dir)
-language_dir = os.path.join(grandparent_dir, 'language')
+# grandparent_dir = os.path.dirname(parent_dir) # Not needed in new structure
+language_dir = os.path.join(parent_dir, 'language')
 sys.path.append(language_dir)
 
 try:
@@ -94,7 +94,9 @@ def clean_repo(url):
                     except Exception as e:
                         print(f"Error checking/migrating {file}: {e}")
 
-        print(f"Successfully cleaned and migrated {md_count} markdown files to {destination_dir}")
+            print(f"Successfully cleaned and migrated {md_count} markdown files to {destination_dir}")
+    
+    return md_count, destination_dir
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Clone repo and migrate markdown files to manager/temprepo_cleaning/")
