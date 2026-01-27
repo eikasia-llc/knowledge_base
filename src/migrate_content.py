@@ -15,6 +15,7 @@ categories = {
     "agents": content_dir / "agents",
     "plans": content_dir / "plans",
     "guidelines": content_dir / "guidelines",
+    "core": content_dir / "core",
     "root": content_dir / "root",
     "logs": content_dir / "logs",
     "misc": content_dir / "misc"
@@ -26,8 +27,8 @@ for p in categories.values():
 # Define mapping rules (glob -> category)
 # Order matters!
 rules = [
-    ("**/AGENTS.md", "guidelines"),
-    ("**/MD_CONVENTIONS.md", "guidelines"),
+    ("**/AGENTS.md", "core"),
+    ("**/MD_CONVENTIONS.md", "core"),
     ("**/README.md", "root"),
     
     # Specific Agents

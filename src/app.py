@@ -43,8 +43,8 @@ with st.sidebar:
     
     st.divider()
     
-    st.subheader("Filter Settings")
-    show_core = st.checkbox("Show Core Dependencies", value=False, help="Show infrastructure files like AGENTS.md or MD_CONVENTIONS.md")
+    # st.subheader("Filter Settings")
+    # No filters for now
 
 # Main Content
 st.title("🧠 Knowledge Base Injector")
@@ -65,6 +65,7 @@ files = registry.get("files", {})
 
 # Categorize Files
 categories = {
+    "Core": [],
     "Skills": [],
     "Guidelines": [],
     "Protocols": [],
@@ -74,16 +75,19 @@ categories = {
     "Uncategorized": []
 }
 
-core_files = ["AGENTS.md", "MD_CONVENTIONS.md", "README.md", "dependency_registry.json"]
+# Core files pattern heuristics
+core_filenames = ["README.md", "dependency_registry.json"]
 
 for path, info in files.items():
-    # Skip core files if hidden
-    is_core = any(path.endswith(c) for c in core_files)
-    if is_core and not show_core:
-        continue
-        
-    # Determine category based on path or metadata (for now simple path heuristics)
     lower_path = path.lower()
+    
+    # Core categorization
+    # If it's in the core directory or one of the root core files
+    if "content/core" in path or any(path.endswith(c) for c in core_filenames):
+        categories["Core"].append(path)
+        continue
+
+    # Determine category based on path or metadata (for now simple path heuristics)
     if "agent" in lower_path and "skill" in lower_path:
         categories["Skills"].append(path)
     elif "guideline" in lower_path or "convention" in lower_path:
@@ -106,7 +110,7 @@ selected_files = []
 
 for category, items in categories.items():
     if items:
-        with st.expander(f"{category} ({len(items)})", expanded=(category in ["Skills", "Protocols"])):
+        with st.expander(f"{category} ({len(items)})", expanded=(category in ["Core", "Skills", "Protocols"])):
             for item in sorted(items):
                 if st.checkbox(item, key=item):
                     selected_files.append(item)

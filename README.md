@@ -30,7 +30,8 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - `content/`: The actual knowledge base files.
   - `agents/`: AI Agent definitions.
   - `plans/`: Project plans and roadmaps.
-  - `guidelines/`: Core protocols and conventions.
+  - `core/`: Core conventions, agents, and protocols.
+  - `guidelines/`: Additional guidelines and templates.
   - `logs/`: Operational logs and artifacts.
 - `dependency_registry.json`: The source of truth for file relationships.
 
