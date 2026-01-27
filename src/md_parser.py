@@ -94,13 +94,20 @@ class MarkdownParser:
     def parse_lines(self, lines):
         root = Node(0, "Root")
         node_stack = [root] # Stack to track hierarchy
+        in_code_block = False
 
         i = 0
         while i < len(lines):
             line = lines[i]
+            
+            # Check for code block fence (toggle)
+            if line.strip().startswith("```"):
+                in_code_block = not in_code_block
+
             header_match = self.header_pattern.match(line)
 
-            if header_match:
+            # Only treat as header if NOT in code block
+            if header_match and not in_code_block:
                 level = len(header_match.group(1))
                 title = header_match.group(2).strip()
                 new_node = Node(level, title)
@@ -156,9 +163,15 @@ class MarkdownParser:
                 # Capture content until next header
                 content_lines = []
                 while i < len(lines):
-                    if self.header_pattern.match(lines[i]):
+                    current_line = lines[i]
+                    
+                    # Track code blocks within content to avoid false header matches
+                    if current_line.strip().startswith("```"):
+                        in_code_block = not in_code_block
+
+                    if self.header_pattern.match(current_line) and not in_code_block:
                         break # Next header found
-                    content_lines.append(lines[i])
+                    content_lines.append(current_line)
                     i += 1
                 
                 new_node.content = "".join(content_lines).strip()
@@ -171,7 +184,7 @@ class MarkdownParser:
                 node_stack[-1].children.append(new_node)
                 node_stack.append(new_node)
             else:
-                # Content before first header?
+                # Content before first header or ignored within code block
                 # For now just ignore or append to root content if needed
                 i += 1
         
