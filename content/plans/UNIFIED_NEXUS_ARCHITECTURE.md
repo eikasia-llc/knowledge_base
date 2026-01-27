@@ -1348,6 +1348,1213 @@ if prompt := st.chat_input("Ask about your data or documents..."):
             st.json(result['retrieval'])
 ```
 
+## Graph Data Integration
+- status: active
+- type: plan
+- id: unified-nexus.graphs
+<!-- content -->
+Graph data represents **relationships** between entities—something that neither traditional RAG nor SQL handles elegantly. Adding a graph layer completes the unified architecture, enabling questions like:
+
+- "Who are the key influencers connected to our top customers?" (relationship traversal)
+- "What's the shortest path between our supplier and this regulatory issue?" (path finding)
+- "Show me all entities related to this compliance violation" (subgraph extraction)
+
+### Why Graphs Matter
+- status: active
+- type: context
+- id: unified-nexus.graphs.rationale
+<!-- content -->
+
+| Data Type | Best For | Limitations |
+|:----------|:---------|:------------|
+| **Tables (SQL)** | Aggregations, filters, joins on known schemas | Poor at variable-depth relationships |
+| **Documents (RAG)** | Semantic search, fuzzy matching | No explicit relationship modeling |
+| **Graphs** | Relationship traversal, path finding, network analysis | Overkill for simple lookups |
+
+**Real-world graph questions**:
+- "Which departments have the most cross-team dependencies?"
+- "Find all products affected if Supplier X fails"
+- "What's the influence network around this key account?"
+
+### Approach Comparison
+- status: active
+- type: context
+- id: unified-nexus.graphs.approaches
+<!-- content -->
+
+| Approach | Complexity | Cost | Best For | Recommendation |
+|:---------|:-----------|:-----|:---------|:---------------|
+| **Text Serialization** | Low | Free | Simple graphs, prototyping | ⭐ Start here |
+| **Graph State in Markdown** | Low | Free | Agent protocols, small graphs | ⭐ Good for your MD conventions |
+| **GraphRAG (Microsoft)** | Medium | LLM calls | Document synthesis, summaries | Consider for document-heavy use |
+| **DuckDB Graph Extensions** | Medium | Free | SQL-integrated graphs | ⭐ Best fit for Local Nexus |
+| **NetworkX + Embeddings** | Medium | Free | Analysis + ML | Good for network metrics |
+| **Neo4j + MCP** | High | Neo4j license | Large enterprise graphs | Overkill for most SMBs |
+| **GNN Embeddings** | High | Compute | ML on graph structure | Research/advanced only |
+
+### Recommended Approach: Lightweight Graph Layer
+- status: active
+- type: guideline
+- id: unified-nexus.graphs.recommended
+<!-- content -->
+
+For a **cheap and feasible** implementation that fits with Local Nexus, I recommend a **tiered approach**:
+
+1. **Tier 1 (Immediate)**: Text serialization + structured prompting
+2. **Tier 2 (When needed)**: DuckDB graph tables + NetworkX analysis
+3. **Tier 3 (Scale)**: Neo4j MCP server (only if graph queries dominate)
+
+Most SMB use cases will be fully served by Tier 1 and Tier 2.
+
+### Option 1: Text Serialization (Cheapest)
+- status: active
+- type: task
+- id: unified-nexus.graphs.serialization
+- priority: high
+- estimate: 1h
+<!-- content -->
+
+Serialize graph structures into LLM-friendly text. The LLM can reason about relationships directly from text descriptions.
+
+**Serialization Formats**:
+
+```python
+"""
+Graph serialization utilities for LLM consumption.
+
+Multiple formats available depending on graph size and query type.
+"""
+
+from typing import Optional
+import json
+
+
+class GraphSerializer:
+    """
+    Serializes graph data into LLM-friendly text formats.
+    
+    Supports multiple output formats optimized for different
+    query types and graph sizes.
+    """
+    
+    @staticmethod
+    def to_edge_list(edges: list[tuple[str, str, Optional[dict]]]) -> str:
+        """
+        Simple edge list format. Best for small graphs.
+        
+        Args:
+            edges: List of (source, target, properties) tuples
+        
+        Returns:
+            Edge list string
+        
+        Example output:
+            Alice -> Bob [relationship: manager]
+            Bob -> Carol [relationship: colleague]
+        """
+        lines = []
+        for source, target, props in edges:
+            if props:
+                prop_str = ", ".join(f"{k}: {v}" for k, v in props.items())
+                lines.append(f"{source} -> {target} [{prop_str}]")
+            else:
+                lines.append(f"{source} -> {target}")
+        return "\n".join(lines)
+    
+    @staticmethod
+    def to_natural_language(
+        edges: list[tuple[str, str, Optional[dict]]],
+        node_descriptions: Optional[dict[str, str]] = None
+    ) -> str:
+        """
+        Natural language description. Best for LLM reasoning.
+        
+        Args:
+            edges: List of (source, target, properties) tuples
+            node_descriptions: Optional dict mapping node IDs to descriptions
+        
+        Returns:
+            Natural language description
+        
+        Example output:
+            Alice is the manager of Bob.
+            Bob is a colleague of Carol.
+            Alice is described as: Senior VP of Engineering.
+        """
+        lines = []
+        
+        # Describe nodes first if available
+        if node_descriptions:
+            lines.append("Entities:")
+            for node_id, desc in node_descriptions.items():
+                lines.append(f"- {node_id}: {desc}")
+            lines.append("\nRelationships:")
+        
+        # Describe relationships
+        for source, target, props in edges:
+            rel_type = props.get('relationship', 'connected to') if props else 'connected to'
+            lines.append(f"- {source} is {rel_type} {target}")
+        
+        return "\n".join(lines)
+    
+    @staticmethod
+    def to_adjacency_description(
+        nodes: list[str],
+        edges: list[tuple[str, str, Optional[dict]]]
+    ) -> str:
+        """
+        Adjacency-based description. Best for neighborhood queries.
+        
+        Args:
+            nodes: List of node IDs
+            edges: List of (source, target, properties) tuples
+        
+        Returns:
+            Adjacency description
+        
+        Example output:
+            Alice's connections:
+              - manages: Bob
+              - reports_to: CEO
+            Bob's connections:
+              - managed_by: Alice
+              - colleagues: Carol, Dave
+        """
+        # Build adjacency map
+        adjacency = {node: {'outgoing': [], 'incoming': []} for node in nodes}
+        
+        for source, target, props in edges:
+            rel_type = props.get('relationship', 'connected') if props else 'connected'
+            if source in adjacency:
+                adjacency[source]['outgoing'].append((rel_type, target))
+            if target in adjacency:
+                adjacency[target]['incoming'].append((rel_type, source))
+        
+        lines = []
+        for node, connections in adjacency.items():
+            if connections['outgoing'] or connections['incoming']:
+                lines.append(f"\n{node}'s connections:")
+                for rel_type, target in connections['outgoing']:
+                    lines.append(f"  → {rel_type}: {target}")
+                for rel_type, source in connections['incoming']:
+                    lines.append(f"  ← {rel_type} (from {source})")
+        
+        return "\n".join(lines)
+    
+    @staticmethod
+    def to_cypher_patterns(edges: list[tuple[str, str, Optional[dict]]]) -> str:
+        """
+        Cypher-style patterns. Best for graph DB users or structured queries.
+        
+        Args:
+            edges: List of (source, target, properties) tuples
+        
+        Returns:
+            Cypher-like pattern string
+        
+        Example output:
+            (Alice)-[:MANAGES]->(Bob)
+            (Bob)-[:COLLEAGUE]->(Carol)
+        """
+        lines = []
+        for source, target, props in edges:
+            rel_type = props.get('relationship', 'CONNECTED').upper().replace(' ', '_') if props else 'CONNECTED'
+            lines.append(f"({source})-[:{rel_type}]->({target})")
+        return "\n".join(lines)
+    
+    @staticmethod
+    def to_rdf_triples(edges: list[tuple[str, str, Optional[dict]]]) -> str:
+        """
+        RDF triple format. Best for semantic web integration.
+        
+        Args:
+            edges: List of (source, target, properties) tuples
+        
+        Returns:
+            RDF-style triples
+        
+        Example output:
+            <Alice> <manages> <Bob> .
+            <Bob> <colleague_of> <Carol> .
+        """
+        lines = []
+        for source, target, props in edges:
+            predicate = props.get('relationship', 'relatedTo') if props else 'relatedTo'
+            predicate = predicate.replace(' ', '_')
+            lines.append(f"<{source}> <{predicate}> <{target}> .")
+        return "\n".join(lines)
+
+
+def extract_subgraph_for_query(
+    query: str,
+    all_edges: list[tuple[str, str, Optional[dict]]],
+    all_nodes: dict[str, dict],
+    max_nodes: int = 20
+) -> tuple[list[str], list[tuple]]:
+    """
+    Extract relevant subgraph based on query keywords.
+    
+    This is a simple keyword-based extraction. For production,
+    consider using embeddings to find relevant nodes.
+    
+    Args:
+        query: User query
+        all_edges: Complete edge list
+        all_nodes: Dict of node_id -> node_properties
+        max_nodes: Maximum nodes to include
+    
+    Returns:
+        Tuple of (relevant_node_ids, relevant_edges)
+    """
+    query_lower = query.lower()
+    
+    # Find nodes mentioned in query or matching keywords
+    relevant_nodes = set()
+    for node_id, props in all_nodes.items():
+        # Check if node ID or any property matches query
+        searchable = f"{node_id} {json.dumps(props)}".lower()
+        if any(word in searchable for word in query_lower.split()):
+            relevant_nodes.add(node_id)
+    
+    # Expand to neighbors (1-hop)
+    for source, target, _ in all_edges:
+        if source in relevant_nodes:
+            relevant_nodes.add(target)
+        if target in relevant_nodes:
+            relevant_nodes.add(source)
+    
+    # Limit size
+    relevant_nodes = list(relevant_nodes)[:max_nodes]
+    
+    # Filter edges to only those between relevant nodes
+    relevant_edges = [
+        (s, t, p) for s, t, p in all_edges
+        if s in relevant_nodes and t in relevant_nodes
+    ]
+    
+    return relevant_nodes, relevant_edges
+```
+
+**Usage in Prompts**:
+
+```python
+def create_graph_aware_prompt(question: str, graph_context: str) -> str:
+    """Create a prompt that includes graph context."""
+    return f"""Answer the question using the relationship information provided.
+
+Graph Structure:
+{graph_context}
+
+Question: {question}
+
+Instructions:
+- Use the relationship information to trace connections
+- Identify relevant paths between entities
+- If the graph doesn't contain enough info, say so
+
+Answer:"""
+```
+
+### Option 2: Graph State in Markdown
+- status: active
+- type: task
+- id: unified-nexus.graphs.markdown
+- priority: high
+- estimate: 30m
+<!-- content -->
+
+Represent graph state within your existing MD conventions. This integrates naturally with your agent protocol.
+
+**Format Example**:
+
+```markdown
+## Entity Graph
+- status: active
+- type: context
+- id: project.entity-graph
+<!-- content -->
+
+### Nodes
+| ID | Type | Name | Properties |
+|:---|:-----|:-----|:-----------|
+| P001 | Person | Alice Chen | role: VP Engineering |
+| P002 | Person | Bob Smith | role: Tech Lead |
+| D001 | Department | Engineering | budget: $2M |
+| PR001 | Project | Atlas | status: active |
+
+### Edges
+| Source | Relationship | Target | Properties |
+|:-------|:-------------|:-------|:-----------|
+| P001 | manages | P002 | since: 2023-01 |
+| P001 | leads | D001 | |
+| P002 | works_on | PR001 | allocation: 80% |
+| D001 | owns | PR001 | |
+
+### Adjacency Summary
+- **Alice Chen (P001)**: manages Bob Smith, leads Engineering
+- **Bob Smith (P002)**: managed by Alice Chen, works on Atlas (80%)
+- **Engineering (D001)**: led by Alice Chen, owns Atlas
+- **Atlas (PR001)**: owned by Engineering, worked on by Bob Smith
+```
+
+**Parser for MD Graph Format**:
+
+```python
+"""
+Parser for graph data stored in Markdown tables.
+
+Integrates with the MD_CONVENTIONS schema for agent protocols.
+"""
+
+import re
+from typing import Optional
+
+
+def parse_md_graph(md_content: str) -> dict:
+    """
+    Parse graph data from markdown tables.
+    
+    Expects tables with headers:
+    - Nodes: ID, Type, Name, Properties
+    - Edges: Source, Relationship, Target, Properties
+    
+    Args:
+        md_content: Markdown content containing graph tables
+    
+    Returns:
+        Dict with 'nodes' and 'edges' lists
+    """
+    nodes = []
+    edges = []
+    
+    # Find Nodes table
+    nodes_match = re.search(
+        r'###\s*Nodes\s*\n\|[^\n]+\|\s*\n\|[-:\s|]+\|\s*\n((?:\|[^\n]+\|\s*\n?)+)',
+        md_content
+    )
+    
+    if nodes_match:
+        rows = nodes_match.group(1).strip().split('\n')
+        for row in rows:
+            cells = [c.strip() for c in row.split('|')[1:-1]]
+            if len(cells) >= 3:
+                nodes.append({
+                    'id': cells[0],
+                    'type': cells[1] if len(cells) > 1 else '',
+                    'name': cells[2] if len(cells) > 2 else '',
+                    'properties': cells[3] if len(cells) > 3 else ''
+                })
+    
+    # Find Edges table
+    edges_match = re.search(
+        r'###\s*Edges\s*\n\|[^\n]+\|\s*\n\|[-:\s|]+\|\s*\n((?:\|[^\n]+\|\s*\n?)+)',
+        md_content
+    )
+    
+    if edges_match:
+        rows = edges_match.group(1).strip().split('\n')
+        for row in rows:
+            cells = [c.strip() for c in row.split('|')[1:-1]]
+            if len(cells) >= 3:
+                edges.append({
+                    'source': cells[0],
+                    'relationship': cells[1] if len(cells) > 1 else '',
+                    'target': cells[2] if len(cells) > 2 else '',
+                    'properties': cells[3] if len(cells) > 3 else ''
+                })
+    
+    return {'nodes': nodes, 'edges': edges}
+
+
+def graph_to_md_tables(nodes: list[dict], edges: list[dict]) -> str:
+    """
+    Convert graph data to markdown table format.
+    
+    Args:
+        nodes: List of node dicts with id, type, name, properties
+        edges: List of edge dicts with source, relationship, target, properties
+    
+    Returns:
+        Markdown string with tables
+    """
+    lines = ["### Nodes"]
+    lines.append("| ID | Type | Name | Properties |")
+    lines.append("|:---|:-----|:-----|:-----------|")
+    
+    for node in nodes:
+        lines.append(f"| {node.get('id', '')} | {node.get('type', '')} | {node.get('name', '')} | {node.get('properties', '')} |")
+    
+    lines.append("\n### Edges")
+    lines.append("| Source | Relationship | Target | Properties |")
+    lines.append("|:-------|:-------------|:-------|:-----------|")
+    
+    for edge in edges:
+        lines.append(f"| {edge.get('source', '')} | {edge.get('relationship', '')} | {edge.get('target', '')} | {edge.get('properties', '')} |")
+    
+    return "\n".join(lines)
+```
+
+### Option 3: DuckDB Graph Tables (Recommended for Local Nexus)
+- status: active
+- type: task
+- id: unified-nexus.graphs.duckdb
+- priority: medium
+- estimate: 2h
+<!-- content -->
+
+Store graph data in DuckDB tables and use recursive CTEs for traversal. This keeps everything in one database and integrates with your existing Text2SQL.
+
+**Schema**:
+
+```sql
+-- Nodes table
+CREATE TABLE IF NOT EXISTS graph_nodes (
+    node_id VARCHAR PRIMARY KEY,
+    node_type VARCHAR,
+    name VARCHAR,
+    properties JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Edges table  
+CREATE TABLE IF NOT EXISTS graph_edges (
+    edge_id VARCHAR PRIMARY KEY,
+    source_id VARCHAR REFERENCES graph_nodes(node_id),
+    target_id VARCHAR REFERENCES graph_nodes(node_id),
+    relationship VARCHAR,
+    properties JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Index for fast traversal
+CREATE INDEX idx_edges_source ON graph_edges(source_id);
+CREATE INDEX idx_edges_target ON graph_edges(target_id);
+CREATE INDEX idx_edges_relationship ON graph_edges(relationship);
+```
+
+**Graph Queries via SQL**:
+
+```python
+"""
+Graph operations using DuckDB SQL.
+
+Uses recursive CTEs for path finding and subgraph extraction.
+"""
+
+class DuckDBGraphStore:
+    """
+    Graph storage and querying using DuckDB.
+    
+    Stores graph as relational tables and uses recursive CTEs
+    for traversal operations.
+    """
+    
+    def __init__(self, db_path: str):
+        """Initialize with DuckDB database path."""
+        import duckdb
+        self.conn = duckdb.connect(db_path)
+        self._init_schema()
+    
+    def _init_schema(self):
+        """Create graph tables if they don't exist."""
+        self.conn.execute("""
+            CREATE TABLE IF NOT EXISTS graph_nodes (
+                node_id VARCHAR PRIMARY KEY,
+                node_type VARCHAR,
+                name VARCHAR,
+                properties JSON
+            )
+        """)
+        self.conn.execute("""
+            CREATE TABLE IF NOT EXISTS graph_edges (
+                source_id VARCHAR,
+                target_id VARCHAR,
+                relationship VARCHAR,
+                properties JSON,
+                PRIMARY KEY (source_id, target_id, relationship)
+            )
+        """)
+    
+    def add_node(self, node_id: str, node_type: str, name: str, properties: dict = None):
+        """Add a node to the graph."""
+        import json
+        props_json = json.dumps(properties or {})
+        self.conn.execute("""
+            INSERT OR REPLACE INTO graph_nodes (node_id, node_type, name, properties)
+            VALUES (?, ?, ?, ?)
+        """, [node_id, node_type, name, props_json])
+    
+    def add_edge(self, source: str, target: str, relationship: str, properties: dict = None):
+        """Add an edge to the graph."""
+        import json
+        props_json = json.dumps(properties or {})
+        self.conn.execute("""
+            INSERT OR REPLACE INTO graph_edges (source_id, target_id, relationship, properties)
+            VALUES (?, ?, ?, ?)
+        """, [source, target, relationship, props_json])
+    
+    def get_neighbors(self, node_id: str, direction: str = 'both') -> list[dict]:
+        """
+        Get immediate neighbors of a node.
+        
+        Args:
+            node_id: The node to find neighbors for
+            direction: 'outgoing', 'incoming', or 'both'
+        
+        Returns:
+            List of neighbor info dicts
+        """
+        queries = []
+        
+        if direction in ('outgoing', 'both'):
+            queries.append(f"""
+                SELECT e.target_id as neighbor_id, e.relationship, 'outgoing' as direction,
+                       n.node_type, n.name
+                FROM graph_edges e
+                JOIN graph_nodes n ON e.target_id = n.node_id
+                WHERE e.source_id = '{node_id}'
+            """)
+        
+        if direction in ('incoming', 'both'):
+            queries.append(f"""
+                SELECT e.source_id as neighbor_id, e.relationship, 'incoming' as direction,
+                       n.node_type, n.name
+                FROM graph_edges e
+                JOIN graph_nodes n ON e.source_id = n.node_id
+                WHERE e.target_id = '{node_id}'
+            """)
+        
+        full_query = " UNION ALL ".join(queries)
+        result = self.conn.execute(full_query).fetchdf()
+        return result.to_dict('records')
+    
+    def find_paths(self, start: str, end: str, max_depth: int = 4) -> list[list[str]]:
+        """
+        Find all paths between two nodes using recursive CTE.
+        
+        Args:
+            start: Starting node ID
+            end: Ending node ID
+            max_depth: Maximum path length
+        
+        Returns:
+            List of paths (each path is a list of node IDs)
+        """
+        query = f"""
+            WITH RECURSIVE paths AS (
+                -- Base case: start from the source node
+                SELECT 
+                    source_id,
+                    target_id,
+                    [source_id, target_id] as path,
+                    1 as depth
+                FROM graph_edges
+                WHERE source_id = '{start}'
+                
+                UNION ALL
+                
+                -- Recursive case: extend paths
+                SELECT 
+                    p.source_id,
+                    e.target_id,
+                    list_append(p.path, e.target_id),
+                    p.depth + 1
+                FROM paths p
+                JOIN graph_edges e ON p.target_id = e.source_id
+                WHERE p.depth < {max_depth}
+                  AND NOT list_contains(p.path, e.target_id)  -- Avoid cycles
+            )
+            SELECT DISTINCT path
+            FROM paths
+            WHERE target_id = '{end}'
+            ORDER BY len(path)
+        """
+        
+        result = self.conn.execute(query).fetchall()
+        return [row[0] for row in result]
+    
+    def get_subgraph(self, center_node: str, depth: int = 2) -> dict:
+        """
+        Extract subgraph around a node up to given depth.
+        
+        Args:
+            center_node: Node to center subgraph on
+            depth: How many hops to include
+        
+        Returns:
+            Dict with 'nodes' and 'edges' lists
+        """
+        # Get all reachable nodes within depth
+        query = f"""
+            WITH RECURSIVE reachable AS (
+                SELECT '{center_node}' as node_id, 0 as distance
+                
+                UNION
+                
+                SELECT DISTINCT 
+                    CASE WHEN e.source_id = r.node_id THEN e.target_id 
+                         ELSE e.source_id END as node_id,
+                    r.distance + 1
+                FROM reachable r
+                JOIN graph_edges e ON r.node_id IN (e.source_id, e.target_id)
+                WHERE r.distance < {depth}
+            )
+            SELECT DISTINCT node_id FROM reachable
+        """
+        
+        node_ids = [row[0] for row in self.conn.execute(query).fetchall()]
+        
+        # Get node details
+        nodes_query = f"""
+            SELECT node_id, node_type, name, properties
+            FROM graph_nodes
+            WHERE node_id IN ({','.join(f"'{n}'" for n in node_ids)})
+        """
+        nodes = self.conn.execute(nodes_query).fetchdf().to_dict('records')
+        
+        # Get edges between these nodes
+        edges_query = f"""
+            SELECT source_id, target_id, relationship, properties
+            FROM graph_edges
+            WHERE source_id IN ({','.join(f"'{n}'" for n in node_ids)})
+              AND target_id IN ({','.join(f"'{n}'" for n in node_ids)})
+        """
+        edges = self.conn.execute(edges_query).fetchdf().to_dict('records')
+        
+        return {'nodes': nodes, 'edges': edges}
+    
+    def to_text_for_llm(self, subgraph: dict, format: str = 'natural') -> str:
+        """
+        Convert subgraph to LLM-friendly text.
+        
+        Args:
+            subgraph: Dict with 'nodes' and 'edges'
+            format: 'natural', 'edge_list', or 'adjacency'
+        
+        Returns:
+            Text representation for LLM prompt
+        """
+        edges = [
+            (e['source_id'], e['target_id'], {'relationship': e['relationship']})
+            for e in subgraph['edges']
+        ]
+        
+        node_descriptions = {
+            n['node_id']: f"{n['name']} ({n['node_type']})"
+            for n in subgraph['nodes']
+        }
+        
+        serializer = GraphSerializer()
+        
+        if format == 'natural':
+            return serializer.to_natural_language(edges, node_descriptions)
+        elif format == 'edge_list':
+            return serializer.to_edge_list(edges)
+        elif format == 'adjacency':
+            return serializer.to_adjacency_description(
+                list(node_descriptions.keys()), 
+                edges
+            )
+        else:
+            return serializer.to_natural_language(edges, node_descriptions)
+```
+
+### Option 4: NetworkX for Analysis
+- status: active
+- type: task
+- id: unified-nexus.graphs.networkx
+- priority: low
+- estimate: 1h
+<!-- content -->
+
+Use NetworkX for graph algorithms (centrality, communities, paths) and convert results to text for the LLM.
+
+```python
+"""
+NetworkX integration for graph analysis.
+
+Use for complex network metrics that SQL can't handle efficiently.
+"""
+
+import networkx as nx
+from typing import Optional
+
+
+class GraphAnalyzer:
+    """
+    Graph analysis using NetworkX.
+    
+    Provides network metrics and community detection
+    that can be summarized for LLM consumption.
+    """
+    
+    def __init__(self):
+        """Initialize with empty graph."""
+        self.G = nx.DiGraph()
+    
+    def load_from_edges(self, edges: list[tuple[str, str, Optional[dict]]]):
+        """
+        Load graph from edge list.
+        
+        Args:
+            edges: List of (source, target, properties) tuples
+        """
+        self.G.clear()
+        for source, target, props in edges:
+            self.G.add_edge(source, target, **(props or {}))
+    
+    def load_from_duckdb(self, graph_store):
+        """Load graph from DuckDB graph store."""
+        # Get all edges
+        result = graph_store.conn.execute("""
+            SELECT source_id, target_id, relationship
+            FROM graph_edges
+        """).fetchall()
+        
+        self.G.clear()
+        for source, target, rel in result:
+            self.G.add_edge(source, target, relationship=rel)
+    
+    def get_key_nodes(self, metric: str = 'pagerank', top_k: int = 10) -> list[tuple[str, float]]:
+        """
+        Find most important nodes by various centrality metrics.
+        
+        Args:
+            metric: 'pagerank', 'betweenness', 'degree', 'eigenvector'
+            top_k: Number of top nodes to return
+        
+        Returns:
+            List of (node_id, score) tuples
+        """
+        if metric == 'pagerank':
+            scores = nx.pagerank(self.G)
+        elif metric == 'betweenness':
+            scores = nx.betweenness_centrality(self.G)
+        elif metric == 'degree':
+            scores = dict(self.G.degree())
+        elif metric == 'eigenvector':
+            try:
+                scores = nx.eigenvector_centrality(self.G, max_iter=1000)
+            except nx.PowerIterationFailedConvergence:
+                scores = nx.degree_centrality(self.G)
+        else:
+            scores = nx.pagerank(self.G)
+        
+        sorted_nodes = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+        return sorted_nodes[:top_k]
+    
+    def detect_communities(self) -> dict[str, int]:
+        """
+        Detect communities using Louvain algorithm.
+        
+        Returns:
+            Dict mapping node_id to community_id
+        """
+        # Convert to undirected for community detection
+        undirected = self.G.to_undirected()
+        
+        try:
+            from community import community_louvain
+            return community_louvain.best_partition(undirected)
+        except ImportError:
+            # Fallback to connected components
+            communities = {}
+            for i, component in enumerate(nx.connected_components(undirected)):
+                for node in component:
+                    communities[node] = i
+            return communities
+    
+    def summarize_for_llm(self) -> str:
+        """
+        Generate a text summary of graph structure for LLM.
+        
+        Returns:
+            Natural language summary of the graph
+        """
+        lines = [
+            f"Graph Overview:",
+            f"- Total nodes: {self.G.number_of_nodes()}",
+            f"- Total edges: {self.G.number_of_edges()}",
+            f"- Is connected: {nx.is_weakly_connected(self.G) if self.G.is_directed() else nx.is_connected(self.G)}",
+        ]
+        
+        # Top nodes by PageRank
+        top_nodes = self.get_key_nodes('pagerank', top_k=5)
+        lines.append(f"\nMost central nodes (by PageRank):")
+        for node, score in top_nodes:
+            lines.append(f"  - {node}: {score:.4f}")
+        
+        # Community summary
+        communities = self.detect_communities()
+        num_communities = len(set(communities.values()))
+        lines.append(f"\nCommunity structure:")
+        lines.append(f"  - Number of communities: {num_communities}")
+        
+        # Community sizes
+        from collections import Counter
+        sizes = Counter(communities.values())
+        lines.append(f"  - Largest community: {max(sizes.values())} nodes")
+        lines.append(f"  - Smallest community: {min(sizes.values())} nodes")
+        
+        return "\n".join(lines)
+```
+
+### Option 5: Microsoft GraphRAG (Document Graphs)
+- status: active
+- type: context
+- id: unified-nexus.graphs.graphrag
+- priority: low
+- estimate: 4h
+<!-- content -->
+
+Microsoft's GraphRAG builds a knowledge graph FROM documents, then uses community detection to create hierarchical summaries. This is excellent for answering synthesis questions across many documents.
+
+**When to use**: You have many documents and need to answer "global" questions like "What are the main themes across all our customer feedback?"
+
+**Trade-offs**:
+- 👍 Excellent for document synthesis
+- 👍 Handles large document corpora
+- 👎 Expensive to build (many LLM calls)
+- 👎 Complex setup
+
+**Simplified Implementation** (without full GraphRAG):
+
+```python
+"""
+Simplified GraphRAG-style document graph.
+
+Extracts entities and relationships from documents,
+builds a graph, and creates community summaries.
+"""
+
+from typing import Optional
+
+
+class DocumentGraphBuilder:
+    """
+    Build a knowledge graph from documents.
+    
+    Simplified version of Microsoft's GraphRAG approach.
+    Extracts entities and relationships using LLM.
+    """
+    
+    def __init__(self, llm_client, graph_store):
+        """
+        Initialize the graph builder.
+        
+        Args:
+            llm_client: LLM for entity extraction
+            graph_store: Graph storage backend
+        """
+        self.llm = llm_client
+        self.graph = graph_store
+    
+    def extract_entities_and_relations(self, text: str, doc_id: str) -> dict:
+        """
+        Extract entities and relationships from text using LLM.
+        
+        Args:
+            text: Document text
+            doc_id: Source document identifier
+        
+        Returns:
+            Dict with 'entities' and 'relations' lists
+        """
+        prompt = f"""Extract entities and relationships from this text.
+
+Text:
+{text[:3000]}
+
+Return JSON in this exact format:
+{{
+  "entities": [
+    {{"id": "unique_id", "type": "Person|Organization|Concept|Product|Location", "name": "Entity Name"}}
+  ],
+  "relations": [
+    {{"source": "entity_id", "target": "entity_id", "relationship": "verb phrase"}}
+  ]
+}}
+
+Extract only clearly stated facts. Be conservative."""
+        
+        response = self.llm.generate_content(prompt)
+        
+        # Parse JSON from response
+        import json
+        import re
+        
+        # Find JSON in response
+        json_match = re.search(r'\{[\s\S]*\}', response.text)
+        if json_match:
+            try:
+                return json.loads(json_match.group())
+            except json.JSONDecodeError:
+                return {'entities': [], 'relations': []}
+        
+        return {'entities': [], 'relations': []}
+    
+    def build_from_documents(self, documents: list[dict]) -> int:
+        """
+        Build graph from a list of documents.
+        
+        Args:
+            documents: List of dicts with 'id' and 'text' keys
+        
+        Returns:
+            Number of entities extracted
+        """
+        total_entities = 0
+        
+        for doc in documents:
+            extracted = self.extract_entities_and_relations(
+                doc['text'], 
+                doc['id']
+            )
+            
+            # Add entities as nodes
+            for entity in extracted.get('entities', []):
+                self.graph.add_node(
+                    node_id=entity['id'],
+                    node_type=entity['type'],
+                    name=entity['name'],
+                    properties={'source_doc': doc['id']}
+                )
+                total_entities += 1
+            
+            # Add relations as edges
+            for rel in extracted.get('relations', []):
+                self.graph.add_edge(
+                    source=rel['source'],
+                    target=rel['target'],
+                    relationship=rel['relationship'],
+                    properties={'source_doc': doc['id']}
+                )
+        
+        return total_entities
+    
+    def create_community_summaries(self, max_communities: int = 10) -> list[str]:
+        """
+        Create summaries for each community in the graph.
+        
+        This enables "global" questions to be answered by
+        querying community summaries rather than all documents.
+        
+        Args:
+            max_communities: Maximum number of communities to summarize
+        
+        Returns:
+            List of community summary strings
+        """
+        # This would use the GraphAnalyzer to detect communities
+        # and then summarize each community's nodes/edges
+        # Implementation depends on graph_store capabilities
+        
+        # Placeholder - implement based on your graph backend
+        return ["Community summaries would go here"]
+```
+
+### Option 6: Neo4j via MCP (Enterprise Scale)
+- status: active
+- type: context
+- id: unified-nexus.graphs.neo4j-mcp
+- priority: low
+- estimate: 3h
+<!-- content -->
+
+For large-scale graph needs, use Neo4j with an MCP server. This lets your agents query a full graph database programmatically.
+
+**When to use**: 
+- Graph has > 100K nodes
+- Need ACID transactions on graph
+- Complex Cypher queries required
+- Team already uses Neo4j
+
+**MCP Server Configuration**:
+
+```json
+{
+  "mcpServers": {
+    "neo4j": {
+      "command": "npx",
+      "args": ["-y", "@anthropics/mcp-neo4j"],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USER": "neo4j",
+        "NEO4J_PASSWORD": "your-password"
+      }
+    }
+  }
+}
+```
+
+**Available Tools** (community MCP server):
+- `query_graph`: Execute Cypher queries
+- `get_node`: Retrieve node by ID
+- `get_neighbors`: Get connected nodes
+- `find_paths`: Find paths between nodes
+- `create_node`: Add new nodes
+- `create_relationship`: Add new edges
+
+**Trade-offs**:
+- 👍 Full graph database capabilities
+- 👍 Scales to millions of nodes
+- 👍 Rich Cypher query language
+- 👎 Requires Neo4j server (not local-first)
+- 👎 License costs for enterprise features
+- 👎 Overkill for most SMB use cases
+
+### Integrating Graphs into the Unified Engine
+- status: active
+- type: task
+- id: unified-nexus.graphs.integration
+- priority: medium
+- estimate: 2h
+- blocked_by: [unified-nexus.graphs.duckdb]
+<!-- content -->
+
+Update the unified engine to include a graph retrieval path.
+
+**Updated Architecture**:
+
+```
+                          ┌─────────────────────────────────────┐
+                          │           User Question             │
+                          └──────────────┬──────────────────────┘
+                                         │
+                                         ▼
+                          ┌─────────────────────────────────────┐
+                          │         Query Router (LLM)          │
+                          │  Classifies: structured/unstructured│
+                          │              /graph/hybrid          │
+                          └──────────────┬──────────────────────┘
+                                         │
+         ┌───────────────────────────────┼───────────────────────────────┐
+         │                     │                   │                     │
+         ▼                     ▼                   ▼                     ▼
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│   Vector Store  │  │    DuckDB       │  │  Graph Store    │  │   Hybrid Path   │
+│   (ChromaDB)    │  │  (Text2SQL)     │  │ (DuckDB/Neo4j)  │  │  (All Combined) │
+│                 │  │                 │  │                 │  │                 │
+│  Unstructured   │  │   Structured    │  │  Relationships  │  │   Multi-source  │
+│  Documents      │  │   Tables        │  │   & Paths       │  │   Reasoning     │
+└────────┬────────┘  └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+         │                    │                    │                    │
+         └────────────────────┴────────────────────┴────────────────────┘
+                                         │
+                                         ▼
+                          ┌─────────────────────────────────────┐
+                          │     Context Assembly & Generation   │
+                          └─────────────────────────────────────┘
+```
+
+**Updated Query Router**:
+
+```python
+# Add to QueryRouter class
+
+GRAPH_KEYWORDS = {
+    'connected', 'relationship', 'related to', 'path', 'network',
+    'linked', 'between', 'influence', 'depends on', 'dependency',
+    'who knows', 'chain', 'hierarchy', 'reports to', 'manages',
+    'upstream', 'downstream', 'affects', 'impacts'
+}
+
+def classify(self, query: str) -> QueryType:
+    """Extended classification including GRAPH type."""
+    query_lower = query.lower()
+    
+    # Check for graph keywords
+    graph_score = sum(1 for kw in self.GRAPH_KEYWORDS if kw in query_lower)
+    
+    if graph_score >= 2:
+        return QueryType.GRAPH
+    elif graph_score >= 1 and (structured_score > 0 or unstructured_score > 0):
+        return QueryType.HYBRID  # Graph + something else
+    
+    # ... rest of existing classification logic
+```
+
+**Graph Retrieval Method**:
+
+```python
+def _retrieve_graph(self, question: str) -> dict:
+    """
+    Retrieve context from graph store.
+    
+    Args:
+        question: User question
+    
+    Returns:
+        Dict with graph context
+    """
+    # Extract potential entity names from question
+    # (In production, use NER or the LLM)
+    
+    # Get relevant subgraph
+    # This is simplified - real implementation would identify
+    # key entities and extract their neighborhoods
+    
+    subgraph = self.graph_store.get_subgraph(
+        center_node=self._extract_main_entity(question),
+        depth=2
+    )
+    
+    # Convert to text for LLM
+    graph_text = self.graph_store.to_text_for_llm(subgraph, format='natural')
+    
+    return {
+        'type': 'graph',
+        'success': len(subgraph['nodes']) > 0,
+        'nodes_count': len(subgraph['nodes']),
+        'edges_count': len(subgraph['edges']),
+        'context': graph_text,
+        'error': None if subgraph['nodes'] else 'No relevant graph data found'
+    }
+```
+
+### Graph Data Recommendations Summary
+- status: active
+- type: guideline
+- id: unified-nexus.graphs.summary
+<!-- content -->
+
+**For Local Nexus (SMB focus, cost-sensitive)**:
+
+| Phase | Approach | Effort | Cost |
+|:------|:---------|:-------|:-----|
+| **Start Here** | Text serialization + MD tables | 1-2 hours | Free |
+| **When Needed** | DuckDB graph tables | 2-3 hours | Free |
+| **For Analysis** | Add NetworkX metrics | 1 hour | Free |
+| **Document Synthesis** | Simplified GraphRAG | 4+ hours | LLM calls |
+| **Enterprise Scale** | Neo4j + MCP | 1+ day | License |
+
+**Decision Tree**:
+
+```
+Do you need graph queries?
+├─ No → Skip graph layer entirely
+└─ Yes → How big is your graph?
+    ├─ < 1K nodes → Text serialization (Option 1)
+    ├─ 1K-100K nodes → DuckDB tables (Option 3)
+    └─ > 100K nodes → Consider Neo4j (Option 6)
+    
+Do you need relationship extraction from documents?
+├─ No → Skip GraphRAG
+└─ Yes → How many documents?
+    ├─ < 100 docs → Simplified extraction (Option 5)
+    └─ > 100 docs → Full GraphRAG or manual curation
+```
+
+**My Recommendation for Your Use Case**:
+
+Given your focus on **cheap and feasible**:
+
+1. **Start with Option 2 (MD tables)** - Zero additional infrastructure, integrates with your agent protocols
+2. **Add Option 3 (DuckDB)** when you have actual graph data to query - No new database needed
+3. **Skip Neo4j and full GraphRAG** unless you hit clear scaling limits
+
+This gives you 80% of the value with 20% of the complexity.
+
 ## Key Benefits of Unified Architecture
 - status: active
 - type: context
@@ -1357,10 +2564,10 @@ if prompt := st.chat_input("Ask about your data or documents..."):
 | Benefit | Description |
 |:--------|:------------|
 | **Single Interface** | Users ask questions naturally, system figures out how to answer |
-| **Complementary Strengths** | SQL precision + semantic understanding |
+| **Complementary Strengths** | SQL precision + semantic understanding + relationship traversal |
 | **Cost Effective** | Cheap LLM for routing/SQL, quality LLM only for final answer |
-| **Local First** | Both DuckDB and ChromaDB run locally, no cloud dependency |
-| **Incremental Adoption** | Add documents gradually alongside structured data |
+| **Local First** | DuckDB, ChromaDB, and graph tables all run locally |
+| **Incremental Adoption** | Add documents and graphs gradually alongside structured data |
 | **Debuggable** | Clear separation of concerns, each component testable |
 
 ## Future Enhancements
@@ -1369,8 +2576,9 @@ if prompt := st.chat_input("Ask about your data or documents..."):
 - id: unified-nexus.future
 <!-- content -->
 
-1. **Graph Layer**: Add a knowledge graph for entity relationships
-2. **Semantic SQL**: Use embeddings to help with table/column matching
-3. **Feedback Loop**: Log queries and outcomes for fine-tuning
-4. **Multi-modal**: Support images and diagrams in documents
-5. **MCP Server**: Expose the unified engine as MCP tools for other agents
+1. **Semantic SQL**: Use embeddings to help with table/column matching
+2. **Feedback Loop**: Log queries and outcomes for fine-tuning
+3. **Multi-modal**: Support images and diagrams in documents
+4. **MCP Server**: Expose the unified engine as MCP tools for other agents
+5. **Temporal Graphs**: Track how relationships change over time
+6. **Graph Embeddings**: Use GNNs for semantic search over graph structure
