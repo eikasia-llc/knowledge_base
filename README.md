@@ -38,6 +38,20 @@ A built-in Streamlit application allows users to visually browse and assemble pr
   - `language/`: Tools for Markdown parsing and schema enforcement.
 - `dependency_registry.json`: The source of truth for file relationships.
 
+## Maintenance & Cleaning Protocol
+To update the knowledge base with content from external repositories, follow this strict protocol:
+
+1.  **Update Repository List**: Add the target repository URLs to `manager/cleaner/toclean_repolist.txt`.
+2.  **Run Pipeline**: Execute the cleaning pipeline:
+    ```bash
+    python3 manager/cleaner/pipeline.py
+    ```
+    This script will clone the repositories, migrate Markdown files to the correct schema, and save them to `manager/cleaner/temprepo_cleaning/`.
+3.  **Integrate Content**:
+    -   Review files in `manager/cleaner/temprepo_cleaning/`.
+    -   **Action**: Move *only* new files into the appropriate `content/` subdirectories (`agents/`, `plans/`, `core/`, etc.).
+    -   **Constraint**: Do NOT overwrite existing files in `content/` unless explicitly instructed. Current working files must be preserved.
+
 ## Usage
 To run the Injector App locally:
 
