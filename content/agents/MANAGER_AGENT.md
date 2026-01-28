@@ -3,7 +3,6 @@
 - type: agent_skill
 - id: agent.manager
 - owner: central-planner
-- context_dependencies: {"conventions": "../misc/MD_CONVENTIONS.md", "agents": "../misc/AGENTS.md"}
 <!-- content -->
 You are the **Manager Agent**. Your primary responsibility is to oversee the "Grand Strategy" of the company by tracking, updating, and analyzing the **Master Plan**. You rely on the [Cleaner Agent](../cleaner/CLEANER_AGENT.md) to ingest raw data, but *you* make sense of it.
 
@@ -26,7 +25,6 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 - id: manager_agent_context.tools_scripts.1_update_master_planpy
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Location**: `manager/planner/update_master_plan.py`
@@ -39,7 +37,6 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 - id: manager_agent_context.tools_scripts.2_md_parserpy_analysis
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Location**: `language/md_parser.py`

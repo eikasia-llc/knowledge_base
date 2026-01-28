@@ -4,7 +4,6 @@
 - type: [plan|task|agent_skill|protocol|guideline|log|context]
 - owner: [owner-id]
 - priority: [low|medium|high]
-- context_dependencies: {}
 - last_checked: [YYYY-MM-DD]
 <!-- content -->
 [One-line summary or description of the document.]

@@ -1,6 +1,5 @@
 # Control Agent Instructions
 - status: active
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md", "agents": "../../AGENTS.md" }- type: agent_skill
 - type: agent_skill
 <!-- content -->
 **Role:** You are the **Control Agent**, a specialist in classical and modern control theory implementation.

@@ -2,7 +2,6 @@
 - id: control_tower.artifacts
 - status: in-progress
 - type: guideline
-- context_dependencies: {}
 <!-- content -->
 Place to store artifacts produced by agents as byproduct of task execution that do not belong to other repositories, such as:
 

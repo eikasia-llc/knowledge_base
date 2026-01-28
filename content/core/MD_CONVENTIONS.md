@@ -1,7 +1,6 @@
 # Markdown-JSON Hybrid Schema Conventions
 - status: active
 - type: guideline
-- context_dependencies: {"project_root": "README.md"}
 <!-- content -->
 This document defines the strict conventions for the **Markdown-JSON Hybrid Schema** used in this project for hierarchical task coordination and agentic planning.
 
@@ -77,7 +76,6 @@ The following fields are standard, but the schema allows extensibility.
 - id: markdown_json_hybrid_schema_conventions.implement_user_auth.type_definitions
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **`plan`**: (Finite) A high-level objective with a clear beginning and end. Usually the root node.
@@ -95,18 +93,19 @@ For extended fields consider:
  - The value is single line
 
 ### 4. Context Dependencies
-- status: active
+- status: deprecated
 <!-- content -->
+> [!WARNING]
+> This field is **DEPRECATED**. Dependencies are now managed centrally in `dependency_registry.json`.
+> Do not add `context_dependencies` metadata to new files.
+> Use `python src/dependency_manager.py add` to declare dependencies if automatic detection fails.
+
+(Legacy definition preserved for reference)
 A node may define a `context_dependencies` map to declare external files required to understand or execute it.
 
 **Structure**: A JSON-style dictionary where:
 - **Key**: A semantic alias (e.g., `role`, `guideline`, `schema`) describing *why* the file is needed.
 - **Value**: Relative path to the dependency.
-
-**Resolution Protocol (Recursive)**:
-1.  **Depth-First**: Agents must resolve dependencies recursively. If File A depends on B, and B depends on C, the agent reads C, then B, then A.
-2.  **Flat Definition**: Avoid defining the entire tree in one file. Each file should only declare its immediate dependencies.
-3.  **Aliases**: Use consistent keys (e.g., `manager_agent`, `conventions`) to help the LLM categorize the context.
 
 ### 5. Context & Description
 - status: active

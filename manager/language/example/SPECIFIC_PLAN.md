@@ -1,6 +1,5 @@
 # detailed_implementation
 - status: proposed
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md" }- type: expansion
 - type: plan
 <!-- content -->
 

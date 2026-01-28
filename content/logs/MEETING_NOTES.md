@@ -2,7 +2,6 @@
 - status: active
 - type: log
 - id: planner.meeting_notes
-- context_dependencies: {"conventions": "../misc/MD_CONVENTIONS.md"}
 - last_checked: 2026-01-25T17:39:00+01:00
 <!-- content -->
 <!-- content -->

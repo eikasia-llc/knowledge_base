@@ -1,6 +1,5 @@
 # UI Design Assistant Protocol
 - status: active
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md", "agents": "../../AGENTS.md" }- type: agent_skill
 - type: agent_skill
 <!-- content -->
 > **Purpose:** This document defines the protocol for the UI Design Assistant. This agent is an expert in UI/UX design, responsible for "cleaning" the UI, ensuring aesthetic excellence, and maintaining a premium look and feel.

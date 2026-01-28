@@ -1,174 +1,386 @@
 {
   "version": "1.0.0",
   "description": "Knowledge Base Dependency Registry",
-  "last_updated": "2026-01-27",
+  "last_updated": "2026-01-28",
   "files": {
     "content/guidelines/INFRASTRUCTURE_DEFINITIONS.md": {
       "path": "content/guidelines/INFRASTRUCTURE_DEFINITIONS.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "agents": "AGENTS.md",
-        "project_root": "../root/README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/logs/AGENTS_LOG.md": {
       "path": "content/logs/AGENTS_LOG.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "agents": "AGENTS.md",
-        "project_root": "README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/INFRASTRUCTURE_PLAN.md": {
       "path": "content/plans/INFRASTRUCTURE_PLAN.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "agents": "AGENTS.md",
-        "project_root": "../root/README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/agents/INFRASTRUCTURE_AGENT.md": {
       "path": "content/agents/INFRASTRUCTURE_AGENT.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "agents": "AGENTS.md",
-        "project_root": "../root/README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/Phase 1 Plan.md": {
       "path": "content/plans/Phase 1 Plan.md",
       "dependencies": {
         "master_plan": "MASTER_PLAN.md",
-        "conventions": "../misc/MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/Phase 2 Plan.md": {
       "path": "content/plans/Phase 2 Plan.md",
       "dependencies": {
         "master_plan": "MASTER_PLAN.md",
-        "conventions": "../misc/MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/Phase 3 Plan.md": {
       "path": "content/plans/Phase 3 Plan.md",
       "dependencies": {
         "master_plan": "MASTER_PLAN.md",
-        "conventions": "../misc/MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/MASTER_PLAN.md": {
       "path": "content/plans/MASTER_PLAN.md",
       "dependencies": {
         "manager": "../agents/MANAGER_AGENT.md",
-        "conventions": "../misc/MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/INTER_CHATBOT_COMMUNICATION_PLAN.md": {
       "path": "content/plans/INTER_CHATBOT_COMMUNICATION_PLAN.md",
       "dependencies": {
         "master_plan": "MASTER_PLAN.json",
-        "conventions": "MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/agents/MANAGER_AGENT.md": {
       "path": "content/agents/MANAGER_AGENT.md",
       "dependencies": {
-        "conventions": "../misc/MD_CONVENTIONS.md",
-        "agents": "../misc/AGENTS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/agents/CLEANER_AGENT.md": {
       "path": "content/agents/CLEANER_AGENT.md",
       "dependencies": {
-        "conventions": "../misc/MD_CONVENTIONS.md",
-        "agents": "../misc/AGENTS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/agents/UPDATE_PROTOCOL.md": {
       "path": "content/agents/UPDATE_PROTOCOL.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "project_root": "README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "project_root": "../../README.md",
+        "agents": "../core/AGENTS.md"
       }
     },
     "content/agents/CLOUD_SCHEDULER_AGENT.md": {
       "path": "content/agents/CLOUD_SCHEDULER_AGENT.md",
       "dependencies": {
-        "conventions": "../misc/MD_CONVENTIONS.md",
-        "agents": "../misc/AGENTS.md",
-        "master_plan": "../plans/MASTER_PLAN.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "master_plan": "../plans/MASTER_PLAN.md",
+        "project_root": "../../README.md"
       }
     },
     "content/logs/MEETING_NOTES.md": {
       "path": "content/logs/MEETING_NOTES.md",
       "dependencies": {
-        "conventions": "../misc/MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/core/AGENTS.md": {
       "path": "content/core/AGENTS.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
-        "project_root": "README.md"
+        "project_root": "../../README.md"
       }
     },
     "content/core/MD_CONVENTIONS.md": {
       "path": "content/core/MD_CONVENTIONS.md",
       "dependencies": {
-        "project_root": "README.md"
+        "project_root": "../../README.md",
+        "agents": "AGENTS.md"
       }
     },
     "content/guidelines/README_TEMPLATE.md": {
       "path": "content/guidelines/README_TEMPLATE.md",
       "dependencies": {
         "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
         "project_root": "../../README.md"
       }
     },
     "content/guidelines/GCCLOUD_AGENT.md": {
       "path": "content/guidelines/GCCLOUD_AGENT.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "project_root": "README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "project_root": "../../README.md",
+        "agents": "../core/AGENTS.md"
       }
     },
     "content/guidelines/MCP_SKLEARN_PLAN.md": {
       "path": "content/guidelines/MCP_SKLEARN_PLAN.md",
       "dependencies": {
-        "conventions": "../MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/agents/HOUSEKEEPING.md": {
       "path": "content/agents/HOUSEKEEPING.md",
       "dependencies": {
         "conventions": "../core/MD_CONVENTIONS.md",
-        "agents": "../core/AGENTS.md"
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/agents/GCLOUD_AGENT.md": {
       "path": "content/agents/GCLOUD_AGENT.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "project_root": "README.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "project_root": "../../README.md",
+        "agents": "../core/AGENTS.md"
       }
     },
     "content/agents/RAGS_AGENT.md": {
       "path": "content/agents/RAGS_AGENT.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/plans/UNIFIED_NEXUS_ARCHITECTURE.md": {
       "path": "content/plans/UNIFIED_NEXUS_ARCHITECTURE.md",
       "dependencies": {
-        "conventions": "MD_CONVENTIONS.md",
-        "rag_agent": "RAGS_AGENT.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "rag_agent": "RAGS_AGENT.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
       }
     },
     "content/guidelines/PROMPT_README.md": {
       "path": "content/guidelines/PROMPT_README.md",
       "dependencies": {
-        "conventions": "../../MD_CONVENTIONS.md"
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "README.md": {
+      "path": "README.md",
+      "dependencies": {
+        "conventions": "content/core/MD_CONVENTIONS.md",
+        "agents": "content/core/AGENTS.md"
+      }
+    },
+    "content/plans/SPECIFIC_PLAN.md": {
+      "path": "content/plans/SPECIFIC_PLAN.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/plans/MERGED_PLAN.md": {
+      "path": "content/plans/MERGED_PLAN.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/plans/posix_implementation_plan.md": {
+      "path": "content/plans/posix_implementation_plan.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/REACT_ASSISTANT.md": {
+      "path": "content/agents/REACT_ASSISTANT.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/RECSYS_AGENT.md": {
+      "path": "content/agents/RECSYS_AGENT.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/CONTROL_AGENT.md": {
+      "path": "content/agents/CONTROL_AGENT.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/UI_DESIG_ASSISTANT.md": {
+      "path": "content/agents/UI_DESIG_ASSISTANT.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/AGENTS_LOG.md": {
+      "path": "content/agents/AGENTS_LOG.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/AGENTS_ARTIFACTS.md": {
+      "path": "content/agents/AGENTS_ARTIFACTS.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/LINEARIZE_AGENT.md": {
+      "path": "content/agents/LINEARIZE_AGENT.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/MC_AGENT.md": {
+      "path": "content/agents/MC_AGENT.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/agents/PROJECT_SETUP.md": {
+      "path": "content/agents/PROJECT_SETUP.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/logs/CLEANING_LOGS.md": {
+      "path": "content/logs/CLEANING_LOGS.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "content/guidelines/temprepo_cleaning_AGENTS_ARTIFACTS.md": {
+      "path": "content/guidelines/temprepo_cleaning_AGENTS_ARTIFACTS.md",
+      "dependencies": {
+        "conventions": "../core/MD_CONVENTIONS.md",
+        "agents": "../core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "manager/language/example/SPECIFIC_PLAN.md": {
+      "path": "manager/language/example/SPECIFIC_PLAN.md",
+      "dependencies": {
+        "conventions": "../../../content/core/MD_CONVENTIONS.md",
+        "agents": "../../../content/core/AGENTS.md",
+        "project_root": "../../../README.md"
+      }
+    },
+    "manager/language/example/GENERAL_PLAN.md": {
+      "path": "manager/language/example/GENERAL_PLAN.md",
+      "dependencies": {
+        "conventions": "../../../content/core/MD_CONVENTIONS.md",
+        "agents": "../../../content/core/AGENTS.md",
+        "project_root": "../../../README.md"
+      }
+    },
+    "manager/language/example/DAG_Example.md": {
+      "path": "manager/language/example/DAG_Example.md",
+      "dependencies": {
+        "conventions": "../../../content/core/MD_CONVENTIONS.md",
+        "agents": "../../../content/core/AGENTS.md",
+        "project_root": "../../../README.md"
+      }
+    },
+    "manager/language/example/MERGED_PLAN.md": {
+      "path": "manager/language/example/MERGED_PLAN.md",
+      "dependencies": {
+        "conventions": "../../../content/core/MD_CONVENTIONS.md",
+        "agents": "../../../content/core/AGENTS.md",
+        "project_root": "../../../README.md"
+      }
+    },
+    "manager/cleaner/CLEANER_AGENT.md": {
+      "path": "manager/cleaner/CLEANER_AGENT.md",
+      "dependencies": {
+        "conventions": "../../content/core/MD_CONVENTIONS.md",
+        "agents": "../../content/core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "manager/cleaner/CLEANING_LOGS.md": {
+      "path": "manager/cleaner/CLEANING_LOGS.md",
+      "dependencies": {
+        "conventions": "../../content/core/MD_CONVENTIONS.md",
+        "agents": "../../content/core/AGENTS.md",
+        "project_root": "../../README.md"
+      }
+    },
+    "manager/cleaner/repositories/empty/AGENTS.md": {
+      "path": "manager/cleaner/repositories/empty/AGENTS.md",
+      "dependencies": {
+        "conventions": "../../../../content/core/MD_CONVENTIONS.md",
+        "project_root": "../../../../README.md",
+        "agents": "../../../../content/core/AGENTS.md"
+      }
+    },
+    "manager/cleaner/temprepo_cleaning/AGENTS.md": {
+      "path": "manager/cleaner/temprepo_cleaning/AGENTS.md",
+      "dependencies": {
+        "conventions": "../../../content/core/MD_CONVENTIONS.md",
+        "project_root": "../../../README.md",
+        "agents": "../../../content/core/AGENTS.md"
       }
     }
   }

@@ -1,6 +1,5 @@
 # Linearize Agent Instructions
 - status: active
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md", "agents": "../../AGENTS.md" }- type: agent_skill
 - type: agent_skill
 <!-- content -->
 **Role:** You are the **Linearize Agent**, a specialist in numerical computing and optimization.

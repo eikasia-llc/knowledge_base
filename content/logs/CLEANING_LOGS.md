@@ -3,7 +3,6 @@
 - type: log
 - id: log.cleaning
 - owner: agent.cleaner
-- context_dependencies: {}
 <!-- content -->
 This file tracks the execution history of the cleaning process, recording imported repositories, errors encountered, and modifications made to the cleaning scripts.
 
@@ -17,7 +16,6 @@ This file tracks the execution history of the cleaning process, recording import
 - id: cleaning_process_logs.execution_history.2026_01_23_initial_setup_import
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Action**: Cleaned/Imported `IgnacioOQ/e_network_inequality` (branch `ai-agents-branch`)
@@ -32,7 +30,6 @@ This file tracks the execution history of the cleaning process, recording import
 - id: cleaning_process_logs.execution_history.2026_01_24_import_control_algorithms
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_algorithms` (default branch)
@@ -47,7 +44,6 @@ This file tracks the execution history of the cleaning process, recording import
 - id: cleaning_process_logs.execution_history.2026_01_25_import_control_tower
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_tower` (default branch)
@@ -63,7 +59,6 @@ This file tracks the execution history of the cleaning process, recording import
 - id: cleaning_process_logs.execution_history.2026_01_25_import_multiagentrecommendation
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Action**: Cleaned/Imported `IgnacioOQ/multiagentrecommendation` (branch `project-reorganization`)
@@ -80,7 +75,6 @@ This file tracks the execution history of the cleaning process, recording import
 - id: cleaning_process_logs.execution_history.2026_01_25_re_import_control_tower
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_tower` (default branch) via updated repolist.
@@ -100,7 +94,6 @@ This file tracks the execution history of the cleaning process, recording import
 - id: cleaning_process_logs.execution_history.2026_01_25_clone_empty_repository
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Action**: Cloned `eikasia-llc/empty` into `manager/cleaner/repositories/`

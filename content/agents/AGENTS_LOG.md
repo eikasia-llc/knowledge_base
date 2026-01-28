@@ -1,7 +1,6 @@
 # Agents Log
 - status: active
 - type: log
-- context_dependencies: {}
 <!-- content -->
 Most recent event comes first
 

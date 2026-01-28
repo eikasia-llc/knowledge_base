@@ -6,7 +6,6 @@
 - priority: high
 - estimate: 12w
 - blocked_by: [product.saas.roadmap.phase2]
-- context_dependencies: {"master_plan": "MASTER_PLAN.json", "conventions": "MD_CONVENTIONS.md"}
 - last_checked: 2026-01-25T12:00:00+01:00
 <!-- content -->
 This plan defines the architecture and implementation roadmap for enabling **Inter-Chatbot Communication (ICC)** — the capability for our chatbot to interact with external chatbots from other companies. This creates a federated AI ecosystem where specialized agents can delegate tasks, share context, and collaborate across organizational boundaries.
@@ -533,7 +532,6 @@ Tracking key decisions and unresolved questions.
 - id: inter_chatbot_communication_protocol.open_questions_decisions.decision_log
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 | Date | Question | Decision | Rationale |
@@ -545,7 +543,6 @@ Tracking key decisions and unresolved questions.
 - id: inter_chatbot_communication_protocol.open_questions_decisions.open_questions
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 1. **Billing Model**: How do we handle costs when external bots charge per query?

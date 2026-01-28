@@ -3,7 +3,6 @@
 - type: agent_skill
 - id: agent.cleaner
 - owner: central-planner
-- context_dependencies: {"conventions": "../misc/MD_CONVENTIONS.md", "agents": "../misc/AGENTS.md"}
 <!-- content -->
 You are the **Cleaner Agent**. Your primary responsibility is to maintain the hygiene of external data entering the Central Planner system. You act as the "Immune System" or "Customs Officer" for the project.
 
@@ -25,7 +24,6 @@ You have access to the following specialized tools in this directory and the `la
 - id: cleaner_agent_context.tools_scripts.1_clean_repopy
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Location**: `manager/cleaner/clean_repo.py`
@@ -36,7 +34,6 @@ You have access to the following specialized tools in this directory and the `la
 - id: cleaner_agent_context.tools_scripts.2_apply_typespy
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Location**: `language/apply_types.py`

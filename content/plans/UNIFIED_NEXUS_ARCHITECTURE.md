@@ -2,7 +2,6 @@
 - status: active
 - type: plan
 - id: unified-nexus
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "rag_agent": "RAGS_AGENT.md"}
 - last_checked: 2025-01-27
 <!-- content -->
 This document proposes an architecture that unifies **RAG (Retrieval-Augmented Generation)** for unstructured data with **Data Warehouse + Text2SQL** for structured data. The result is a system that can answer questions requiring both semantic understanding and precise computation.
@@ -1222,7 +1221,6 @@ Examples of using the unified system.
 - id: unified_local_nexus_rag_data_warehouse_architecture.usage_examples.basic_usage
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 
@@ -1234,7 +1232,6 @@ import google.generativeai as genai
 - id: configure_llm
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 genai.configure(api_key="your-api-key")
@@ -1244,7 +1241,6 @@ llm = genai.GenerativeModel('gemini-1.5-flash')
 - id: initialize_unified_engine
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 engine = UnifiedEngine(
@@ -1257,14 +1253,12 @@ engine = UnifiedEngine(
 - id: query_examples
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 # Structured query (routes to Text2SQL)
 - id: structured_query_routes_to_text2sql
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 result = engine.query("What were our total sales last month?")
@@ -1274,7 +1268,6 @@ print(result['answer'])
 - id: unstructured_query_routes_to_rag
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 result = engine.query("What is our refund policy?")
@@ -1284,7 +1277,6 @@ print(result['answer'])
 - id: hybrid_query_uses_both
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 result = engine.query("Which customers complained about shipping and have orders over $500?")
@@ -1295,7 +1287,6 @@ print(result['answer'])
 - id: hybrid_query_uses_both.document_ingestion
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 
@@ -1307,7 +1298,6 @@ from src.core.vector_store import VectorStore
 - id: initialize
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 vector_store = VectorStore("data/vectordb")
@@ -1317,7 +1307,6 @@ ingester = DocumentIngester(vector_store)
 - id: ingest_a_single_file
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 result = ingester.ingest_file("docs/company_policies.pdf")
@@ -1327,7 +1316,6 @@ print(f"Created {result['chunks_created']} chunks")
 - id: ingest_all_documents_in_a_directory
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 results = ingester.ingest_directory("docs/", extensions=['.pdf', '.md'])
@@ -1356,7 +1344,6 @@ from src.core.document_ingestion import DocumentIngester
 - id: sidebar_data_sources_section
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 with st.sidebar:
@@ -1399,7 +1386,6 @@ with st.sidebar:
 - id: chat_interface
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 if prompt := st.chat_input("Ask about your data or documents..."):
@@ -1756,7 +1742,6 @@ Represent graph state within your existing MD conventions. This integrates natur
 - id: chat_interface.entity_graph.nodes
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 | ID | Type | Name | Properties |
@@ -1770,7 +1755,6 @@ Represent graph state within your existing MD conventions. This integrates natur
 - id: chat_interface.entity_graph.edges
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 | Source | Relationship | Target | Properties |
@@ -1784,7 +1768,6 @@ Represent graph state within your existing MD conventions. This integrates natur
 - id: chat_interface.entity_graph.adjacency_summary
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 - **Alice Chen (P001)**: manages Bob Smith, leads Engineering
@@ -2550,7 +2533,6 @@ Update the unified engine to include a graph retrieval path.
 - id: add_to_queryrouter_class
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 

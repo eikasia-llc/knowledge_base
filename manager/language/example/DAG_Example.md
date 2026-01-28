@@ -1,6 +1,5 @@
 # Software Release Cycle
 - id: release_cycle
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md" }- status: active
 - type: context
 <!-- content -->
 

@@ -1,6 +1,5 @@
 # Knowledge Base Repository
 - status: active
-- context_dependencies: {}
 <!-- content -->
 
 ## Overview

@@ -1,6 +1,5 @@
 # Cloud Scheduler Agent Instructions
 - status: active
-- context_dependencies: {"conventions": "../misc/MD_CONVENTIONS.md", "agents": "../misc/AGENTS.md", "master_plan": "../plans/MASTER_PLAN.md"}
 - type: agent_skill
 <!-- content -->
 <!-- content -->
@@ -23,7 +22,6 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 - id: cloud_scheduler_agent_instructions.core_capabilities.1_script_execution_deterministic
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Target:** Cloud Run Endpoints
@@ -35,7 +33,6 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 - id: cloud_scheduler_agent_instructions.core_capabilities.2_agentic_intervention_proactive
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - **Target:** Google ADK Agent Server
@@ -51,7 +48,6 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 - id: cloud_scheduler_agent_instructions.implementation_features.phase_2_the_infrastructure_bridge
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - [ ] **FastAPI Trigger:** Create a secure endpoint on Cloud Run that can receive Cloud Scheduler pings.
@@ -62,7 +58,6 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 - id: cloud_scheduler_agent_instructions.implementation_features.phase_3_autonomous_cycles
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 - [ ] **Agentic Wake-up:** Define system prompts for the "Manager Agent" when triggered by the scheduler (e.g., "Review the last 24h of telemetry and suggest 1 optimization").

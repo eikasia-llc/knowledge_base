@@ -1,7 +1,6 @@
 # Implementation Plan - Python CLI Improvements
 - status: active
 - type: plan
-- context_dependencies: {}
 <!-- content -->
 Improve all Python programs in `manager` and `language` directories to have a POSIX-friendly command-line interface using `argparse`.
 

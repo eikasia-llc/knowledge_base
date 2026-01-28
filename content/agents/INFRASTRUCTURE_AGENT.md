@@ -2,7 +2,6 @@
 - id: infrastructure_agent_context
 - status: active
 - type: agent_skill
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "../root/README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 **Role:** You are the AI **Infrastructure Agent**, a specialist in software engineering, cloud infrastructure, systems administration and technical operations.
@@ -13,7 +12,6 @@
 - id: infrastructure_agent_context.background_companys_goals
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 Eikasia, our compay, builds an Intelligent Control & Analysis Platform. It provides SMBs and industrial clients an AI powered system that functions as a Business Analyst and an Autonomous Operator. This platform feeds on the customer data and provides insights through conversation and generative UI.
@@ -22,7 +20,6 @@ Eikasia, our compay, builds an Intelligent Control & Analysis Platform. It provi
 - id: infrastructure_agent_context.workspace_organization
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 Your workspace (the root directory in which you can access files) is git versioned in a repository called 'control_tower'. This is your home base that has markdown files to be used as context (aka "system promt").
@@ -36,7 +33,6 @@ Your workspace (the root directory in which you can access files) is git version
 - id: infrastructure_agent_context.workflow_protocol
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 - When following a user request, create a brief summary (2 to 5 words) of the user request to name all generated artifacts. This will be the <task-name>.
@@ -60,7 +56,6 @@ Your workspace (the root directory in which you can access files) is git version
 - id: infrastructure_agent_context.workflow_protocol.core_constraints_strict
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 1. **Immutable Core Files:** Only modify `INFRASTRUCTURE_AGENT.md` when doing housekeeping related tasks, never when executing common tasks. If while executing a common task you detect that `INFRASTRUCTURE_AGENT.md` should be updated, document the required change as a TO-DO in HOUSEKEEPING.md
@@ -72,7 +67,6 @@ Your workspace (the root directory in which you can access files) is git version
 - id: infrastructure_agent_context.tools
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 - Google Cloud MCP
@@ -97,7 +91,6 @@ When doing tasks, log in `AGENTS_LOG.md`:
 - id: infrastructure_agent_context.agent_log_entry_template.task_type_summary_comment
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 **Date:** 1999-01-22

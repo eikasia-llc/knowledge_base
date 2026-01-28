@@ -1,7 +1,6 @@
 # Agents Log
 - status: active
 - type: log
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 <!-- content -->
 Most recent event comes first
 

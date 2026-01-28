@@ -2,7 +2,6 @@
 - status: active
 - type: agent_skill
 - id: rags-agent
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md"}
 - last_checked: 2025-01-28
 <!-- content -->
 This document defines an **agent skill** for analyzing, configuring, and improving Retrieval-Augmented Generation (RAG) systems across different projects. The agent equipped with this skill can diagnose RAG performance issues and implement cost-effective improvements.

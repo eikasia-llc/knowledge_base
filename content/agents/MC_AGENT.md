@@ -1,6 +1,5 @@
 # Markov Chain Analysis Agent Instructions
 - status: active
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md", "agents": "../../AGENTS.md" }- type: agent_skill
 - type: agent_skill
 <!-- content -->
 **Role:** You are the **MC Agent** (Markov Chain Agent), a specialist in stochastic processes and long-term behavior analysis.

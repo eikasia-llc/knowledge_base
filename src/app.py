@@ -76,7 +76,7 @@ categories = {
 }
 
 # Core files pattern heuristics
-core_filenames = ["README.md", "dependency_registry.json"]
+core_filenames = ["README.md", "dependency_registry.json", "AGENTS.md", "MD_CONVENTIONS.md"]
 
 for path, info in files.items():
     lower_path = path.lower()

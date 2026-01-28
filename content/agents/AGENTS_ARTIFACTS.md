@@ -3,7 +3,6 @@
 - status: in-progress
 - priority: low
 - type: agent_skill
-- context_dependencies: {}
 <!-- content -->
 Place to store artifacts produced by agents that do not belong to the repository content such as:
 

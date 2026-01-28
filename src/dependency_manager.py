@@ -112,6 +112,42 @@ class DependencyManager:
                 rel_path = self._get_relative_path(md_file)
                 deps = self.extract_dependencies_from_file(md_file)
 
+                # Define core files with their project-relative paths
+                core_targets = {
+                    "conventions": "content/core/MD_CONVENTIONS.md",
+                    "agents": "content/core/AGENTS.md",
+                    "project_root": "README.md"
+                }
+
+                file_name = md_file.name
+                
+                for alias, target_rel_path in core_targets.items():
+                    # Avoid self-reference (compare path endings/names)
+                    if rel_path == target_rel_path:
+                        continue
+                        
+                    # content/core/MD_CONVENTIONS.md should not depend on itself
+                    if file_name == os.path.basename(target_rel_path) and alias == "conventions":
+                        continue
+                    
+                    target_abs = self.project_root / target_rel_path
+                    
+                    # Compute relative path from current file's directory to the target file
+                    try:
+                        dep_rel = os.path.relpath(target_abs, md_file.parent)
+                    except ValueError:
+                        dep_rel = target_rel_path
+
+                    # Check if dependency already exists
+                    if alias in deps:
+                        # Fix common broken reference: "MD_CONVENTIONS.md" when it should be relative
+                        # If the value is just the filename, but the file doesn't exist locally, override it
+                        if deps[alias] == os.path.basename(target_rel_path):
+                            if not (md_file.parent / deps[alias]).exists():
+                                deps[alias] = dep_rel
+                    else:
+                        deps[alias] = dep_rel
+
                 scanned[rel_path] = {
                     "path": rel_path,
                     "dependencies": deps
@@ -120,14 +156,33 @@ class DependencyManager:
         return scanned
 
     def update_registry(self, scanned_files: Optional[Dict] = None):
-        """Update the registry with scanned files."""
+        """Update the registry with scanned files, preserving existing manual dependencies."""
         if scanned_files is None:
             scanned_files = self.scan_project()
 
         # Update files section
         for rel_path, info in scanned_files.items():
-            if info["dependencies"]:  # Only add files with dependencies
-                self.registry["files"][rel_path] = info
+            # Get existing entry if it exists
+            existing_entry = self.registry["files"].get(rel_path, {})
+            existing_deps = existing_entry.get("dependencies", {})
+            
+            # New dependencies from scan (currently just defaults + file metadata)
+            new_deps = info.get("dependencies", {})
+            
+            # Merge: Start with existing, update with new (so defaults are added), 
+            # BUT if we strip metadata, 'new' might be empty of specific links.
+            # We want to keep existing links if 'new' doesn't have them but they were there.
+            # Actually, if we remove metadata from files, 'new_deps' will ONLY have defaults.
+            # So we should take existing_deps and UPDATE with new_deps (to get new defaults),
+            # but NOT lose things that aren't in new_deps.
+            
+            merged_deps = existing_deps.copy()
+            merged_deps.update(new_deps)
+            
+            self.registry["files"][rel_path] = {
+                "path": rel_path,
+                "dependencies": merged_deps
+            }
 
         self._save_registry()
         return self.registry

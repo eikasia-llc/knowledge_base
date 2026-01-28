@@ -1,6 +1,5 @@
 # General Project Deployment
 - status: active
-- context_dependencies: { "conventions": "../../MD_CONVENTIONS.md" }- owner: project-manager
 - estimate: 2w
 - type: plan
 <!-- content -->

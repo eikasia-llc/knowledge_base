@@ -6,7 +6,6 @@
 - priority: critical
 - estimate: 6w
 - blocked_by: [implementation.phase2]
-- context_dependencies: {"master_plan": "MASTER_PLAN.md", "conventions": "../misc/MD_CONVENTIONS.md"}
 <!-- content -->
 This document details the implementation of the "Brain" of the Intelligent Control SaaS: a multi-agent system built using the **Google Agent Development Kit (ADK)**.
 

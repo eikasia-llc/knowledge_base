@@ -1,7 +1,6 @@
 # Prompting Module
 - status: active
 - type: guideline
-- context_dependencies: {"conventions": "../../MD_CONVENTIONS.md"}
 <!-- content -->
 This module provides tools for managing Markdown file dependencies and generating prompt injection text for AI coding assistants.
 
@@ -20,7 +19,6 @@ This module provides tools for managing Markdown file dependencies and generatin
 - id: prompting_module.quick_start.generate_a_prompt
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 ```bash
@@ -41,7 +39,6 @@ Read these files in order:
 - id: prompting_module.quick_start.scan_and_update_registry
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 ```bash
@@ -67,7 +64,6 @@ The main module for dependency management.
 - id: prompting_module.dependency_managerpy.commands
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 
@@ -75,7 +71,6 @@ The main module for dependency management.
 - id: prompting_module.dependency_managerpy.commands.scan
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 Scan the project for MD files and update the registry:
@@ -88,7 +83,6 @@ python dependency_manager.py scan --patterns "AI_AGENTS/**/*.md" "manager/**/*.m
 - id: prompting_module.dependency_managerpy.commands.resolve
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 Show the dependency resolution order for a file:
@@ -100,7 +94,6 @@ python dependency_manager.py resolve manager/cleaner/CLEANER_AGENT.md
 - id: prompting_module.dependency_managerpy.commands.prompt
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 Generate prompt injection text:
@@ -114,7 +107,6 @@ python dependency_manager.py prompt CLEANER_AGENT.md --format list
 - id: prompting_module.dependency_managerpy.commands.addremove
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 Manually manage dependencies:
@@ -127,7 +119,6 @@ python dependency_manager.py remove my_agent.md --alias textbook
 - id: prompting_module.dependency_managerpy.commands.list
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 List all registered files:
@@ -139,7 +130,6 @@ python dependency_manager.py list
 - id: prompting_module.dependency_managerpy.commands.dependents
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 Find files that depend on a given file:
@@ -157,7 +147,6 @@ A streamlined tool for generating AI prompts.
 - id: prompting_module.prompt_generatorpy.basic_usage
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 ```bash
@@ -166,7 +155,6 @@ A streamlined tool for generating AI prompts.
 - id: simple_prompt_generation
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 python prompt_generator.py CLEANER_AGENT.md
@@ -175,7 +163,6 @@ python prompt_generator.py CLEANER_AGENT.md
 - id: verbose_mode_shows_resolution_process
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 python prompt_generator.py CLEANER_AGENT.md --verbose
@@ -184,7 +171,6 @@ python prompt_generator.py CLEANER_AGENT.md --verbose
 - id: copy_to_clipboard_macos
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 python prompt_generator.py CLEANER_AGENT.md --copy
@@ -194,7 +180,6 @@ python prompt_generator.py CLEANER_AGENT.md --copy
 - id: copy_to_clipboard_macos.prompt_styles
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 **Imperative (default)**:
@@ -237,7 +222,6 @@ python prompt_generator.py CLEANER_AGENT.md --style structured
 - id: copy_to_clipboard_macos.with_rationale
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 ```bash
@@ -271,7 +255,6 @@ The registry is a JSON file that maps MD files to their dependencies:
 - id: copy_to_clipboard_macos.dependency_registryjson.benefits_over_inline_annotations
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 | Inline (`context_dependencies`) | Registry (`dependency_registry.json`) |
@@ -290,7 +273,6 @@ The registry is a JSON file that maps MD files to their dependencies:
 - id: copy_to_clipboard_macos.workflow.for_users
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 1. **Before talking to an AI assistant**:
@@ -306,7 +288,6 @@ The registry is a JSON file that maps MD files to their dependencies:
 - id: copy_to_clipboard_macos.workflow.for_developers
 - status: active
 - type: context
-- context_dependencies: { "conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md" }
 - last_checked: 2026-01-27
 <!-- content -->
 1. **When adding a new agent/file**:

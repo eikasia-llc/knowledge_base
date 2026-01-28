@@ -2,7 +2,6 @@
 - id: protocol.update
 - status: active
 - type: protocol
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "project_root": "README.md"}
 - last_checked: 2026-01-25
 <!-- content -->
 This protocol defines the standard procedure for **learning from experience** and systematically updating the codebase, agents, and instructions. It transforms ad-hoc bug fixes into permanent system improvements.
@@ -31,7 +30,6 @@ When a trigger occurs, the acting agent MUST execute the following loop *before*
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.a_observe
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 Capture the raw evidence of the failure or inefficiency.
@@ -42,7 +40,6 @@ Capture the raw evidence of the failure or inefficiency.
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.b_orient
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 Analyze the root cause. Ask:
@@ -54,7 +51,6 @@ Analyze the root cause. Ask:
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.c_decide
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 Determine the level of fix required:
@@ -67,7 +63,6 @@ Determine the level of fix required:
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.d_act
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 Execute the fix.
@@ -84,7 +79,6 @@ Learning is only valid if it is **codified**—written down in a way that preven
 - id: self_improvement_update_protocol.3_codification_the_latch.rules_for_codification
 - status: active
 - type: context
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "agents": "AGENTS.md", "project_root": "README.md"}
 - last_checked: 2026-01-27
 <!-- content -->
 1.  **Prefer Code over Text**: If you can write a script to enforce a rule (like `clean_repo.py`), do that instead of just writing "Please do X" in a markdown file.
