@@ -69,7 +69,6 @@ The following fields are standard, but the schema allows extensibility.
 | `blocked_by`| `list` | List of explicit dependencies (IDs or relative paths) |
 | `priority` | `enum` | `draft`, `low`, `medium`, `high`, `critical` (Optional) |
 | `id` | `string` | Unique identifier for the node (e.g., `project.component.task`). Used for robust merging and dependency tracking. |
-| `context_dependencies` | `dict` | map of semantic aliases to file paths (e.g., `{ "guideline": "CONVENTIONS.md" }`). Defines required reading for this node. |
 | `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. |
 
 ### Type Definitions

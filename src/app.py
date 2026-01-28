@@ -80,10 +80,11 @@ core_filenames = ["README.md", "dependency_registry.json", "AGENTS.md", "MD_CONV
 
 for path, info in files.items():
     lower_path = path.lower()
+    filename = os.path.basename(path)
     
     # Core categorization
-    # If it's in the core directory or one of the root core files
-    if "content/core" in path or any(path.endswith(c) for c in core_filenames):
+    # Strict check for core filenames, regardless of directory
+    if filename in core_filenames or "content/core" in path:
         categories["Core"].append(path)
         continue
 
@@ -112,7 +113,9 @@ for category, items in categories.items():
     if items:
         with st.expander(f"{category} ({len(items)})", expanded=(category in ["Core", "Skills", "Protocols"])):
             for item in sorted(items):
-                if st.checkbox(item, key=item):
+                # Show only filename as label, but use full path as key/value
+                label = os.path.basename(item)
+                if st.checkbox(label, key=item, help=item):
                     selected_files.append(item)
 
 
