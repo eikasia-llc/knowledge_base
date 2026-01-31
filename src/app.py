@@ -4,6 +4,8 @@ import sys
 from pathlib import Path
 import json
 import tiktoken
+import zipfile
+import io
 
 # Add src to path so we can import modules
 current_dir = Path(__file__).parent.resolve()
@@ -222,11 +224,21 @@ if selected_files:
 
         st.info(f"Selected {len(selected_files)} files resolved to {len(all_resolved_paths)} required readings (including hidden dependencies).")
         
+        # Prepare Zip Download
+        zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+            for f in all_resolved_paths:
+                 pass # Verify path existence logic
+                 abs_path = manager.project_root / f
+                 if abs_path.exists():
+                     zip_file.write(abs_path, arcname=f)
+        
         st.download_button(
-            label="Download Selected",
-            data=st.session_state.get("prompt_content", ""),
-            file_name="prompt_context.txt",
-            mime="text/plain"
+            label="Download Selected Source Files (ZIP)",
+            data=zip_buffer.getvalue(),
+            file_name="context_bundle.zip",
+            mime="application/zip",
+            key="download_zip_btn"
         )
 else:
     with output_container:
