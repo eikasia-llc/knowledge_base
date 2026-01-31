@@ -8,15 +8,20 @@ Most recent event comes first
 - status: active
 <!-- content -->
 
-### Feature: UI Download Functionality
+### Feature: UI Download Functionality & PYUI Updates
 - status: active
 <!-- content -->
 **Date:** 2026-01-31
 **AI Assistant:** Antigravity
-**Summary:** Added "Download Selected (ZIP)" button to `app.py`.
-- **Goal:** Enable users to download a ZIP file containing the selected markdown files and their dependencies.
-- **Implementation:** Added `zipfile` logic and updated `st.download_button` in `src/app.py` to serve a `context_bundle.zip`.
-- **Files Modified:** `src/app.py`.
+**Summary:** Added Zip download functionality, fixed dependency resolution, and documented UI patterns.
+- **Goal:** Enable downloading full markdown contexts and document Streamlit best practices.
+- **Implementation:**
+    - Updated `src/app.py` to generate ZIP files using `zipfile` instead of text.
+    - Updated `dependency_registry.json` to correct file paths (removed stale `content/core` references).
+    - Removed `@st.cache_resource` from `app.py` to prevent stale registry data.
+    - Documented "Zip Download" and "Stale Caching" patterns in `PYUI_AGENT.md`.
+    - Moved `AGENTS.md` and `MD_CONVENTIONS.md` to root and cleaned `content/core`.
+- **Files Modified:** `src/app.py`, `dependency_registry.json`, `content/agents/PYUI_AGENT.md`, `AGENTS.md`, `MD_CONVENTIONS.md`.
 
 ### Feature: Remove Metadata Tool
 - status: active
