@@ -22,19 +22,20 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 🚀 **[Launch Active App](https://knowledgebases-eikasia.streamlit.app/)**
 - **Browse**: Filter knowledge by category (Skills, Logs, Plans).
 - **Build**: Select the modules you need.
-- **Inject**: Get a perfectly formatted, dependency-resolved text block ready to paste into your LLM.
+- **Inject**: Download a ZIP bundle (`context_bundle.zip`) containing all required markdown files, ready for upload to your LLM workspace.
 
 ## Directory Structure
 - `src/`: Application source code (`app.py`, `dependency_manager.py`, `md_parser.py`).
 - `content/`: The actual knowledge base files.
   - `agents/`: AI Agent definitions.
   - `plans/`: Project plans and roadmaps.
-  - `core/`: Core conventions, agents, and protocols.
   - `guidelines/`: Additional guidelines and templates.
   - `logs/`: Operational logs and artifacts.
 - `manager/`: Maintenance and management tools.
   - `cleaner/`: Pipeline for ingesting and cleaning external repositories.
   - `language/`: Tools for Markdown parsing and schema enforcement.
+- `AGENTS.md`: Core agent protocols and workflow.
+- `MD_CONVENTIONS.md`: The Markdown-JSON Hybrid Schema specification.
 - `dependency_registry.json`: The source of truth for file relationships.
 
 ## Maintenance & Cleaning Protocol
