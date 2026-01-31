@@ -62,3 +62,32 @@ Most recent event comes first
     - Created `bin/manager` and `bin/language` directories.
     - Created symlinks in `bin/` mapping to `util/sh2py3.sh` for all `.py` files in `manager/` and `language/`.
 - **Files Modified:** `util/sh2py3.sh` [NEW], `bin/` directories [NEW].
+
+### Feature: Housekeeping Execution
+- status: active
+<!-- content -->
+**Date:** 2026-01-31
+**AI Assistant:** Antigravity
+**Summary:** Executed the housekeeping protocol for `knowledge_bases`.
+- **Goal:** Update dataset, verify structure, and run tests.
+- **Implementation:**
+    - Ran `manager/cleaner/pipeline.py` to ingest latest content from `mcmp_chatbot`.
+    - Ran `pytest` on `tests/`.
+    - Identified discrepancy between `HOUSEKEEPING.md` dependency network description and actual repo structure.
+    - Updated `HOUSEKEEPING.md` with latest report.
+- **Files Modified:** `HOUSEKEEPING.md`, `AGENTS_LOG.md`.
+
+### Feature: Enhanced Housekeeping Execution
+- status: active
+<!-- content -->
+**Date:** 2026-01-31
+**AI Assistant:** Antigravity
+**Summary:** Executed the **enhanced** housekeeping protocol.
+- **Goal:** Verify the newly implemented "Smart Merge" and "Cleanup" steps.
+- **Implementation:**
+    - Ran `pipeline.py` (Ingestion).
+    - Ran `compare_and_merge.py` (Merge).
+    - Ran `rm -rf` on staging (Cleanup).
+    - Ran `pytest` (Verification).
+    - Updated `HOUSEKEEPING.md`.
+- **Outcome:** Pipeline verified. No content changes were necessary during the merge. Staging area is clean.

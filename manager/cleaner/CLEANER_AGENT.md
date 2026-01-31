@@ -44,10 +44,14 @@ When asked to "Clean Repos" or "Import Data", follow this strict sequence:
 5.  **Refine Context**: Manually or heuristically review the ingested files to add **natural context dependencies**.
     - The automated scripts only insert defaults (e.g., `AGENTS.md`).
     - You must verify if an agent (e.g., `CONTROL_AGENT`) implements a specific guideline (e.g., `RL_GUIDELINES.md`) and add that dependency manually to the metadata: `"rl_guidelines": "RL_GUIDELINES.md"`.
-6.  **Report**: Summarize the number of files imported and confirm their schema compliance.
-7.  **Log**: Update `manager/cleaner/CLEANING_LOGS.md` with:
+6.  **Smart Merge**: Run `compare_and_merge.py` to integrate the changes into `content/`.
+    -   **Usage**: `python3 manager/cleaner/compare_and_merge.py --repo_dir manager/cleaner/repositories --content_dir content`
+    -   *Outcome*: Updates existing files in `content/` with new information from the repositories.
+7.  **Cleanup**: Delete the contents of `manager/cleaner/temprepo_cleaning/` and `manager/cleaner/repositories/` to ensure a clean state for the next run.
+8.  **Report**: Summarize the number of files imported, merged, and any conflicts resolved.
+9.  **Log**: Update `manager/cleaner/CLEANING_LOGS.md` with:
     - Date and Time
     - Repository URL and Branch
-    - Number of files processed
+    - Number of files processed and merged
     - Any errors or warnings (e.g., failed migrations)
-    - Any manual modifications made to `clean_repo.py` or other scripts to enable the import.
+    - Any manual modifications made.

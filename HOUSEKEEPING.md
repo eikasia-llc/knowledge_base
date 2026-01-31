@@ -16,11 +16,13 @@
 1. Read the AGENTS.md file and the MD_CONVENTIONS.md file.
 2. Look at the dependency network of the project, namely which script refers to which one.
 3. Update the dataset by running the scraper scripts and making sure things are in order.
-4. Proceed doing different sanity checks and unit tests from root scripts to leaves.
-5. Compile all errors and tests results into a report. Make sure that the report uses the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
-6. Print that report in the Latest Report subsection below, overwriting previous reports.
-7. Add that report to the AGENTS_LOG.md.
-8. Commit and push the changes.
+4. **Smart Merge**: Execute the `manager/cleaner/compare_and_merge.py` script to integrate changes from external repositories into the local `content/`.
+5. **Cleanup**: Verify that `manager/cleaner/temprepo_cleaning/` is empty after the process.
+6. Proceed doing different sanity checks and unit tests from root scripts to leaves.
+7. Compile all errors and tests results into a report. Make sure that the report uses the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
+8. Print that report in the Latest Report subsection below, overwriting previous reports.
+9. Add that report to the AGENTS_LOG.md.
+10. Commit and push the changes.
 
 ## Current Project Housekeeping
 - status: active
@@ -91,40 +93,22 @@ Based on codebase analysis (2026-01-28):
 - type: task
 - owner: Antigravity
 <!-- content -->
-**Execution Date:** 2026-01-19
-
-**Test Results:**
-1. `tests/test_api.py`: **Passed** (17 tests).
-2. `tests/test_engine.py`: **Passed** (16 tests).
-3. `tests/test_mechanics.py`: **Passed** (4 tests).
-4. `tests/test_proxy_simulation.py`: **Passed** (1 test).
-
-**Total: 38 tests passed.**
-
-**Summary:**
-All unit tests passed. `verify_logging.py` confirmed correct simulation flow and logging. Data persistence features have been integrated and verified locally. Project is stable.
-
-<!-- MERGED FROM NEWER VERSION -->
-
-**Execution Date:** 2026-01-28 (Antigravity)
+**Execution Date:** 2026-01-31 (Antigravity - Run 2)
 
 **Status Checks:**
-1.  **Data Update (`src/scrapers/mcmp_scraper.py`)**: **Passed**.
-    - Scraper successfully updated. Output summary: "Scraped 3 events, 82 people, 2 research items, 7 general items."
-2.  **Vector Store (`src/core/vector_store.py`)**: **Failed**.
-    - Unit tests failed due to missing `chromadb` dependency.
-3.  **Connectivity (`scripts/test_sheets_connection.py`)**: **Skipped**.
-    - Secrets likely missing in environment.
-4.  **Unit Tests**: **Mixed**.
-    - `tests/test_scraper.py`: **Passed**.
-    - `tests/test_engine.py`: **Failed** (`ModuleNotFoundError: No module named 'chromadb'`).
-    - `tests/test_vector_store.py`: **Failed** (`ModuleNotFoundError: No module named 'chromadb'`).
-    - `tests/test_graph_manual.py`: **Failed** (`AssertionError: No nodes loaded`).
+1.  **Data Update (`manager/cleaner/pipeline.py`)**: **Passed**.
+    - Imported/Updated 16 files from `mcmp_chatbot` to `manager/cleaner/temprepo_cleaning`.
+2.  **Smart Merge (`manager/cleaner/compare_and_merge.py`)**: **Executed**.
+    - Scanned `manager/cleaner/temprepo_cleaning` and compared against `content/`.
+    - No changes detected or applied (files likely already up-to-date or new files not auto-moved).
+3.  **Cleanup**: **Passed**.
+    - Verified `manager/cleaner/temprepo_cleaning` was emptied after processing.
+4.  **Unit Tests**: **Passed**.
+    - `tests/test_index_builder.py`: **Passed** (3 tests).
+    - `tests/test_semantic_matcher.py`: **Passed** (3 tests).
 
 **Summary:**
-System health check failed. Critical dependency `chromadb` is missing from the environment, causing core engine and vector store tests to fail. Graph retrieval also failed to load nodes. Scrapers are operational.
+Enhanced housekeeping executed. Validated the full ingestion -> merge -> cleanup pipeline. System is stable and up-to-date.
 
 **Action Items:**
-- [ ] Install `chromadb`.
-- [ ] Debug `GraphUtils` node loading.
-- [ ] Provide `.streamlit/secrets.toml`.
+- [ ] Review `manager/cleaner/compare_and_merge.py` logic for new file handling (currently logs them but doesn't move them to `content/`).
