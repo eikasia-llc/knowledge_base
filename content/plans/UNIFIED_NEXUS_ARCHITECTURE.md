@@ -68,6 +68,46 @@ The unified system has three retrieval paths that feed into a single LLM for ans
                           └─────────────────────────────────────┘
 ```
 
+### Current Implementation (Simplified Nexus)
+- status: active
+- type: context
+- id: unified-nexus.architecture.simplified_diagram
+<!-- content -->
+While the full vision includes a text-to-SQL engine (DuckDB), the current implementation simplifies this by using **MCP Tools** to query structured JSON data.
+
+```mermaid
+graph TD
+    UserQuery[User Question] --> Router{Query Router}
+    
+    subgraph "Unstructured Path (RAG)"
+        Router -- "Semantic/Context" --> VectorStore[(ChromaDB)]
+        VectorStore --> chunks[Text Chunks]
+    end
+    
+    subgraph "Structured Path (MCP)"
+        Router -- "Precise/Data" --> Tools[MCP Tools]
+        Tools -->|Query| DataSources[(JSON Files)]
+        DataSources -->|Results| structured_data[Structured Data]
+    end
+    
+    subgraph "Institutional Knowledge"
+        Router -- "Relationships" --> Graph[(Graph DB)]
+        Graph --> relations[Relationships]
+    end
+
+    chunks --> Aggregator{Context Assembler}
+    structured_data --> Aggregator
+    relations --> Aggregator
+    
+    Aggregator --> LLM[LLM Generator]
+    LLM --> Answer[Final Answer]
+
+    style VectorStore fill:#e3f2fd,stroke:#1565c0
+    style DataSources fill:#e8f5e9,stroke:#2e7d32
+    style Graph fill:#f3e5f5,stroke:#7b1fa2
+    style LLM fill:#fff3e0,stroke:#ef6c00
+```
+
 ### Component Summary
 - status: active
 - type: context
@@ -82,6 +122,36 @@ The unified system has three retrieval paths that feed into a single LLM for ans
 | **Text2SQL Engine** | LLM + schema context | Generate SQL from natural language |
 | **Hybrid Executor** | Custom orchestrator | Combine SQL results with semantic search |
 | **Answer Generator** | LLM (quality model) | Synthesize final response |
+
+### Vector Store Alternatives
+- status: active
+- type: context
+- id: unified-nexus.architecture.vector-alternatives
+- last_checked: 2026-01-29
+<!-- content -->
+ChromaDB was selected for this implementation, but these alternatives are documented for future reference:
+
+| Option | Pros | Cons | When to Use |
+|:-------|:-----|:-----|:------------|
+| **ChromaDB** ⭐ | Local, lightweight, Python-native | Single-node only | Default choice, prototyping |
+| **LanceDB** | Columnar, fast, embedded | Newer ecosystem | High-volume analytics |
+| **pgvector** | SQL integration, familiar | Requires PostgreSQL | Consolidating to Postgres |
+| **Pinecone** | Managed, scalable, reliable | Cloud-only, costs money | Enterprise scale |
+| **Pinecone** | Managed, scalable, reliable | Cloud-only, costs money | Enterprise scale |
+| **Weaviate** | GraphQL, rich features | Heavier setup | Complex schema needs |
+
+### System Resilience & Error Handling
+- status: active
+- type: protocol
+- id: unified-nexus.architecture.resilience
+<!-- content -->
+> [!WARNING]
+> **Internal Blocking Risk**: In a unified system, a failure in one component (e.g., VectorStore initialization) must not crash the entire application. 
+> 
+> **Architectural Constraint**: 
+> - Lazy loading is preferred for heavy components.
+> - **Initialization Retries**: The UI must handle "soft failures" by allowing components to re-initialize on subsequent interactions rather than caching a permanent `None` state.
+> - **Isolated Scope**: Component errors should be trapped at the component boundary to prevent propagating effectively "blocking" states to the UI event loop.
 
 ## Implementation Plan
 - status: active
