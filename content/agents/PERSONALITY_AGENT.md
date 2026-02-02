@@ -70,7 +70,7 @@ Before creating a personality, understand:
 - id: personality_agent_skill.workflow.2_create_personality_files.single_file_simple
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 Create `prompts/personality.md`:
 ```markdown
@@ -84,7 +84,7 @@ Create `prompts/personality.md`:
 - id: chatbot_name.identity
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 Name, role, affiliation
 
@@ -92,7 +92,7 @@ Name, role, affiliation
 - id: chatbot_name.tone_style
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 Key adjectives (precise, warm, scholarly)
 
@@ -100,7 +100,7 @@ Key adjectives (precise, warm, scholarly)
 - id: chatbot_name.behavioral_guidelines
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 Numbered rules for responses
 
@@ -108,7 +108,7 @@ Numbered rules for responses
 - id: chatbot_name.what_to_avoid
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 Explicit prohibitions
 ```
@@ -117,7 +117,7 @@ Explicit prohibitions
 - id: chatbot_name.what_to_avoid.modular_complex
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 Split into `prompts/`:
 - `base_identity.md` – Core traits
@@ -167,14 +167,14 @@ The MCMP chatbot "Leopold" demonstrates effective personality design:
 - id: leopold_mcmp_philosophy_assistant
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 
 ## Identity
 - id: leopold_mcmp_philosophy_assistant.identity
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Name**: Leopold
 - **Character**: Intelligent and helpful, with the efficient precision 
@@ -185,7 +185,7 @@ The MCMP chatbot "Leopold" demonstrates effective personality design:
 - id: leopold_mcmp_philosophy_assistant.tone_style
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Efficient and precise**: Like a knowledgeable German civil servant
 - **Politely formal**: Respectful without being stiff

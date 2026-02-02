@@ -7,7 +7,6 @@
 - last_checked: 2026-02-01
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "prototype": "mcp_rl_protocol.py"}
 <!-- content -->
-
 This plan specifies a **production-grade implementation** of the MCP-RL Protocol Optimizer: a system where an LLM acts as a frozen policy for an MDP, and a Reinforcement Learning loop optimizes the **protocol layer** (the structured context the LLM receives via MCP) to maximize cumulative reward.
 
 The core insight is simple: we do NOT fine-tune the LLM. Instead, we treat the protocol — system prompt, state representation templates, tool definitions, history windowing — as a learnable parameter vector θ, and optimize it using reward signals from an MDP environment.
@@ -25,14 +24,12 @@ The core insight is simple: we do NOT fine-tune the LLM. Instead, we treat the p
 
 The working prototype in `mcp_rl_protocol.py` demonstrates this idea with a simulated LLM and a GridWorld MDP. This plan specifies how to refactor that prototype into a modular, production-ready codebase that supports real LLM backends, arbitrary MDP environments, and pluggable optimization strategies.
 
-
 ## Theoretical Foundation
 - status: active
 - type: context
 - id: mcprl.theory
 - last_checked: 2026-02-01
 <!-- content -->
-
 This section lays the formal groundwork. A coding agent should read this to understand **why** the architecture works before building it.
 
 ### The Composed Policy
@@ -41,7 +38,6 @@ This section lays the formal groundwork. A coding agent should read this to unde
 - id: mcprl.theory.composed_policy
 - last_checked: 2026-02-01
 <!-- content -->
-
 Standard RL optimizes a policy π(a|s) directly. Here, our policy is a **composition**:
 
 ```
@@ -58,7 +54,6 @@ Since the LLM is a black box, we cannot backpropagate through it. This forces us
 - id: mcprl.theory.protocol_hypothesis
 - last_checked: 2026-02-01
 <!-- content -->
-
 LLMs are highly sensitive to prompt structure. The same factual content presented differently yields dramatically different reasoning quality. This means the mapping from θ to expected reward has meaningful gradient-like structure in practice — some protocol configurations genuinely produce better actions than others.
 
 Formally, let `R(θ) = E_τ[Σ_t r_t | π_θ]` be the expected return under the composed policy. The protocol hypothesis states that `R(θ)` has sufficient structure (smoothness in the continuous dimensions, clear optima in the discrete dimensions) to be optimizable by derivative-free methods within a tractable number of episodes.
@@ -71,11 +66,9 @@ The prototype validates this: evolutionary and bandit optimizers both find proto
 - id: mcprl.theory.signaling_games
 - last_checked: 2026-02-01
 <!-- content -->
-
 This framework can be viewed through the lens of **signaling games** from game theory. The protocol acts as a sender that encodes the environment state into a signal (structured text). The LLM acts as a receiver that maps signals to actions. Optimizing θ is equivalent to evolving the sender's encoding strategy to maximize a shared payoff (MDP reward).
 
 This connects to the literature on emergent communication in multi-agent RL, where agents learn signaling protocols through reward. The difference here is that one "agent" (the LLM) is frozen, so the burden of adaptation falls entirely on the protocol layer.
-
 
 ## Architecture Overview
 - status: active
@@ -83,7 +76,6 @@ This connects to the literature on emergent communication in multi-agent RL, whe
 - id: mcprl.architecture
 - last_checked: 2026-02-01
 <!-- content -->
-
 The system is organized as five independent modules that communicate through well-defined interfaces. Each module is a Python package with its own responsibility.
 
 ```
@@ -120,7 +112,6 @@ mcprl/
 └── main.py              # CLI entry point
 ```
 
-
 ## Task 1: Environment Module
 - status: todo
 - type: task
@@ -131,7 +122,6 @@ mcprl/
 - blocked_by: []
 - last_checked: 2026-02-01
 <!-- content -->
-
 Extract the MDP environment interface and implementations from the prototype into `mcprl/environments/`.
 
 ### 1a. Abstract Base Class
@@ -143,7 +133,6 @@ Extract the MDP environment interface and implementations from the prototype int
 - blocked_by: []
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `environments/base.py` containing the `MDPEnvironment` abstract base class. Carry over the interface from the prototype (`reset`, `step`, `get_available_actions`) and add two new methods:
 
 ```python
@@ -179,7 +168,6 @@ The `step` method signature stays as `step(action: str) -> tuple[dict, float, bo
 - blocked_by: [mcprl.env.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Move `GridWorldMDP` from the prototype into `environments/gridworld.py`. Implement the two new abstract methods. Add configurable parameters for grid size, trap positions (accept a list), and reward values so the environment can be made harder for more interesting optimization.
 
 ### 1c. Gymnasium Wrapper
@@ -191,7 +179,6 @@ Move `GridWorldMDP` from the prototype into `environments/gridworld.py`. Impleme
 - blocked_by: [mcprl.env.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `environments/gym_wrapper.py` with a `GymMDPWrapper` class that adapts any Gymnasium environment to the `MDPEnvironment` interface.
 
 Key design decisions:
@@ -201,7 +188,10 @@ The wrapper must convert Gymnasium's numeric action spaces into string actions f
 State conversion: Gymnasium observations (numpy arrays, dicts, tuples) need to be serialized to `dict` form. For `Dict` spaces, pass through directly. For `Box`/array spaces, convert to `{"observation": list_of_values}`. For `Tuple` spaces, convert to `{"obs_0": ..., "obs_1": ..., ...}`.
 
 ```python
+
 # Usage example the implementer should target:
+- type: plan
+<!-- content -->
 import gymnasium as gym
 
 env = GymMDPWrapper(
@@ -211,7 +201,6 @@ env = GymMDPWrapper(
 state = env.reset()           # -> {"observation": [x, x_dot, theta, theta_dot]}
 actions = env.get_available_actions()  # -> ["push_left", "push_right"]
 ```
-
 
 ## Task 2: Protocol Module
 - status: todo
@@ -223,7 +212,6 @@ actions = env.get_available_actions()  # -> ["push_left", "push_right"]
 - blocked_by: [mcprl.env]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Extract and extend the protocol layer from the prototype into `mcprl/protocol/`.
 
 ### 2a. Component Dataclasses
@@ -235,7 +223,6 @@ Extract and extend the protocol layer from the prototype into `mcprl/protocol/`.
 - blocked_by: []
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `protocol/components.py` containing `ProtocolComponent` and `MCPToolSchema` dataclasses. These are carried over from the prototype with one addition: each `ProtocolComponent` should include an optional `component_type` enum field to classify it:
 
 ```python
@@ -260,7 +247,6 @@ This classification enables the optimizer to apply type-specific mutation strate
 - blocked_by: [mcprl.protocol.components, mcprl.env.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `protocol/renderers.py` with a `StateRenderer` abstract base class and concrete implementations for each rendering strategy (JSON, markdown table, natural language, ASCII grid).
 
 The critical design point: renderers must be **generic**. The prototype hardcodes GridWorld-specific field names (`x`, `y`, `goal_x`, etc.). The production version should use the environment's `get_state_schema()` to auto-generate rendering logic for arbitrary state dicts.
@@ -295,7 +281,6 @@ Additionally, create a `HistoryRenderer` class with variants for "none", "cumula
 - blocked_by: [mcprl.protocol.components, mcprl.protocol.renderers]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `protocol/evolvable.py` with the main `EvolvableProtocol` class. This is the θ in the optimization — it holds all components and knows how to encode/decode itself as a genome dict.
 
 Carry over `get_genome`, `set_genome`, `get_genome_hash`, and `render_full_context` from the prototype. Refactor `render_full_context` to delegate to the renderer strategies from Task 2b instead of using internal methods.
@@ -329,7 +314,6 @@ def from_config(cls, config: dict) -> "EvolvableProtocol":
 
 The `render_full_context` method must output a dict matching the Anthropic Messages API structure: `{"system": str, "user": str, "tools": list[dict]}`. This is the bridge between protocol and LLM — the output is directly usable as API call parameters.
 
-
 ## Task 3: LLM Backend Module
 - status: todo
 - type: task
@@ -340,7 +324,6 @@ The `render_full_context` method must output a dict matching the Anthropic Messa
 - blocked_by: [mcprl.protocol]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Extract the LLM interface and create real + simulated backends in `mcprl/llm/`.
 
 ### 3a. Abstract LLM Interface
@@ -352,7 +335,6 @@ Extract the LLM interface and create real + simulated backends in `mcprl/llm/`.
 - blocked_by: []
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `llm/base.py` with an abstract `LLMBackend` class:
 
 ```python
@@ -398,7 +380,6 @@ Note the interface change from the prototype: the `state` parameter is removed. 
 - blocked_by: [mcprl.llm.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Move `SimulatedLLM` from the prototype into `llm/simulated.py`. This stays mostly the same — it accepts raw state in its constructor (via an environment reference or a state callback) and uses context quality heuristics to modulate action noise.
 
 The simulated LLM is essential for development and testing. It must remain fast (no API calls) so that the optimization loop can run thousands of episodes cheaply.
@@ -413,7 +394,6 @@ The simulated LLM is essential for development and testing. It must remain fast 
 - blocked_by: [mcprl.llm.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `llm/anthropic.py` with an `AnthropicLLMBackend` that calls the Claude API. This is the production backend that makes the system real.
 
 Implementation requirements:
@@ -441,7 +421,6 @@ class AnthropicLLMBackend(LLMBackend):
         ...
 ```
 
-
 ## Task 4: Optimizer Module
 - status: todo
 - type: task
@@ -452,7 +431,6 @@ class AnthropicLLMBackend(LLMBackend):
 - blocked_by: [mcprl.protocol]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Extract and extend the optimization algorithms into `mcprl/optimizers/`.
 
 ### 4a. Optimizer Base Class
@@ -464,7 +442,6 @@ Extract and extend the optimization algorithms into `mcprl/optimizers/`.
 - blocked_by: []
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `optimizers/base.py` with the `ProtocolOptimizer` abstract class. Carry over `suggest_genome` and `report_reward` from the prototype. Add a `get_best_genome` method:
 
 ```python
@@ -495,7 +472,6 @@ class ProtocolOptimizer(ABC):
 - blocked_by: [mcprl.optimizers.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Move `EvolutionaryOptimizer` into `optimizers/evolutionary.py`. Carry over the full implementation (population management, elitism, mutation) from the prototype.
 
 Add one enhancement: **crossover**. The prototype only uses mutation. Implement single-point crossover where two parent genomes are split at a random gene boundary and recombined. This is standard in genetic algorithms and should improve search efficiency on larger protocol spaces.
@@ -521,7 +497,6 @@ def _crossover(self, parent_a: dict, parent_b: dict) -> dict:
 - blocked_by: [mcprl.optimizers.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Move `ComponentBanditOptimizer` into `optimizers/bandit.py`. Carry over the UCB1 selection and per-component statistics from the prototype.
 
 Add one enhancement: **contextual bandits**. The current implementation treats each component independently (standard MAB). A contextual extension would condition variant selection on the current environment state summary (e.g., "early game" vs "near goal" vs "near trap"). This is a stretch goal — implement the standard UCB1 first, then add a `ContextualComponentBanditOptimizer` subclass if time allows.
@@ -536,13 +511,11 @@ Add one enhancement: **contextual bandits**. The current implementation treats e
 - blocked_by: [mcprl.optimizers.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Implement a `BayesianOptimizer` in `optimizers/bayesian.py` using a Gaussian Process surrogate model over the genome space. This is a stretch goal because it requires handling the mixed discrete/continuous nature of the genome space, which is non-trivial.
 
 Use `scikit-optimize` (skopt) as the backend if available, with a fallback to a simple random-search baseline if the dependency is not installed.
 
 This optimizer is theoretically the most sample-efficient, which matters when using the real Anthropic API backend (each evaluation costs money).
-
 
 ## Task 5: Training Loop and Logging
 - status: todo
@@ -554,7 +527,6 @@ This optimizer is theoretically the most sample-efficient, which matters when us
 - blocked_by: [mcprl.env, mcprl.protocol, mcprl.llm, mcprl.optimizers]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Build the training orchestration layer in `mcprl/training/`.
 
 ### 5a. Episode Runner and Training Loop
@@ -566,7 +538,6 @@ Build the training orchestration layer in `mcprl/training/`.
 - blocked_by: [mcprl.env.base, mcprl.protocol.evolvable, mcprl.llm.base, mcprl.optimizers.base]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `training/loop.py` with `run_episode` and `train_protocol` functions. These are refactored versions of the prototype functions with the following changes:
 
 `run_episode` should accept the abstract `LLMBackend` instead of `SimulatedLLM`. Remove the raw `state` parameter from the LLM call — the LLM only sees the rendered context (except for SimulatedLLM which handles this internally).
@@ -584,7 +555,6 @@ Add a checkpoint mechanism: every N generations, serialize the optimizer state a
 - blocked_by: [mcprl.training.loop]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `training/logging.py` with an `ExperimentLogger` class that records per-generation metrics to both console and a JSON Lines file.
 
 Each log line should include: generation number, average reward, goal rate, trap rate (or domain-appropriate metrics), genome hash, wall-clock time, and (if using Anthropic backend) API cost so far.
@@ -600,11 +570,9 @@ The log file should be loadable by the analysis module for post-hoc visualizatio
 - blocked_by: [mcprl.training.logging]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `training/analysis.py` with functions to produce post-training reports. Refactor `analyze_results` from the prototype. Add matplotlib-based plotting (reward curve, goal rate over generations, component selection heatmap for the bandit optimizer).
 
 Output a summary markdown file in the MD_CONVENTIONS format containing the best genome, reward trajectory statistics, and per-component analysis.
-
 
 ## Task 6: Configuration and CLI
 - status: todo
@@ -626,7 +594,6 @@ Output a summary markdown file in the MD_CONVENTIONS format containing the best 
 - blocked_by: []
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `config/experiment.py` with an `ExperimentConfig` dataclass:
 
 ```python
@@ -672,23 +639,30 @@ Support loading from YAML files so experiments are reproducible and shareable.
 - blocked_by: [mcprl.config.experiment, mcprl.training.loop]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create `main.py` with an `argparse`-based CLI:
 
 ```bash
+
 # Run with defaults (GridWorld + SimulatedLLM + Evolutionary)
+- type: plan
+<!-- content -->
 python -m mcprl
 
 # Run with a config file
+- type: plan
+<!-- content -->
 python -m mcprl --config experiments/gridworld_bandit.yaml
 
 # Run with the real Anthropic backend
+- type: plan
+<!-- content -->
 python -m mcprl --llm anthropic --model claude-sonnet-4-20250514
 
 # Resume from checkpoint
+- type: plan
+<!-- content -->
 python -m mcprl --resume results/default/checkpoint_gen30.json
 ```
-
 
 ## Task 7: Integration Tests
 - status: todo
@@ -700,7 +674,6 @@ python -m mcprl --resume results/default/checkpoint_gen30.json
 - blocked_by: [mcprl.training]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Create a `tests/` directory with pytest-based tests.
 
 ### 7a. Unit Tests
@@ -712,7 +685,6 @@ Create a `tests/` directory with pytest-based tests.
 - blocked_by: [mcprl.env, mcprl.protocol, mcprl.optimizers]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Test each module in isolation:
 
 For `environments/`: verify that `GridWorldMDP` returns correct reward on goal/trap, respects boundaries, and terminates on max_steps. Verify `GymMDPWrapper` correctly translates CartPole states and actions.
@@ -730,11 +702,9 @@ For `optimizers/`: verify `EvolutionaryOptimizer` population evolves (fitness im
 - blocked_by: [mcprl.tests.unit]
 - last_checked: 2026-02-01
 <!-- content -->
-
 Run a complete `train_protocol` with `GridWorldMDP` + `SimulatedLLM` + `EvolutionaryOptimizer` for 20 generations and assert that average reward in the last 5 generations is higher than the first 5. This validates that the system actually learns.
 
 Run the same test with `ComponentBanditOptimizer`. Both should show improvement.
-
 
 ## Execution Order
 - status: active
@@ -742,7 +712,6 @@ Run the same test with `ComponentBanditOptimizer`. Both should show improvement.
 - id: mcprl.execution_order
 - last_checked: 2026-02-01
 <!-- content -->
-
 The dependency graph dictates the following build order. A coding agent should follow this sequence, running tests at each milestone.
 
 **Phase 1 — Foundations (parallel):** Tasks 1a, 2a, 3a, 4a can all be built simultaneously since they only define abstract interfaces.
@@ -769,14 +738,12 @@ Phase 4:  [1c] [3c] [6a, 6b]          ← Production features
 Phase 5:  [4d] [7a, 7b]               ← Polish & tests
 ```
 
-
 ## Technical Notes for the Coding Agent
 - status: active
 - type: context
 - id: mcprl.notes
 - last_checked: 2026-02-01
 <!-- content -->
-
 **Python version:** 3.11+. Use `match` statements where appropriate, `type` union syntax (`X | Y`), and dataclasses with `slots=True` for performance.
 
 **Dependencies (core, install unconditionally):** `anthropic` (for the API backend), `pyyaml` (for config files). **Dependencies (optional, install if present):** `gymnasium` (for the Gym wrapper), `matplotlib` (for plots), `scikit-optimize` (for Bayesian optimizer).

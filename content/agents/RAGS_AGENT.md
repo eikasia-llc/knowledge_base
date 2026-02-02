@@ -142,7 +142,7 @@ When checking for duplicates during document ingestion or retrieval deduplicatio
 - id: bad_on2_list_based_duplicate_check
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ids = []
 for doc in documents:
@@ -155,7 +155,7 @@ for doc in documents:
 - id: good_on_set_based_duplicate_check
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ids = []
 used_ids = set()  # Separate set for O(1) lookups
@@ -712,7 +712,7 @@ JSON:"""
 - id: documentation_metadata
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 metadata = {
     'source': 'official_docs',
@@ -726,7 +726,7 @@ metadata = {
 - id: research_paper_metadata
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 metadata = {
     'source': 'arxiv',
@@ -740,7 +740,7 @@ metadata = {
 - id: code_example_metadata
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 metadata = {
     'source': 'github',
@@ -1387,7 +1387,7 @@ from mcp.types import Tool, TextContent
 - id: initialize_mcp_server
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 server = Server("json-data-tools")
 
@@ -1395,7 +1395,7 @@ server = Server("json-data-tools")
 - id: path_to_your_json_data_directory
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 DATA_DIR = Path("data/json")
 
@@ -1436,14 +1436,14 @@ def load_people() -> list[dict]:
 - id: mcp_tool_definitions
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 
 # ============================================================
 - id: 
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 @server.list_tools()
 async def list_tools() -> list[Tool]:
@@ -1717,7 +1717,7 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
 - id: entry_point_for_running_the_server
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 if __name__ == "__main__":
     import asyncio

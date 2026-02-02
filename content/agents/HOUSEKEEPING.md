@@ -47,7 +47,7 @@ Based on codebase analysis (2026-01-28):
 - id: housekeeping_protocol.dependency_network.1_application_layer_entry_point
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **`app.py`**: Main Streamlit application.
   - *Dependencies*: `src.core.engine`, `src.core.vector_store` (dynamic), `src.scrapers.mcmp_scraper` (dynamic), `gspread` (optional).
@@ -57,7 +57,7 @@ Based on codebase analysis (2026-01-28):
 - id: housekeeping_protocol.dependency_network.2_core_engine_layer
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **`src/core/engine.py`**: RAGEngine class.
   - *Dependencies*: `src.core.vector_store`, `src.utils.logger`, `openai`, `anthropic`, `google.genai`.
@@ -70,7 +70,7 @@ Based on codebase analysis (2026-01-28):
 - id: housekeeping_protocol.dependency_network.3_data_acquisition_layer_scrapers
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **`src/scrapers/mcmp_scraper.py`**: MCMPScraper class.
   - *Dependencies*: `requests`, `bs4`, `src.utils.logger`.
@@ -80,7 +80,7 @@ Based on codebase analysis (2026-01-28):
 - id: housekeeping_protocol.dependency_network.4_utilities_scripts
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **`src/utils/logger.py`**: centralized logging.
 - **`scripts/update_knowledge.py`**: specific script for parsing markdown knowledge.

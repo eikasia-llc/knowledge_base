@@ -10,7 +10,7 @@ This document defines the implementation patterns for the MCMP event scraper, in
 - id: event_scraper_implementation_guide.critical_dynamic_loading
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 > [!CAUTION]
 > The events-overview page uses a **"Load more" button** to dynamically load events. Static `requests.get()` only captures 16 of 53+ events.
@@ -19,7 +19,7 @@ This document defines the implementation patterns for the MCMP event scraper, in
 - id: event_scraper_implementation_guide.critical_dynamic_loading.problem
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - Initial page load shows ~16 events
 - Remaining events load via JavaScript when clicking "Load more"
@@ -30,7 +30,7 @@ This document defines the implementation patterns for the MCMP event scraper, in
 - id: event_scraper_implementation_guide.critical_dynamic_loading.solution_selenium
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ```python
 def _fetch_events_with_selenium(self, url):
@@ -61,14 +61,14 @@ def _fetch_events_with_selenium(self, url):
 - id: event_scraper_implementation_guide.website_structure
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 
 ### Event Sources
 - id: event_scraper_implementation_guide.website_structure.event_sources
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 1. **Events Overview** (Primary): `https://www.philosophie.lmu.de/mcmp/en/latest-news/events-overview/` ⚠️ Dynamic
 2. **Events Page**: `https://www.philosophie.lmu.de/mcmp/en/events/`
@@ -78,7 +78,7 @@ def _fetch_events_with_selenium(self, url):
 - id: event_scraper_implementation_guide.website_structure.dom_structure
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Listing pages**: Events in `<a>` tags with class `.filterable-list__list-item-link.is-events`
 - **Individual event pages**:
@@ -92,14 +92,14 @@ def _fetch_events_with_selenium(self, url):
 - id: event_scraper_implementation_guide.implementation_patterns
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 
 ### 1. Deduplication (URL-based)
 - id: event_scraper_implementation_guide.implementation_patterns.1_deduplication_url_based
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ```python
 seen_urls = set()
@@ -113,7 +113,7 @@ for link in event_links:
 - id: event_scraper_implementation_guide.implementation_patterns.2_event_details_extraction
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ```python
 
@@ -121,7 +121,7 @@ for link in event_links:
 - id: labeled_sections
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 for h2 in soup.find_all('h2'):
     label = h2.get_text(strip=True).rstrip(':').lower()
@@ -132,7 +132,7 @@ for h2 in soup.find_all('h2'):
 - id: location_from_address_tag
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 address = soup.find('address')
 if address:
@@ -143,7 +143,7 @@ if address:
 - id: location_from_address_tag.3_date_parsing
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ```python
 
@@ -151,7 +151,7 @@ if address:
 - id: 4_february_2026_2026_02_04
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 ```
@@ -162,7 +162,7 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 - id: 4_february_2026_2026_02_04.output_schema
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ```json
 {
@@ -185,7 +185,7 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 - id: 4_february_2026_2026_02_04.verification
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - [x] All 53+ events captured
 - [x] Abstracts extracted from individual pages
@@ -196,14 +196,14 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 - id: 4_february_2026_2026_02_04.people_scraper_implementation
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 
 ### Sources
 - id: 4_february_2026_2026_02_04.people_scraper_implementation.sources
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **People Index**: `https://www.philosophie.lmu.de/mcmp/en/people/`
 - **Profile Pages**: Individual pages linked from the index (e.g., `/people/contact-page/...`)
@@ -212,7 +212,7 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 - id: 4_february_2026_2026_02_04.people_scraper_implementation.dom_structure_profile_page
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 | Field | Selector / Logic | Notes |
 |-------|------------------|-------|
@@ -230,7 +230,7 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 - id: 4_february_2026_2026_02_04.people_scraper_implementation.output_schema
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 ```json
 {

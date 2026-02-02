@@ -88,3 +88,6 @@ When asked to "Clean Repos" or "Import Data", follow this strict sequence:
 11. **Update Registry**:
     - **Action**: Scan the project to update `dependency_registry.json` with any new file relationships.
     - **Command**: `python3 src/dependency_manager.py scan`
+12. **Global Log**:
+    - **Action**: Update `content/agents/AGENTS_LOG.md` with a new entry in the "Intervention History".
+    - **Details**: Include Date, Action ("Cleaned Repos"), and a summary of files processed.

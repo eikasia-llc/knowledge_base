@@ -44,7 +44,7 @@ Most recent event comes first
 - id: agents_log.intervention_history.2026_01_31_housekeeping_execution_antigravity
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Task**: Executed Housekeeping Protocol & Fixed Scraper.
 - **Problem**: Scraper was falling back to static mode (3 events) due to missing dependencies.
@@ -60,7 +60,7 @@ Most recent event comes first
 - id: agents_log.intervention_history.2026_01_31_fix_future_event_access_antigravity
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Task**: Debugging LLM refusal to access future events.
 - **Problem**: LLM refused to answer questions about future events (e.g., Feb 2026) despite data being in `raw_events.json`. Error message ("I can only access information from the provided context") indicated strictly following RAG-only context rules in personality.
@@ -74,7 +74,7 @@ Most recent event comes first
 - id: agents_log.intervention_history.2026_01_31_model_default_switch_antigravity
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Task**: Fix "Future Event Access" failure on default settings.
 - **Problem**: `gemini-2.0-flash-lite` (previous default) consistently failed to use the `get_events` tool for speaker queries, hallucinating a capability limitation ("I cannot search for events by speaker").
@@ -87,7 +87,7 @@ Most recent event comes first
 - id: agents_log.intervention_history.2026_01_31_enhance_calendar_prompt_antigravity
 - status: active
 - type: context
-- last_checked: 2026-02-01
+- last_checked: 2026-02-02
 <!-- content -->
 - **Task**: Improve detail in calendar-triggered event queries.
 - **Change**: Updated the `auto_prompt` in `app.py` (triggered by calendar clicks) to explicitly request an "abstract or description".
@@ -110,3 +110,40 @@ Most recent event comes first
         - Added "Update Registry" step to `CLEANER_AGENT.md` (Step 11).
         - Merged redundant `manager/cleaner/CLEANER_AGENT.md` into `content/agents/CLEANER_AGENT.md` and deleted the former.
 - **Outcome**: Knowledge base updated and cleaner protocol refined.
+
+### 2026-02-02: Re-implement MCP Awareness (Antigravity)
+- id: agents_log.intervention_history.2026_02_02_re_implement_mcp_awareness_antigravity
+- status: active
+- type: context
+- last_checked: 2026-02-02
+<!-- content -->
+- **Task**: Re-inject MCP Protocol into System Prompt & Enhance Tool Descriptions.
+- **Problem**: LLM was providing minimal info for events because it wasn't fully aware of `get_events` capabilities.
+- **Fix**: Re-applied prompt dynamic injection in `src/core/engine.py` (fetching tools list) and updated `src/mcp/server.py` to explicitly state `get_events` returns matching titles/abstracts.
+- **Outcome**: LLM now has explicit instructions to use `get_events` for detailed data. Unit tests passed.
+
+### 2026-02-02: Force Tool Usage (Antigravity)
+- id: agents_log.intervention_history.2026_02_02_force_tool_usage_antigravity
+- status: active
+- type: context
+- last_checked: 2026-02-02
+<!-- content -->
+- **Task**: Forcing automatic tool usage without permission-asking.
+- **Problem**: LLM was politely asking "Would you like me to check?" instead of checking automatically, violating the seamless RAG experience.
+- **Fix**: 
+    - Updated `src/core/engine.py` system prompt injection with "IMPORTANT: You have permission... Do NOT ask... Just check."
+    - Updated `prompts/personality.md` to explicitly forbid asking for permission.
+- **Outcome**: Prompt instructions are now imperative and strictly enforce automatic tool usage.
+
+### 2026-02-02: Fix RAG vs MCP Conflict (Antigravity)
+- id: agents_log.intervention_history.2026_02_02_fix_rag_vs_mcp_conflict_antigravity
+- status: active
+- type: context
+- last_checked: 2026-02-02
+<!-- content -->
+- **Task**: Resolving conflict where partial RAG context prevented tool usage.
+- **Problem**: LLM was satisfied with just an event title from the vector store and didn't call tools to get the missing abstract/time.
+- **Fix**: 
+    - Updated `prompts/personality.md` to relax "Context-First" rule: *"If context is incomplete... YOU MUST use tools to enrich it."*
+    - Updated `src/core/engine.py` prompt injection to explicitly handle partial info scenarios.
+- **Outcome**: LLM should now recognize "Title-only" context as insufficient and trigger `get_events` for enrichment.
