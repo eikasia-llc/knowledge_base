@@ -79,8 +79,7 @@ Your workspace (the root directory in which you can access files) is git version
 - Do *not* use `kubectl` without asking for permission as this tool may be configured to work with another company
 - git
 
-Before using gcloud, always run `gcloud auth login` to authenticate.
-Active account has to be: "eikasia@eikasia.com"
+When using Google Tools, active account *has to be*: "eikasia@eikasia.com"
 
 ## Agent Log Entry Template
 - status: in-progress
