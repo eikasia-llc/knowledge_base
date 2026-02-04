@@ -3,6 +3,10 @@
 - type: guideline
 <!-- content -->
 
+## Production ready app
+
+https://knowledge-base-app-216559257034.us-central1.run.app/
+
 ## Overview
 This repository serves as the central nervous system for **Prompt Context Management**. It tracks, organizes, and serves Markdown-based knowledge modules (Agents, Plans, Guidelines, etc.) that are used to "inject" context into Large Language Model (LLM) prompts.
 
@@ -114,6 +118,13 @@ gcloud run services add-iam-policy-binding knowledge-base-app \
     --project=eikasia-ops
 ```
 
+### Cloud Resources
+
+refer to `INFRASTRUCTURE.md`
+
+
+### Access without Identity-Aware Proxy (IAP), by a proxy
+
 With just this we would see the 403 Forbidden error because Cloud Run private services (which this is, due to your Org Policy) require an Authorization header with a valid identity token in every request. A standard browser visit doesn't send this token automatically, even if you have the right permissions.
 
 To solve this we use the Cloud Run Proxy. This creates a local bridge that handles the authentication for you.
@@ -123,7 +134,6 @@ This is the command:
 ```
 gcloud run services proxy knowledge-base-app --region=us-central1 --project=eikasia-ops
 ```
-
 
 gcloud run services add-iam-policy-binding
 

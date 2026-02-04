@@ -83,11 +83,11 @@ Most recent event comes first
 **Date:** 2026-01-31
 **AI Assistant:** Antigravity
 **Summary:** Executed the **enhanced** housekeeping protocol.
-- **2026-02-04**: Deployment Complete (Cloud Run)
+- **2026-02-04**: Deployment & Security Complete
     - Successfully deployed to `knowledge-base-app-216559257034.us-central1.run.app`.
-    - Integrated GitHub PAT via Secret Manager.
-    - Implemented persistence layer with GitManager.
-    - Note: Public access blocked by Org Policy (expected security behavior).
+    - Enabled **Identity-Aware Proxy (IAP)** for secure internet access.
+    - Updated infrastructure documentation (`INFRASTRUCTURE.md`).
+    - Resolved token newline issues and optimized Dockerfile (multi-stage).
 - **Goal:** Verify the newly implemented "Smart Merge" and "Cleanup" steps.
 - **Implementation:**
     - Ran `pipeline.py` (Ingestion).
