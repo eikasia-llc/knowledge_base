@@ -26,6 +26,12 @@ graph TD
 | **Registry** | **Artifact Registry / GCR** | Stores the Docker container images for the application. |
 | **Storage (Ephemeral)** | **In-memory / `/tmp`** | Stores the cloned repository during the container's lifetime. Note that this is cleared when the instance shuts down. |
 
+## Deployment Commands
+
+### Streamlit app to GCloud Run
+
+The `deploy.sh` handles that. Read it completely to understand what it needs.
+
 ### On Ephemeral Storage
 
 In Google Cloud Run, a container's life doesn't end the moment it finishes sending an HTTP response. Instead, it enters a state of "idle" where Google keeps it alive to avoid the performance penalty of a "cold start" for the next request.
@@ -41,3 +47,17 @@ Persistent storage is github. Manually synced via UI buttons.
 1. **Identity-Aware Proxy (IAP)**: The first line of defense. Only users in the `eikasia.com` organization with the `IAP-secured Web App User` role can reach the application.
 2. **IAM Controls**: The Cloud Run service account is restricted to minimal permissions (`Secret Manager Secret Accessor` only for specific secrets).
 3. **Secret Masking**: The GitHub PAT is injected as a secret reference, never exposed in environment variables or logs in plain text.
+
+### Permissions
+
+To access the app: Grant access to your specific account (Recommended)
+Instead of making it public, we grant ourseles permission to view it. 
+This is the command:
+
+```
+gcloud run services add-iam-policy-binding knowledge-base-app \
+    --region=us-central1 \
+    --member="user:eikasia@eikasia.com" \
+    --role="roles/run.invoker" \
+    --project=eikasia-ops
+```
