@@ -12,6 +12,7 @@ current_dir = Path(__file__).parent.resolve()
 sys.path.append(str(current_dir))
 
 from dependency_manager import DependencyManager
+from git_manager import GitManager
 
 # Helper for token counting
 @st.cache_resource
@@ -25,18 +26,64 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- Git Startup Routine ---
+repo_url = os.environ.get("GITHUB_REPO_URL", "https://github.com/eikasia-llc/knowledge_base.git")
+repo_path = os.environ.get("REPO_MOUNT_POINT", str(current_dir.parent))
+github_token = os.environ.get("GITHUB_TOKEN")
+
+git = GitManager(repo_url, repo_path, github_token)
+
+# This will raise RuntimeError and fail the container if git fails
+if "git_init_done" not in st.session_state:
+    try:
+        success, output = git.startup_sync(branch="main")
+        st.session_state["git_init_done"] = True
+        st.session_state["git_output"] = output
+    except Exception as e:
+        st.error(f"FATAL: {e}")
+        # In a real container, we want the process to exit
+        import sys
+        sys.exit(1)
+
 # Initialize Manager
 def get_manager():
-    # Root is the parent of src/
-    repo_root = current_dir.parent
-    return DependencyManager(project_root=repo_root)
+    # Use environment variable for mount point, fallback to local Project Root for dev
+    return DependencyManager(project_root=Path(repo_path))
 
 manager = get_manager()
 
 # Sidebar
 with st.sidebar:
     st.header("Actions")
-    if st.button("Sync & Scan Repo"):
+    
+    # Git Sync Section
+    st.subheader("Artifact Repository Sync")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Git Pull ⬇️"):
+            with st.spinner("Pulling..."):
+                success, output = git.pull()
+                st.session_state["git_output"] = output
+                if success: st.success("Pulled updates.")
+                else: st.error("Pull failed.")
+    
+    with col2:
+        if st.button("Git Push ⬆️"):
+            with st.spinner("Pushing..."):
+                # For push, we might want to capture a message or just use default
+                success, output = git.push()
+                st.session_state["git_output"] = output
+                if success: st.success("Pushed updates.")
+                else: st.error("Push failed.")
+
+    # Mini Terminal for Git Output
+    with st.expander("Console Output", expanded=False):
+        st.code(st.session_state.get("git_output", "No output yet."), language="bash")
+
+    st.divider()
+
+    if st.button("Scan & Update Registry"):
         with st.spinner("Scanning repository..."):
             scanned = manager.scan_project()
             manager.update_registry(scanned)
