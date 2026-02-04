@@ -55,10 +55,10 @@ manager = get_manager()
 # Sidebar
 with st.sidebar:
     st.header("Actions")
-    
+
     # Git Sync Section
     st.subheader("Artifact Repository Sync")
-    
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Git Pull ⬇️"):
@@ -67,7 +67,7 @@ with st.sidebar:
                 st.session_state["git_output"] = output
                 if success: st.success("Pulled updates.")
                 else: st.error("Pull failed.")
-    
+
     with col2:
         if st.button("Git Push ⬆️"):
             with st.spinner("Pushing..."):

@@ -93,3 +93,37 @@ To enable dynamic context discovery in your IDE:
       }
     }
     ```
+
+## Deploying
+
+### Streamlit app to GCloud Run
+
+The `deploy.sh` handles that. Read it completely to understand what it needs.
+
+#### Permissions
+
+To access the app: Grant access to your specific account (Recommended)
+Instead of making it public, we grant ourseles permission to view it. 
+This is the command:
+
+```
+gcloud run services add-iam-policy-binding knowledge-base-app \
+    --region=us-central1 \
+    --member="user:eikasia@eikasia.com" \
+    --role="roles/run.invoker" \
+    --project=eikasia-ops
+```
+
+With just this we would see the 403 Forbidden error because Cloud Run private services (which this is, due to your Org Policy) require an Authorization header with a valid identity token in every request. A standard browser visit doesn't send this token automatically, even if you have the right permissions.
+
+To solve this we use the Cloud Run Proxy. This creates a local bridge that handles the authentication for you.
+
+This is the command:
+
+```
+gcloud run services proxy knowledge-base-app --region=us-central1 --project=eikasia-ops
+```
+
+
+gcloud run services add-iam-policy-binding
+
