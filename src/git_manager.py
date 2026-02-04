@@ -9,7 +9,7 @@ class GitManager:
     def __init__(self, repo_url, target_path, github_token=None):
         self.repo_url = repo_url
         self.target_path = Path(target_path)
-        self.github_token = github_token
+        self.github_token = github_token.strip() if github_token else None
         
         # Format URL with token if provided
         if self.github_token and repo_url.startswith("https://"):
