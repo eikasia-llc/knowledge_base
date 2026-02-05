@@ -19,7 +19,7 @@ graph TD
 
 | Component | Service | Purpose |
 | :--- | :--- | :--- |
-| **Registry** | **Artifact Registry / GCR** | Stores the Docker container images for the application. |
+| **Registry** | **Artifact Registry** | Stores the Docker container images. Repo: `knowledge-base-repo` (`us-central1`). Full image path: `us-central1-docker.pkg.dev/eikasia-ops/knowledge-base-repo/knowledge-base-app`. |
 | **Compute** | **Google Cloud Run** | Hosts the Streamlit application as a serverless container. Scalable and only runs when requests are active. |
 | **Authentication** | **Identity-Aware Proxy (IAP)** | Secures the `run.app` URL. Intercepts incoming requests and requires a Google login before granting access to authorized users. |
 | **Secret Management** | **Secret Manager** | Securely stores the GitHub Personal Access Token (`GITHUB_TOKEN`) used for repository synchronization. |
@@ -37,6 +37,12 @@ gcloud artifacts repositories create knowledge-base-repo \
     --project=eikasia-ops \
     --description="Docker images for knowledge_base app" 2>&1
 ```
+### Authenticate Docker for Artifact Registry (first time on a machine)
+
+```
+gcloud auth configure-docker us-central1-docker.pkg.dev
+```
+
 ### Cloud Build vs Docker Build
 
 Cloud Build runs on Google's shared infrastructure. When you run gcloud builds submit:
