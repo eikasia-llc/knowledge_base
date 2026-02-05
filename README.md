@@ -30,7 +30,7 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - **Inject**: Download a ZIP bundle (`context_bundle.zip`) containing all required markdown files, ready for upload to your LLM workspace.
 
 ## Directory Structure
-- `src/`: Application source code (`app.py`, `dependency_manager.py`, `md_parser.py`).
+- `src/`: Application source code (`app.py`, `dependency_manager.py`, `md_parser.py`, `mcp_server.py`, `index_builder.py`).
 - `content/`: The actual knowledge base files.
   - `agents/`: AI Agent definitions.
   - `plans/`: Project plans and roadmaps.
@@ -39,8 +39,15 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - `manager/`: Maintenance and management tools.
   - `cleaner/`: Pipeline for ingesting and cleaning external repositories.
   - `language/`: Tools for Markdown parsing and schema enforcement.
+  - `util/`: Shared utilities.
+- `bin/`: Executable scripts and binaries.
+- `tests/`: Test suite.
 - `AGENTS.md`: Core agent protocols and workflow.
+- `AGENTS_LOG.md`: Log of agent interventions and changes.
+- `HOUSEKEEPING.md`: Routine maintenance protocols.
+- `INFRASTRUCTURE.md`: Deployment and cloud resource documentation.
 - `MD_CONVENTIONS.md`: The Markdown-JSON Hybrid Schema specification.
+- `META_MCP_AGENT.md`: Meta-Agent documentation and MCP server specifications.
 - `dependency_registry.json`: The source of truth for file relationships.
 
 ## Maintenance & Cleaning Protocol
@@ -56,6 +63,40 @@ To update the knowledge base with content from external repositories, follow thi
     -   Review files in `manager/cleaner/temprepo_cleaning/`.
     -   **Action**: Move *only* new files into the appropriate `content/` subdirectories (`agents/`, `plans/`, `core/`, etc.).
     -   **Constraint**: Do NOT overwrite existing files in `content/` unless explicitly instructed. Current working files must be preserved.
+
+## Cloud Implementation
+
+The application is deployed as a serverless container on **Google Cloud Run**, utilizing **Artifact Registry** for image storage and **Identity-Aware Proxy (IAP)** for security.
+
+### Deployment Methods
+
+#### 1. Manual Deployment (`deploy.sh`)
+For local development to production pushes:
+```bash
+./deploy.sh
+```
+This script performs a straightforward workflow:
+1.  Builds the Docker image locally.
+2.  Pushes it to Google Artifact Registry.
+3.  Deploys the new revision to Cloud Run.
+
+*Note: This requires a fast internet connection as the full image is pushed from your machine.*
+
+#### 2. Automated Pipeline (`cloudbuild.yaml`)
+For CI/CD (triggered via `gcloud builds submit` or GitHub triggers):
+-   Uses **Google Cloud Build**.
+-   **Caching Strategy**: Pulls the previous `builder` image to skip re-installing Python dependencies (`requirements.txt`) if they haven't changed.
+-   **Efficiency**: The heavy final image push happens entirely within Google's internal network, significantly speeding up deployment compared to local pushes.
+
+### Docker Configuration
+The `Dockerfile` uses a **multi-stage build** definition to keep the final image approximately ~200MB (uncompressed):
+1.  **Builder Stage**: Installs system compilers (`gcc`) and python headers to wheel binary dependencies.
+2.  **Final Stage**: Copies only the pre-compiled wheels and source code (`src/`) into a slim `python:3.11-slim` runtime image. Includes `git` for repository synchronization features.
+
+### Infrastructure & Security
+For a deep dive into the architecture, network flow, and security layers, refer to [INFRASTRUCTURE.md](INFRASTRUCTURE.md).
+-   **Security**: Access is restricted via IAP; only authorized Organization users can access the web interface.
+-   **Secrets**: GitHub tokens are managed via **Secret Manager** and injected into the container at runtime.
 
 ## Usage
 To run the Injector App locally:
