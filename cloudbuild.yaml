@@ -4,8 +4,8 @@ substitutions:
   # IMAGE paths — $PROJECT_ID is a Cloud Build built-in, resolved at runtime.
   # Nested substitution refs (${_FOO} inside another sub) are NOT supported,
   # so the registry + project + name are written out explicitly here.
-  _BUILDER_IMAGE: knowledge-base-repo/$PROJECT_ID/knowledge-base-app-builder
-  _FINAL_IMAGE:   knowledge-base-repo/$PROJECT_ID/knowledge-base-app
+  _BUILDER_IMAGE: us-central1-docker.pkg.dev/$PROJECT_ID/knowledge-base-repo/knowledge-base-app-builder
+  _FINAL_IMAGE:   us-central1-docker.pkg.dev/$PROJECT_ID/knowledge-base-repo/knowledge-base-app
 
 steps:
   # ---------------------------------------------------------------------------
