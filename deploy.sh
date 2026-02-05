@@ -4,7 +4,7 @@
 PROJECT_ID=$(gcloud config get-value project)
 SERVICE_NAME="knowledge-base-app"
 REGION="us-central1"
-IMAGE_NAME="gcr.io/${PROJECT_ID}/${SERVICE_NAME}"
+IMAGE_NAME="knowledge-base-repo/${PROJECT_ID}/${SERVICE_NAME}"
 
 # Build the Docker image
 echo "Building Docker image: ${IMAGE_NAME}..."

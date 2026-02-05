@@ -98,30 +98,9 @@ To enable dynamic context discovery in your IDE:
     }
     ```
 
-## Deploying
-
-### Streamlit app to GCloud Run
-
-The `deploy.sh` handles that. Read it completely to understand what it needs.
-
-#### Permissions
-
-To access the app: Grant access to your specific account (Recommended)
-Instead of making it public, we grant ourseles permission to view it. 
-This is the command:
-
-```
-gcloud run services add-iam-policy-binding knowledge-base-app \
-    --region=us-central1 \
-    --member="user:eikasia@eikasia.com" \
-    --role="roles/run.invoker" \
-    --project=eikasia-ops
-```
-
-### Cloud Resources
+## Deploying and Cloud Resources
 
 refer to `INFRASTRUCTURE.md`
-
 
 ### Access without Identity-Aware Proxy (IAP), by a proxy
 
