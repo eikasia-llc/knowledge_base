@@ -26,6 +26,49 @@ graph TD
 | **Persistence** | **Git / GitHub** | Acts as the source of truth for knowledge files. The app pulls content from GitHub to ephemeral storage on startup. |
 | **Storage (Ephemeral)** | **In-memory / `/tmp`** | Stores the cloned repository during the container's lifetime. Note that this is cleared when the instance shuts down. |
 
+## Build
+
+### Create repository in Google Artifact for image push
+
+```
+gcloud artifacts repositories create knowledge-base-repo \
+    --repository-format=docker \
+    --location=us-central1 \
+    --project=eikasia-ops \
+    --description="Docker images for knowledge_base app" 2>&1
+```
+### Cloud Build vs Docker Build
+
+Cloud Build runs on Google's shared infrastructure. When you run gcloud builds submit:
+
+1. Your local source is tarball'd and uploaded to a GCS bucket (gs://<project>_cloudbuild/source/). That's the only upload from your machine.                                         
+2. A ephemeral VM spins up on Google's side. It pulls that tarball, runs each step sequentially — each step is its own container (gcr.io/cloud-builders/docker, etc.).
+3. Each step's container does its work (build, push, deploy) inside GCP. The final image push goes from that VM to Artifact Registry — same network, no public internet.              
+
+Bandwidth comparison:
+
+```
+  ┌────────────────────────────────────┬────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────┐
+  │             What moves             │                 deploy.sh (local)                  │               cloudbuild.yaml (Cloud Build)                │
+  ├────────────────────────────────────┼────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────┤
+  │ Source upload                      │ nothing (already local)                            │ tarball → GCS (small, ~3.5 MiB here)                       │
+  ├────────────────────────────────────┼────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────┤
+  │ Base image pull (python:3.11-slim) │ your machine ← Docker Hub                          │ Cloud Build VM ← Docker Hub                                │
+  ├────────────────────────────────────┼────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────┤
+  │ Cache image pull (--cache-from)    │ N/A                                                │ Cloud Build VM ← Artifact Registry (same region, internal) │
+  ├────────────────────────────────────┼────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────┤
+  │ Final image push                   │ your machine → Artifact Registry (public internet) │ Cloud Build VM → Artifact Registry (internal)              │
+  └────────────────────────────────────┴────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────┘
+```
+
+The big difference is the final image push. That's the heaviest artifact (the full runtime image). With deploy.sh that crosses your public internet connection. With Cloud Build it
+stays inside GCP.
+
+The base image pull from Docker Hub hits public internet in both cases. That's why --cache-from on the builder stage matters — if requirements.txt hasn't changed, the builder step
+skips rebuilding entirely and the final image pull from Artifact Registry is internal and fast.
+
+TL;DR: Cloud Build trades a small source upload for keeping the heavy image push internal to GCP. deploy.sh pushes that heavy image over your own connection.
+
 ## Deployment Commands
 
 ### Streamlit app to GCloud Run
