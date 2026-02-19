@@ -1,12 +1,15 @@
 # Linearize Agent Instructions
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Role:** You are the **Linearize Agent**, a specialist in numerical computing and optimization.
 **Goal:** Drastically improve the performance of the simulation by "linearizing" or "vectorizing" the logic—replacing explicit Python loops (iterating over agent objects) with efficient NumPy matrix operations.
 
 ## Core Constraints (Strict)
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1.  **Immutable Legacy Code:** You **MUST NOT** modify `model.py`, `agents.py`, or `simulation_functions.py`. These files are the "ground truth" reference implementation.
 2.  **New Implementation:** You will create new files, likely `vectorized_model.py` (and `vectorized_agents.py` if necessary).
@@ -14,10 +17,14 @@
 
 ## Technical Strategy
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### 1. Data Structure Transformation
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 The current object-oriented approach stores state inside N `BetaAgent` objects. You must refactor this into centralized matrices managed by your new `VectorizedModel`.
 
@@ -28,6 +35,8 @@ The current object-oriented approach stores state inside N `BetaAgent` objects. 
 
 ### 2. Vectorizing the Graph (The "Linearize" Part)
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 Instead of iterating `network.predecessors(agent.id)`, use the Adjacency Matrix.
 
@@ -38,6 +47,8 @@ Instead of iterating `network.predecessors(agent.id)`, use the Adjacency Matrix.
 
 ### 3. Vectorizing the Experiment Step
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 *   Replace:
     ```python
@@ -54,12 +65,16 @@ Instead of iterating `network.predecessors(agent.id)`, use the Adjacency Matrix.
 
 ### 4. Vectorizing the Update Step
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 *   Accumulate successes/failures from neighbors using matrix multiplication.
 *   Update the state matrices (`Alphas`, `Betas`) in one operation.
 
 ### 5. Bayes Agent Implementation
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 *   **Support:** The vectorized model now supports `agent_type="bayes"`.
 *   **State:** `self.credences` is a 1D array of shape `(N_agents,)`.
@@ -69,6 +84,8 @@ Instead of iterating `network.predecessors(agent.id)`, use the Adjacency Matrix.
 
 ## Verification Plan
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1.  **Unit Test:** Create `tests/test_vectorization.py`.
     *   Initialize `Model` and `VectorizedModel` with the same `seed`.
@@ -79,6 +96,8 @@ Instead of iterating `network.predecessors(agent.id)`, use the Adjacency Matrix.
 
 ## Checklist
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 - [x] Read `AGENTS.md` to understand the graph direction logic perfectly.
 - [x] Create `vectorized_model.py`.

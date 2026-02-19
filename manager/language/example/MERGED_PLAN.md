@@ -22,27 +22,31 @@ Implement the core logic of the application.
 
 ### detailed_implementation
 - status: proposed
-- type: expansion
+- type: documentation
 <!-- content -->
 
 #### Setup Database
 - status: done
+- type: documentation
 - owner: db-admin
 <!-- content -->
 Initialize PostgreSQL instance.
 
 #### API Development
 - status: in-progress
+- type: documentation
 - owner: backend-dev
 <!-- content -->
 
 ##### Create User Endpoints
 - status: todo
+- type: documentation
 - estimate: 4h
 <!-- content -->
 
 ##### Create Auth Middleware
 - status: in-progress
+- type: documentation
 - estimate: 2h
 <!-- content -->
 

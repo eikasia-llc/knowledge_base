@@ -3,13 +3,15 @@
 - type: plan
 - id: unified-nexus
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 This document proposes an architecture that unifies **RAG (Retrieval-Augmented Generation)** for unstructured data with **Data Warehouse + Text2SQL** for structured data. The result is a system that can answer questions requiring both semantic understanding and precise computation.
 
 ## The Core Insight
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.insight
+- label: ['planning']
 <!-- content -->
 RAG and Data Warehouse approaches are **complementary, not competing**:
 
@@ -32,6 +34,7 @@ This is the **TAG (Table-Augmented Generation)** paradigm emerging from Berkeley
 - status: active
 - type: plan
 - id: unified-nexus.architecture
+- label: ['planning']
 <!-- content -->
 The unified system has three retrieval paths that feed into a single LLM for answer generation:
 
@@ -70,8 +73,9 @@ The unified system has three retrieval paths that feed into a single LLM for ans
 
 ### Current Implementation (Simplified Nexus)
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.architecture.simplified_diagram
+- label: ['planning']
 <!-- content -->
 While the full vision includes a text-to-SQL engine (DuckDB), the current implementation simplifies this by using **MCP Tools** to query structured JSON data.
 
@@ -110,8 +114,9 @@ graph TD
 
 ### Component Summary
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.architecture.components
+- label: ['planning']
 <!-- content -->
 
 | Component | Technology | Purpose |
@@ -125,9 +130,10 @@ graph TD
 
 ### Vector Store Alternatives
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.architecture.vector-alternatives
 - last_checked: 2026-01-29
+- label: ['planning']
 <!-- content -->
 ChromaDB was selected for this implementation, but these alternatives are documented for future reference:
 
@@ -142,8 +148,9 @@ ChromaDB was selected for this implementation, but these alternatives are docume
 
 ### System Resilience & Error Handling
 - status: active
-- type: protocol
+- type: guideline
 - id: unified-nexus.architecture.resilience
+- label: ['planning', 'protocol']
 <!-- content -->
 > [!WARNING]
 > **Internal Blocking Risk**: In a unified system, a failure in one component (e.g., VectorStore initialization) must not crash the entire application. 
@@ -157,6 +164,7 @@ ChromaDB was selected for this implementation, but these alternatives are docume
 - status: active
 - type: plan
 - id: unified-nexus.implementation
+- label: ['planning']
 <!-- content -->
 Starting from the existing `local_nexus` codebase (DuckDB + Streamlit), add RAG capabilities incrementally.
 
@@ -166,6 +174,7 @@ Starting from the existing `local_nexus` codebase (DuckDB + Streamlit), add RAG 
 - id: unified-nexus.implementation.phase1
 - priority: high
 - estimate: 2h
+- label: ['planning']
 <!-- content -->
 Add ChromaDB alongside DuckDB to store document embeddings.
 
@@ -340,6 +349,7 @@ class VectorStore:
 - priority: high
 - estimate: 1h
 - blocked_by: [unified-nexus.implementation.phase1]
+- label: ['planning']
 <!-- content -->
 Classify incoming queries to route them to the appropriate retrieval path.
 
@@ -537,6 +547,7 @@ Respond with ONLY one word: STRUCTURED, UNSTRUCTURED, or HYBRID"""
 - priority: high
 - estimate: 2h
 - blocked_by: [unified-nexus.implementation.phase2]
+- label: ['planning']
 <!-- content -->
 Generate SQL queries from natural language using schema context.
 
@@ -764,6 +775,7 @@ EXPLANATION: Brief explanation of what the query does"""
 - priority: high
 - estimate: 3h
 - blocked_by: [unified-nexus.implementation.phase3]
+- label: ['planning']
 <!-- content -->
 Combine all components into a unified query engine.
 
@@ -1017,6 +1029,7 @@ Your answer:"""
 - priority: medium
 - estimate: 2h
 - blocked_by: [unified-nexus.implementation.phase1]
+- label: ['planning']
 <!-- content -->
 Add document ingestion to complement the existing CSV/Excel ingestion.
 
@@ -1282,16 +1295,18 @@ class DocumentIngester:
 
 ## Usage Examples
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.examples
+- label: ['planning']
 <!-- content -->
 Examples of using the unified system.
 
 ### Basic Usage
 - id: unified_local_nexus_rag_data_warehouse_architecture.usage_examples.basic_usage
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 
 ```python
@@ -1301,8 +1316,9 @@ import google.generativeai as genai
 # Configure LLM
 - id: configure_llm
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 genai.configure(api_key="your-api-key")
 llm = genai.GenerativeModel('gemini-1.5-flash')
@@ -1310,8 +1326,9 @@ llm = genai.GenerativeModel('gemini-1.5-flash')
 # Initialize unified engine
 - id: initialize_unified_engine
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 engine = UnifiedEngine(
     db_path="data/warehouse.db",
@@ -1322,14 +1339,16 @@ engine = UnifiedEngine(
 # Query examples
 - id: query_examples
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 # Structured query (routes to Text2SQL)
 - id: structured_query_routes_to_text2sql
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 result = engine.query("What were our total sales last month?")
 print(result['answer'])
@@ -1337,8 +1356,9 @@ print(result['answer'])
 # Unstructured query (routes to RAG)
 - id: unstructured_query_routes_to_rag
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 result = engine.query("What is our refund policy?")
 print(result['answer'])
@@ -1346,8 +1366,9 @@ print(result['answer'])
 # Hybrid query (uses both)
 - id: hybrid_query_uses_both
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 result = engine.query("Which customers complained about shipping and have orders over $500?")
 print(result['answer'])
@@ -1356,8 +1377,9 @@ print(result['answer'])
 ### Document Ingestion
 - id: hybrid_query_uses_both.document_ingestion
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 
 ```python
@@ -1367,8 +1389,9 @@ from src.core.vector_store import VectorStore
 # Initialize
 - id: initialize
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 vector_store = VectorStore("data/vectordb")
 ingester = DocumentIngester(vector_store)
@@ -1376,8 +1399,9 @@ ingester = DocumentIngester(vector_store)
 # Ingest a single file
 - id: ingest_a_single_file
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 result = ingester.ingest_file("docs/company_policies.pdf")
 print(f"Created {result['chunks_created']} chunks")
@@ -1385,8 +1409,9 @@ print(f"Created {result['chunks_created']} chunks")
 # Ingest all documents in a directory
 - id: ingest_all_documents_in_a_directory
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 results = ingester.ingest_directory("docs/", extensions=['.pdf', '.md'])
 total_chunks = sum(r['chunks_created'] for r in results if r['success'])
@@ -1400,6 +1425,7 @@ print(f"Ingested {len(results)} files, {total_chunks} total chunks")
 - priority: medium
 - estimate: 2h
 - blocked_by: [unified-nexus.implementation.phase4]
+- label: ['planning']
 <!-- content -->
 Update the Streamlit app to support both data types.
 
@@ -1413,8 +1439,9 @@ from src.core.document_ingestion import DocumentIngester
 # Sidebar - Data Sources section
 - id: sidebar_data_sources_section
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 with st.sidebar:
     st.header("Data Sources")
@@ -1455,8 +1482,9 @@ with st.sidebar:
 # Chat interface
 - id: chat_interface
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 if prompt := st.chat_input("Ask about your data or documents..."):
     with st.chat_message("user"):
@@ -1486,6 +1514,7 @@ if prompt := st.chat_input("Ask about your data or documents..."):
 - status: active
 - type: plan
 - id: unified-nexus.graphs
+- label: ['planning']
 <!-- content -->
 Graph data represents **relationships** between entities—something that neither traditional RAG nor SQL handles elegantly. Adding a graph layer completes the unified architecture, enabling questions like:
 
@@ -1495,8 +1524,9 @@ Graph data represents **relationships** between entities—something that neithe
 
 ### Why Graphs Matter
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.graphs.rationale
+- label: ['planning']
 <!-- content -->
 
 | Data Type | Best For | Limitations |
@@ -1512,8 +1542,9 @@ Graph data represents **relationships** between entities—something that neithe
 
 ### Approach Comparison
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.graphs.approaches
+- label: ['planning']
 <!-- content -->
 
 | Approach | Complexity | Cost | Best For | Recommendation |
@@ -1530,6 +1561,7 @@ Graph data represents **relationships** between entities—something that neithe
 - status: active
 - type: guideline
 - id: unified-nexus.graphs.recommended
+- label: ['planning']
 <!-- content -->
 
 For a **cheap and feasible** implementation that fits with Local Nexus, I recommend a **tiered approach**:
@@ -1546,6 +1578,7 @@ Most SMB use cases will be fully served by Tier 1 and Tier 2.
 - id: unified-nexus.graphs.serialization
 - priority: high
 - estimate: 1h
+- label: ['planning']
 <!-- content -->
 
 Serialize graph structures into LLM-friendly text. The LLM can reason about relationships directly from text descriptions.
@@ -1795,6 +1828,7 @@ Answer:"""
 - id: unified-nexus.graphs.markdown
 - priority: high
 - estimate: 30m
+- label: ['planning']
 <!-- content -->
 
 Represent graph state within your existing MD conventions. This integrates naturally with your agent protocol.
@@ -1804,15 +1838,17 @@ Represent graph state within your existing MD conventions. This integrates natur
 ```markdown
 ## Entity Graph
 - status: active
-- type: context
+- type: documentation
 - id: project.entity-graph
+- label: ['planning']
 <!-- content -->
 
 ### Nodes
 - id: chat_interface.entity_graph.nodes
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 | ID | Type | Name | Properties |
 |:---|:-----|:-----|:-----------|
@@ -1824,8 +1860,9 @@ Represent graph state within your existing MD conventions. This integrates natur
 ### Edges
 - id: chat_interface.entity_graph.edges
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 | Source | Relationship | Target | Properties |
 |:-------|:-------------|:-------|:-----------|
@@ -1837,8 +1874,9 @@ Represent graph state within your existing MD conventions. This integrates natur
 ### Adjacency Summary
 - id: chat_interface.entity_graph.adjacency_summary
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 - **Alice Chen (P001)**: manages Bob Smith, leads Engineering
 - **Bob Smith (P002)**: managed by Alice Chen, works on Atlas (80%)
@@ -1949,6 +1987,7 @@ def graph_to_md_tables(nodes: list[dict], edges: list[dict]) -> str:
 - id: unified-nexus.graphs.duckdb
 - priority: medium
 - estimate: 2h
+- label: ['planning']
 <!-- content -->
 
 Store graph data in DuckDB tables and use recursive CTEs for traversal. This keeps everything in one database and integrates with your existing Text2SQL.
@@ -2214,6 +2253,7 @@ class DuckDBGraphStore:
 - id: unified-nexus.graphs.networkx
 - priority: low
 - estimate: 1h
+- label: ['planning']
 <!-- content -->
 
 Use NetworkX for graph algorithms (centrality, communities, paths) and convert results to text for the LLM.
@@ -2350,10 +2390,11 @@ class GraphAnalyzer:
 
 ### Option 5: Microsoft GraphRAG (Document Graphs)
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.graphs.graphrag
 - priority: low
 - estimate: 4h
+- label: ['planning']
 <!-- content -->
 
 Microsoft's GraphRAG builds a knowledge graph FROM documents, then uses community detection to create hierarchical summaries. This is excellent for answering synthesis questions across many documents.
@@ -2504,10 +2545,11 @@ Extract only clearly stated facts. Be conservative."""
 
 ### Option 6: Neo4j via MCP (Enterprise Scale)
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.graphs.neo4j-mcp
 - priority: low
 - estimate: 3h
+- label: ['planning']
 <!-- content -->
 
 For large-scale graph needs, use Neo4j with an MCP server. This lets your agents query a full graph database programmatically.
@@ -2559,6 +2601,7 @@ For large-scale graph needs, use Neo4j with an MCP server. This lets your agents
 - priority: medium
 - estimate: 2h
 - blocked_by: [unified-nexus.graphs.duckdb]
+- label: ['planning']
 <!-- content -->
 
 Update the unified engine to include a graph retrieval path.
@@ -2602,8 +2645,9 @@ Update the unified engine to include a graph retrieval path.
 # Add to QueryRouter class
 - id: add_to_queryrouter_class
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['planning']
 <!-- content -->
 
 GRAPH_KEYWORDS = {
@@ -2670,6 +2714,7 @@ def _retrieve_graph(self, question: str) -> dict:
 - status: active
 - type: guideline
 - id: unified-nexus.graphs.summary
+- label: ['planning']
 <!-- content -->
 
 **For Local Nexus (SMB focus, cost-sensitive)**:
@@ -2714,6 +2759,7 @@ This gives you 80% of the value with 20% of the complexity.
 - type: plan
 - id: unified-nexus.kg-data-mapping
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 The existing architecture defines three retrieval paths (embeddings, SQL, graphs), but treats them as independent silos that only converge at the Context Assembly stage. This section introduces a **Knowledge Graph Data Mapping** layer that models the relationships *between* the three data modalities themselves, enabling cross-modal queries such as:
 
@@ -2723,9 +2769,10 @@ The existing architecture defines three retrieval paths (embeddings, SQL, graphs
 
 ### The Cross-Modal Problem
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.kg-data-mapping.problem
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 Without explicit cross-modal links, the system has a blind spot: it can retrieve data from each store independently, but cannot follow references *across* stores. Consider this example:
 
@@ -2750,6 +2797,7 @@ The Knowledge Graph Data Mapping layer solves this by maintaining a **unified en
 - estimate: 3h
 - blocked_by: [unified-nexus.graphs.duckdb, unified-nexus.implementation.phase1]
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 The entity registry is the backbone of cross-modal linking. It maps a canonical entity to its representations across the three data stores.
 
@@ -3296,6 +3344,7 @@ class EntityRegistry:
 - estimate: 3h
 - blocked_by: [unified-nexus.kg-data-mapping.entity-registry]
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 The entity registry is only useful if it is populated. This pipeline automatically discovers entities in each data store and links them.
 
@@ -3680,6 +3729,7 @@ Be conservative — only extract clearly named entities."""
 - estimate: 3h
 - blocked_by: [unified-nexus.kg-data-mapping.entity-registry, unified-nexus.implementation.phase4]
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 This component extends the existing `UnifiedEngine` to support cross-modal queries. When the router detects that a query involves entities that span multiple stores, the cross-modal engine resolves entity references across stores before assembling context.
 
@@ -4022,6 +4072,7 @@ Your answer:"""
 - estimate: 2h
 - blocked_by: [unified-nexus.kg-data-mapping.entity-registry]
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 A lightweight ontology defines the allowed entity types, relationship types, and their constraints. This prevents the graph from becoming a bag of arbitrary triples and supports validation during ingestion.
 
@@ -4154,6 +4205,7 @@ class Ontology:
 - type: guideline
 - id: unified-nexus.kg-data-mapping.summary
 - last_checked: 2026-02-02
+- label: ['planning']
 <!-- content -->
 
 **Implementation phases for the Knowledge Graph Data Mapping layer:**
@@ -4186,8 +4238,9 @@ Do you need ontology validation?
 
 ## Key Benefits of Unified Architecture
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.benefits
+- label: ['planning']
 <!-- content -->
 
 | Benefit | Description |
@@ -4202,8 +4255,9 @@ Do you need ontology validation?
 
 ## Future Enhancements
 - status: active
-- type: context
+- type: documentation
 - id: unified-nexus.future
+- label: ['planning']
 <!-- content -->
 
 1. **Semantic SQL**: Use embeddings to help with table/column matching

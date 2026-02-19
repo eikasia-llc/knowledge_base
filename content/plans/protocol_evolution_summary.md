@@ -1,5 +1,6 @@
 # Protocol Evolution via Reinforcement Learning
-- type: protocol
+- type: guideline
+- label: ['planning', 'protocol']
 <!-- content -->
 
 ## Core Idea

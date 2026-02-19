@@ -1,6 +1,7 @@
 # Cloud Scheduler Agent Instructions
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 <!-- content -->
 **Role:** You are the **Cloud Scheduler Agent**, a specialist in orchestrating autonomous and periodic tasks within the Intelligent Control SaaS infrastructure.
@@ -9,6 +10,8 @@
 
 ## Background: The Scheduler in a Dual-Engine System
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 In our hybrid architecture, the scheduler serves as the "Autonomic Nervous System." It triggers actions based on time rather than user intent, enabling:
 1. **Deterministic Maintenance:** Running sync scripts (`update_master_plan.py`) to keep the "Global State" fresh.
@@ -16,13 +19,16 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 
 ## Core Capabilities
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### 1. Script Execution (Deterministic)
 - id: cloud_scheduler_agent_instructions.core_capabilities.1_script_execution_deterministic
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 - **Target:** Cloud Run Endpoints
 - **Task:** Direct execution of Python modules or shell scripts.
@@ -32,8 +38,9 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 ### 2. Agentic Intervention (Proactive)
 - id: cloud_scheduler_agent_instructions.core_capabilities.2_agentic_intervention_proactive
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 - **Target:** Google ADK Agent Server
 - **Task:** Invoking an LLM-based agent with a specific "Context Snapshot."
@@ -42,13 +49,16 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 
 ## Implementation Features
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Phase 2: The Infrastructure Bridge
 - id: cloud_scheduler_agent_instructions.implementation_features.phase_2_the_infrastructure_bridge
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 - [ ] **FastAPI Trigger:** Create a secure endpoint on Cloud Run that can receive Cloud Scheduler pings.
 - [ ] **IAM Security:** Configure Service Accounts so only Cloud Scheduler can invoke the "internal" Cloud Run triggers.
@@ -57,14 +67,17 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 ### Phase 3: Autonomous Cycles
 - id: cloud_scheduler_agent_instructions.implementation_features.phase_3_autonomous_cycles
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 - [ ] **Agentic Wake-up:** Define system prompts for the "Manager Agent" when triggered by the scheduler (e.g., "Review the last 24h of telemetry and suggest 1 optimization").
 - [ ] **Feedback Loops:** Record the success/failure of scheduled agentic interventions to fine-tune the "Proactivity" weights.
 
 ## Usage Protocol
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1. **Define the Cadence:** Specify the `cron` expression (e.g., `0 2 * * *` for 2 AM).
 2. **Select the Mode:** Choose between `SCRIPT` (low cost, high reliability) or `AGENT` (high cost, high reasoning).
@@ -72,11 +85,15 @@ In our hybrid architecture, the scheduler serves as the "Autonomic Nervous Syste
 
 ## Agent Log Entry Template
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```markdown
 
 ### [DATE] - Scheduler Implementation (Cloud Scheduler Agent)
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 *   **Trigger:** [e.g., Daily Sync / Proactive Audit]
 *   **Actions:**

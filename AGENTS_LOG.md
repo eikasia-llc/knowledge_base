@@ -1,15 +1,20 @@
 # Agents Log
 - status: active
 - type: log
+- label: ['log']
 <!-- content -->
 Most recent event comes first
 
 ## Intervention History
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 
 ### Feature: UI Download Functionality & PYUI Updates
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 **Date:** 2026-01-31
 **AI Assistant:** Antigravity
@@ -25,6 +30,8 @@ Most recent event comes first
 
 ### Feature: Remove Metadata Tool
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 **Date:** 2026-01-22
 **AI Assistant:** Antigravity
@@ -38,6 +45,8 @@ Most recent event comes first
 
 ### Feature: CLI Improvements
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 **Date:** 2026-01-22
 **AI Assistant:** Antigravity
@@ -52,6 +61,8 @@ Most recent event comes first
 
 ### Feature: Shell Wrapper for Python Scripts
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 **Date:** 2026-01-22
 **AI Assistant:** Antigravity
@@ -65,6 +76,8 @@ Most recent event comes first
 
 ### Feature: Housekeeping Execution
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 **Date:** 2026-01-31
 **AI Assistant:** Antigravity
@@ -79,6 +92,8 @@ Most recent event comes first
 
 ### Feature: Enhanced Housekeeping Execution
 - status: active
+- type: agent_skill
+- label: ['log']
 <!-- content -->
 **Date:** 2026-01-31
 **AI Assistant:** Antigravity

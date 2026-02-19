@@ -6,13 +6,14 @@ This document serves as the authoritative guide for managing Google Cloud Platfo
 
 ## Architecture & Relationships
 - status: active
+- type: agent_skill
 <!-- content -->
 Understanding the distinction between resources is critical for billing and access control.
 
 ### 1. The Ecosystem Map
 - id: google_cloud_api_integration_guide.architecture_relationships.1_the_ecosystem_map
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - **Google Cloud Platform (GCP)**: The overarching cloud provider. Projects here (like `mcmp-chatbot`) act as containers for resources (Service Accounts, APIs, Billing).
@@ -22,7 +23,7 @@ Understanding the distinction between resources is critical for billing and acce
 ### 2. Service Separation
 - id: google_cloud_api_integration_guide.architecture_relationships.2_service_separation
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 In this project, we use two distinct authentication methods for two different purposes:
@@ -37,13 +38,14 @@ In this project, we use two distinct authentication methods for two different pu
 
 ## Environment & Secrets Management
 - status: active
+- type: agent_skill
 <!-- content -->
 We use a "Split-Brain" configuration strategy to separate local development from production.
 
 ### 1. Local Development
 - id: google_cloud_api_integration_guide.environment_secrets_management.1_local_development
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - **File**: `.env` (for API Keys) and `.streamlit/secrets.toml` (for Service Accounts).
@@ -55,7 +57,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ### 2. Streamlit Cloud Deployment
 - id: google_cloud_api_integration_guide.environment_secrets_management.2_streamlit_cloud_deployment
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - **Location**: App Dashboard → Settings → Secrets.
@@ -71,7 +73,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ### Issue: Billing Split (Jan 2026)
 - id: google_cloud_api_integration_guide.troubleshooting_logs.issue_billing_split_jan_2026
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - **Problem**: Gemini usage was billed to `gen-lang-client-0023672537` while Sheets usage went to `mcmp-chatbot`.
@@ -81,7 +83,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ### Issue: "API Key Expired" Loop
 - id: google_cloud_api_integration_guide.troubleshooting_logs.issue_api_key_expired_loop
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - **Problem**: After updating `.env` locally or Secrets on Cloud, the app still returned `400 API_KEY_INVALID`.
@@ -91,7 +93,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ### Issue: Secret Precedence
 - id: google_cloud_api_integration_guide.troubleshooting_logs.issue_secret_precedence
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - **Problem**: Confusion over whether `secrets.toml` overrides `.env`.
@@ -99,12 +101,13 @@ We use a "Split-Brain" configuration strategy to separate local development from
 
 ## Common Workflows
 - status: active
+- type: agent_skill
 <!-- content -->
 
 ### How to Monitor Usage
 - id: google_cloud_api_integration_guide.common_workflows.how_to_monitor_usage
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 1.  **For Gemini**: Go to [Google AI Studio](https://aistudio.google.com/) or the GCP Console for the project linked to your key.
@@ -113,7 +116,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ### How to Rotate Keys
 - id: google_cloud_api_integration_guide.common_workflows.how_to_rotate_keys
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 1.  Generate new key in AI Studio.

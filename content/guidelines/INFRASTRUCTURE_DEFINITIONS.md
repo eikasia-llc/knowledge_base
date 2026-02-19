@@ -1,14 +1,14 @@
 # Infrastructure Definitions and Requirements
 - id: infrastructure_definitions_and_requirements
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 
 ## Preferred technology stack
 - id: infrastructure_definitions_and_requirements.preferred_technology_stack
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 This technologies are to be preferred unless you are specifically asked otherwise, or asked for alternative analysis.
@@ -22,7 +22,7 @@ This technologies are to be preferred unless you are specifically asked otherwis
 ## Cost Policy
 - id: infrastructure_definitions_and_requirements.cost_policy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 - Seek low cost alternatives.
@@ -32,7 +32,7 @@ This technologies are to be preferred unless you are specifically asked otherwis
 ## Requirements & safety when designing or provisioning infraestructure
 - id: infrastructure_definitions_and_requirements.requirements_safety_when_designing_or_provisioning_infraestructure
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 Pre existing infraestructure may not follow this guidelines because of conditions taken into account. If that is the case, the exception will be documented. If you encounter undocumented exceptions in pre existing infrastructure, generate a warining in your worklog and continue. Take this into account when designing, updating or provisioning infraestructure:
@@ -40,7 +40,7 @@ Pre existing infraestructure may not follow this guidelines because of condition
 ### Interoperability
 - id: infrastructure_definitions_and_requirements.requirements_safety_when_designing_or_provisioning_infraestructure.interoperability
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 - Soft Multi-tenancy preferred over GCP Project separation.
@@ -52,7 +52,7 @@ Pre existing infraestructure may not follow this guidelines because of condition
 ### Cost Safety
 - id: infrastructure_definitions_and_requirements.requirements_safety_when_designing_or_provisioning_infraestructure.cost_safety
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 - Unless specified otherwise, all deployments will configure logging severity to WARN (warning and error).
@@ -67,7 +67,7 @@ Pre existing infraestructure may not follow this guidelines because of condition
 ### Rollback Safety
 - id: infrastructure_definitions_and_requirements.requirements_safety_when_designing_or_provisioning_infraestructure.rollback_safety
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-25
 <!-- content -->
 - Detect if the new solution will delete data or configuration that cannot be easily undone. If so, ask for permission before continuing.

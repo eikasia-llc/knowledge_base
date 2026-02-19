@@ -13,13 +13,17 @@ This repository serves as the central nervous system for **Prompt Context Manage
 ## Key Features
 
 ### 1. Context Tracking & Storage
+- type: documentation
 - **Centralized Knowledge**: Stores critical project documentation in `content/`, organized by type (Agents, Guidelines, Protocols).
 - **Dependency Resolution**: Implements a strict **Depth-First Dependency Resolution** protocol. If you need `MC_AGENT.md`, the system automatically ensures you also get `AGENTS.md` and `MD_CONVENTIONS.md` in the correct order.
 - **Dependency Registry**: Maintains a `dependency_registry.json` that maps every file to its required dependencies, ensuring no context is missing.
+<!-- content -->
 
 ### 2. Prompt Injection Logic
+- type: documentation
 - **Automated assembly**: Logic in `src/dependency_manager.py` resolves the dependency graph for any given file and generates a linear reading list.
 - **Protocol Compliance**: Ensures that the resulting context block follows the project's strict Markdown-JSON Hybrid Schema.
+<!-- content -->
 
 ### 3. The Knowledge Base Injector App
 A built-in Streamlit application allows users to visually browse and assemble prompts.
@@ -30,16 +34,17 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - **Inject**: Download a ZIP bundle (`context_bundle.zip`) containing all required markdown files, ready for upload to your LLM workspace.
 
 ## Directory Structure
+- type: documentation
 - `src/`: Application source code (`app.py`, `dependency_manager.py`, `md_parser.py`, `mcp_server.py`, `index_builder.py`).
 - `content/`: The actual knowledge base files.
-  - `agents/`: AI Agent definitions.
-  - `plans/`: Project plans and roadmaps.
-  - `guidelines/`: Additional guidelines and templates.
-  - `logs/`: Operational logs and artifacts.
+- `agents/`: AI Agent definitions.
+- `plans/`: Project plans and roadmaps.
+- `guidelines/`: Additional guidelines and templates.
+- `logs/`: Operational logs and artifacts.
 - `manager/`: Maintenance and management tools.
-  - `cleaner/`: Pipeline for ingesting and cleaning external repositories.
-  - `language/`: Tools for Markdown parsing and schema enforcement.
-  - `util/`: Shared utilities.
+- `cleaner/`: Pipeline for ingesting and cleaning external repositories.
+- `language/`: Tools for Markdown parsing and schema enforcement.
+- `util/`: Shared utilities.
 - `bin/`: Executable scripts and binaries.
 - `tests/`: Test suite.
 - `AGENTS.md`: Core agent protocols and workflow.
@@ -49,6 +54,7 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - `MD_CONVENTIONS.md`: The Markdown-JSON Hybrid Schema specification.
 - `META_MCP_AGENT.md`: Meta-Agent documentation and MCP server specifications.
 - `dependency_registry.json`: The source of truth for file relationships.
+<!-- content -->
 
 ## Maintenance & Cleaning Protocol
 To update the knowledge base with content from external repositories, follow this strict protocol:

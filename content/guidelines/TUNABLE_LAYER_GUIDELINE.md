@@ -14,7 +14,7 @@ Three intervention points are identified, ordered by **effort-to-impact ratio** 
 
 ## Literature Overview
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.literature
 - last_checked: 2026-02-08
 <!-- content -->
@@ -32,7 +32,7 @@ The following recent publications directly inform this guideline:
 
 ## Architectural Placement
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.placement
 - last_checked: 2026-02-08
 <!-- content -->
@@ -87,7 +87,7 @@ The Query Router is the **highest-leverage, lowest-effort** intervention point. 
 
 ### Approach: Sentence-Transformer Classifier
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.router.approach
 - last_checked: 2026-02-08
 <!-- content -->
@@ -121,7 +121,7 @@ User Query (text)
 
 ### Training Data Collection
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.router.data
 - last_checked: 2026-02-08
 <!-- content -->
@@ -164,7 +164,7 @@ SYNTHETIC_EXAMPLES = [
 
 ### Training Script Skeleton
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.router.training
 - last_checked: 2026-02-08
 <!-- content -->
@@ -223,7 +223,7 @@ prediction = model.predict(["How many seminars last month?"])
 
 ### Integration with Unified Engine
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.router.integration
 - last_checked: 2026-02-08
 <!-- content -->
@@ -281,7 +281,7 @@ When using a **local LLM** as the generation backbone (e.g., Qwen-2.5-7B, Llama-
 
 ### Core Concept: Decoupled Fine-Tuning (AgentFlux)
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.lora.decoupled
 - last_checked: 2026-02-08
 <!-- content -->
@@ -317,7 +317,7 @@ The AgentFlux paper (2025) demonstrates that tool calling can be disaggregated i
 
 ### Training Data Format
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.lora.data
 - last_checked: 2026-02-08
 <!-- content -->
@@ -369,7 +369,7 @@ A minimum of ~500-1000 traces is recommended for meaningful LoRA adaptation.
 
 ### LoRA Training Sketch
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.lora.training
 - last_checked: 2026-02-08
 <!-- content -->
@@ -450,7 +450,7 @@ model.save_pretrained("models/tool_calling_adapter")
 
 ### Applicability Note: Cloud vs. Local LLMs
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.lora.cloud-vs-local
 - last_checked: 2026-02-08
 <!-- content -->
@@ -473,7 +473,7 @@ This layer closes the feedback loop: it uses signals from real user interactions
 
 ### Option A: Direct Preference Optimization (DPO) — Recommended
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.preference.dpo
 - last_checked: 2026-02-08
 <!-- content -->
@@ -544,7 +544,7 @@ trainer.train()
 
 ### Option B: Reward Model for Best-of-N Reranking
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.preference.reranking
 - last_checked: 2026-02-08
 <!-- content -->
@@ -580,9 +580,10 @@ This approach has higher latency (N× the LLM calls) but works with any cloud AP
 
 ### Feedback Data Schema
 - status: active
-- type: protocol
+- type: guideline
 - id: tunable-layer-guideline.preference.schema
 - last_checked: 2026-02-08
+- label: ['protocol']
 <!-- content -->
 All user feedback must be logged in a consistent format to enable both DPO training and reward model training. The following schema is recommended:
 
@@ -692,7 +693,7 @@ The following phased approach is recommended, ordered by effort-to-impact ratio.
 
 ## Decision Tree: Which Layer to Implement
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.decision-tree
 - last_checked: 2026-02-08
 <!-- content -->
@@ -714,7 +715,7 @@ Are you using a cloud LLM API (Gemini, Claude, OpenAI)?
 
 ## Summary: Cost-Benefit Overview
 - status: active
-- type: context
+- type: documentation
 - id: tunable-layer-guideline.summary
 - last_checked: 2026-02-08
 <!-- content -->

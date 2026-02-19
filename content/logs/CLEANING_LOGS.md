@@ -3,20 +3,23 @@
 - type: log
 - id: log.cleaning
 - owner: agent.cleaner
+- label: ['log']
 <!-- content -->
 This file tracks the execution history of the cleaning process, recording imported repositories, errors encountered, and modifications made to the cleaning scripts.
 
 ## Execution History
 - status: active
 - type: log
+- label: ['log']
 <!-- content -->
 *(Agent should append new runs here using `date` and `repo` details)*
 
 ### 2026-01-23: Initial Setup & Import
 - id: cleaning_process_logs.execution_history.2026_01_23_initial_setup_import
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['log']
 <!-- content -->
 - **Action**: Cleaned/Imported `IgnacioOQ/e_network_inequality` (branch `ai-agents-branch`)
 - **Status**: Success
@@ -29,8 +32,9 @@ This file tracks the execution history of the cleaning process, recording import
 ### 2026-01-24: Import control_algorithms
 - id: cleaning_process_logs.execution_history.2026_01_24_import_control_algorithms
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['log']
 <!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_algorithms` (default branch)
 - **Repo URL**: `https://github.com/eikasia-llc/control_algorithms`
@@ -43,8 +47,9 @@ This file tracks the execution history of the cleaning process, recording import
 ### 2026-01-25: Import control_tower
 - id: cleaning_process_logs.execution_history.2026_01_25_import_control_tower
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['log']
 <!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_tower` (default branch)
 - **Repo URL**: `https://github.com/eikasia-llc/control_tower`
@@ -58,8 +63,9 @@ This file tracks the execution history of the cleaning process, recording import
 ### 2026-01-25: Import multiagentrecommendation
 - id: cleaning_process_logs.execution_history.2026_01_25_import_multiagentrecommendation
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['log']
 <!-- content -->
 - **Action**: Cleaned/Imported `IgnacioOQ/multiagentrecommendation` (branch `project-reorganization`)
 - **Repo URL**: `https://github.com/IgnacioOQ/multiagentrecommendation/tree/project-reorganization`
@@ -74,8 +80,9 @@ This file tracks the execution history of the cleaning process, recording import
 ### 2026-01-25: Re-import control_tower
 - id: cleaning_process_logs.execution_history.2026_01_25_re_import_control_tower
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['log']
 <!-- content -->
 - **Action**: Cleaned/Imported `eikasia-llc/control_tower` (default branch) via updated repolist.
 - **Repo URL**: `https://github.com/eikasia-llc/control_tower`
@@ -93,8 +100,9 @@ This file tracks the execution history of the cleaning process, recording import
 ### 2026-01-25: Clone empty repository
 - id: cleaning_process_logs.execution_history.2026_01_25_clone_empty_repository
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['log']
 <!-- content -->
 - **Action**: Cloned `eikasia-llc/empty` into `manager/cleaner/repositories/`
 - **Repo URL**: `https://github.com/eikasia-llc/empty`

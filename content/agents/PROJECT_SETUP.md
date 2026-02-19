@@ -1,6 +1,7 @@
 # Project Setup Guide
 - status: active
 - type: plan
+- label: ['agent']
 <!-- content -->
 > **Purpose:** Instructions for creating a simulation project with the required directory structure and components.
 
@@ -9,6 +10,7 @@
 ## Required Project Structure
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 Every simulation project must have **6 core parts minimum**:
 
@@ -27,6 +29,7 @@ project_name/
 ## 1. Frontend (`frontend/`)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 **Purpose:** Display layer for human subjects. No simulation logic.
 
@@ -58,6 +61,7 @@ frontend/
 ## 2. Backend (`backend/`)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 **Purpose:** All simulation logic, agent behavior, and game state management.
 
@@ -91,6 +95,7 @@ backend/
 ## 3. Database (`database/` or `data/`)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 **Purpose:** Store session data, behavioral logs, and experimental results.
 
@@ -99,6 +104,7 @@ backend/
 ### Local Storage (Simple)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 ```
 data/
@@ -109,6 +115,7 @@ data/
 ### Remote Database (Production)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 - **MongoDB:** For document storage
 - **Google Sheets:** For easy data sharing
@@ -134,6 +141,7 @@ data/
 ## 4. AI_AGENTS (`AI_AGENTS/`)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 **Purpose:** Documentation and instructions for AI coding assistants.
 
@@ -155,6 +163,7 @@ AI_AGENTS/
 ## 5. Tests (`tests/`)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 **Purpose:** Unit tests for backend logic using pytest.
 
@@ -179,6 +188,7 @@ tests/
 ## 6. Notebooks (`notebooks/`)
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 **Purpose:** Jupyter notebooks for running experiments in Google Colaboratory.
 
@@ -215,6 +225,7 @@ notebooks/
 ## Root Level Files
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 ```
 project_name/
@@ -230,11 +241,13 @@ project_name/
 ## Quick Setup Commands
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 
 ### Create New Project
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 ```bash
 mkdir project_name && cd project_name
@@ -245,6 +258,7 @@ touch requirements.txt AGENTS.md AGENTS_LOG.md HOUSEKEEPING.md README.md
 ### Initialize Frontend
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 ```bash
 npm create vite@latest frontend -- --template react-ts
@@ -253,18 +267,21 @@ npm create vite@latest frontend -- --template react-ts
 ### Run Project
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 ```bash
 
 # Terminal 1: Backend
 - status: active
 - type: plan
+- label: ['agent']
 <!-- content -->
 python -m uvicorn backend.api.main:app --reload --port 8000
 
 # Terminal 2: Frontend
 - status: active
 - type: plan
+- label: ['agent']
 <!-- content -->
 cd frontend && npm run dev
 ```
@@ -272,6 +289,7 @@ cd frontend && npm run dev
 ### Run Tests
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 ```bash
 python -m pytest tests/ -v
@@ -282,6 +300,7 @@ python -m pytest tests/ -v
 ## Checklist for New Projects
 - status: active
 - type: task
+- label: ['agent']
 <!-- content -->
 - [ ] `frontend/` - Vite + React + TypeScript
 - [ ] `backend/` - FastAPI with api/, engine/, agents.py, environment.py

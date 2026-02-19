@@ -64,14 +64,15 @@ The following fields are standard, but the schema allows extensibility.
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `status` | `enum` | `todo`, `in-progress`, `done`, `blocked`, `recurring`, `active`|
-| `type` | `enum` | **Core**: `plan`, `task` <br>**Agentic**: `agent_skill`, `protocol`<br>**Knowledge**: `guideline`, `log`, `context` |
-| `owner` | `string` | The agent or user assigned to this (e.g., `dev-1`, `claude`) |
-| `estimate` | `string` | Time estimate (e.g., `1d`, `4h`) |
-| `blocked_by`| `list` | List of explicit dependencies (IDs or relative paths) |
-| `priority` | `enum` | `draft`, `low`, `medium`, `high`, `critical` (Optional) |
-| `id` | `string` | Unique identifier for the node (e.g., `project.component.task`). Used for robust merging and dependency tracking. |
-| `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. |
+| `status` | `enum` | `todo`, `in-progress`, `done`, `blocked`, `recurring`, `active` **(Mandatory)**|
+| `type` | `enum` | `agent_skill`, `log`, `guideline`, `plan`, `task`, `documentation` **(Mandatory)** |
+| `owner` | `string` | The agent or user assigned to this (e.g., `dev-1`, `claude`) **(Optional)** |
+| `estimate` | `string` | Time estimate (e.g., `1d`, `4h`) **(Optional)** |
+| `blocked_by`| `list` | List of explicit dependencies (IDs or relative paths) **(Optional)** |
+| `priority` | `enum` | `draft`, `low`, `medium`, `high`, `critical` **(Optional)** |
+| `id` | `string` | Unique identifier for the node (e.g., `project.component.task`). Used for robust merging and dependency tracking. **(Optional)** |
+| `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. **(Optional)** |
+| `label` | `list` | Array of strings (e.g., 'template', 'draft') **(Optional)** |
 
 <!-- MERGED FROM NEWER VERSION -->
 
@@ -79,15 +80,16 @@ The following fields are standard, but the schema allows extensibility.
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `status` | `enum` | `todo`, `in-progress`, `done`, `blocked`, `recurring`, `active`|
-| `type` | `enum` | **Core**: `plan`, `task` <br>**Agentic**: `agent_skill`, `protocol`<br>**Knowledge**: `guideline`, `log`, `context` |
-| `owner` | `string` | The agent or user assigned to this (e.g., `dev-1`, `claude`) |
-| `estimate` | `string` | Time estimate (e.g., `1d`, `4h`) |
-| `blocked_by`| `list` | List of explicit dependencies (IDs or relative paths) |
-| `priority` | `enum` | `draft`, `low`, `medium`, `high`, `critical` (Optional) |
-| `id` | `string` | Unique identifier for the node (e.g., `project.component.task`). Used for robust merging and dependency tracking. |
-| `context_dependencies` | `dict` | map of semantic aliases to file paths (e.g., `{ "guideline": "CONVENTIONS.md" }`). Defines required reading for this node. |
-| `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. |
+| `status` | `enum` | `todo`, `in-progress`, `done`, `blocked`, `recurring`, `active` **(Mandatory)**|
+| `type` | `enum` | `agent_skill`, `log`, `guideline`, `plan`, `task`, `documentation` **(Mandatory)** |
+| `owner` | `string` | The agent or user assigned to this (e.g., `dev-1`, `claude`) **(Optional)** |
+| `estimate` | `string` | Time estimate (e.g., `1d`, `4h`) **(Optional)** |
+| `blocked_by`| `list` | List of explicit dependencies (IDs or relative paths) **(Optional)** |
+| `priority` | `enum` | `draft`, `low`, `medium`, `high`, `critical` **(Optional)** |
+| `id` | `string` | Unique identifier for the node (e.g., `project.component.task`). Used for robust merging and dependency tracking. **(Optional)** |
+| `context_dependencies` | `dict` | map of semantic aliases to file paths (e.g., `{ "guideline": "CONVENTIONS.md" }`). Defines required reading for this node. **(Optional)** |
+| `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. **(Optional)** |
+| `label` | `list` | Array of strings (e.g., 'template', 'draft') **(Optional)** |
 
 ### Type Definitions
 - id: markdown_json_hybrid_schema_conventions.implement_user_auth.type_definitions
@@ -95,14 +97,12 @@ The following fields are standard, but the schema allows extensibility.
 - type: context
 - last_checked: 2026-01-31
 <!-- content -->
+- **`agent_skill`**: (Capability) Defines a persona, specialized toolset, or prompting strategy.
+- **`log`**: (Historical) Append-only records of actions, decisions, or outputs.
+- **`guideline`**: (Normative) Static rules, conventions, and high-level documentation (read-only reference).
 - **`plan`**: (Finite) A high-level objective with a clear beginning and end. Usually the root node.
 - **`task`**: (Finite) A specific, actionable unit of work. Usually a sub-node of a plan.
-- **`recurring`**: (Infinite) A maintenance loop or checklist that resets periodically (e.g. housekeeping).
-- **`agent_skill`**: (Capability) Defines a persona, specialized toolset, or prompting strategy.
-- **`protocol`**: (Interaction) Strict rules for inter-agent communication or system behavior.
-- **`guideline`**: (Normative) Static rules, conventions, and high-level documentation (read-only reference).
-- **`log`**: (Historical) Append-only records of actions, decisions, or outputs.
-- **`context`**: (Informational) Passive knowledge, textbooks, or reference material.
+- **`documentation`**: (Informational) General documentation, textbooks, or reference material.
 
 For extended fields consider:
  - The key is entirely lowercase
@@ -297,4 +297,4 @@ When generating or modifying files in this repository, AI agents MUST adhere to 
         - status: active
         Content starts here...
         ```
-4.  **Use Allowed Fields**: Only use metadata keys explicitly listed in the "Allowed Fields" section (`status`, `type`, `owner`, `estimate`, `blocked_by`, `priority`, `id`, `last_checked`) unless you have a specific, documented reason to extend the schema.
+4.  **Use Allowed Fields**: Only use metadata keys explicitly listed in the "Allowed Fields" section (`status`, `type`, `owner`, `estimate`, `blocked_by`, `priority`, `id`, `last_checked`, `label`) unless you have a specific, documented reason to extend the schema.

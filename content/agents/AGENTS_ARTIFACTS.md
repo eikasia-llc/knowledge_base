@@ -3,6 +3,7 @@
 - status: in-progress
 - priority: low
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 Place to store artifacts produced by agents that do not belong to the repository content such as:
 

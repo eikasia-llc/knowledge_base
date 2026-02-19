@@ -1,6 +1,7 @@
 # Recommender System Agent Instructions
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Role:** You are the **RecSys Agent**, a specialist in recommender systems, covering both static collaborative filtering and dynamic contextual bandit approaches.
 
@@ -8,6 +9,8 @@
 
 ## Background: Dual-Paradigm Recommender System
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 This project implements two complementary recommendation paradigms:
 
@@ -22,6 +25,8 @@ These paradigms address different aspects of recommendation:
 
 ## Core Constraints (Strict)
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1. **Immutable Core Files:** You **MUST NOT** modify `agents.py`, `model.py`, or `simulation_functions.py` (legacy constraint from `AGENTS.md`).
 2. **Interface Compliance:** New models must follow the existing patterns in `src/models/`.
@@ -31,6 +36,8 @@ These paradigms address different aspects of recommendation:
 
 ## Project Structure
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```
 rec_sys_core/
@@ -52,10 +59,14 @@ rec_sys_core/
 
 ## Data Pipeline Protocols
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Protocol 1: MovieLens Data Pipeline
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Source:** GroupLens MovieLens Latest Small Dataset
 **URL:** `https://files.grouplens.org/datasets/movielens/ml-latest-small.zip`
@@ -63,6 +74,8 @@ rec_sys_core/
 
 #### Pipeline Class: `MovieLensPipeline`
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 from src.data.download import MovieLensPipeline
@@ -88,6 +101,8 @@ ratings_df, movies_df = pipeline.load_data()
 
 #### Processing Function
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 from src.data.process import process_movielens
@@ -97,11 +112,14 @@ output_path = process_movielens(save_dir="data")
 # Saves to: data/interim/ratings.csv, data/interim/movies.csv
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```
 
 ### Protocol 2: Amazon Beauty Data Pipeline
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Source:** Stanford SNAP Amazon Beauty 5-core Dataset
 **URL:** `http://snap.stanford.edu/data/amazon/productGraph/categoryFiles/reviews_Beauty_5.json.gz`
@@ -109,6 +127,8 @@ output_path = process_movielens(save_dir="data")
 
 #### Pipeline Class: `AmazonBeautyPipeline`
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 from src.data.download import AmazonBeautyPipeline
@@ -128,6 +148,8 @@ reviews_df = pipeline.load_data()
 
 #### Processing Function
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 from src.data.process import process_amazon
@@ -137,11 +159,14 @@ output_path = process_amazon(save_dir="data")
 # Saves to: data/interim/amazon_beauty.json
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```
 
 ### Protocol 3: Full Data Pipeline Execution
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 Use the Makefile for reproducible data preparation:
 
@@ -150,28 +175,35 @@ Use the Makefile for reproducible data preparation:
 # Install dependencies
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make setup
 
 # Download and process all datasets
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make data
 
 # Or run directly
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 python -m src.data.process
 ```
 
 ## Collaborative Filtering Protocols
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Protocol 4: SVD Model Training
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Library:** Scikit-Surprise
 **Algorithm:** SVD (Singular Value Decomposition) via SGD optimization
@@ -180,6 +212,8 @@ python -m src.data.process
 
 #### Training Function
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 from src.models.train_cf import train_cf_model
@@ -189,16 +223,20 @@ train_cf_model(data_dir="data")
 # Performs 5-fold cross-validation, then full training
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 # Outputs RMSE and MAE metrics
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```
 
 #### Training Pipeline Details
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1. **Data Loading:** Read ratings from `data/interim/ratings.csv`
 2. **Reader Configuration:** Set rating scale (0.5, 5.0) for Surprise
@@ -208,6 +246,8 @@ train_cf_model(data_dir="data")
 
 #### Making Predictions with SVD
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 import joblib
@@ -215,12 +255,14 @@ import joblib
 # Load trained model
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 model = joblib.load("models/svd_model.pkl")
 
 # Predict rating for user-item pair
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 prediction = model.predict(uid=1, iid=318)  # user 1, movie 318
 print(f"Predicted rating: {prediction.est}")
@@ -228,6 +270,8 @@ print(f"Predicted rating: {prediction.est}")
 
 #### SVD Hyperparameters
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 Default parameters (can be tuned):
 | Parameter | Default | Description |
@@ -240,6 +284,8 @@ Default parameters (can be tuned):
 
 ### Protocol 5: CF Model Evaluation
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Metrics:**
 - **RMSE (Root Mean Square Error):** Standard rating prediction error
@@ -251,21 +297,25 @@ from surprise.model_selection import cross_validate
 # During training, cross_validate outputs:
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 # - Mean RMSE across 5 folds
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 # - Mean MAE across 5 folds
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 # - Standard deviation for both metrics
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```
 
@@ -275,6 +325,8 @@ from surprise.model_selection import cross_validate
 
 ### Protocol 6: Generating Top-N Recommendations
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 import pandas as pd
@@ -321,10 +373,14 @@ def get_top_n_recommendations(model, user_id, ratings_df, movies_df, n=10):
 
 ## Contextual Bandit Protocols
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Protocol 7: LinUCB Model Training
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Library:** contextualbandits
 **Algorithm:** LinUCB (Linear Upper Confidence Bound)
@@ -333,6 +389,8 @@ def get_top_n_recommendations(model, user_id, ratings_df, movies_df, n=10):
 
 #### Training Function
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 from src.models.train_bandit import train_bandit_model
@@ -342,16 +400,20 @@ train_bandit_model(data_dir="data")
 # Filters to top 50 items, creates TF-IDF contexts
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 # Evaluates using Rejection Sampling (Replay method)
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```
 
 #### Training Pipeline Details
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1. **Data Loading:** Read reviews from `data/interim/amazon_beauty.json`
 2. **Item Filtering:** Select top 50 most-reviewed items (arms)
@@ -363,6 +425,8 @@ train_bandit_model(data_dir="data")
 
 #### LinUCB Hyperparameters
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 | Parameter | Default | Description |
 |-----------|---------|-------------|
@@ -372,6 +436,8 @@ train_bandit_model(data_dir="data")
 
 ### Protocol 8: Understanding LinUCB
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Mathematical Formulation:**
 
@@ -391,6 +457,8 @@ After observing reward $r_t$ for arm $a_t$:
 
 ### Protocol 9: Bandit Policy Evaluation
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 **Offline Evaluation Method:** Rejection Sampling (Replay)
 
@@ -419,6 +487,8 @@ mean_rewards = evaluateRejectionSampling(
 
 ### Protocol 10: Making Bandit Decisions
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 import joblib
@@ -428,18 +498,21 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # Load trained policy
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 policy = joblib.load("models/bandit_policy.pkl")
 
 # Create context from new review text
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 tfidf = TfidfVectorizer(max_features=100, stop_words='english')
 
 # Note: In production, fit TF-IDF on training data and save it
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 def recommend_item(policy, review_text, tfidf_vectorizer):
     """
@@ -461,6 +534,8 @@ def recommend_item(policy, review_text, tfidf_vectorizer):
 
 ### Protocol 11: Online Bandit Updates
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 For online learning scenarios where you observe rewards:
 
@@ -485,86 +560,107 @@ def update_policy(policy, context, action, reward):
 
 ## Full Workflow Protocols
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Protocol 12: Complete Training Pipeline
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```bash
 
 # 1. Setup environment
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make setup
 
 # 2. Download and process data
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make data
 
 # 3. Train both models
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make train
 
 # 4. Run tests to verify
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make test
 ```
 
 ### Protocol 13: Clean Rebuild
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```bash
 
 # Remove all generated files
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make clean
 
 # Full rebuild
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make data && make train
 ```
 
 ## Testing Protocols
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Protocol 14: Running Tests
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```bash
 
 # Run all tests
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 make test
 
 # Run specific test file
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 python -m pytest tests/test_download_mock.py -v
 
 # Run integration tests (requires network)
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 python -m pytest tests/test_integration.py -v
 ```
 
 ### Protocol 15: Adding New Tests
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 When adding new functionality, create tests in `tests/`:
 
@@ -573,6 +669,7 @@ When adding new functionality, create tests in `tests/`:
 # tests/test_recommendations.py
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 import unittest
 from unittest.mock import patch, MagicMock
@@ -592,10 +689,14 @@ class TestRecommendations(unittest.TestCase):
 
 ## Troubleshooting Guide
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 
 ### Common Issues
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 | Issue | Cause | Solution |
 |-------|-------|----------|
@@ -607,12 +708,15 @@ class TestRecommendations(unittest.TestCase):
 
 ### Dependency Verification
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 ```python
 
 # Verify all dependencies
 - status: active
 - type: agent_skill
+- label: ['agent']
 <!-- content -->
 import pandas as pd
 import numpy as np
@@ -625,11 +729,15 @@ print("All dependencies available!")
 
 ## Future Extensions (Simulation Support)
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 *This section will be expanded to support simulation management.*
 
 ### Planned Capabilities
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 1. **Simulation Environments**
    - User behavior simulation for testing recommendation policies
@@ -648,6 +756,8 @@ print("All dependencies available!")
 
 ## Verification Checklist
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 Before any RecSys implementation is complete, verify:
 
@@ -659,6 +769,8 @@ Before any RecSys implementation is complete, verify:
 
 ## Agent Log Entry Template
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 When implementing RecSys features, log in `AGENTS_LOG.md`:
 
@@ -666,6 +778,8 @@ When implementing RecSys features, log in `AGENTS_LOG.md`:
 
 ### [DATE] - RecSys Implementation (RecSys Agent)
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 *   **Task:** [Specific feature implemented]
 *   **Actions:**

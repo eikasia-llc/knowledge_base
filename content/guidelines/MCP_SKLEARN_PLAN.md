@@ -7,7 +7,7 @@ This document outlines the strategy for integrating **Scikit-Learn** into the Lo
 
 ## Context & Objective
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 We aim to replicate the capabilities of `mcp-server-scikit-learn` to give our LLM tools to manipulate data.
 *   **Goal**: Enable the Nexus Chatbot to classify/regress data stored in the Local Warehouse.
@@ -16,7 +16,7 @@ We aim to replicate the capabilities of `mcp-server-scikit-learn` to give our LL
 
 ## Architecture
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 The system will follow a Client-Host-Server model.
 
@@ -32,7 +32,7 @@ The system will follow a Client-Host-Server model.
 ### Phase 1: Server Setup
 - id: mcp_scikit_learn_integration_plan.implementation_steps.phase_1_server_setup
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 1.  **Dependencies**:
@@ -47,7 +47,7 @@ The system will follow a Client-Host-Server model.
 ### Phase 2: Tool Definitions
 - id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 Define the specific tools the LLM can call.
@@ -55,7 +55,7 @@ Define the specific tools the LLM can call.
 #### 1. Data Loading
 - id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions.1_data_loading
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 *   `load_data(table_name)`: Fetch data from the local DuckDB warehouse.
@@ -63,7 +63,7 @@ Define the specific tools the LLM can call.
 #### 2. Training
 - id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions.2_training
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 *   `train_model(model_type, target_column, hyperparameters)`:
@@ -73,7 +73,7 @@ Define the specific tools the LLM can call.
 #### 3. Inference
 - id: mcp_scikit_learn_integration_plan.implementation_steps.phase_2_tool_definitions.3_inference
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 *   `predict(model_id, input_data)`: Use a trained model to make predictions.
@@ -81,7 +81,7 @@ Define the specific tools the LLM can call.
 ### Phase 3: Client Integration
 - id: mcp_scikit_learn_integration_plan.implementation_steps.phase_3_client_integration
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 1.  **Bridge Layer** (`src/core/mcp_client.py`):
@@ -100,7 +100,7 @@ Define the specific tools the LLM can call.
 ### Dependencies
 - id: mcp_scikit_learn_integration_plan.execution_checklist.dependencies
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - [ ] Add `mcp` to `requirements.txt`.
@@ -109,7 +109,7 @@ Define the specific tools the LLM can call.
 ### Server Development
 - id: mcp_scikit_learn_integration_plan.execution_checklist.server_development
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - [ ] Create `src/mcp_server/` directory.
@@ -120,7 +120,7 @@ Define the specific tools the LLM can call.
 ### Client Integration
 - id: mcp_scikit_learn_integration_plan.execution_checklist.client_integration
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
 - [ ] Create `src/core/mcp_bridge.py`.

@@ -9,6 +9,7 @@
 
 ## SHORT ADVICE
 - status: active
+- type: agent_skill
 <!-- content -->
 - The whole trick is providing the AI Assistants with context, and this is done using the *.md files (AGENTS.md, AGENTS_LOG.md, and the AI_AGENTS folder)
 - Make sure that when writing *.md files, you use the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
@@ -20,6 +21,7 @@
 
 ## HUMAN-ASSISTANT WORKFLOW
 - status: active
+- type: agent_skill
 <!-- content -->
 1. Open the assistant and load the ai-agents-branch into their local repositories. Do this by commanding them to first of all read the AGENTS.md file.
 2. Work on the ASSISTANT, making requests, modifying code, etc.
@@ -35,6 +37,7 @@
 
 ## WORKFLOW & TOOLING
 - status: active
+- type: agent_skill
 <!-- content -->
 *   **Documentation Logs (`AGENTS_LOG.md`):**
     *   **Rule:** Every agent that performs a significant intervention or modifies the codebase **MUST** update the `AGENTS_LOG.md` file.
@@ -42,6 +45,7 @@
 
 ## DEVELOPMENT RULES & CONSTRAINTS
 - status: active
+- type: agent_skill
 <!-- content -->
 1.  **Immutable Core Files:** Do not modify 
     *   If you need to change the logic of an agent or the model, you must create a **new version** (e.g., a subclass or a new file) rather than modifying the existing classes in place.
@@ -51,6 +55,7 @@
 
 ## CONTEXT FINE-TUNING
 - status: active
+- type: agent_skill
 <!-- content -->
 You cannot "fine-tune" an AI agent (change its underlying neural network weights) with files in this repository. **However**, you **CAN** achieve a similar result using **Context**.
 

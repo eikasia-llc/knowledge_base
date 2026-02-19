@@ -2,6 +2,7 @@
 - status: active
 - type: agent_skill
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "server": "src/mcp/server.py", "tools": "src/mcp/tools.py"}
+- label: ['agent']
 <!-- content -->
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "server": "src/mcp/server.py", "tools": "src/mcp/tools.py"}
 <!-- content -->
@@ -9,14 +10,17 @@ This document explains the **Model Context Protocol (MCP)** implementation withi
 
 ## 1. Architecture Overview
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 The project implements a **Lightweight In-Process MCP Server** rather than a separate subprocess. This reduces latency and deployment complexity for the Streamlit app.
 
 ### Core Components
 - id: mcp_protocol_data_tools_skill.1_architecture_overview.core_components
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 1.  **Server (`src/mcp/server.py`)**:
     -   Defines the `MCPServer` class.
@@ -32,14 +36,17 @@ The project implements a **Lightweight In-Process MCP Server** rather than a sep
 
 ## 2. The "JSON Database" Pattern
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 We use a **JSON-as-Database** pattern exposed via MCP tools. This acts as a bridge between unstructured LLM queries and structured data.
 
 ### How it works
 - id: mcp_protocol_data_tools_skill.2_the_json_database_pattern.how_it_works
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 1.  **Raw Data**: We scrape the website and store data in `data/*.json` files. This is our "source of truth".
 2.  **Tool Abstraction**: We write Python functions (`search_people`, `get_events`) that load these JSONs and perform filtering/searching in memory.
@@ -55,8 +62,9 @@ We use a **JSON-as-Database** pattern exposed via MCP tools. This acts as a brid
 ### Strengths
 - id: mcp_protocol_data_tools_skill.2_the_json_database_pattern.strengths
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 -   **Simplicity**: No external database (SQL/NoSQL) required.
 -   **Flexibility**: JSON schemas can evolve easily.
@@ -65,8 +73,9 @@ We use a **JSON-as-Database** pattern exposed via MCP tools. This acts as a brid
 ### Weaknesses & Improvements
 - id: mcp_protocol_data_tools_skill.2_the_json_database_pattern.weaknesses_improvements
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 -   **Performance**: Loading large JSON files (e.g., `raw_events.json`) from disk on *every* tool call is inefficient.
     -   *Improvement*: Cache the loaded data in memory using `@functools.lru_cache` or a singleton `DataManager`.
@@ -77,6 +86,8 @@ We use a **JSON-as-Database** pattern exposed via MCP tools. This acts as a brid
 
 ## 3. Workflow for Adding New Tools
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 To add a new capability:
 
@@ -93,6 +104,8 @@ To add a new capability:
 
 ## 4. Best Practices
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 -   **Tool Descriptions**: The LLM relies *entirely* on the `description` field in `list_tools` to decide when to use a tool. Be verbose and specific (e.g., "Use this for X, but not for Y").
 -   **Parameter Descriptions**: Explain the format (e.g., "YYYY-MM-DD") and examples.
@@ -100,14 +113,17 @@ To add a new capability:
 
 ## 5. Prompt Engineering for Tools
 - status: active
+- type: agent_skill
+- label: ['agent']
 <!-- content -->
 Simply defining a tool is often insufficient; the LLM must be "coached" to use it correctly, especially in a hybrid RAG system.
 
 ### A. Dynamic Injection
 - id: mcp_protocol_data_tools_skill.5_prompt_engineering_for_tools.a_dynamic_injection
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 Do not rely on the API's implicit tool support alone. **Explicitly inject the list of tools** into the System Prompt.
 - **Why**: It improves tool awareness for smaller or less-tuned models.
@@ -116,8 +132,9 @@ Do not rely on the API's implicit tool support alone. **Explicitly inject the li
 ### B. The "Force Usage" Pattern
 - id: mcp_protocol_data_tools_skill.5_prompt_engineering_for_tools.b_the_force_usage_pattern
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 LLMs are trained to be polite and helpful, often asking "Would you like me to check the database?". This breaks the seamless RAG experience.
 - **Fix**: Use **Imperative Instructions** in the system prompt.
@@ -126,8 +143,9 @@ LLMs are trained to be polite and helpful, often asking "Would you like me to ch
 ### C. The "Data Enrichment" Pattern (RAG vs Tool Conflict)
 - id: mcp_protocol_data_tools_skill.5_prompt_engineering_for_tools.c_the_data_enrichment_pattern_rag_vs_tool_conflict
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-02-02
+- label: ['agent']
 <!-- content -->
 A common failure mode is "Partial Satisfaction": The LLM finds an event title in the Vector Store (RAG) and thinks it's done, ignoring the Tool that has the full abstract/time.
 - **Fix**: Explicitly instruct the LLM to use tools for **Enrichment**.

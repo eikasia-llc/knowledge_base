@@ -1,14 +1,16 @@
 # Self-Improvement & Update Protocol
 - id: protocol.update
 - status: active
-- type: protocol
+- type: guideline
 - last_checked: 2026-01-25
+- label: ['agent', 'protocol']
 <!-- content -->
 This protocol defines the standard procedure for **learning from experience** and systematically updating the codebase, agents, and instructions. It transforms ad-hoc bug fixes into permanent system improvements.
 
 ## 1. Triggers
 - status: active
-- type: protocol
+- type: guideline
+- label: ['agent', 'protocol']
 <!-- content -->
 An update cycle is triggered by:
 1.  **Execution Failure**: A script fails (e.g., `git clone` error, `ImportError`).
@@ -22,15 +24,17 @@ An update cycle is triggered by:
 
 ## 2. The Learning Cycle (OODA Loop)
 - status: active
-- type: protocol
+- type: guideline
+- label: ['agent', 'protocol']
 <!-- content -->
 When a trigger occurs, the acting agent MUST execute the following loop *before* marking the task as complete.
 
 ### A. Observe
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.a_observe
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 Capture the raw evidence of the failure or inefficiency.
 - **Log it**: Record the exact error message, traceback, or confusing output.
@@ -39,8 +43,9 @@ Capture the raw evidence of the failure or inefficiency.
 ### B. Orient
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.b_orient
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 Analyze the root cause. Ask:
 - *Why did the code fail?* (e.g., "The filename pattern didn't match 'DEFINITIONS'.")
@@ -50,8 +55,9 @@ Analyze the root cause. Ask:
 ### C. Decide
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.c_decide
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 Determine the level of fix required:
 1.  **Level 1 (Hotfix)**: Just fix the immediate bug to unblock. (Allowed only for low-priority/one-off issues).
@@ -62,8 +68,9 @@ Determine the level of fix required:
 ### D. Act
 - id: self_improvement_update_protocol.2_the_learning_cycle_ooda_loop.d_act
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 Execute the fix.
 - Apply the code change.
@@ -71,15 +78,17 @@ Execute the fix.
 
 ## 3. Codification (The "Latch")
 - status: active
-- type: protocol
+- type: guideline
+- label: ['agent', 'protocol']
 <!-- content -->
 Learning is only valid if it is **codified**—written down in a way that prevents the same error from happening to *any* instance of the agent in the future.
 
 ### Rules for Codification
 - id: self_improvement_update_protocol.3_codification_the_latch.rules_for_codification
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-27
+- label: ['agent']
 <!-- content -->
 1.  **Prefer Code over Text**: If you can write a script to enforce a rule (like `clean_repo.py`), do that instead of just writing "Please do X" in a markdown file.
 2.  **Update the Source of Truth**:
@@ -91,7 +100,8 @@ Learning is only valid if it is **codified**—written down in a way that preven
 
 ## 4. Example Case Study
 - status: active
-- type: context
+- type: documentation
+- label: ['agent']
 <!-- content -->
 **Incident**: `apply_types.py` skipped `INFRASTRUCTURE_DEFINITIONS.md` because "DEFINITIONS" wasn't in its allowlist.
 **Observation**: The file existed but had no metadata type.

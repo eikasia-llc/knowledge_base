@@ -3,6 +3,7 @@
 - type: log
 - id: planner.meeting_notes
 - last_checked: 2026-01-25T17:39:00+01:00
+- label: ['log']
 <!-- content -->
 <!-- content -->
 This file contains the historical log of meetings with colleagues and collaborators. Every meeting should follow the template below.
@@ -10,11 +11,13 @@ This file contains the historical log of meetings with colleagues and collaborat
 ## Meeting Template
 - status: active
 - type: guideline
+- label: ['log']
 <!-- content -->
 
 ### [YYYY-MM-DD] - [Meeting Title]
 - status: todo
 - type: log
+- label: ['log']
 <!-- content -->
 - participants: []
 <!-- content -->
@@ -32,6 +35,7 @@ This file contains the historical log of meetings with colleagues and collaborat
 ## 2026-01-25 - Setting the Intelligent Control SaaS Roadmap
 - status: todo
 - type: log
+- label: ['log']
 <!-- content -->
 - participants: ["Ignacio", "Fran"]
 - id: planner.meeting.20260125.roadmap

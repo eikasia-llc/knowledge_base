@@ -1,15 +1,17 @@
 # Unified Nexus Implementation Plan: RAG + Data Warehouse
 - status: active
-- type: implementation_plan
+- type: plan
 - id: unified-nexus-implementation
 - last_checked: 2026-01-29
+- label: ['planning']
 <!-- content -->
 
 ## Goal
 - id: unified_nexus_implementation_plan_rag_data_warehouse.goal
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Unify the existing **Data Warehouse** (DuckDB + CSV/Excel ingestion) with a **RAG architecture** to enable:
 1. **Structured queries** → SQL over DuckDB tables  
@@ -24,15 +26,17 @@ This plan incorporates proven patterns from [mcmp_chatbot](https://github.com/Ig
 ## Key Features
 - id: unified_nexus_implementation_plan_rag_data_warehouse.key_features
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 
 ### 1. Smart Retrieval (Query Decomposition) ✅
 - id: unified_nexus_implementation_plan_rag_data_warehouse.key_features.1_smart_retrieval_query_decomposition
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 The unified engine automatically breaks down complex multi-part questions into simpler sub-queries for more complete answers.
 
@@ -55,8 +59,9 @@ def decompose_query(self, user_question) -> tuple[str, ...]
 ### 2. Institutional Graph Layer 🔜
 - id: unified_nexus_implementation_plan_rag_data_warehouse.key_features.2_institutional_graph_layer
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 A graph-based layer (`data/graph/`) to understand organizational structure and relationships that are better represented as graphs.
 
@@ -71,8 +76,9 @@ A graph-based layer (`data/graph/`) to understand organizational structure and r
 ### 3. Performance Optimization: Batch Vector Search ✅
 - id: unified_nexus_implementation_plan_rag_data_warehouse.key_features.3_performance_optimization_batch_vector_search
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 The retrieval engine uses **batch querying** to minimize latency. By sending all decomposed sub-queries to ChromaDB in a single parallel batch request, we achieved an **~82% reduction in retrieval time**.
 
@@ -88,8 +94,9 @@ The retrieval engine uses **batch querying** to minimize latency. By sending all
 # Single batch request for all sub-queries
 - id: single_batch_request_for_all_sub_queries
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 results = self.vector_store.query(
     query_texts=decomposed_queries,  # List of queries
@@ -104,8 +111,9 @@ Combined with deduplication (`seen_ids = set()`), this ensures no duplicate cont
 ## Vector Store Selection
 - id: single_batch_request_for_all_sub_queries.vector_store_selection
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 **Selected: ChromaDB** (local, lightweight, Python-native)
 
@@ -123,8 +131,9 @@ Combined with deduplication (`seen_ids = set()`), this ensures no duplicate cont
 ## Data Types & Handling Strategy
 - id: single_batch_request_for_all_sub_queries.data_types_handling_strategy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 | Data Type | Current | New Handler | Storage | Notes |
 |:----------|:--------|:------------|:--------|:------|
@@ -141,23 +150,26 @@ Combined with deduplication (`seen_ids = set()`), this ensures no duplicate cont
 ## Proposed Changes
 - id: single_batch_request_for_all_sub_queries.proposed_changes
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 
 ### New Core Components
 - id: single_batch_request_for_all_sub_queries.proposed_changes.new_core_components
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 ---
 
 #### [NEW] `src/core/vector_store.py`
 - id: single_batch_request_for_all_sub_queries.proposed_changes.new_core_components.new_srccorevector_storepy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 ChromaDB wrapper implementing mcmp_chatbot patterns:
 
@@ -172,8 +184,9 @@ ChromaDB wrapper implementing mcmp_chatbot patterns:
 # Key method signature
 - id: key_method_signature
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 def query(self, query_texts, n_results=3, where=None) -> dict
 ```
@@ -183,8 +196,9 @@ def query(self, query_texts, n_results=3, where=None) -> dict
 #### [NEW] `src/core/query_router.py`
 - id: key_method_signature.new_srccorequery_routerpy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Classifies queries into `STRUCTURED` / `UNSTRUCTURED` / `HYBRID`:
 
@@ -197,8 +211,9 @@ Classifies queries into `STRUCTURED` / `UNSTRUCTURED` / `HYBRID`:
 #### [NEW] `src/core/text2sql.py`
 - id: key_method_signature.new_srccoretext2sqlpy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Natural language → SQL for DuckDB:
 
@@ -211,8 +226,9 @@ Natural language → SQL for DuckDB:
 #### [NEW] `src/core/unified_engine.py`
 - id: key_method_signature.new_srccoreunified_enginepy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Main orchestrator (inspired by mcmp_chatbot `RAGEngine`):
 
@@ -226,6 +242,7 @@ Main orchestrator (inspired by mcmp_chatbot `RAGEngine`):
 
 # Key method signatures
 - type: plan
+- label: ['planning']
 <!-- content -->
 @functools.lru_cache(maxsize=128)
 def decompose_query(self, user_question) -> list[str]
@@ -239,6 +256,7 @@ def generate_response(self, query, use_mcp_tools=False) -> str
 
 #### [NEW] `src/core/document_ingestion.py`
 - type: task
+- label: ['planning']
 <!-- content -->
 Document processing pipeline:
 
@@ -250,6 +268,7 @@ Document processing pipeline:
 
 #### [NEW] `src/core/graph_store.py` ✅
 - type: task
+- label: ['planning']
 <!-- content -->
 Institutional graph for organizational relationships:
 
@@ -264,8 +283,9 @@ Institutional graph for organizational relationships:
 # Key method signatures
 - id: key_method_signatures
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 def add_node(self, node: GraphNode) -> bool
 def add_edge(self, edge: GraphEdge) -> bool
@@ -290,8 +310,9 @@ def generate_response(self, query, use_mcp_tools=False) -> str
 #### [NEW] `src/mcp/` (Phase 5)
 - id: key_method_signatures.new_srcmcp_phase_5
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 MCP Server for structured data tools:
 
@@ -304,16 +325,18 @@ MCP Server for structured data tools:
 ### Modified Files
 - id: key_method_signatures.modified_files
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 ---
 
 #### [MODIFY] `requirements.txt`
 - id: key_method_signatures.modified_files.modify_requirementstxt
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 ```diff
 + chromadb>=0.4.0
@@ -328,8 +351,9 @@ MCP Server for structured data tools:
 #### [MODIFY] `src/app.py`
 - id: key_method_signatures.modified_files.modify_srcapppy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 - Add document uploader in sidebar
 - Display query type badges in chat
@@ -341,15 +365,17 @@ MCP Server for structured data tools:
 ## Implementation Phases
 - id: key_method_signatures.implementation_phases
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 
 ### Phase 1: Vector Store Foundation (2h) ✅
 - id: key_method_signatures.implementation_phases.phase_1_vector_store_foundation_2h
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 - [x] Create `src/core/vector_store.py`
 - [x] Create `src/core/document_ingestion.py`  
@@ -359,8 +385,9 @@ MCP Server for structured data tools:
 ### Phase 2: Query Routing (1h) ✅
 - id: key_method_signatures.implementation_phases.phase_2_query_routing_1h
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 - [x] Create `src/core/query_router.py`
 - [x] Test: classify diverse query types
@@ -368,8 +395,9 @@ MCP Server for structured data tools:
 ### Phase 3: Text2SQL (2h) ✅
 - id: key_method_signatures.implementation_phases.phase_3_text2sql_2h
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 - [x] Create `src/core/text2sql.py`
 - [x] Test: generate SQL from natural language
@@ -377,8 +405,9 @@ MCP Server for structured data tools:
 ### Phase 4: Unified Engine (3h) ✅
 - id: key_method_signatures.implementation_phases.phase_4_unified_engine_3h
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 - [x] Create `src/core/unified_engine.py`
 - [x] Implement query decomposition with caching
@@ -388,8 +417,9 @@ MCP Server for structured data tools:
 ### Phase 5: UI + MCP (2h) ✅
 - id: key_method_signatures.implementation_phases.phase_5_ui_mcp_2h
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 - [x] Modify `src/app.py` for document upload
 - [x] Create `src/mcp/` directory and server (12 tools)
@@ -402,23 +432,26 @@ MCP Server for structured data tools:
 ## Verification Plan
 - id: key_method_signatures.verification_plan
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 
 ### Automated Tests
 - id: key_method_signatures.verification_plan.automated_tests
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 ```bash
 
 #### [NEW] `src/core/document_ingestion.py`
 - id: key_method_signatures.new_srccoredocument_ingestionpy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Document processing pipeline:
 
@@ -431,8 +464,9 @@ Document processing pipeline:
 #### [NEW] `src/core/graph_store.py` ✅
 - id: key_method_signatures.new_srccoregraph_storepy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Institutional graph for organizational relationships:
 
@@ -447,8 +481,9 @@ Institutional graph for organizational relationships:
 #### [NEW] `src/core/document_ingestion.py`
 - id: key_method_signatures.new_srccoredocument_ingestionpy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Document processing pipeline:
 
@@ -461,8 +496,9 @@ Document processing pipeline:
 #### [NEW] `src/core/graph_store.py` ✅
 - id: key_method_signatures.new_srccoregraph_storepy
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 Institutional graph for organizational relationships:
 
@@ -477,8 +513,9 @@ Institutional graph for organizational relationships:
 # After each phase
 - id: after_each_phase
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 pytest tests/ -v
 ```
@@ -493,8 +530,9 @@ pytest tests/ -v
 ### Manual Verification
 - id: after_each_phase.manual_verification
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 1. **Streamlit smoke test**: `streamlit run src/app.py`
 2. **Structured query**: "How many rows in sales_data?"
@@ -506,8 +544,9 @@ pytest tests/ -v
 ## Key Patterns from mcmp_chatbot
 - id: after_each_phase.key_patterns_from_mcmp_chatbot
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
+- label: ['planning']
 <!-- content -->
 | Pattern | Benefit | Implementation |
 |:--------|:--------|:---------------|

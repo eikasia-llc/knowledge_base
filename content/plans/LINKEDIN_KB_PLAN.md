@@ -3,6 +3,7 @@
 - type: plan
 - owner: antigravity
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "rag_patterns": "RAGS_AGENT.md", "graph_reference": "mcmp_graph.md"}
+- label: ['planning']
 <!-- content -->
 This document outlines the strategy for building a **slow, respectful LinkedIn profile scraper** that feeds into a personal RAG-based knowledge base with a **Social Graph layer**. The system prioritizes safety (avoiding bans), legal caution (personal use only), and semantic richness (optimized for vector search and graph traversal).
 
@@ -17,18 +18,21 @@ This document outlines the strategy for building a **slow, respectful LinkedIn p
 
 ## Context & Objectives
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 
 ### Problem Statement
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 LinkedIn's API is locked down for most use cases. We need profile data (skills, experience, about sections) to build a searchable knowledge base of professional connections. Beyond individual profiles, we want to understand **relationships**: who works where, who knows whom, who follows what companies, who engages with whose content.
 
 ### Goals
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 1. **Extract** structured profile data from LinkedIn with minimal detection risk.
 2. **Transform** raw HTML/data into clean, embeddable documents.
@@ -38,7 +42,8 @@ LinkedIn's API is locked down for most use cases. We need profile data (skills, 
 
 ### Constraints & Principles
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 - **Personal use only** — never commercial or at scale.
 - **Respectful rate limiting** — 30-120+ seconds between requests, daily caps.
@@ -50,7 +55,8 @@ LinkedIn's API is locked down for most use cases. We need profile data (skills, 
 
 ## Architecture Overview
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -106,7 +112,8 @@ LinkedIn's API is locked down for most use cases. We need profile data (skills, 
 
 ## Project Structure
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 ```
 linkedin_kb/
@@ -181,6 +188,7 @@ linkedin_kb/
 ## Implementation Phases
 - status: active
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 ### Phase 1: Foundation & Configuration
@@ -189,6 +197,7 @@ linkedin_kb/
 - type: task
 - estimate: 2h
 - blocked_by: []
+- label: ['planning']
 <!-- content -->
 Set up project skeleton, configuration system, and basic data models.
 
@@ -197,6 +206,7 @@ Set up project skeleton, configuration system, and basic data models.
 - status: todo
 - type: task
 - estimate: 30m
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create directory structure as specified above.
@@ -209,6 +219,7 @@ Set up project skeleton, configuration system, and basic data models.
 
 # Core
 - type: plan
+- label: ['planning']
 <!-- content -->
 pydantic>=2.0
 pyyaml>=6.0
@@ -216,6 +227,7 @@ python-dotenv>=1.0
 
 # Collection
 - type: plan
+- label: ['planning']
 <!-- content -->
 playwright>=1.40
 requests>=2.31
@@ -224,6 +236,7 @@ lxml>=5.0
 
 # Storage & Search
 - type: plan
+- label: ['planning']
 <!-- content -->
 chromadb>=0.4
 sentence-transformers>=2.2
@@ -231,11 +244,13 @@ duckdb>=0.9
 
 # Graph
 - type: plan
+- label: ['planning']
 <!-- content -->
 networkx>=3.0         # Graph algorithms
 
 # Utilities
 - type: plan
+- label: ['planning']
 <!-- content -->
 rich>=13.0            # CLI formatting
 tenacity>=8.2         # Retry logic
@@ -248,6 +263,7 @@ click>=8.0            # CLI framework
 - type: task
 - estimate: 45m
 - blocked_by: [linkedin_kb.phase_1.init]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `config/settings.yaml` with all configurable parameters.
@@ -287,6 +303,7 @@ logging:
 - type: task
 - estimate: 45m
 - blocked_by: [linkedin_kb.phase_1.init]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/parser/schemas.py` with profile data models.
@@ -358,14 +375,17 @@ from datetime import datetime
 
 # =============================================================================
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # NODE TYPES
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # =============================================================================
 - type: plan
+- label: ['planning']
 <!-- content -->
 class PersonNode(BaseModel):
     """A person in the network."""
@@ -400,19 +420,23 @@ class ContentNode(BaseModel):
 
 # Union type for all nodes
 - type: plan
+- label: ['planning']
 <!-- content -->
 Node = PersonNode | CompanyNode | InstitutionNode | ContentNode
 
 # =============================================================================
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # EDGE TYPES (Relationships)
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # =============================================================================
 - type: plan
+- label: ['planning']
 <!-- content -->
 class Edge(BaseModel):
     """A relationship between two nodes."""
@@ -424,6 +448,7 @@ class Edge(BaseModel):
 
 # Relationship type constants
 - type: plan
+- label: ['planning']
 <!-- content -->
 class RelationshipTypes:
     # Person <-> Company
@@ -449,14 +474,17 @@ class RelationshipTypes:
 
 # =============================================================================
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # GRAPH CONTAINER
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # =============================================================================
 - type: plan
+- label: ['planning']
 <!-- content -->
 class SocialGraph(BaseModel):
     """Complete graph representation."""
@@ -498,6 +526,7 @@ class SocialGraph(BaseModel):
 - type: task
 - estimate: 4h
 - blocked_by: [linkedin_kb.phase_1]
+- label: ['planning']
 <!-- content -->
 Build the safe, rate-limited profile fetching system.
 
@@ -506,6 +535,7 @@ Build the safe, rate-limited profile fetching system.
 - status: todo
 - type: task
 - estimate: 1h
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/collector/session.py`.
@@ -518,22 +548,27 @@ Build the safe, rate-limited profile fetching system.
 
 # 1. Log into LinkedIn in Chrome
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # 2. Open DevTools > Application > Cookies
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # 3. Export li_at and JSESSIONID cookies
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # 4. Save to config/cookies.json (gitignored!)
 - type: plan
+- label: ['planning']
 <!-- content -->
 
 # cookies.json format:
 - type: plan
+- label: ['planning']
 <!-- content -->
 {
     "li_at": "AQED...",
@@ -547,6 +582,7 @@ Build the safe, rate-limited profile fetching system.
 - type: task
 - estimate: 1h
 - blocked_by: [linkedin_kb.phase_2.session]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/collector/rate_limiter.py`.
@@ -636,6 +672,7 @@ class RateLimiter:
 - type: task
 - estimate: 2h
 - blocked_by: [linkedin_kb.phase_2.rate_limiter]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/collector/fetcher.py`.
@@ -657,6 +694,7 @@ class RateLimiter:
 - type: task
 - estimate: 3h
 - blocked_by: [linkedin_kb.phase_2]
+- label: ['planning']
 <!-- content -->
 Extract structured data from raw HTML and prepare for embedding.
 
@@ -665,6 +703,7 @@ Extract structured data from raw HTML and prepare for embedding.
 - status: todo
 - type: task
 - estimate: 1.5h
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/parser/extractor.py`.
@@ -698,6 +737,7 @@ def extract_experience(soup) -> list[Experience]:
 - type: task
 - estimate: 1h
 - blocked_by: [linkedin_kb.phase_3.extractor]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/parser/chunker.py`.
@@ -711,6 +751,7 @@ def extract_experience(soup) -> list[Experience]:
 - type: task
 - estimate: 30m
 - blocked_by: [linkedin_kb.phase_3.extractor]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/parser/relationship_extractor.py`.
@@ -787,6 +828,7 @@ def extract_edges_from_profile(profile: LinkedInProfile) -> tuple[list[Edge], li
 - type: task
 - estimate: 3h
 - blocked_by: [linkedin_kb.phase_3]
+- label: ['planning']
 <!-- content -->
 Persist raw data and create searchable vector embeddings.
 
@@ -795,6 +837,7 @@ Persist raw data and create searchable vector embeddings.
 - status: todo
 - type: task
 - estimate: 45m
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/storage/raw_store.py`.
@@ -808,6 +851,7 @@ Persist raw data and create searchable vector embeddings.
 - type: task
 - estimate: 1.5h
 - blocked_by: [linkedin_kb.phase_4.raw_store]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/storage/vector_store.py`.
@@ -821,6 +865,7 @@ Persist raw data and create searchable vector embeddings.
 - type: task
 - estimate: 45m
 - blocked_by: [linkedin_kb.phase_4.raw_store]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/storage/structured_store.py`.
@@ -880,6 +925,7 @@ WHERE e.is_current = true;
 - type: task
 - estimate: 2h
 - blocked_by: [linkedin_kb.phase_4]
+- label: ['planning']
 <!-- content -->
 Enable semantic queries across the knowledge base.
 
@@ -888,6 +934,7 @@ Enable semantic queries across the knowledge base.
 - status: todo
 - type: task
 - estimate: 1h
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/search/semantic.py`.
@@ -900,6 +947,7 @@ Enable semantic queries across the knowledge base.
 - status: todo
 - type: task
 - estimate: 30m
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/search/structured.py`.
@@ -951,6 +999,7 @@ class StructuredSearch:
 - type: task
 - estimate: 30m
 - blocked_by: [linkedin_kb.phase_5.semantic]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/cli.py` using `click`.
@@ -964,6 +1013,7 @@ class StructuredSearch:
 - type: task
 - estimate: 2h
 - blocked_by: [linkedin_kb.phase_5]
+- label: ['planning']
 <!-- content -->
 Ensure reliability and usability.
 
@@ -972,6 +1022,7 @@ Ensure reliability and usability.
 - status: todo
 - type: task
 - estimate: 1.5h
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `tests/test_parser.py` — test extraction with sample HTML.
@@ -985,6 +1036,7 @@ Ensure reliability and usability.
 - type: task
 - estimate: 30m
 - blocked_by: [linkedin_kb.phase_6.tests]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Write comprehensive `README.md`.
@@ -1000,6 +1052,7 @@ Ensure reliability and usability.
 - type: task
 - estimate: 5h
 - blocked_by: [linkedin_kb.phase_4]
+- label: ['planning']
 <!-- content -->
 Build the relationship graph layer following MCMP patterns. This is the key differentiator that enables network-level queries.
 
@@ -1008,6 +1061,7 @@ Build the relationship graph layer following MCMP patterns. This is the key diff
 - status: todo
 - type: task
 - estimate: 1.5h
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/graph/builder.py`.
@@ -1122,6 +1176,7 @@ class GraphBuilder:
 - type: task
 - estimate: 1.5h
 - blocked_by: [linkedin_kb.phase_7.builder]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/graph/writers.py`.
@@ -1134,12 +1189,14 @@ class GraphBuilder:
 
 # LinkedIn Social Graph
 - status: active
-- type: context
+- type: documentation
 - context_dependencies: {'utils': 'src/graph/utils.py'}
+- label: ['planning']
 <!-- content -->
 
 ### Nodes
 - type: task
+- label: ['planning']
 <!-- content -->
 | id | name | type | properties |
 |---|---|---|---|
@@ -1151,6 +1208,7 @@ class GraphBuilder:
 
 ### Edges
 - type: task
+- label: ['planning']
 <!-- content -->
 | source | target | relationship | properties |
 |---|---|---|---|
@@ -1222,6 +1280,7 @@ class GraphWriter:
 - type: task
 - estimate: 1h
 - blocked_by: [linkedin_kb.phase_7.writers]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/graph/parser.py`.
@@ -1328,6 +1387,7 @@ class GraphParser:
 - type: task
 - estimate: 1h
 - blocked_by: [linkedin_kb.phase_7.parser]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/graph/utils.py`.
@@ -1505,6 +1565,7 @@ class GraphUtils:
 - type: task
 - estimate: 3h
 - blocked_by: [linkedin_kb.phase_7, linkedin_kb.phase_5]
+- label: ['planning']
 <!-- content -->
 Combine all search modalities and expose as MCP tools.
 
@@ -1513,6 +1574,7 @@ Combine all search modalities and expose as MCP tools.
 - status: todo
 - type: task
 - estimate: 1.5h
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/search/hybrid.py`.
@@ -1658,6 +1720,7 @@ class HybridOrchestrator:
 - type: task
 - estimate: 1.5h
 - blocked_by: [linkedin_kb.phase_8.hybrid]
+- label: ['planning']
 <!-- content -->
 **Tasks:**
 - [ ] Create `src/mcp/server.py`.
@@ -1735,12 +1798,14 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 ## Execution Checklist
 - status: todo
 - type: task
+- label: ['planning']
 <!-- content -->
 
 ### Phase 1 Deliverables
 - id: linkedin_kb.checklist.phase_1
 - status: todo
 - type: task
+- label: ['planning']
 <!-- content -->
 - [ ] Project directory structure created.
 - [ ] `requirements.txt` with all dependencies.
@@ -1754,6 +1819,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_1]
+- label: ['planning']
 <!-- content -->
 - [ ] `src/collector/session.py` — cookie management working.
 - [ ] `src/collector/rate_limiter.py` — delays and daily cap working.
@@ -1765,6 +1831,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_2]
+- label: ['planning']
 <!-- content -->
 - [ ] `src/parser/extractor.py` — extracts all profile sections.
 - [ ] `src/parser/chunker.py` — creates embeddable chunks.
@@ -1776,6 +1843,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_3]
+- label: ['planning']
 <!-- content -->
 - [ ] `src/storage/raw_store.py` — JSON persistence working.
 - [ ] `src/storage/vector_store.py` — ChromaDB integration working.
@@ -1787,6 +1855,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_4]
+- label: ['planning']
 <!-- content -->
 - [ ] `src/search/semantic.py` — similarity search working.
 - [ ] `src/search/structured.py` — SQL queries working.
@@ -1798,6 +1867,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_5]
+- label: ['planning']
 <!-- content -->
 - [ ] All unit tests passing.
 - [ ] Documentation complete.
@@ -1808,6 +1878,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_4]
+- label: ['planning']
 <!-- content -->
 - [ ] `src/graph/builder.py` — profile-to-graph conversion working.
 - [ ] `src/graph/writers.py` — MD + JSON export working.
@@ -1821,6 +1892,7 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 - status: todo
 - type: task
 - blocked_by: [linkedin_kb.checklist.phase_7, linkedin_kb.checklist.phase_5]
+- label: ['planning']
 <!-- content -->
 - [ ] `src/search/hybrid.py` — query routing working.
 - [ ] `src/mcp/server.py` — MCP tools exposed.
@@ -1830,12 +1902,14 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ## Example Queries the System Should Handle
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 
 ### Semantic Queries (Vector Search)
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 - "ML engineers with startup experience"
 - "People interested in philosophy of AI"
@@ -1843,7 +1917,8 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ### Structured Queries (DuckDB)
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 - "Who currently works at Google?"
 - "How many connections do I have at each company?"
@@ -1851,7 +1926,8 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ### Graph Queries (Relationship Traversal)
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 - "Who are John's current colleagues?"
 - "Find the connection path between me and Jane"
@@ -1860,7 +1936,8 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ### Hybrid Queries (Multiple Sources)
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 - "ML engineers at Google who I might know through Stanford connections"
 - "People at Meta who've posted about AI ethics"
@@ -1870,12 +1947,14 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ## Risk Mitigation
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 
 ### LinkedIn Detection
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 **Risk:** Account ban or soft block.
 **Mitigations:**
@@ -1887,7 +1966,8 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ### HTML Changes
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 **Risk:** LinkedIn updates HTML, breaking parser.
 **Mitigations:**
@@ -1898,7 +1978,8 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ### Legal Considerations
 - status: active
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 **Risk:** Terms of Service violation.
 **Mitigations:**
@@ -1911,7 +1992,8 @@ def find_connection_path(person_a: str, person_b: str) -> list[str]:
 
 ## Future Enhancements
 - status: backlog
-- type: context
+- type: documentation
+- label: ['planning']
 <!-- content -->
 These are out of scope for initial implementation but worth noting:
 

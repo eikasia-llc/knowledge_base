@@ -9,7 +9,7 @@ This document provides a comprehensive explanation of the **Model Context Protoc
 
 ## 1. What is MCP?
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.definition
 <!-- content -->
 The **Model Context Protocol (MCP)** is an abstraction layer that enables Large Language Models (LLMs) to interact with external data sources and services through a standardized interface. Rather than relying solely on the LLM's training data or raw text retrieval, MCP exposes **tools** — discrete, well-defined functions that the LLM can invoke to perform specific operations.
@@ -19,7 +19,7 @@ MCP solves a fundamental problem: LLMs are excellent at understanding language a
 ### Key Characteristics
 - id: mcp-explanation.definition.characteristics
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 | Characteristic | Description |
 |:---------------|:------------|
@@ -30,7 +30,7 @@ MCP solves a fundamental problem: LLMs are excellent at understanding language a
 
 ## 2. Architecture Overview
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.architecture
 <!-- content -->
 The MCP implementation consists of four core components that work together to enable LLM-tool interaction. Each component has a distinct responsibility, creating a clean separation of concerns.
@@ -82,7 +82,7 @@ The MCP implementation consists of four core components that work together to en
 ### 2.1 Component: Engine
 - id: mcp-explanation.architecture.engine
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 The **Engine** (`src/core/engine.py`) is the central orchestrator. It coordinates the interaction between the user, the LLM, and the MCP Server. The engine is responsible for:
 
@@ -126,7 +126,7 @@ class Engine:
 ### 2.2 Component: MCP Server
 - id: mcp-explanation.architecture.server
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 The **MCP Server** (`src/mcp/server.py`) acts as a registry and dispatcher for tools. It provides two primary methods:
 
@@ -206,7 +206,7 @@ class MCPServer:
 ### 2.3 Component: Tools
 - id: mcp-explanation.architecture.tools
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 **Tools** (`src/mcp/tools.py`) are the Python functions that implement actual business logic. Each tool:
 
@@ -257,7 +257,7 @@ def search_people(query: str, role_filter: str = "all") -> list[dict]:
 ### 2.4 Component: LLM
 - id: mcp-explanation.architecture.llm
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 The **LLM** (Gemini, OpenAI, Claude) is the reasoning component. It receives:
 
@@ -274,7 +274,7 @@ The LLM does not execute tools directly — it generates a structured request sp
 
 ## 3. Information Flow
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.flow
 <!-- content -->
 Understanding the complete information flow is essential for debugging and extending the system. Here is the step-by-step sequence for a typical query:
@@ -370,7 +370,7 @@ Understanding the complete information flow is essential for debugging and exten
 ### Key Observations
 - id: mcp-explanation.flow.observations
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 1. **The LLM never directly accesses data.** It can only request tool execution through the engine.
 2. **Tool results are JSON strings.** The engine serializes tool output and passes it as a message to the LLM.
@@ -379,7 +379,7 @@ Understanding the complete information flow is essential for debugging and exten
 
 ## 4. Generalization: The RAGEngine
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.rag-engine
 <!-- content -->
 The basic `Engine` described above handles only MCP tool calls. In practice, many applications require **both** structured data retrieval (via MCP tools) and semantic search over unstructured documents. The `RAGEngine` is a generalization that combines these approaches.
@@ -387,7 +387,7 @@ The basic `Engine` described above handles only MCP tool calls. In practice, man
 ### RAG + MCP Architecture
 - id: mcp-explanation.rag-engine.architecture
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 RAG (Retrieval-Augmented Generation) uses vector embeddings to find semantically similar text chunks from a document store. The `RAGEngine` integrates this with MCP tools, routing queries to the appropriate retrieval path.
 
@@ -432,7 +432,7 @@ RAG (Retrieval-Augmented Generation) uses vector embeddings to find semantically
 ### When to Use Each Path
 - id: mcp-explanation.rag-engine.routing
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 | Query Type | Example | Retrieval Path |
 |:-----------|:--------|:---------------|
@@ -443,7 +443,7 @@ RAG (Retrieval-Augmented Generation) uses vector embeddings to find semantically
 ### RAGEngine Pseudocode
 - id: mcp-explanation.rag-engine.code
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 ```python
 class RAGEngine:
@@ -497,7 +497,7 @@ The key insight is that MCP tools and RAG are **complementary**: MCP excels at p
 
 ## 5. The JSON Database Pattern
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.json-pattern
 <!-- content -->
 This project uses a **JSON-as-Database** pattern where structured data is stored in JSON files and exposed through MCP tools. This pattern is simple and effective for small to medium datasets.
@@ -505,7 +505,7 @@ This project uses a **JSON-as-Database** pattern where structured data is stored
 ### How It Works
 - id: mcp-explanation.json-pattern.mechanism
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -555,7 +555,7 @@ This project uses a **JSON-as-Database** pattern where structured data is stored
 ### Example: Complete Tool Implementation
 - id: mcp-explanation.json-pattern.example
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 ```python
 # src/mcp/tools.py
@@ -682,7 +682,7 @@ def get_events(
 ### Characteristics of the JSON Pattern
 - id: mcp-explanation.json-pattern.characteristics
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 | Aspect | Description |
 |:-------|:------------|
@@ -695,7 +695,7 @@ def get_events(
 
 ## 6. Extending to Relational Databases
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.database
 <!-- content -->
 The JSON pattern works well for small datasets, but as data grows or query complexity increases, a relational database becomes necessary. The key insight is that **the MCP interface remains unchanged** — only the tool implementation changes.
@@ -703,7 +703,7 @@ The JSON pattern works well for small datasets, but as data grows or query compl
 ### The Text-to-SQL Pattern
 - id: mcp-explanation.database.text-to-sql
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 When extending to relational databases, there are two architectural approaches:
 
@@ -718,7 +718,7 @@ This section covers **Approach A** (recommended for most cases) as it provides b
 ### Architecture with DuckDB
 - id: mcp-explanation.database.architecture
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -776,7 +776,7 @@ This section covers **Approach A** (recommended for most cases) as it provides b
 ### Example: Database-Backed Tool Implementation
 - id: mcp-explanation.database.example
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 ```python
 # src/core/database.py
@@ -1011,7 +1011,7 @@ def get_publication_stats(author_id: Optional[int] = None) -> dict:
 ### Comparison: JSON vs Database Implementation
 - id: mcp-explanation.database.comparison
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 | Aspect | JSON Pattern | Database Pattern |
 |:-------|:-------------|:-----------------|
@@ -1027,7 +1027,7 @@ def get_publication_stats(author_id: Optional[int] = None) -> dict:
 ### MCP Server: No Changes Required
 - id: mcp-explanation.database.server
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 The MCP Server implementation remains identical regardless of backend:
 
@@ -1074,7 +1074,7 @@ class MCPServer:
 ### Migration Path: JSON to Database
 - id: mcp-explanation.database.migration
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 To migrate from JSON to a relational database:
 
@@ -1167,7 +1167,7 @@ def migrate_json_to_duckdb():
 
 ## 7. Summary: Key Takeaways
 - status: active
-- type: context
+- type: documentation
 - id: mcp-explanation.summary
 <!-- content -->
 | Concept | Description |

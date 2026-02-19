@@ -1,6 +1,6 @@
 # Software Engines — Explanation
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation
 - context_dependencies: {"mcp": "MCP_EXPLANATION.md", "conventions": "MD_CONVENTIONS.md"}
 - last_checked: 2026-02-07
@@ -9,7 +9,7 @@ This document explores the concept of a **software engine** in computer science:
 
 ## 1. What Is a Software Engine?
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.definition
 <!-- content -->
 A **software engine** is a core component that runs continuously (or is always ready to run), mediating the flow of information between inputs, processing logic, and outputs. It encapsulates the "how" of a system — the orchestration loop — so that the rest of the system only needs to interact with a stable interface.
@@ -18,7 +18,7 @@ The defining metaphor is deliberate: just as a physical engine converts fuel int
 
 ### 1.1 Core Properties
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.definition.properties
 <!-- content -->
 Not every module or class qualifies as an "engine." The term implies a specific set of architectural properties:
@@ -33,7 +33,7 @@ Not every module or class qualifies as an "engine." The term implies a specific 
 
 ### 1.2 Engine vs. Library vs. Framework
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.definition.comparison
 <!-- content -->
 These terms are often confused. The key distinction lies in **control flow** and **lifecycle**:
@@ -48,14 +48,14 @@ A library is passive (you call it). A framework is prescriptive (it calls you). 
 
 ## 2. Canonical Examples of Software Engines
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples
 <!-- content -->
 The engine pattern appears across nearly every domain of computing. Below are well-known examples, grouped by domain, with emphasis on the mediation and loop properties.
 
 ### 2.1 Game Engine
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.game
 <!-- content -->
 **Examples**: Unity, Unreal Engine, Godot.
@@ -76,7 +76,7 @@ The engine mediates between: player input → game logic → rendering subsystem
 
 ### 2.2 Browser Engine (Rendering Engine)
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.browser
 <!-- content -->
 **Examples**: Blink (Chrome), Gecko (Firefox), WebKit (Safari).
@@ -97,7 +97,7 @@ The engine mediates between: web content → layout calculation → pixel render
 
 ### 2.3 Database Engine
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.database
 <!-- content -->
 **Examples**: PostgreSQL, SQLite, DuckDB, InnoDB (MySQL).
@@ -118,7 +118,7 @@ The engine mediates between: client application → query optimizer → storage 
 
 ### 2.4 Search Engine
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.search
 <!-- content -->
 **Examples**: Elasticsearch, Apache Solr, Google Search (at a much larger scale).
@@ -143,7 +143,7 @@ The engine mediates between: raw documents → index structure → relevance ran
 
 ### 2.5 Rule Engine / Business Rule Engine
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.rules
 <!-- content -->
 **Examples**: Drools (Java), Easy Rules, CLIPS.
@@ -164,7 +164,7 @@ The engine mediates between: business rules (declared by analysts) → incoming 
 
 ### 2.6 Physics Engine
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.physics
 <!-- content -->
 **Examples**: Box2D, Bullet, PhysX, Havok.
@@ -185,7 +185,7 @@ The engine mediates between: game objects with physical properties → mathemati
 
 ### 2.7 Workflow / Orchestration Engine
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.examples.workflow
 <!-- content -->
 **Examples**: Apache Airflow, Temporal, Prefect, AWS Step Functions.
@@ -206,7 +206,7 @@ The engine mediates between: workflow definitions (declared by engineers) → ta
 
 ## 3. The Common Pattern
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.pattern
 <!-- content -->
 Across all examples, the engine pattern follows a common structural template:
@@ -238,7 +238,7 @@ The abstract engine lifecycle:
 
 ## 4. The MCP Client Engine as an Instance of This Pattern
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.mcp-engine
 <!-- content -->
 With the general engine pattern now defined, we can see that the **MCP Client Engine** (`src/core/engine.py`) is a concrete instance of this architecture:
@@ -253,7 +253,7 @@ With the general engine pattern now defined, we can see that the **MCP Client En
 
 ### 4.1 The MCP Engine Loop in Detail
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.mcp-engine.loop
 <!-- content -->
 Mapping the abstract engine lifecycle (Section 3) to the MCP Client Engine:
@@ -309,7 +309,7 @@ class MCPClientEngine:
 
 ### 4.2 Where the MCP Engine Fits Among Other Engines
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.mcp-engine.positioning
 <!-- content -->
 | Engine Type | What It Mediates | Loop Trigger | Closest Analog |
@@ -325,7 +325,7 @@ The MCP Client Engine is most analogous to a **database engine** (query-driven, 
 
 ## 5. Why Call It an "Engine"?
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.why-engine
 <!-- content -->
 The term is justified because the MCP Client component exhibits all five core properties (Section 1.1). If it were merely a function that called the LLM once, it would be a **library call**. If it imposed a rigid structure that your code had to fit into, it would be a **framework**. But the MCP Client Engine:
@@ -340,7 +340,7 @@ It is not just a helper function. It is the **continuously running core** that m
 
 ## 6. Summary
 - status: active
-- type: context
+- type: documentation
 - id: engine-explanation.summary
 <!-- content -->
 | Concept | Description |

@@ -1,9 +1,10 @@
 # Meta MCP Agent Protocol
 - id: meta_mcp_agent
 - status: active
-- type: protocol
+- type: guideline
 - owner: eikasia-llc
 - last_checked: 2025-01-29
+- label: ['protocol']
 <!-- content -->
 This document defines the **Meta MCP Agent Protocol**—a Model Context Protocol (MCP) server that enables coding assistants to dynamically discover, select, and retrieve relevant knowledge from structured knowledge bases.
 
@@ -12,7 +13,7 @@ The core insight: before an LLM can effectively perform a task, it must first un
 ## Problem Statement
 - id: meta_mcp_agent.problem_statement
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 Coding assistants face a fundamental challenge: they cannot know what they don't know. When presented with a task, an LLM may lack critical context about project conventions, architectural decisions, domain knowledge, or existing patterns.
 
@@ -23,7 +24,7 @@ The Meta MCP Agent solves this by providing **semantic discovery**—the LLM ask
 ## Architecture Overview
 - id: meta_mcp_agent.architecture
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -63,14 +64,16 @@ The Meta MCP Agent solves this by providing **semantic discovery**—the LLM ask
 ## MCP Tools Specification
 - id: meta_mcp_agent.tools
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 The Meta MCP Server exposes the following tools via the Model Context Protocol.
 
 ### Tool: discover_context
 - id: meta_mcp_agent.tools.discover_context
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Analyzes a task description and returns ranked recommendations of relevant knowledge bases.
 
@@ -169,7 +172,8 @@ Analyzes a task description and returns ranked recommendations of relevant knowl
 ### Tool: retrieve_knowledge
 - id: meta_mcp_agent.tools.retrieve_knowledge
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Fetches the full content of one or more knowledge base nodes.
 
@@ -225,7 +229,8 @@ Fetches the full content of one or more knowledge base nodes.
 ### Tool: list_knowledge_bases
 - id: meta_mcp_agent.tools.list_knowledge_bases
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Returns a catalog of all available knowledge bases with their metadata.
 
@@ -276,7 +281,8 @@ Returns a catalog of all available knowledge bases with their metadata.
 ### Tool: search_knowledge
 - id: meta_mcp_agent.tools.search_knowledge
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Performs full-text and semantic search across all knowledge bases.
 
@@ -311,7 +317,8 @@ Performs full-text and semantic search across all knowledge bases.
 ### Tool: get_dependencies
 - id: meta_mcp_agent.tools.get_dependencies
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Given a node ID, returns all nodes it depends on (via `blocked_by`) and all nodes that depend on it.
 
@@ -342,14 +349,16 @@ Given a node ID, returns all nodes it depends on (via `blocked_by`) and all node
 ## MCP Resources Specification
 - id: meta_mcp_agent.resources
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 The server exposes knowledge bases as MCP Resources for direct access.
 
 ### Resource: knowledge_base
 - id: meta_mcp_agent.resources.knowledge_base
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Each knowledge base file is exposed as a resource with URI pattern:
 
@@ -380,14 +389,16 @@ knowledge://{base_path}/{file_path}#{node_id}
 ## MCP Prompts Specification
 - id: meta_mcp_agent.prompts
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Pre-defined prompts that guide LLMs in using the knowledge base effectively.
 
 ### Prompt: task_preparation
 - id: meta_mcp_agent.prompts.task_preparation
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Guides the LLM through context discovery before task execution.
 
@@ -424,7 +435,8 @@ If you encounter ambiguity during the task, call `search_knowledge` to find spec
 ### Prompt: knowledge_audit
 - id: meta_mcp_agent.prompts.knowledge_audit
 - status: active
-- type: protocol
+- type: guideline
+- label: ['protocol']
 <!-- content -->
 Helps the LLM verify it has sufficient context for a task.
 
@@ -712,7 +724,7 @@ If `discover_context` returns no relevant results for a legitimate task, the age
 ## Directory Structure
 - id: meta_mcp_agent.directory_structure
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 Recommended project layout for the MCP server implementation.
 
@@ -739,7 +751,7 @@ meta_mcp_agent/
 ## Configuration Schema
 - id: meta_mcp_agent.configuration
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 Server configuration options.
 
@@ -863,7 +875,7 @@ Prevent denial-of-service through resource exhaustion.
 ## Versioning & Compatibility
 - id: meta_mcp_agent.versioning
 - status: active
-- type: context
+- type: documentation
 <!-- content -->
 Protocol version: `1.0.0`
 

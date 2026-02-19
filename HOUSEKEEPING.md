@@ -26,7 +26,8 @@
 
 ## Current Project Housekeeping
 - status: active
-- type: recurring
+- type: plan
+- label: ['recurring']
 <!-- content -->
 
 ## Dependency Network
@@ -48,7 +49,7 @@ Based on codebase analysis (2026-01-28):
 ### 1. Application Layer (Entry Point)
 - id: housekeeping_protocol.dependency_network.1_application_layer_entry_point
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
 <!-- content -->
 - **`app.py`**: Main Streamlit application.
@@ -58,7 +59,7 @@ Based on codebase analysis (2026-01-28):
 ### 2. Core Engine Layer
 - id: housekeeping_protocol.dependency_network.2_core_engine_layer
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
 <!-- content -->
 - **`src/core/engine.py`**: RAGEngine class.
@@ -71,7 +72,7 @@ Based on codebase analysis (2026-01-28):
 ### 3. Data Acquisition Layer (Scrapers)
 - id: housekeeping_protocol.dependency_network.3_data_acquisition_layer_scrapers
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
 <!-- content -->
 - **`src/scrapers/mcmp_scraper.py`**: MCMPScraper class.
@@ -81,7 +82,7 @@ Based on codebase analysis (2026-01-28):
 ### 4. Utilities & Scripts
 - id: housekeeping_protocol.dependency_network.4_utilities_scripts
 - status: active
-- type: context
+- type: documentation
 - last_checked: 2026-01-31
 <!-- content -->
 - **`src/utils/logger.py`**: centralized logging.
