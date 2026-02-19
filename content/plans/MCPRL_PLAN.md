@@ -5,7 +5,6 @@
 - priority: high
 - id: mcprl
 - last_checked: 2026-02-01
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "prototype": "mcp_rl_protocol.py"}
 - label: ['planning']
 <!-- content -->
 This plan specifies a **production-grade implementation** of the MCP-RL Protocol Optimizer: a system where an LLM acts as a frozen policy for an MDP, and a Reinforcement Learning loop optimizes the **protocol layer** (the structured context the LLM receives via MCP) to maximize cumulative reward.

@@ -2,7 +2,6 @@
 - status: active
 - type: agent_skill
 - owner: dev-1
-- context_dependencies: {"guide": "chatbot_personality_guide_gemini.md", "conventions": "MD_CONVENTIONS.md"}
 - label: ['agent']
 <!-- content -->
 - context_dependencies: {"guide": "chatbot_personality_guide_gemini.md", "conventions": "MD_CONVENTIONS.md"}

@@ -1,7 +1,6 @@
 # MCP Protocol & Data Tools Skill
 - status: active
 - type: agent_skill
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "server": "src/mcp/server.py", "tools": "src/mcp/tools.py"}
 - label: ['agent']
 <!-- content -->
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "server": "src/mcp/server.py", "tools": "src/mcp/tools.py"}

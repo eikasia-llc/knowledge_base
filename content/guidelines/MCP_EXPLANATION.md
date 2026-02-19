@@ -2,7 +2,6 @@
 - status: active
 - type: guideline
 - id: mcp-explanation
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "architecture": "UNIFIED_NEXUS_ARCHITECTURE.md"}
 - last_checked: 2026-02-04
 <!-- content -->
 This document provides a comprehensive explanation of the **Model Context Protocol (MCP)** as implemented in this project. It covers the fundamental concepts, architecture, information flow, and how to extend the pattern from JSON data sources to relational databases.

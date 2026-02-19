@@ -2,6 +2,7 @@
 import os
 import re
 import sys
+import json
 from pathlib import Path
 
 # --- Configuration ---
@@ -23,6 +24,8 @@ TYPE_MAPPING = {
     # 'task' is preserved
 }
 
+REGISTRY_PATH = 'dependency_registry.json'
+
 # --- Regex Patterns ---
 HEADER_PATTERN = re.compile(r'^(#+)\s+(.+)$')
 METADATA_START = re.compile(r'^(-\s+\w+:\s+.*|-\s+id:\s+.*)$')
@@ -42,6 +45,18 @@ def get_files_to_process(root_dir):
             if filename.endswith('.md'):
                 files.append(os.path.join(root, filename))
     return files
+
+def load_registry(root_dir):
+    path = os.path.join(root_dir, REGISTRY_PATH)
+    if os.path.exists(path):
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {"version": "1.0.0", "files": {}}
+
+def save_registry(root_dir, registry):
+    path = os.path.join(root_dir, REGISTRY_PATH)
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(registry, f, indent=2)
 
 def infer_label(file_path, existing_type):
     labels = set()
@@ -75,14 +90,13 @@ def infer_type(file_path):
         return 'log'
     return 'documentation'
 
-def process_file(file_path, dry_run=True):
+def process_file(file_path, registry, root_dir, dry_run=True):
     with open(file_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
 
     new_lines = []
-    in_metadata = False
-    metadata_buffer = []
     has_changes = False
+    dependencies_found = {}
     
     # Simple state machine to find headers and their metadata blocks
     i = 0
@@ -121,8 +135,12 @@ def process_file(file_path, dry_run=True):
             
             # 3. Process Metadata if found
             if metadata_block:
-                processed_metadata, changed = process_metadata(metadata_block, file_path)
+                processed_metadata, changed, deps = process_metadata(metadata_block, file_path)
                 
+                if deps:
+                    dependencies_found.update(deps)
+                    has_changes = True # Because we removed it from file
+
                 if changed:
                     has_changes = True
                     if dry_run:
@@ -131,6 +149,8 @@ def process_file(file_path, dry_run=True):
                         print("".join(metadata_block).strip())
                         print("Proposed:")
                         print("".join(processed_metadata).strip())
+                        if deps:
+                            print(f"Extracted Dependencies: {deps}")
                         print("----------------")
 
                 new_lines.extend(processed_metadata)
@@ -149,6 +169,20 @@ def process_file(file_path, dry_run=True):
         new_lines.append(line)
         i += 1
 
+    # Update Registry
+    if dependencies_found:
+        rel_path = os.path.relpath(file_path, root_dir)
+        if rel_path not in registry['files']:
+             registry['files'][rel_path] = {'path': rel_path, 'dependencies': {}}
+        
+        # Merge dependencies
+        current_deps = registry['files'][rel_path].get('dependencies', {})
+        current_deps.update(dependencies_found)
+        registry['files'][rel_path]['dependencies'] = current_deps
+        
+        if not dry_run:
+            print(f"Registry updated for {rel_path}")
+
     if has_changes and not dry_run:
         with open(file_path, 'w', encoding='utf-8') as f:
             f.writelines(new_lines)
@@ -157,6 +191,7 @@ def process_file(file_path, dry_run=True):
 def process_metadata(metadata_lines, file_path):
     parsed = {}
     key_order = []
+    dependencies = {}
     
     # Parse existing
     for line in metadata_lines:
@@ -164,10 +199,25 @@ def process_metadata(metadata_lines, file_path):
         if len(parts) == 2:
             key = parts[0].strip()
             value = parts[1].strip()
+            
+            # Extract Context Dependencies
+            if key == 'context_dependencies':
+                try:
+                    # simplistic json parsing for single line dictionaries
+                    # Remove surrounding quotes if present
+                    val_str = value.strip().strip("'").strip('"')
+                    # Replace single quotes with double quotes for valid JSON
+                    val_str = val_str.replace("'", '"')
+                    deps = json.loads(val_str)
+                    dependencies.update(deps)
+                except Exception as e:
+                    print(f"Warning: Could not parse dependencies in {file_path}: {value} ({e})")
+                continue # Do not add to parsed, effectively removing it
+            
             parsed[key] = value
             key_order.append(key)
             
-    changes = False
+    changes = bool(dependencies)
     
     # 1. Update Type
     original_type = parsed.get('type')
@@ -227,27 +277,29 @@ def process_metadata(metadata_lines, file_path):
     for key in key_order:
         val = parsed[key]
         if key == 'status' and 'active' not in val and 'done' not in val:
-             # Just a check, implementation is to preserve status unless invalid? 
-             # We only touch type and label per instructions.
              pass
              
         new_lines.append(f"- {key}: {val}\n")
         
-    return new_lines, changes
+    return new_lines, changes, dependencies
 
 if __name__ == "__main__":
     dry_run = '--dry-run' in sys.argv
     root = os.getcwd()
     
+    registry = load_registry(root)
+    
     if dry_run:
         print("Running in DRY RUN mode. No files will be changed.")
         
-    # print(f"Scanning {root}...")
     files = get_files_to_process(root)
-    # print(f"Found {len(files)} markdown files.")
     
     for f in files:
         # Skip this script's own convention file logic updates to avoid loops if re-run
         if 'MD_CONVENTIONS.md' in f:
              continue
-        process_file(f, dry_run=dry_run)
+        process_file(f, registry, root, dry_run=dry_run)
+        
+    if not dry_run:
+        save_registry(root, registry)
+        print(f"Saved updated registry to {REGISTRY_PATH}")

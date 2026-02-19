@@ -2,7 +2,6 @@
 - status: proposed
 - type: plan
 - owner: antigravity
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "rag_patterns": "RAGS_AGENT.md", "graph_reference": "mcmp_graph.md"}
 - label: ['planning']
 <!-- content -->
 This document outlines the strategy for building a **slow, respectful LinkedIn profile scraper** that feeds into a personal RAG-based knowledge base with a **Social Graph layer**. The system prioritizes safety (avoiding bans), legal caution (personal use only), and semantic richness (optimized for vector search and graph traversal).
@@ -1190,7 +1189,6 @@ class GraphBuilder:
 # LinkedIn Social Graph
 - status: active
 - type: documentation
-- context_dependencies: {'utils': 'src/graph/utils.py'}
 - label: ['planning']
 <!-- content -->
 

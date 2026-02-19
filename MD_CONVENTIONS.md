@@ -1,8 +1,7 @@
 # Markdown-JSON Hybrid Schema Conventions
 - status: active
 - type: guideline
-<!-- content -->
-- context_dependencies: {"project_root": "README.md"}
+- id: md_json_hybrid_schema_conventions
 <!-- content -->
 This document defines the strict conventions for the **Markdown-JSON Hybrid Schema** used in this project for hierarchical task coordination and agentic planning.
 
@@ -87,7 +86,6 @@ The following fields are standard, but the schema allows extensibility.
 | `blocked_by`| `list` | List of explicit dependencies (IDs or relative paths) **(Optional)** |
 | `priority` | `enum` | `draft`, `low`, `medium`, `high`, `critical` **(Optional)** |
 | `id` | `string` | Unique identifier for the node (e.g., `project.component.task`). Used for robust merging and dependency tracking. **(Optional)** |
-| `context_dependencies` | `dict` | map of semantic aliases to file paths (e.g., `{ "guideline": "CONVENTIONS.md" }`). Defines required reading for this node. **(Optional)** |
 | `last_checked` | `string` | This is the date of the last time this node was modified, including change of status. **(Optional)** |
 | `label` | `list` | Array of strings (e.g., 'template', 'draft') **(Optional)** |
 
@@ -109,33 +107,20 @@ For extended fields consider:
  - The key has no spaces (words are separated with dash or underscore)
  - The value is single line
 
-### 4. Context Dependencies
+### 4. Dependencies
 - status: active
 <!-- content -->
-> [!WARNING]
-> This field is **DEPRECATED**. Dependencies are now managed centrally in `dependency_registry.json`.
-> Do not add `context_dependencies` metadata to new files.
-> Use `python src/dependency_manager.py add` to declare dependencies if automatic detection fails.
+Dependencies are managed centrally in `dependency_registry.json`. 
 
-(Legacy definition preserved for reference)
-A node may define a `context_dependencies` map to declare external files required to understand or execute it.
+**Do not add `context_dependencies` metadata to files.**
 
-**Structure**: A JSON-style dictionary where:
-- **Key**: A semantic alias (e.g., `role`, `guideline`, `schema`) describing *why* the file is needed.
-- **Value**: Relative path to the dependency.
+To add a dependency:
+1.  Use `python manager/dependency_manager.py add <file> <dependency>` (if available).
+2.  Or manually edit `dependency_registry.json`.
 
-<!-- MERGED FROM NEWER VERSION -->
-
-A node may define a `context_dependencies` map to declare external files required to understand or execute it.
-
-**Structure**: A JSON-style dictionary where:
-- **Key**: A semantic alias (e.g., `role`, `guideline`, `schema`) describing *why* the file is needed.
-- **Value**: Relative path to the dependency.
-
-**Resolution Protocol (Recursive)**:
-1.  **Depth-First**: Agents must resolve dependencies recursively. If File A depends on B, and B depends on C, the agent reads C, then B, then A.
-2.  **Flat Definition**: Avoid defining the entire tree in one file. Each file should only declare its immediate dependencies.
-3.  **Aliases**: Use consistent keys (e.g., `manager_agent`, `conventions`) to help the LLM categorize the context.
+**Resolution Protocol**:
+1.  **Registry First**: Tools and agents look up the current file in the registry to find its dependencies.
+2.  **Recursive Resolution**: Dependencies are resolved recursively to build the full context.
 
 ### 5. Context & Description
 - status: active

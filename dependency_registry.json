@@ -384,7 +384,8 @@
         "rag_patterns": "RAGS_AGENT.md",
         "graph_reference": "mcmp_graph.md",
         "agents": "AGENTS.md",
-        "project_root": "README.md"
+        "project_root": "README.md",
+        "utils": "src/graph/utils.py"
       }
     },
     "content/agents/PERSONALITY_AGENT.md": {
@@ -610,6 +611,44 @@
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
+      }
+    },
+    "content/plans/MCPRL_PLAN.md": {
+      "path": "content/plans/MCPRL_PLAN.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "prototype": "mcp_rl_protocol.py"
+      }
+    },
+    "content/agents/LATENCY_AGENT.md": {
+      "path": "content/agents/LATENCY_AGENT.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "engine": "src/core/engine.py",
+        "server": "src/mcp/server.py",
+        "logger": "src/utils/logger.py",
+        "tools": "src/mcp/tools.py"
+      }
+    },
+    "content/guidelines/MCP_EXPLANATION.md": {
+      "path": "content/guidelines/MCP_EXPLANATION.md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "architecture": "UNIFIED_NEXUS_ARCHITECTURE.md"
+      }
+    },
+    "content/guidelines/MCP_EXPLANATION (1).md": {
+      "path": "content/guidelines/MCP_EXPLANATION (1).md",
+      "dependencies": {
+        "conventions": "MD_CONVENTIONS.md",
+        "architecture": "UNIFIED_NEXUS_ARCHITECTURE.md"
+      }
+    },
+    "content/guidelines/ENGINE_EXPLANATION.md": {
+      "path": "content/guidelines/ENGINE_EXPLANATION.md",
+      "dependencies": {
+        "mcp": "MCP_EXPLANATION.md",
+        "conventions": "MD_CONVENTIONS.md"
       }
     }
   }

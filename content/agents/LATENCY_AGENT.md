@@ -1,7 +1,6 @@
 # Latency Monitoring & Optimization Skill
 - status: active
 - type: agent_skill
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "engine": "src/core/engine.py", "server": "src/mcp/server.py", "logger": "src/utils/logger.py", "tools": "src/mcp/tools.py"}
 - label: ['agent']
 <!-- content -->
 This document defines the latency instrumentation in the MCMP Chatbot pipeline, documents known bottlenecks, and provides guidelines for diagnosing and optimizing response times.
