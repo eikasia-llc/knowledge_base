@@ -132,6 +132,20 @@ Define your variables first:
 -   Import fonts in `index.html` or `App.css`.
 -   Use `font-weight` to distinguish headers from body.
 
+### 4.4 Framework-Specific Styling (e.g., Streamlit, React)
+- status: active
+- type: agent_skill
+- label: [agent]
+<!-- content -->
+When working with component-based frameworks (like Streamlit, React, or Vue), **do not try to wrap native interactive widgets inside manually injected raw HTML `<div>` blocks** just to apply CSS.
+
+**The Problem:** Framework components render independently of your raw HTML injections. For example, in Streamlit, a button component will render outside of a manually injected `<div class="wrapper">`, breaking your intended CSS hierarchy and layout.
+
+**The Solution:**
+1.  **Use Native Providers:** Rely on the framework's native layout systems (e.g., `st.columns`, containers) rather than building custom HTML grids around them.
+2.  **Target Framework Selectors:** Inject CSS that targets the framework's generated `data-testid` or standard class names directly (e.g., `[data-testid="stSidebar"] button`), rather than creating arbitrary wrapper classes.
+3.  **Respect the DOM:** If a framework expects to own the DOM structure for its interactive elements, do not try to forcibly nest them inside disconnected HTML strings.
+
 ---
 
 ## 5. Definition of Done
