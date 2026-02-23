@@ -48,11 +48,11 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - `bin/`: Executable scripts and binaries.
 - `tests/`: Test suite.
 - `AGENTS.md`: Core agent protocols and workflow.
-- `AGENTS_LOG.md`: Log of agent interventions and changes.
+- `content/logs/AGENTS_LOG.md`: Log of agent interventions and changes.
 - `HOUSEKEEPING.md`: Routine maintenance protocols.
-- `INFRASTRUCTURE.md`: Deployment and cloud resource documentation.
+- `content/documentation/INFRASTRUCTURE_DOC.md`: Deployment and cloud resource documentation.
 - `MD_CONVENTIONS.md`: The Markdown-JSON Hybrid Schema specification.
-- `META_MCP_AGENT_GUIDELINE.md`: Meta-Agent documentation and MCP server specifications.
+- `content/guidelines/META_MCP_GUIDELINE.md`: Meta-Agent documentation and MCP server specifications.
 - `dependency_registry.json`: The source of truth for file relationships.
 <!-- content -->
 
@@ -100,7 +100,7 @@ The `Dockerfile` uses a **multi-stage build** definition to keep the final image
 2.  **Final Stage**: Copies only the pre-compiled wheels and source code (`src/`) into a slim `python:3.11-slim` runtime image. Includes `git` for repository synchronization features.
 
 ### Infrastructure & Security
-For a deep dive into the architecture, network flow, and security layers, refer to [INFRASTRUCTURE.md](INFRASTRUCTURE.md).
+For a deep dive into the architecture, network flow, and security layers, refer to [content/documentation/INFRASTRUCTURE_DOC.md](content/documentation/INFRASTRUCTURE_DOC.md).
 -   **Security**: Access is restricted via IAP; only authorized Organization users can access the web interface.
 -   **Secrets**: GitHub tokens are managed via **Secret Manager** and injected into the container at runtime.
 
@@ -147,7 +147,7 @@ To enable dynamic context discovery in your IDE:
 
 ## Deploying and Cloud Resources
 
-refer to `INFRASTRUCTURE.md`
+refer to `content/documentation/INFRASTRUCTURE_DOC.md`
 
 ### Access without Identity-Aware Proxy (IAP), by a proxy
 

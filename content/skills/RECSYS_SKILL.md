@@ -32,7 +32,7 @@ These paradigms address different aspects of recommendation:
 2. **Interface Compliance:** New models must follow the existing patterns in `src/models/`.
 3. **Data Integrity:** Never modify raw data files in `data/raw/`. All transformations go to `data/interim/` or `data/processed/`.
 4. **Testing:** All new functionality must have corresponding tests in `tests/`.
-5. **Documentation:** Update `AGENTS_LOG.md` after significant implementations.
+5. **Documentation:** Update `content/logs/AGENTS_LOG.md` after significant implementations.
 
 ## Project Structure
 - status: active
@@ -772,7 +772,7 @@ Before any RecSys implementation is complete, verify:
 - type: agent_skill
 - label: ['agent']
 <!-- content -->
-When implementing RecSys features, log in `AGENTS_LOG.md`:
+When implementing RecSys features, log in `content/logs/AGENTS_LOG.md`:
 
 ```markdown
 

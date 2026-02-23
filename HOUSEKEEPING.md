@@ -7,7 +7,7 @@
 3. Proceed doing different sanity checks and unit tests from root scripts to leaves.
 4. Compile all errors and tests results into a report. Make sure that the report uses the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
 6. Print that report in the Latest Report subsection below, overwriting previous reports.
-7. Add that report to the AGENTS_LOG.md.
+7. Add that report to the content/logs/AGENTS_LOG.md.
 
 <!-- MERGED FROM NEWER VERSION -->
 
@@ -21,7 +21,7 @@
 6. Proceed doing different sanity checks and unit tests from root scripts to leaves.
 7. Compile all errors and tests results into a report. Make sure that the report uses the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
 8. Print that report in the Latest Report subsection below, overwriting previous reports.
-9. Add that report to the AGENTS_LOG.md.
+9. Add that report to the content/logs/AGENTS_LOG.md.
 10. Commit and push the changes.
 
 ## Current Project Housekeeping

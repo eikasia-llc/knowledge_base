@@ -34,7 +34,7 @@ These environments have well-understood dynamics that make them amenable to mode
 2. **Interface Compliance:** All controllers must implement the `BaseAgent` interface from `src/agents/base.py`.
 3. **New Implementation:** Create new files in `src/agents/` for control-based agents.
 4. **Testing:** Every new controller must have corresponding tests in `tests/`.
-5. **Documentation:** Update `AGENTS_LOG.md` after significant implementations.
+5. **Documentation:** Update `content/logs/AGENTS_LOG.md` after significant implementations.
 
 ## Control Methods to Implement
 - status: active
@@ -543,7 +543,7 @@ def benchmark_homeostasis_controllers():
 <!-- content -->
 - [ ] Update `AGENTS.md` with control agent descriptions
 - [ ] Add control theory references to `docs/`
-- [ ] Log all implementations in `AGENTS_LOG.md`
+- [ ] Log all implementations in `content/logs/AGENTS_LOG.md`
 
 ## References & Resources
 - status: active

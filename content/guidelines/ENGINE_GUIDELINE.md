@@ -1,6 +1,6 @@
 # Software Engines — Explanation
 - status: active
-- type: documentation
+- type: guideline
 - id: engine-explanation
 - last_checked: 2026-02-07
 <!-- content -->

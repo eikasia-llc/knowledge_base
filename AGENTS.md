@@ -11,10 +11,10 @@
 - status: active
 - type: agent_skill
 <!-- content -->
-- The whole trick is providing the AI Assistants with context, and this is done using the *.md files (AGENTS.md, AGENTS_LOG.md, and the AI_AGENTS folder)
+- The whole trick is providing the AI Assistants with context, and this is done using the *.md files (AGENTS.md, content/logs/AGENTS_LOG.md, and the AI_AGENTS folder)
 - Make sure that when writing *.md files, you use the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
 - Learn how to work the Github, explained below.
-- Keep logs of changes in AGENTS_LOG.md
+- Keep logs of changes in content/logs/AGENTS_LOG.md
 - Make sure to execute the HOUSEKEEPING.md protocol often.
 - Always ask several forms of verification, so because the self-loop of the chain of thought improves performance.
 - Impose restrictions and constraints explicitly in the context.
@@ -39,8 +39,8 @@
 - status: active
 - type: agent_skill
 <!-- content -->
-*   **Documentation Logs (`AGENTS_LOG.md`):**
-    *   **Rule:** Every agent that performs a significant intervention or modifies the codebase **MUST** update the `AGENTS_LOG.md` file.
+*   **Documentation Logs (`content/logs/AGENTS_LOG.md`):**
+    *   **Rule:** Every agent that performs a significant intervention or modifies the codebase **MUST** update the `content/logs/AGENTS_LOG.md` file.
     *   **Action:** Append a new entry under the "Intervention History" section summarizing the task, the changes made, and the date.
 
 ## DEVELOPMENT RULES & CONSTRAINTS

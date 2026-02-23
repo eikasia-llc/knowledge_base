@@ -89,7 +89,7 @@ project_name/
 │
 ├── requirements.txt                     # Python dependencies (root level)
 ├── AGENTS.md                            # Project documentation for AI
-├── AGENTS_LOG.md                        # Change log
+├── content/logs/AGENTS_LOG.md                        # Change log
 └── README.md                            # Project overview
 ```
 

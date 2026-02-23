@@ -95,7 +95,7 @@ Learning is only valid if it is **codified**—written down in a way that preven
     - If a tool needed parameters, update the **Agent's Tool Section**.
     - If a heuristic failed, update the **Script**.
     - If a dependency was missing, update the **Metadata**.
-3.  **Log the Learning**: In `AGENTS_LOG.md` (or the specific agent's log), explicitly state what was learned:
+3.  **Log the Learning**: In `content/logs/AGENTS_LOG.md` (or the specific agent's log), explicitly state what was learned:
     > "Updated `apply_types.py` to support content scanning because filename matching failed for `INFRASTRUCTURE_DEFINITIONS_DOC.md`."
 
 ## 4. Example Case Study

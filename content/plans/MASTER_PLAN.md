@@ -231,7 +231,7 @@ Repository resources categorized by their function.
 - [README](../../README.md)
 - [MD_CONVENTIONS](../../MD_CONVENTIONS.md)
 - [AGENTS](../../AGENTS.md)
-- [AGENTS_LOG](../../AGENTS_LOG.md)
+- [AGENTS_LOG](../../content/logs/AGENTS_LOG.md)
 - [DAG_Example_DOC](../../language/example/DAG_Example_DOC.md)
 
 ## Implementation Roadmap

@@ -105,5 +105,5 @@ Instead of iterating `network.predecessors(agent.id)`, use the Adjacency Matrix.
 - [x] Implement matrix-based update logic.
 - [x] Verify against `model.py` with a shared seed.
 - [x] Run visual verification notebooks (`basic_model_testing.ipynb`, `run_simulations_test.ipynb`).
-- [x] Log results in `AGENTS_LOG.md`.
+- [x] Log results in `content/logs/AGENTS_LOG.md`.
 - [x] Implement and verify Bayes Agent vectorization.

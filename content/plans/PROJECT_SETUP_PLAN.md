@@ -230,7 +230,7 @@ notebooks/
 ```
 project_name/
 ├── AGENTS.md              # Main documentation for AI assistants
-├── AGENTS_LOG.md          # Change log / intervention history
+├── content/logs/AGENTS_LOG.md          # Change log / intervention history
 ├── HOUSEKEEPING.md        # Testing protocol
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project overview
@@ -252,7 +252,7 @@ project_name/
 ```bash
 mkdir project_name && cd project_name
 mkdir -p frontend backend/api backend/engine data/sessions AI_AGENTS tests notebooks
-touch requirements.txt AGENTS.md AGENTS_LOG.md HOUSEKEEPING.md README.md
+touch requirements.txt AGENTS.md content/logs/AGENTS_LOG.md HOUSEKEEPING.md README.md
 ```
 
 ### Initialize Frontend

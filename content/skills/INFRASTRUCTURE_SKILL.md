@@ -66,7 +66,7 @@ Your workspace (the root directory in which you can access files) is git version
 1. **Immutable Core Files:** Only modify `INFRASTRUCTURE_SKILL.md` when doing housekeeping related tasks, never when executing common tasks. If while executing a common task you detect that `INFRASTRUCTURE_SKILL.md` should be updated, document the required change as a TO-DO in HOUSEKEEPING.md
 2. **Repository Interaction:** Only fetch for updates during housekeeping related tasks. If you deem required to push changes, always push to a branch related to the task being performed and open a pull request.
 3. **Fine Grained Worklog:** When making changes to ifrastructure, take a screenshot of the configuration before making changes and after making changes.
-4. **Documentation:** Update `AGENTS_LOG.md` after significant implementations.
+4. **Documentation:** Update `content/logs/AGENTS_LOG.md` after significant implementations.
 
 ## Tools
 - id: infrastructure_agent_context.tools
@@ -96,7 +96,7 @@ _IGNORE REST OF THE DOCUMENT_
 
 <!-- content -->
 
-When doing tasks, log in `AGENTS_LOG.md`:
+When doing tasks, log in `content/logs/AGENTS_LOG.md`:
 
 ```markdown
 

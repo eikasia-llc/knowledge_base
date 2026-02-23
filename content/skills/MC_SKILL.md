@@ -282,7 +282,7 @@ This is empirically verified in `root_influence_analysis.py`.
 - type: agent_skill
 - label: ['agent']
 <!-- content -->
-When implementing MC analysis features, log in `AGENTS_LOG.md`:
+When implementing MC analysis features, log in `content/logs/AGENTS_LOG.md`:
 
 ```markdown
 

@@ -83,7 +83,7 @@ When asked to "Clean Repos" or "Import Data", follow this strict sequence:
     - **Disregard** `README.md`: These are repository-specific and should not overwrite the Knowledge Base entry point.
     - **Disregard** `TODOS.md` and other temporary artifacts.
 8.  **Report**: Summarize the number of files imported and confirm their schema compliance.
-9.  **Log**: Update `manager/cleaner/CLEANING_LOGS.md` with:
+9.  **Log**: Update `manager/cleaner/CLEANING_LOGS_LOG.md` with:
     - Date and Time
     - Repository URL and Branch
     - Number of files processed
@@ -96,5 +96,5 @@ When asked to "Clean Repos" or "Import Data", follow this strict sequence:
     - **Action**: Scan the project to update `dependency_registry.json` with any new file relationships.
     - **Command**: `python3 src/dependency_manager.py scan`
 12. **Global Log**:
-    - **Action**: Update `content/agents/AGENTS_LOG.md` with a new entry in the "Intervention History".
+    - **Action**: Update `content/agents/content/logs/AGENTS_LOG.md` with a new entry in the "Intervention History".
     - **Details**: Include Date, Action ("Cleaned Repos"), and a summary of files processed.
