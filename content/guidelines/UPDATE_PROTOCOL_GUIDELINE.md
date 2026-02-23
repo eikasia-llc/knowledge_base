@@ -3,14 +3,14 @@
 - status: active
 - type: guideline
 - last_checked: 2026-01-25
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 This protocol defines the standard procedure for **learning from experience** and systematically updating the codebase, agents, and instructions. It transforms ad-hoc bug fixes into permanent system improvements.
 
 ## 1. Triggers
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 An update cycle is triggered by:
 1.  **Execution Failure**: A script fails (e.g., `git clone` error, `ImportError`).
@@ -25,7 +25,7 @@ An update cycle is triggered by:
 ## 2. The Learning Cycle (OODA Loop)
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 When a trigger occurs, the acting agent MUST execute the following loop *before* marking the task as complete.
 
@@ -34,7 +34,7 @@ When a trigger occurs, the acting agent MUST execute the following loop *before*
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Capture the raw evidence of the failure or inefficiency.
 - **Log it**: Record the exact error message, traceback, or confusing output.
@@ -45,7 +45,7 @@ Capture the raw evidence of the failure or inefficiency.
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Analyze the root cause. Ask:
 - *Why did the code fail?* (e.g., "The filename pattern didn't match 'DEFINITIONS'.")
@@ -57,7 +57,7 @@ Analyze the root cause. Ask:
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Determine the level of fix required:
 1.  **Level 1 (Hotfix)**: Just fix the immediate bug to unblock. (Allowed only for low-priority/one-off issues).
@@ -70,7 +70,7 @@ Determine the level of fix required:
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Execute the fix.
 - Apply the code change.
@@ -79,7 +79,7 @@ Execute the fix.
 ## 3. Codification (The "Latch")
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Learning is only valid if it is **codified**—written down in a way that prevents the same error from happening to *any* instance of the agent in the future.
 
@@ -88,7 +88,7 @@ Learning is only valid if it is **codified**—written down in a way that preven
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1.  **Prefer Code over Text**: If you can write a script to enforce a rule (like `clean_repo.py`), do that instead of just writing "Please do X" in a markdown file.
 2.  **Update the Source of Truth**:
@@ -101,7 +101,7 @@ Learning is only valid if it is **codified**—written down in a way that preven
 ## 4. Example Case Study
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Incident**: `apply_types.py` skipped `INFRASTRUCTURE_DEFINITIONS_DOC.md` because "DEFINITIONS" wasn't in its allowlist.
 **Observation**: The file existed but had no metadata type.

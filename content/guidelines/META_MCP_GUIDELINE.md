@@ -4,7 +4,7 @@
 - type: guideline
 - owner: eikasia-llc
 - last_checked: 2025-01-29
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 This document defines the **Meta MCP Agent Protocol**—a Model Context Protocol (MCP) server that enables coding assistants to dynamically discover, select, and retrieve relevant knowledge from structured knowledge bases.
 
@@ -14,7 +14,7 @@ The core insight: before an LLM can effectively perform a task, it must first un
 - id: meta_mcp_agent.problem_statement
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Coding assistants face a fundamental challenge: they cannot know what they don't know. When presented with a task, an LLM may lack critical context about project conventions, architectural decisions, domain knowledge, or existing patterns.
 
@@ -26,7 +26,7 @@ The Meta MCP Agent solves this by providing **semantic discovery**—the LLM ask
 - id: meta_mcp_agent.architecture
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -67,7 +67,7 @@ The Meta MCP Agent solves this by providing **semantic discovery**—the LLM ask
 - id: meta_mcp_agent.tools
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 The Meta MCP Server exposes the following tools via the Model Context Protocol.
 
@@ -75,7 +75,7 @@ The Meta MCP Server exposes the following tools via the Model Context Protocol.
 - id: meta_mcp_agent.tools.discover_context
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Analyzes a task description and returns ranked recommendations of relevant knowledge bases.
 
@@ -175,7 +175,7 @@ Analyzes a task description and returns ranked recommendations of relevant knowl
 - id: meta_mcp_agent.tools.retrieve_knowledge
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Fetches the full content of one or more knowledge base nodes.
 
@@ -232,7 +232,7 @@ Fetches the full content of one or more knowledge base nodes.
 - id: meta_mcp_agent.tools.list_knowledge_bases
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Returns a catalog of all available knowledge bases with their metadata.
 
@@ -284,7 +284,7 @@ Returns a catalog of all available knowledge bases with their metadata.
 - id: meta_mcp_agent.tools.search_knowledge
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Performs full-text and semantic search across all knowledge bases.
 
@@ -320,7 +320,7 @@ Performs full-text and semantic search across all knowledge bases.
 - id: meta_mcp_agent.tools.get_dependencies
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Given a node ID, returns all nodes it depends on (via `blocked_by`) and all nodes that depend on it.
 
@@ -352,7 +352,7 @@ Given a node ID, returns all nodes it depends on (via `blocked_by`) and all node
 - id: meta_mcp_agent.resources
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 The server exposes knowledge bases as MCP Resources for direct access.
 
@@ -360,7 +360,7 @@ The server exposes knowledge bases as MCP Resources for direct access.
 - id: meta_mcp_agent.resources.knowledge_base
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Each knowledge base file is exposed as a resource with URI pattern:
 
@@ -392,7 +392,7 @@ knowledge://{base_path}/{file_path}#{node_id}
 - id: meta_mcp_agent.prompts
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Pre-defined prompts that guide LLMs in using the knowledge base effectively.
 
@@ -400,7 +400,7 @@ Pre-defined prompts that guide LLMs in using the knowledge base effectively.
 - id: meta_mcp_agent.prompts.task_preparation
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Guides the LLM through context discovery before task execution.
 
@@ -438,7 +438,7 @@ If you encounter ambiguity during the task, call `search_knowledge` to find spec
 - id: meta_mcp_agent.prompts.knowledge_audit
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Helps the LLM verify it has sufficient context for a task.
 
@@ -464,7 +464,7 @@ Helps the LLM verify it has sufficient context for a task.
 - id: meta_mcp_agent.implementation
 - status: active
 - type: plan
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Step-by-step instructions for implementing the Meta MCP Server.
 
@@ -474,7 +474,7 @@ Step-by-step instructions for implementing the Meta MCP Server.
 - type: task
 - estimate: 2d
 - blocked_by: []
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Build the knowledge base index that powers discovery.
 
@@ -511,7 +511,7 @@ class IndexEntry:
 - type: task
 - estimate: 2d
 - blocked_by: [meta_mcp_agent.implementation.index_builder]
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Implement the matching logic for `discover_context`.
 
@@ -545,7 +545,7 @@ Implement the matching logic for `discover_context`.
 - type: task
 - estimate: 3d
 - blocked_by: [meta_mcp_agent.implementation.semantic_matcher]
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Implement the MCP server using the official Python SDK.
 
@@ -588,7 +588,7 @@ async def task_preparation_prompt(task: str) -> str:
 - type: task
 - estimate: 1d
 - blocked_by: [meta_mcp_agent.implementation.index_builder]
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Implement efficient index updates when knowledge bases change.
 
@@ -606,7 +606,7 @@ Implement efficient index updates when knowledge bases change.
 - type: task
 - estimate: 1d
 - blocked_by: [meta_mcp_agent.implementation.server_core]
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Provide integration examples for popular coding assistants.
 
@@ -656,7 +656,7 @@ Provide integration examples for popular coding assistants.
 - id: meta_mcp_agent.agent_behavior
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Instructions for LLMs on how to effectively use this protocol.
 
@@ -664,7 +664,7 @@ Instructions for LLMs on how to effectively use this protocol.
 - id: meta_mcp_agent.agent_behavior.discovery_first
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Always call `discover_context` before starting a non-trivial task.**
 
@@ -682,7 +682,7 @@ Before writing code, modifying files, or making architectural decisions, the age
 - id: meta_mcp_agent.agent_behavior.thresholds
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Use these thresholds when deciding which recommendations to load:
 
@@ -697,7 +697,7 @@ Use these thresholds when deciding which recommendations to load:
 - id: meta_mcp_agent.agent_behavior.token_budget
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Respect context window limits by managing loaded knowledge.
 
@@ -711,7 +711,7 @@ Respect context window limits by managing loaded knowledge.
 - id: meta_mcp_agent.agent_behavior.citing
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When applying knowledge from the knowledge base, cite the source.
 
@@ -726,7 +726,7 @@ This enables humans to verify the agent's reasoning and trace decisions back to 
 - id: meta_mcp_agent.agent_behavior.feedback
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 If `discover_context` returns no relevant results for a legitimate task, the agent SHOULD:
 
@@ -739,7 +739,7 @@ If `discover_context` returns no relevant results for a legitimate task, the age
 - id: meta_mcp_agent.directory_structure
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Recommended project layout for the MCP server implementation.
 
@@ -767,7 +767,7 @@ meta_mcp_agent/
 - id: meta_mcp_agent.configuration
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Server configuration options.
 
@@ -775,7 +775,7 @@ Server configuration options.
 
 # config/default.yaml
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 knowledge_base:
   root_path: "./knowledge_bases"
@@ -809,7 +809,7 @@ server:
 - id: meta_mcp_agent.testing
 - status: active
 - type: plan
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Validation approach for the implementation.
 
@@ -817,7 +817,7 @@ Validation approach for the implementation.
 - id: meta_mcp_agent.testing.unit
 - status: todo
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Test individual components in isolation.
 
@@ -831,7 +831,7 @@ Test individual components in isolation.
 - status: todo
 - type: task
 - blocked_by: [meta_mcp_agent.testing.unit]
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Test the full discovery → retrieval flow.
 
@@ -846,7 +846,7 @@ Test the full discovery → retrieval flow.
 - status: todo
 - type: task
 - blocked_by: [meta_mcp_agent.testing.integration]
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Snapshot tests with known-good outputs.
 
@@ -860,7 +860,7 @@ Snapshot tests with known-good outputs.
 - id: meta_mcp_agent.security
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Security boundaries for the MCP server.
 
@@ -868,7 +868,7 @@ Security boundaries for the MCP server.
 - id: meta_mcp_agent.security.path_traversal
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 All file access MUST be restricted to the configured `knowledge_base.root_path`.
 
@@ -885,7 +885,7 @@ def validate_path(requested_path: str, root: Path) -> Path:
 - id: meta_mcp_agent.security.limits
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Prevent denial-of-service through resource exhaustion.
 
@@ -900,7 +900,7 @@ Prevent denial-of-service through resource exhaustion.
 - id: meta_mcp_agent.versioning
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Protocol version: `1.0.0`
 
@@ -917,7 +917,7 @@ Protocol version: `1.0.0`
 - id: meta_mcp_agent.future
 - status: draft
 - type: plan
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Potential enhancements for future versions.
 
@@ -925,7 +925,7 @@ Potential enhancements for future versions.
 - id: meta_mcp_agent.future.multi_repo
 - status: draft
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Allow indexing knowledge bases from multiple repositories with namespace isolation.
 
@@ -933,7 +933,7 @@ Allow indexing knowledge bases from multiple repositories with namespace isolati
 - id: meta_mcp_agent.future.write_back
 - status: draft
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Enable agents to propose updates to knowledge bases when they discover gaps or outdated information.
 
@@ -941,7 +941,7 @@ Enable agents to propose updates to knowledge bases when they discover gaps or o
 - id: meta_mcp_agent.future.analytics
 - status: draft
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Track which knowledge bases are most frequently accessed to inform maintenance priorities.
 
@@ -949,6 +949,6 @@ Track which knowledge bases are most frequently accessed to inform maintenance p
 - id: meta_mcp_agent.future.embedding_cache
 - status: draft
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Share embedding caches across team members to reduce cold-start latency.

@@ -2,7 +2,7 @@
 - status: active
 - type: agent_skill
 - owner: dev-1
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - context_dependencies: {"guide": "chatbot_personality_guide_gemini.md", "conventions": "MD_CONVENTIONS.md"}
 <!-- content -->
@@ -11,7 +11,7 @@ This agent skill defines how to create, refine, and maintain chatbot personality
 ## Purpose
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The Personality Agent can:
 1. **Create** new personality files from requirements
@@ -21,7 +21,7 @@ The Personality Agent can:
 ## Architecture: Personality + Context
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 > [!IMPORTANT]
 > Personality files contain only **static** content. Dynamic context (date, retrieved docs, graph data) is injected at runtime by the engine.
@@ -52,14 +52,14 @@ The Personality Agent can:
 ## Workflow
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Follow these steps when working with personalities:
 
 ### 1. Gather Requirements
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Before creating a personality, understand:
 - **Audience**: Who interacts with the chatbot?
@@ -70,7 +70,7 @@ Before creating a personality, understand:
 ### 2. Create Personality Files
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 #### Single File (Simple)
@@ -78,7 +78,7 @@ Before creating a personality, understand:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Create `prompts/personality.md`:
 ```markdown
@@ -86,7 +86,7 @@ Create `prompts/personality.md`:
 # [Chatbot Name]
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ## Identity
@@ -94,7 +94,7 @@ Create `prompts/personality.md`:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Name, role, affiliation
 
@@ -103,7 +103,7 @@ Name, role, affiliation
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Key adjectives (precise, warm, scholarly)
 
@@ -112,7 +112,7 @@ Key adjectives (precise, warm, scholarly)
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Numbered rules for responses
 
@@ -121,7 +121,7 @@ Numbered rules for responses
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Explicit prohibitions
 ```
@@ -131,7 +131,7 @@ Explicit prohibitions
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Split into `prompts/`:
 - `base_identity.md` – Core traits
@@ -142,7 +142,7 @@ Split into `prompts/`:
 ### 3. Test and Iterate
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. Run test queries covering typical questions
 2. Evaluate responses against personality spec
@@ -153,7 +153,7 @@ Split into `prompts/`:
 ## Best Practices
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 | Practice | Bad | Good |
 |----------|-----|------|
@@ -164,7 +164,7 @@ Split into `prompts/`:
 ## Integration Checklist
 - status: active
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [ ] Create `prompts/` directory
 - [ ] Write personality file(s) following schema
@@ -176,7 +176,7 @@ Split into `prompts/`:
 ## Example: Leopold (MCMP Assistant)
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The MCMP chatbot "Leopold" demonstrates effective personality design:
 
@@ -187,7 +187,7 @@ The MCMP chatbot "Leopold" demonstrates effective personality design:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ## Identity
@@ -195,7 +195,7 @@ The MCMP chatbot "Leopold" demonstrates effective personality design:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Name**: Leopold
 - **Character**: Intelligent and helpful, with the efficient precision 
@@ -207,7 +207,7 @@ The MCMP chatbot "Leopold" demonstrates effective personality design:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Efficient and precise**: Like a knowledgeable German civil servant
 - **Politely formal**: Respectful without being stiff
@@ -225,7 +225,7 @@ The MCMP chatbot "Leopold" demonstrates effective personality design:
 ## Tips from Implementation
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. **Names matter**: A named persona ("Leopold") feels more consistent than "the assistant"
 2. **Use archetypes**: "German civil servant" immediately evokes precision, thoroughness, formality

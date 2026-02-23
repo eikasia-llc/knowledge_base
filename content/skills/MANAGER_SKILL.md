@@ -3,14 +3,14 @@
 - type: agent_skill
 - id: agent.manager
 - owner: central-planner
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 You are the **Manager Agent**. Your primary responsibility is to oversee the "Grand Strategy" of the company by tracking, updating, and analyzing the **Master Plan**. You rely on the [Cleaner Agent](../cleaner/CLEANER_SKILL.md) to ingest raw data, but *you* make sense of it.
 
 ## Core Responsibilities
 - status: active
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1.  **Maintain Master Plan**: Keep `manager/planner/MASTER_PLAN.md` synchronized with the reality of all distributed repositories.
 2.  **State Representation**: Analyze the `MASTER_PLAN.md` (via its JSON metadata) to report on:
@@ -21,7 +21,7 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 ## Tools & Scripts
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### 1. `update_master_plan.py`
@@ -29,7 +29,7 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Location**: `manager/planner/update_master_plan.py`
 - **Usage**:
@@ -42,7 +42,7 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Location**: `language/md_parser.py`
 - **Usage**: `python3 ../../language/md_parser.py MASTER_PLAN.md`
@@ -54,7 +54,7 @@ You are the **Manager Agent**. Your primary responsibility is to oversee the "Gr
 ## Workflow Protocol
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 1.  **Sync**: Run `update_master_plan.py --all` to pull the latest state from all projects.
 2.  **Analyze**: Parse `MASTER_PLAN.md` to JSON.

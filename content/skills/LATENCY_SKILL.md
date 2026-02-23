@@ -1,7 +1,7 @@
 # Latency Monitoring & Optimization Skill
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This document defines the latency instrumentation in the MCMP Chatbot pipeline, documents known bottlenecks, and provides guidelines for diagnosing and optimizing response times.
 
@@ -10,7 +10,7 @@ This document defines the latency instrumentation in the MCMP Chatbot pipeline, 
 ## 1. Instrumentation Overview
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The pipeline uses a `log_latency` context manager (`src/utils/logger.py`) that wraps each stage with `time.perf_counter()` and logs elapsed milliseconds as `[LATENCY] stage_name: X.Xms`.
 
@@ -66,7 +66,7 @@ Use `time.perf_counter()` (not `time.time()`) for monotonic, high-resolution tim
 ## 2. Pipeline Anatomy
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 A single request flows through these stages in order:
 
@@ -105,7 +105,7 @@ generate_response() [total_generate_response]
 - status: active
 - type: agent_skill
 - last_checked: 2026-02-14
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Measured with `gemini-2.0-flash`, no chat history, single query ("What is the next upcoming talk?"):
 
@@ -131,7 +131,7 @@ Measured with `gemini-2.0-flash`, no chat history, single query ("What is the ne
 ## 4. Known Bottlenecks
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### A. LLM API Latency (2000-3000ms per call)
@@ -181,7 +181,7 @@ Each `log_info()` call writes synchronously to both `mcmp_chatbot.log` (file) an
 ## 5. Optimization Playbook
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Ranked by impact (highest first). These are documented strategies for when latency becomes a problem.
 
@@ -232,7 +232,7 @@ Ranked by impact (highest first). These are documented strategies for when laten
 ## 6. Adding New Instrumentation
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When adding new pipeline stages or optimizing existing ones:
 
@@ -253,7 +253,7 @@ with log_latency("my_new_stage"):
 ## 7. Verification
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [x] `log_latency` context manager implemented in `src/utils/logger.py`
 - [x] `generate_response` instrumented with 8 stages in `src/core/engine.py`

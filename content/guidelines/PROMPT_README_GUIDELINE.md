@@ -271,7 +271,7 @@ The registry is a JSON file that maps MD files to their dependencies:
 ## Workflow
 - status: active
 - type: guideline
-- label: ['protocol']
+- label: [protocol]
 <!-- content -->
 
 ### For Users

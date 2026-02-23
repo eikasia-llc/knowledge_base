@@ -1,7 +1,7 @@
 # Google Cloud & API Integration Guide
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md", "project_root": "README.md"}
 <!-- content -->
@@ -11,7 +11,7 @@ This document serves as the authoritative guide for managing Google Cloud Platfo
 ## Architecture & Relationships
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Understanding the distinction between resources is critical for billing and access control.
 
@@ -20,7 +20,7 @@ Understanding the distinction between resources is critical for billing and acce
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Google Cloud Platform (GCP)**: The overarching cloud provider. Projects here (like `mcmp-chatbot`) act as containers for resources (Service Accounts, APIs, Billing).
 - **Google AI Studio**: Where Gemini API keys are generated. *Crucially*, keys generated here can be associated with *no project* (resulting in a default `gen-lang-client` project) or an *existing GCP project*.
@@ -31,7 +31,7 @@ Understanding the distinction between resources is critical for billing and acce
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 In this project, we use two distinct authentication methods for two different purposes:
 
@@ -46,7 +46,7 @@ In this project, we use two distinct authentication methods for two different pu
 ## Environment & Secrets Management
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 We use a "Split-Brain" configuration strategy to separate local development from production.
 
@@ -55,7 +55,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **File**: `.env` (for API Keys) and `.streamlit/secrets.toml` (for Service Accounts).
 - **Mechanism**: 
@@ -68,7 +68,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Location**: App Dashboard → Settings → Secrets.
 - **Mechanism**: Streamlit Cloud injects these secrets as environment variables (`os.environ`) at runtime.
@@ -78,7 +78,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ## Troubleshooting Logs
 - status: active
 - type: log
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Issue: Billing Split (Jan 2026)
@@ -86,7 +86,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Problem**: Gemini usage was billed to `gen-lang-client-0023672537` while Sheets usage went to `mcmp-chatbot`.
 - **Cause**: The `GEMINI_API_KEY` was created in Google AI Studio without linking it to the `mcmp-chatbot` project.
@@ -97,7 +97,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Problem**: After updating `.env` locally or Secrets on Cloud, the app still returned `400 API_KEY_INVALID`.
 - **Cause**: The Python process (Streamlit server) loads environment variables *only on startup*. Hot-reloading checks code changes but not environment variable changes.
@@ -108,7 +108,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Problem**: Confusion over whether `secrets.toml` overrides `.env`.
 - **Resolution**: Keeps things simple. Store *only* Service Account JSON in `secrets.toml` and *only* simple strings (API Keys) in `.env`. Do not duplicate keys.
@@ -116,7 +116,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 ## Common Workflows
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### How to Monitor Usage
@@ -124,7 +124,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1.  **For Gemini**: Go to [Google AI Studio](https://aistudio.google.com/) or the GCP Console for the project linked to your key.
 2.  **For Sheets**: Go to GCP Console → APIs & Services → Enabled APIs → Google Sheets API.
@@ -134,7 +134,7 @@ We use a "Split-Brain" configuration strategy to separate local development from
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1.  Generate new key in AI Studio.
 2.  Update `.env` (Local).

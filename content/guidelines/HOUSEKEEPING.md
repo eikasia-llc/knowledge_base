@@ -1,7 +1,7 @@
 # Housekeeping Protocol
 - status: recurring
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. Read the AGENTS.md file.
 2. Look at the dependency network of the project, namely which script refers to which one.
@@ -26,13 +26,13 @@
 ## Current Project Housekeeping
 - status: active
 - type: plan
-- label: ['agent', 'recurring']
+- label: [agent, recurring]
 <!-- content -->
 
 ## Dependency Network
 - status: active
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Based on post-React integration analysis:
 - **Core Modules:**
@@ -51,7 +51,7 @@ Based on codebase analysis (2026-01-28):
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **`app.py`**: Main Streamlit application.
   - *Dependencies*: `src.core.engine`, `src.core.vector_store` (dynamic), `src.scrapers.mcmp_scraper` (dynamic), `gspread` (optional).
@@ -62,7 +62,7 @@ Based on codebase analysis (2026-01-28):
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **`src/core/engine.py`**: RAGEngine class.
   - *Dependencies*: `src.core.vector_store`, `src.utils.logger`, `openai`, `anthropic`, `google.genai`.
@@ -76,7 +76,7 @@ Based on codebase analysis (2026-01-28):
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **`src/scrapers/mcmp_scraper.py`**: MCMPScraper class.
   - *Dependencies*: `requests`, `bs4`, `src.utils.logger`.
@@ -87,7 +87,7 @@ Based on codebase analysis (2026-01-28):
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **`src/utils/logger.py`**: centralized logging.
 - **`scripts/update_knowledge.py`**: specific script for parsing markdown knowledge.
@@ -97,7 +97,7 @@ Based on codebase analysis (2026-01-28):
 - status: active
 - type: task
 - owner: Antigravity
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Execution Date:** 2026-01-19
 

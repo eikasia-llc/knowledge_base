@@ -1,7 +1,7 @@
 # Markov Chain Analysis Agent Instructions
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Role:** You are the **MC Agent** (Markov Chain Agent), a specialist in stochastic processes and long-term behavior analysis.
 
@@ -10,14 +10,14 @@
 ## Background: The Simulation as a Markov Chain
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The network epistemology simulation is fundamentally a **Markov Chain** where:
 
 ### State Space
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - **Beta Agent:** The state is the collection of all agents' credence pairs: $S_t = \{(\alpha_i^{(0)}, \beta_i^{(0)}, \alpha_i^{(1)}, \beta_i^{(1)})\}_{i=1}^N$. Since these are continuous parameters updated via Bayesian learning, the state space is a subset of $\mathbb{R}^{4N}$.
 - **Bayes Agent:** The state is the collection of all agents' scalar credences: $S_t = \{c_i\}_{i=1}^N \in [0,1]^N$.
@@ -25,7 +25,7 @@ The network epistemology simulation is fundamentally a **Markov Chain** where:
 ### Transition Dynamics
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 At each time step:
 1. **Experiment Phase:** Each agent $i$ chooses a theory based on current credences and runs $n$ experiments, getting outcomes drawn from $\text{Binomial}(n, p_{\text{theory}})$.
@@ -41,7 +41,7 @@ The randomness comes from:
 ### Key Markov Properties to Track
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. **Absorbing States / Consensus States**
    - States where all agents have converged to extreme beliefs
@@ -68,13 +68,13 @@ The randomness comes from:
 ## Core Responsibilities
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### 1. Verify Markov Property Preservation
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The simulation MUST maintain the Markov property: the future state depends only on the current state, not on the history of how we got there.
 
@@ -86,7 +86,7 @@ The simulation MUST maintain the Markov property: the future state depends only 
 ### 2. State Space Tracking
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Ensure the codebase exposes sufficient information to reconstruct the full state at any time step.
 
@@ -103,7 +103,7 @@ Ensure the codebase exposes sufficient information to reconstruct the full state
 ### 3. Convergence Analysis Infrastructure
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Build on existing convergence tracking to provide deeper MC insights.
 
@@ -120,7 +120,7 @@ Build on existing convergence tracking to provide deeper MC insights.
 ### 4. Root Influence as Markov Structure
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The root node analysis reveals structural properties of the Markov Chain.
 
@@ -141,13 +141,13 @@ In DAGs with root nodes, the long-run behavior is determined by:
 ## Implementation Plan
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Phase 1: State Space Utilities (New File: `mc_analysis.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Create `src/net_epistemology/analysis/mc_analysis.py` with:
 
@@ -180,7 +180,7 @@ class MarkovChainAnalyzer:
 ### Phase 2: Convergence Diagnostics
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Add to `VectorizedModel` or create separate analyzer:
 
@@ -204,7 +204,7 @@ def compute_spectral_gap(self):
 ### Phase 3: Absorption Analysis
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 def estimate_absorption_probabilities(self, n_simulations=100):
@@ -224,7 +224,7 @@ def mean_hitting_time_to_consensus(self, n_simulations=100):
 ## Verification Checklist
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Before any MC analysis code is complete, verify:
 
@@ -236,7 +236,7 @@ Before any MC analysis code is complete, verify:
 ## Related Files
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - `notebooks/convergence_analysis/convergence_studies.py`: Existing convergence tracking
 - `notebooks/convergence_analysis/root_influence_analysis.py`: Root node influence studies
@@ -246,13 +246,13 @@ Before any MC analysis code is complete, verify:
 ## Mathematical Notes
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Belief Update as Markov Transition
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 For **Beta agents**, the transition is:
 $$
@@ -268,7 +268,7 @@ The randomness enters through:
 ### Long-Run Behavior Theorem (Informal)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Claim:** In a DAG with root nodes, if we run the simulation long enough:
 - All descendants of roots that converge to truth will converge to truth
@@ -280,7 +280,7 @@ This is empirically verified in `root_influence_analysis.py`.
 ## Agent Log Entry Template
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When implementing MC analysis features, log in `content/logs/AGENTS_LOG.md`:
 
@@ -289,7 +289,7 @@ When implementing MC analysis features, log in `content/logs/AGENTS_LOG.md`:
 ### [DATE] - Markov Chain Analysis Implementation (MC Agent)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 *   **Task:** [Specific MC feature implemented]
 *   **Actions:**

@@ -3,7 +3,7 @@
 - type: agent_skill
 - id: mcp_protocol_extended
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 This document provides a comprehensive explanation of the **Model Context Protocol (MCP)** implementation within the MCMP Chatbot, including the fundamental architecture, information flow, and how LLMs interact with tools at multiple levels of abstraction.
@@ -13,7 +13,7 @@ This document provides a comprehensive explanation of the **Model Context Protoc
 - type: documentation
 - id: mcp_protocol_extended.three_layer_architecture
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 MCP is fundamentally a **protocol for structured communication** between three distinct layers. Understanding these layers is essential to grasping how LLMs "use tools".
@@ -23,7 +23,7 @@ MCP is fundamentally a **protocol for structured communication** between three d
 - type: documentation
 - id: mcp_protocol_extended.three_layer_architecture.layer_1_llm
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **What it does**: Generates text tokens probabilistically based on input context.
@@ -59,7 +59,7 @@ This is pure text. The LLM generated these tokens the same way it generates essa
 - type: documentation
 - id: mcp_protocol_extended.three_layer_architecture.layer_2_client
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **What it does**: Acts as the "interpreter" between the LLM's text output and actual executable code.
@@ -106,7 +106,7 @@ class MCPClient:
 - type: documentation
 - id: mcp_protocol_extended.three_layer_architecture.layer_3_server
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **What it does**: Hosts and executes the actual tool implementations.
@@ -173,7 +173,7 @@ class MCPServer:
 - type: documentation
 - id: mcp_protocol_extended.three_layer_architecture.diagram
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ```
@@ -230,7 +230,7 @@ class MCPServer:
 - type: documentation
 - id: mcp_protocol_extended.information_flow
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Let's trace a complete request through the system to understand how information flows at each layer.
@@ -240,7 +240,7 @@ Let's trace a complete request through the system to understand how information 
 - type: documentation
 - id: mcp_protocol_extended.information_flow.example_trace
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Step 1: Client Preparation (RAGEngine)**
@@ -432,7 +432,7 @@ Would you like more information about their specific research projects?
 - type: documentation
 - id: mcp_protocol_extended.information_flow.observations
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 1. **The LLM never executes anything**: It only generates text patterns that signal intent.
@@ -446,7 +446,7 @@ Would you like more information about their specific research projects?
 - type: documentation
 - id: mcp_protocol_extended.tool_recognition
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 This is a common point of confusion: "How does the LLM know when to use a tool?"
@@ -456,7 +456,7 @@ This is a common point of confusion: "How does the LLM know when to use a tool?"
 - type: documentation
 - id: mcp_protocol_extended.tool_recognition.pattern_matching
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 The LLM doesn't "reason" about tools in a symbolic way. Instead:
@@ -491,7 +491,7 @@ The LLM doesn't "reason" about tools in a symbolic way. Instead:
 - type: documentation
 - id: mcp_protocol_extended.tool_recognition.why_injection_helps
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Some LLM APIs (like OpenAI's) support implicit tool injection—you just pass a `tools` parameter and the API handles it internally. However, **explicit injection into the system prompt is often superior** for several reasons:
@@ -519,7 +519,7 @@ Some LLM APIs (like OpenAI's) support implicit tool injection—you just pass a 
 - type: documentation
 - id: mcp_protocol_extended.tool_recognition.data_enrichment
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 A common failure case in hybrid systems:
@@ -572,7 +572,7 @@ Abstract: "In this talk, I will explore..."
 - type: documentation
 - id: mcp_protocol_extended.json_database_pattern
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 The MCMP Chatbot uses a **JSON-as-Database** pattern for tool data sources. This is a deliberate architectural choice with specific trade-offs.
@@ -582,7 +582,7 @@ The MCMP Chatbot uses a **JSON-as-Database** pattern for tool data sources. This
 - type: documentation
 - id: mcp_protocol_extended.json_database_pattern.architecture
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ```
@@ -632,7 +632,7 @@ The MCMP Chatbot uses a **JSON-as-Database** pattern for tool data sources. This
 - type: documentation
 - id: mcp_protocol_extended.json_database_pattern.why_json
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Advantages**:
@@ -653,7 +653,7 @@ The MCMP Chatbot uses a **JSON-as-Database** pattern for tool data sources. This
 - type: documentation
 - id: mcp_protocol_extended.json_database_pattern.when_to_migrate
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Migrate when:
@@ -679,7 +679,7 @@ Migrate when:
 - type: documentation
 - id: mcp_protocol_extended.performance_optimization
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Current Bottleneck: Repeated File I/O
@@ -687,7 +687,7 @@ Migrate when:
 - type: documentation
 - id: mcp_protocol_extended.performance_optimization.bottleneck
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Problem**: Every tool call executes:
@@ -705,7 +705,7 @@ For a single user session with 5 tool calls, this loads the same file 5 times fr
 - type: documentation
 - id: mcp_protocol_extended.performance_optimization.caching
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Solution**: Use `functools.lru_cache` to cache loaded data.
@@ -762,7 +762,7 @@ def search_people(query: str, role_filter: Optional[str] = None) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.performance_optimization.singleton
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 For more control, use a singleton `DataManager`:
@@ -833,7 +833,7 @@ def search_people(query: str, role_filter: Optional[str] = None) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.performance_optimization.truncation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Problem**: Returning all 50 matching people to the LLM wastes tokens and may exceed context limits.
@@ -878,7 +878,7 @@ def search_people(query: str, role_filter: Optional[str] = None, limit: int = 10
 - type: guideline
 - id: mcp_protocol_extended.adding_new_tools
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Follow this checklist when adding a new tool:
@@ -888,7 +888,7 @@ Follow this checklist when adding a new tool:
 - type: task
 - id: mcp_protocol_extended.adding_new_tools.define_logic
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Create the Python function in `src/mcp/tools.py`:
@@ -942,7 +942,7 @@ def get_publications(author_name: Optional[str] = None,
 - type: task
 - id: mcp_protocol_extended.adding_new_tools.register
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Update `src/mcp/server.py`:
@@ -965,7 +965,7 @@ class MCPServer:
 - type: task
 - id: mcp_protocol_extended.adding_new_tools.schema
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Add the JSON schema to `list_tools()` in `src/mcp/server.py`:
@@ -1022,7 +1022,7 @@ Retrieve publications from the MCMP research database.
 - type: task
 - id: mcp_protocol_extended.adding_new_tools.tests
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Create `tests/test_publications_tool.py`:
@@ -1067,7 +1067,7 @@ pytest tests/test_publications_tool.py -v
 - type: task
 - id: mcp_protocol_extended.adding_new_tools.documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Add an entry to this document (`MCP_SKILL.md`) under a "Available Tools" section:
@@ -1082,7 +1082,7 @@ Add an entry to this document (`MCP_SKILL.md`) under a "Available Tools" section
 - `limit` (optional): Max results (default: 20)
 - **Use Cases**: "What has Prof. X published?", "Show me papers from 2023"
 - **Data Source**: `data/publications.json`
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```
 
@@ -1091,7 +1091,7 @@ Add an entry to this document (`MCP_SKILL.md`) under a "Available Tools" section
 - type: task
 - id: mcp_protocol_extended.adding_new_tools.llm_test
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Start the Streamlit app and test queries that should trigger the new tool:
@@ -1117,7 +1117,7 @@ Expected: LLM calls search_people(query="Smith"), NOT get_publications
 - type: guideline
 - id: mcp_protocol_extended.prompt_engineering
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Simply defining a tool is insufficient. LLMs require explicit prompting strategies to use tools correctly, especially in hybrid RAG systems.
@@ -1127,7 +1127,7 @@ Simply defining a tool is insufficient. LLMs require explicit prompting strategi
 - type: guideline
 - id: mcp_protocol_extended.prompt_engineering.dynamic_injection
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Problem**: Implicit tool support (passing `tools` to API) works for GPT-4, but smaller models often miss tools.
@@ -1169,7 +1169,7 @@ You have access to specialized data retrieval tools.
 - type: guideline
 - id: mcp_protocol_extended.prompt_engineering.force_usage
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Problem**: LLMs are trained to be polite. They often ask permission before using tools:
@@ -1213,7 +1213,7 @@ system_prompt = base_prompt + tools_section + tools_usage_rules
 - type: guideline
 - id: mcp_protocol_extended.prompt_engineering.data_enrichment
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Problem**: In hybrid RAG systems, the LLM might find partial information in the vector store and stop, ignoring tools that could provide complete data.
@@ -1304,7 +1304,7 @@ LLM: "Prof. Smith is giving a talk on Modal Logic next Tuesday at 4 PM in Room 1
 - type: guideline
 - id: mcp_protocol_extended.prompt_engineering.conflict_resolution
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Problem**: RAG and tools might return contradictory information.
@@ -1359,7 +1359,7 @@ system_prompt = base_prompt + tools_section + tools_usage_rules + enrichment_rul
 - type: guideline
 - id: mcp_protocol_extended.debugging
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 When the LLM isn't using tools correctly, follow this diagnostic checklist:
@@ -1369,7 +1369,7 @@ When the LLM isn't using tools correctly, follow this diagnostic checklist:
 - type: guideline
 - id: mcp_protocol_extended.debugging.checklist
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 1. **Are tools being injected?**
@@ -1410,7 +1410,7 @@ When the LLM isn't using tools correctly, follow this diagnostic checklist:
 - type: documentation
 - id: mcp_protocol_extended.debugging.failure_modes
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 | Symptom | Likely Cause | Fix |
@@ -1428,7 +1428,7 @@ When the LLM isn't using tools correctly, follow this diagnostic checklist:
 - type: guideline
 - id: mcp_protocol_extended.debugging.logging
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 Add structured logging to trace the full execution flow:
@@ -1483,7 +1483,7 @@ This logging helps you trace exactly where the flow breaks down.
 - type: documentation
 - id: mcp_protocol_extended.future_extensions
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Extension 1: Multi-Turn Tool Orchestration
@@ -1491,7 +1491,7 @@ This logging helps you trace exactly where the flow breaks down.
 - type: documentation
 - id: mcp_protocol_extended.future_extensions.multi_turn
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Current limitation**: Each tool call is independent. The LLM can't easily chain tools (e.g., "Find Prof. Smith, then get his publications, then summarize them").
@@ -1523,7 +1523,7 @@ The MCP Client would parse this, execute steps sequentially, and pass results be
 - type: documentation
 - id: mcp_protocol_extended.future_extensions.composition
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Concept**: Define high-level tools that combine multiple low-level tools.
@@ -1561,7 +1561,7 @@ def get_researcher_profile(name: str) -> Dict:
 - type: documentation
 - id: mcp_protocol_extended.future_extensions.streaming
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Current limitation**: Tools return all results at once, which can be slow for large datasets.
@@ -1589,7 +1589,7 @@ The MCP Client can display results progressively in the UI: "Found Prof. Smith..
 - type: documentation
 - id: mcp_protocol_extended.future_extensions.external_apis
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 **Beyond JSON files**: Tools can call external APIs (arXiv, Google Scholar, university databases).
@@ -1627,7 +1627,7 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.summary
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Architectural Principles
@@ -1635,7 +1635,7 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.summary.principles
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 1. **Three-Layer Separation**: 
@@ -1659,7 +1659,7 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.summary.prompting
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 1. **Force Usage Pattern**: Tell the LLM to use tools directly, don't ask permission
@@ -1672,7 +1672,7 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.summary.performance
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 1. **Cache Loaded Data**: Use `@lru_cache` or singleton patterns
@@ -1685,7 +1685,7 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.summary.debugging
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 1. **Log Everything**: Inject, parse, execute, return
@@ -1698,7 +1698,7 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 - type: documentation
 - id: mcp_protocol_extended.summary.abstraction
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 The key insight of MCP is **separation of concerns**:

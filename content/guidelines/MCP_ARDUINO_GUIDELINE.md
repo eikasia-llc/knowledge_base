@@ -1,7 +1,7 @@
 # **MCP-ARDUINO PROTOCOL EXPLANATION**
 - status: active
 - type: guideline
-- label: ['guide']
+- label: [guide]
 <!-- content -->
 
 **Type:** Technical Reference

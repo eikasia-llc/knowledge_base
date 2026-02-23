@@ -4,7 +4,7 @@
 - type: agent_skill
 - owner: local-assistant
 - last_checked: 2025-01-29
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This skill enables a coding assistant running **locally on the client's computer** to implement and extend MCP protocols that expose the **Unified Nexus Architecture** (RAG + Data Warehouse + Graph). The agent becomes the intelligent interface through which users query their local data ecosystem.
 
@@ -12,7 +12,7 @@ This skill enables a coding assistant running **locally on the client's computer
 - id: skills.client_mcp_agent.role
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 You are a **Local Nexus Client Agent**—an AI assistant running on the user's machine with MCP access to:
 
@@ -27,7 +27,7 @@ Your purpose is to **answer questions** by intelligently leveraging these data s
 - id: skills.client_mcp_agent.architecture
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The Unified Nexus follows the **TAG (Table-Augmented Generation)** paradigm:
 
@@ -71,7 +71,7 @@ The Unified Nexus follows the **TAG (Table-Augmented Generation)** paradigm:
 - id: skills.client_mcp_agent.tool_categories
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The Client MCP Agent should expose tools organized into these functional categories:
 
@@ -79,7 +79,7 @@ The Client MCP Agent should expose tools organized into these functional categor
 - id: skills.client_mcp_agent.tool_categories.query
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 High-level tools that abstract the complexity of multi-source retrieval.
 
@@ -130,7 +130,7 @@ async def unified_query(question: str, force_type: str = "auto") -> dict:
 - id: skills.client_mcp_agent.tool_categories.structured
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Direct access to the DuckDB data warehouse for precise operations.
 
@@ -214,7 +214,7 @@ async def describe_table(table_name: str) -> dict:
 - id: skills.client_mcp_agent.tool_categories.unstructured
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Access to the ChromaDB vector store for semantic search.
 
@@ -269,7 +269,7 @@ async def semantic_search(query: str, top_k: int = 5, source_filter: str = None)
 - id: skills.client_mcp_agent.tool_categories.graph
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Tools for relationship traversal and network analysis.
 
@@ -323,7 +323,7 @@ async def find_connections(from_entity: str, to_entity: str, max_depth: int = 3)
 - id: skills.client_mcp_agent.tool_categories.ingestion
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Tools for adding new data to the system.
 
@@ -378,7 +378,7 @@ async def ingest_document(file_path: str, source_name: str = None, metadata: dic
 - id: skills.client_mcp_agent.tool_categories.system
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 Tools for system introspection and maintenance.
 
@@ -393,14 +393,14 @@ Tools for system introspection and maintenance.
 - id: skills.client_mcp_agent.operational_patterns
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Pattern 1: Question Answering Flow
 - id: skills.client_mcp_agent.operational_patterns.qa_flow
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 The standard flow for answering user questions:
 
@@ -443,7 +443,7 @@ User Question
 - id: skills.client_mcp_agent.operational_patterns.exploration
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 When users want to understand their data:
 
@@ -451,13 +451,13 @@ When users want to understand their data:
 
 # 1. Start with system overview
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 stats = await get_data_stats()
 
 # 2. Explore relevant tables
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 tables = await list_tables()
 for t in relevant_tables:
@@ -465,19 +465,19 @@ for t in relevant_tables:
 
 # 3. Sample the data
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 sample = await execute_sql(f"SELECT * FROM {table} LIMIT 10")
 
 # 4. Check available documents
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 sources = await list_document_sources()
 
 # 5. Formulate specific queries based on understanding
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```
 
@@ -485,7 +485,7 @@ sources = await list_document_sources()
 - id: skills.client_mcp_agent.operational_patterns.hybrid
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 For questions requiring both structured and unstructured data:
 
@@ -495,7 +495,7 @@ For questions requiring both structured and unstructured data:
 
 # Step 1: Get products with complaint counts (structured)
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 sql_result = await execute_sql("""
     SELECT product_id, COUNT(*) as complaint_count
@@ -507,7 +507,7 @@ sql_result = await execute_sql("""
 
 # Step 2: For top products, search for shipping-related complaints (semantic)
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 for product in sql_result['data'][:5]:
     shipping_complaints = await semantic_search(
@@ -517,12 +517,12 @@ for product in sql_result['data'][:5]:
 
 # Step 3: Synthesize findings
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Combine numerical rankings with semantic themes
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```
 
@@ -530,7 +530,7 @@ for product in sql_result['data'][:5]:
 - id: skills.client_mcp_agent.operational_patterns.refinement
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 When initial results are insufficient:
 
@@ -538,13 +538,13 @@ When initial results are insufficient:
 
 # Initial attempt
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 result = await unified_query("What's our refund policy for damaged items?")
 
 # If result lacks specificity, try targeted search
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 if not_specific_enough(result):
     docs = await semantic_search(
@@ -554,7 +554,7 @@ if not_specific_enough(result):
 
 # If still insufficient, check for related policies
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 related = await semantic_search(
     query="return policy warranty damage defect",
@@ -563,7 +563,7 @@ related = await semantic_search(
 
 # Combine all findings for comprehensive answer
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```
 
@@ -571,20 +571,20 @@ related = await semantic_search(
 - id: skills.client_mcp_agent.error_handling
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### SQL Errors
 - id: skills.client_mcp_agent.error_handling.sql
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 
 # When SQL fails, provide actionable recovery
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 {
     "error": "SQLError",
@@ -598,13 +598,13 @@ related = await semantic_search(
 - id: skills.client_mcp_agent.error_handling.empty
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 
 # When no results found, suggest alternatives
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 {
     "error": "NoResults",
@@ -621,7 +621,7 @@ related = await semantic_search(
 - id: skills.client_mcp_agent.error_handling.ambiguous
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When a query could be interpreted multiple ways:
 
@@ -641,7 +641,7 @@ that number is 8,432. Which metric were you looking for?"
 - id: skills.client_mcp_agent.extension
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When users need capabilities not yet exposed via MCP:
 
@@ -649,7 +649,7 @@ When users need capabilities not yet exposed via MCP:
 - id: skills.client_mcp_agent.extension.new_tools
 - status: active
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. **Identify the capability gap** — What can't the current tools do?
 2. **Check if it's a composition** — Can existing tools be combined?
@@ -661,7 +661,7 @@ When users need capabilities not yet exposed via MCP:
 - id: skills.client_mcp_agent.extension.checklist
 - status: active
 - type: task
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [ ] Name is descriptive and action-oriented (`analyze_trends` not `trends`)
 - [ ] Description explains WHEN to use, not just WHAT it does
@@ -675,7 +675,7 @@ When users need capabilities not yet exposed via MCP:
 - id: skills.client_mcp_agent.extension.common
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 | Request | Implementation Approach |
 |:--------|:------------------------|
@@ -689,7 +689,7 @@ When users need capabilities not yet exposed via MCP:
 - id: skills.client_mcp_agent.server_template
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Complete template for the Client MCP Agent server:
 
@@ -716,7 +716,7 @@ from mcp.types import Tool, TextContent, Resource
 
 # Import Unified Nexus components
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 from src.core.unified_engine import UnifiedEngine
 from src.core.vector_store import VectorStore
@@ -725,17 +725,17 @@ from src.core.query_router import QueryRouter, QueryType
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Configuration
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 CONFIG = {
     "db_path": "data/warehouse.duckdb",
@@ -745,23 +745,23 @@ CONFIG = {
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Server Initialization
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 server = Server("local-nexus-client")
 
 # Initialize the Unified Engine (lazy loading)
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 _engine: Optional[UnifiedEngine] = None
 
@@ -783,17 +783,17 @@ def get_engine() -> UnifiedEngine:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Tool Registry
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 TOOLS: Dict[str, Dict[str, Any]] = {}
 
@@ -811,17 +811,17 @@ def register_tool(name: str, description: str, input_schema: Dict[str, Any]):
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Query Interface Tools
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 @register_tool(
     name="unified_query",
@@ -897,17 +897,17 @@ async def classify_query(question: str) -> Dict[str, Any]:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Structured Data Tools
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 @register_tool(
     name="execute_sql",
@@ -1010,17 +1010,17 @@ async def describe_table(table_name: str) -> Dict[str, Any]:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Unstructured Data Tools
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 @register_tool(
     name="semantic_search",
@@ -1080,17 +1080,17 @@ async def list_document_sources() -> Dict[str, Any]:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # System Tools
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 @register_tool(
     name="get_system_status",
@@ -1114,17 +1114,17 @@ async def get_system_status() -> Dict[str, Any]:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Helper Functions
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 def _summarize_sources(retrieval: dict) -> List[str]:
     """Summarize which sources were used in retrieval."""
@@ -1149,17 +1149,17 @@ def _estimate_confidence(result: dict) -> str:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # MCP Handlers
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 @server.list_tools()
 async def list_tools() -> List[Tool]:
@@ -1192,17 +1192,17 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # Entry Point
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # =============================================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 async def main():
     """Run the MCP server."""
@@ -1218,7 +1218,7 @@ if __name__ == "__main__":
 - id: skills.client_mcp_agent.resources
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 In addition to tools, expose MCP Resources for read-only context:
 
@@ -1249,7 +1249,7 @@ async def list_resources() -> List[Resource]:
 - id: skills.client_mcp_agent.integration
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The Client MCP Agent should work harmoniously with your existing agent documentation:
 
@@ -1285,7 +1285,7 @@ The data layer **holds the actual knowledge**.
 - id: skills.client_mcp_agent.version_history
 - status: active
 - type: log
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 | Date | Version | Changes |
 |------|---------|---------|

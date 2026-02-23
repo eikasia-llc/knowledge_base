@@ -1,7 +1,7 @@
 # Event Scraper Implementation Guide
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 This document defines the implementation patterns for the MCMP event scraper, including critical lessons learned from production usage.
@@ -13,7 +13,7 @@ This document defines the implementation patterns for the MCMP event scraper, in
 ### Primary Source: JSON API
 - type: agent_skill
 - **Endpoint**: `https://www.philosophie.lmu.de/mcmp/site_tech/json-newsboard/json-events-newsboard-en.json`
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - Discovered from the `jsonUrl` attribute of the `LmuNewsboard` Vue component on the events-overview page
 - Returns **all events** reliably (54+) without Selenium or dynamic page loading
@@ -157,7 +157,7 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 - type: agent_skill
 - **People Index**: `https://www.philosophie.lmu.de/mcmp/en/people/`
 - **Profile Pages**: Individual pages linked from the index (e.g., `/people/contact-page/...`)
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### DOM Structure (Profile Page)
@@ -200,7 +200,7 @@ match = re.search(r'(\d{1,2})\s+(\w+)\s+(\d{4})', date_text)
 ### Source
 - type: agent_skill
 - **JSON API**: `https://www.philosophie.lmu.de/mcmp/site_tech/json-newsboard/json-news-newsboard-en.json`
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - Discovered from the `data-` attributes of the `LmuNewsboard` Vue component on the news-overview page
 

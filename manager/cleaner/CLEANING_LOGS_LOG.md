@@ -3,14 +3,14 @@
 - type: log
 - id: log.cleaning
 - owner: agent.cleaner
-- label: ['log']
+- label: [log]
 <!-- content -->
 This file tracks the execution history of the cleaning process, recording imported repositories, errors encountered, and modifications made to the cleaning scripts.
 
 ## Execution History
 - status: active
 - type: log
-- label: ['log']
+- label: [log]
 <!-- content -->
 *(Agent should append new runs here using `date` and `repo` details)*
 
@@ -20,7 +20,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Status**: Success
 - **Files Processed**: 8
 - **Modifications**: 
-- label: ['log']
+- label: [log]
 <!-- content -->
     - Updated `clean_repo.py` to copy files even if no migration changes detected.
     - Updated `migrate.py` to include `type: context` in default metadata.
@@ -33,7 +33,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Status**: Success
 - **Files Processed**: 9
 - **Modifications**: 
-- label: ['log']
+- label: [log]
 <!-- content -->
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`. Note: `Guideline_Project.md` and `Reinforcement Learning Project Guideline.md` were skipped by defined rules but have valid `type: context` from migration.
@@ -45,7 +45,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Status**: Success
 - **Files Processed**: 7
 - **Modifications**: 
-- label: ['log']
+- label: [log]
 <!-- content -->
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`.
@@ -58,7 +58,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Status**: Success
 - **Files Processed**: 9
 - **Modifications**: 
-- label: ['log']
+- label: [log]
 <!-- content -->
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`.
@@ -72,7 +72,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Status**: Success
 - **Files Processed**: 7
 - **Modifications**: 
-- label: ['log']
+- label: [log]
 <!-- content -->
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`.
@@ -89,7 +89,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Status**: Success
 - **Files Processed**: 0 (Empty repository)
 - **Modifications**: 
-- label: ['log']
+- label: [log]
 <!-- content -->
     - Ran `git clone` manually to the `repositories` directory as requested.
 - 2026-01-27T19:30:33.709127: Imported 1 files from https://github.com/eikasia-llc/empty

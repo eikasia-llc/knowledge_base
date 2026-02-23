@@ -1,7 +1,7 @@
 # React Assistant Guide
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 > **Purpose:** This document provides AI assistants with guidelines for setting up simulation games as React + FastAPI monorepo projects. Follow this structure to create consistent, maintainable web-based simulations.
 
@@ -10,7 +10,7 @@
 ## Architecture Overview
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This template uses a **display-only frontend** pattern where:
 
@@ -35,7 +35,7 @@ This template uses a **display-only frontend** pattern where:
 ## Project Structure Template
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```
 project_name/
@@ -101,13 +101,13 @@ project_name/
 ## Step 1: Backend Setup (Python/FastAPI)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### 1.1 Create requirements.txt
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```txt
 fastapi
@@ -119,7 +119,7 @@ Add any simulation-specific dependencies (numpy, etc.) as needed.
 ### 1.2 Create FastAPI Server (main.py)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 from fastapi import FastAPI, HTTPException
@@ -131,7 +131,7 @@ import uuid
 # Import your simulation package
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 from simulation_name import Simulation
 
@@ -140,7 +140,7 @@ app = FastAPI()
 # CRITICAL: Configure CORS for React dev server
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 app.add_middleware(
     CORSMiddleware,
@@ -153,7 +153,7 @@ app.add_middleware(
 # Store active simulation sessions
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 simulations: dict[str, Simulation] = {}
 ```
@@ -161,7 +161,7 @@ simulations: dict[str, Simulation] = {}
 ### 1.3 Define Pydantic Models
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Use Pydantic `BaseModel` for request/response validation:
 
@@ -181,7 +181,7 @@ class StepRequest(BaseModel):
 ### 1.4 Required API Endpoints
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
@@ -195,7 +195,7 @@ class StepRequest(BaseModel):
 ### 1.5 Health Check Endpoint
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 @app.get("/health")
@@ -206,7 +206,7 @@ def health_check():
 ### 1.6 Simulation Init Endpoint
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 @app.post("/simulation/init")
@@ -231,7 +231,7 @@ def init_simulation(config: SimulationConfig):
 ### 1.7 Step Endpoint
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 @app.post("/simulation/step")
@@ -248,7 +248,7 @@ def simulation_step(request: StepRequest):
 ### 1.8 Simulation Class Structure
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Create a simulation package with this pattern:
 
@@ -257,7 +257,7 @@ Create a simulation package with this pattern:
 # simulation_name/simulation.py
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 class Simulation:
     def __init__(self, session_id: str, agent, environment):
@@ -315,13 +315,13 @@ class Simulation:
 ## Step 2: Frontend Setup (Vite + React + TypeScript)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### 2.1 Initialize Vite Project
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```bash
 cd project_name
@@ -333,7 +333,7 @@ npm install
 ### 2.2 package.json Dependencies
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Ensure these are present:
 
@@ -354,7 +354,7 @@ Ensure these are present:
 ### 2.3 App.tsx Pattern
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The root component should:
 1. Check backend health on mount
@@ -400,7 +400,7 @@ export default App
 ### 2.4 Controls.tsx Pattern
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The main game component should:
 
@@ -580,7 +580,7 @@ export default Controls
 ### 2.5 CSS Grid Rendering
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```css
 .grid {
@@ -621,13 +621,13 @@ export default Controls
 ## Step 3: Running the Application
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### 3.1 Start Backend (Terminal 1)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```bash
 cd backend
@@ -640,7 +640,7 @@ Backend runs at: `http://localhost:8000`
 ### 3.2 Start Frontend (Terminal 2)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```bash
 cd frontend
@@ -653,7 +653,7 @@ Frontend runs at: `http://localhost:5173`
 ### 3.3 Verify Connection
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. Open `http://localhost:5173` in browser
 2. Health status should display "ok" in green
@@ -664,13 +664,13 @@ Frontend runs at: `http://localhost:5173`
 ## Key Concepts for AI Assistants
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### CORS Configuration
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Problem:** Browser blocks requests from `localhost:5173` to `localhost:8000` (different ports).
 
@@ -688,7 +688,7 @@ app.add_middleware(
 ### Session Management
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - Each game is identified by a unique `session_id` (UUID)
 - Backend stores active sessions in a dictionary
@@ -698,7 +698,7 @@ app.add_middleware(
 ### State Pattern
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The backend `get_state()` method returns a **JSON-serializable dictionary** with:
 - All entity positions (agents, obstacles, goals)
@@ -714,7 +714,7 @@ Frontend **never computes game logic** — it only:
 ### Continuous vs Step Mode
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 | Mode | User Experience | Implementation |
 |------|-----------------|----------------|
@@ -726,7 +726,7 @@ Frontend **never computes game logic** — it only:
 ## Checklist for New Simulations
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When setting up a new simulation project, ensure:
 
@@ -747,7 +747,7 @@ When setting up a new simulation project, ensure:
 ## Common Issues & Solutions
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 | Issue | Cause | Solution |
 |-------|-------|----------|
@@ -763,7 +763,7 @@ When setting up a new simulation project, ensure:
 ## Behavioral Data Logging
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 For ML training, log all user actions:
 
@@ -772,7 +772,7 @@ For ML training, log all user actions:
 # In Simulation class
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 self.history.append({
     "step": len(self.history),
@@ -794,7 +794,7 @@ def export_behavioral_data(self, filepath: str):
 ### 4.1 Single-File Session Logging (Recommended)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Instead of separate files per episode, maintain a single JSON file per session. This prevents clutter and makes data analysis easier.
 
@@ -820,7 +820,7 @@ Use `datetime.datetime.now().astimezone().isoformat()` for `start_time` to prese
 ## Summary
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This architecture cleanly separates concerns:
 
@@ -837,14 +837,14 @@ AI assistants should use this pattern when helping users create web-based simula
 ## Step 4: Cloud Deployment (Render & Vercel)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 For production deployment, use **Render** for the Python backend and **Vercel** for the React frontend.
 
 ### 4.1 Prerequisites
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - GitHub Account (project must be in a repository)
 - Render Account (for backend)
@@ -853,7 +853,7 @@ For production deployment, use **Render** for the Python backend and **Vercel** 
 ### 4.2 Preparation: Environment Variables
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Code Refactoring Required Before Deployment:**
 1.  **Backend (`main.py`):** Update CORS to allow production origins.
@@ -873,7 +873,7 @@ For production deployment, use **Render** for the Python backend and **Vercel** 
 ### 4.3 Backend Deployment (Render.com)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1.  **Create Service:**
     - Dashboard -> New + -> **Web Service**
@@ -891,7 +891,7 @@ For production deployment, use **Render** for the Python backend and **Vercel** 
 ### 4.4 Frontend Deployment (Vercel)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1.  **Create Project:**
     - Dashboard -> **Add New...** -> **Project**

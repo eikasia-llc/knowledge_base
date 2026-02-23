@@ -1,7 +1,7 @@
 # Agents Log
 - status: active
 - type: log
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 Most recent event comes first
 
@@ -13,13 +13,13 @@ Most recent event comes first
 ## Intervention History
 - status: active
 - type: agent_skill
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 
 ### Housekeeping Report (Initial)
 - status: active
 - type: agent_skill
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 **Date:** 
 **Summary:** Executed initial housekeeping protocol.
@@ -30,7 +30,7 @@ Most recent event comes first
 ### Bug Fix: Advanced Analysis (Shape Mismatch)
 - status: active
 - type: agent_skill
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 **Date:** 2024-05-22
 **Summary:** Fixed RuntimeError in `advanced_experiment_interface.ipynb`.
@@ -42,7 +42,7 @@ Most recent event comes first
 ### Bug Fix: Notebook NameError
 - status: active
 - type: agent_skill
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 **Date:** 2024-05-22
 **Summary:** Fixed NameError in `advanced_experiment_interface.ipynb`.
@@ -54,7 +54,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Executed Housekeeping Protocol & Fixed Scraper.
 - **Problem**: Scraper was falling back to static mode (3 events) due to missing dependencies.
@@ -71,7 +71,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Debugging LLM refusal to access future events.
 - **Problem**: LLM refused to answer questions about future events (e.g., Feb 2026) despite data being in `raw_events.json`. Error message ("I can only access information from the provided context") indicated strictly following RAG-only context rules in personality.
@@ -86,7 +86,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Fix "Future Event Access" failure on default settings.
 - **Problem**: `gemini-2.0-flash-lite` (previous default) consistently failed to use the `get_events` tool for speaker queries, hallucinating a capability limitation ("I cannot search for events by speaker").
@@ -100,7 +100,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Improve detail in calendar-triggered event queries.
 - **Change**: Updated the `auto_prompt` in `app.py` (triggered by calendar clicks) to explicitly request an "abstract or description".
@@ -111,7 +111,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-01
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Synchronize local knowledge base with `mcmp_chatbot` remote repository.
 - **Actions**:
@@ -130,7 +130,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Re-inject MCP Protocol into System Prompt & Enhance Tool Descriptions.
 - **Problem**: LLM was providing minimal info for events because it wasn't fully aware of `get_events` capabilities.
@@ -142,7 +142,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Forcing automatic tool usage without permission-asking.
 - **Problem**: LLM was politely asking "Would you like me to check?" instead of checking automatically, violating the seamless RAG experience.
@@ -156,7 +156,7 @@ Most recent event comes first
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent', 'log']
+- label: [agent, log]
 <!-- content -->
 - **Task**: Resolving conflict where partial RAG context prevented tool usage.
 - **Problem**: LLM was satisfied with just an event title from the vector store and didn't call tools to get the missing abstract/time.

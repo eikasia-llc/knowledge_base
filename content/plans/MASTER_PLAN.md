@@ -5,7 +5,7 @@
 - owner: product-manager
 - priority: critical
 - last_checked: 2026-01-23T15:14:25+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This document serves as the central strategic plan for the **Intelligent Control & Analysis Platform**. It is a dual-engine AI system functioning as both a **Business Analyst** and an **Autonomous Operator** for SMBs and industrial clients. It combines LLM reasoning (Analysis) with RL control (Optimization).
 
@@ -14,7 +14,7 @@ This document serves as the central strategic plan for the **Intelligent Control
 - type: documentation
 - id: product.saas.summary
 - last_checked: 2026-01-23T13:47:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **The Vision**: To empower every SMB with a Fortune 500-grade Data Science & Operations team—instantly. We bridge the gap between raw data and profitable action by combining natural language intuition with rigorous mathematical implementation.
 
@@ -34,14 +34,14 @@ This document serves as the central strategic plan for the **Intelligent Control
 - type: log
 - id: planner.meeting_notes.top
 - last_checked: 2026-01-25T17:47:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Historical log of meetings and coordination with colleagues.
 
 ### 2026-01-25 - Setting the Intelligent Control SaaS Roadmap
 - status: todo
 - type: log
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - participants: ["Ignacio", "Fran"]
 - id: planner.meeting.20260125.roadmap
@@ -76,7 +76,7 @@ Historical log of meetings and coordination with colleagues.
 - type: plan
 - id: product.saas.arch
 - last_checked: 2026-01-23T13:47:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 The system separates Analytical Queries (Code Execution) from Control Tasks (Model Inference).
 
@@ -85,7 +85,7 @@ The system separates Analytical Queries (Code Execution) from Control Tasks (Mod
 - type: documentation
 - id: product.saas.arch.components
 - last_checked: 2026-01-23T13:47:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 
 #### Chatbot Assistant App
@@ -93,7 +93,7 @@ The system separates Analytical Queries (Code Execution) from Control Tasks (Mod
 - type: documentation
 - id: product.saas.arch.components.chatbot
 - last_checked: 2026-01-23T19:47:31+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Serves as the primary interface for users, functioning simultaneously as a mechanism for interaction and a local data warehouse. It facilitates data collection and user intent capture.
 
@@ -102,7 +102,7 @@ Serves as the primary interface for users, functioning simultaneously as a mecha
 - type: documentation
 - id: product.saas.arch.components.ecosystem
 - last_checked: 2026-01-23T19:47:31+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 A background orchestration layer where multiple specialized AI agents collaborate. These agents are internal-only and handle specific sub-tasks to ensure seamless system operation.
 
@@ -111,7 +111,7 @@ A background orchestration layer where multiple specialized AI agents collaborat
 - type: documentation
 - id: product.saas.arch.components.cloud
 - last_checked: 2026-01-23T19:47:31+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 The scalable backbone of the platform. It includes **Google BigQuery** for massive data warehousing and **Google Cloud Compute** for performant processing, ensuring reliability and speed.
 
@@ -120,7 +120,7 @@ The scalable backbone of the platform. It includes **Google BigQuery** for massi
 - type: documentation
 - id: product.saas.arch.components.algorithms
 - last_checked: 2026-01-23T19:47:31+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 The central library of data processing and control algorithms. This leverages **Vertex AI** for advanced data science modeling and optimization tasks, representing the core intellectual property of the analysis engine.
 
@@ -129,7 +129,7 @@ The central library of data processing and control algorithms. This leverages **
 - type: documentation
 - id: product.saas.arch.flow
 - last_checked: 2026-01-23T13:47:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 
 #### AI Assistant Orchestration
@@ -137,7 +137,7 @@ The central library of data processing and control algorithms. This leverages **
 - type: documentation
 - id: product.saas.arch.flow.orchestration
 - last_checked: 2026-01-23T15:28:59+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 User interaction begins with the Chatbot App, which forwards requests to the Orchestrator (Vertex AI).
 1.  **Intent Recognition**: The Orchestrator determines if the request is **Analysis** (informational) or **Control** (actionable).
@@ -151,7 +151,7 @@ User interaction begins with the Chatbot App, which forwards requests to the Orc
 - type: documentation
 - id: product.saas.arch.flow.control
 - last_checked: 2026-01-23T15:28:59+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This high-frequency loop handles the autonomous optimization system:
 1.  **Telemetry Ingest**: Raw data streams from the Client App/Warehouse are ingested into BigQuery.
@@ -164,7 +164,7 @@ This high-frequency loop handles the autonomous optimization system:
 - type: documentation
 - id: product.saas.arch.flow.human_ai
 - last_checked: 2026-01-23T19:51:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Defines the protocols for how humans interact with the AI agents.
 
@@ -173,7 +173,7 @@ Defines the protocols for how humans interact with the AI agents.
 - type: guideline
 - id: product.saas.arch.flow.human_ai.developer
 - last_checked: 2026-01-23T19:51:07+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Protocol for developers to configure, train, and debug agents. Involves direct access to internal logs, model weights, and the 'Analysis Sandbox' for safe code testing.
 
@@ -182,7 +182,7 @@ Protocol for developers to configure, train, and debug agents. Involves direct a
 - type: guideline
 - id: product.saas.arch.flow.human_ai.client
 - last_checked: 2026-01-23T19:51:07+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Protocol for end-users. Restricted to natural language via the Chatbot App. No direct code execution allowed. Intent is parsed by the Orchestrator.
 
@@ -191,7 +191,7 @@ Protocol for end-users. Restricted to natural language via the Chatbot App. No d
 - type: guideline
 - id: product.saas.arch.flow.tools
 - last_checked: 2026-01-23T19:51:07+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Protocols for how AI agents utilize external software and APIs. Adheres to the **Model Context Protocol (MCP)** to standardize tool definition, discovery, and execution.
 
@@ -200,7 +200,7 @@ Protocols for how AI agents utilize external software and APIs. Adheres to the *
 - type: documentation
 - id: product.saas.arch.knowledge
 - last_checked: 2026-01-23T20:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Repository resources categorized by their function.
 
@@ -209,7 +209,7 @@ Repository resources categorized by their function.
 - type: documentation
 - id: product.saas.arch.knowledge.agentic
 - last_checked: 2026-01-23T20:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - [MANAGER_SKILL](MANAGER_SKILL.md)
 - [CLEANER_SKILL](../cleaner/CLEANER_SKILL.md)
@@ -226,7 +226,7 @@ Repository resources categorized by their function.
 - type: documentation
 - id: product.saas.arch.knowledge.general
 - last_checked: 2026-01-23T20:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - [README](../../README.md)
 - [MD_CONVENTIONS](../../MD_CONVENTIONS.md)
@@ -239,7 +239,7 @@ Repository resources categorized by their function.
 - type: plan
 - id: product.saas.roadmap
 - last_checked: 2026-01-23T21:44:23+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This roadmap strips away enterprise complexity to focus on the core value proposition: a local app that acts as a data hub and a chat interface, connected to powerful cloud agents for execution.
 
@@ -251,7 +251,7 @@ This roadmap strips away enterprise complexity to focus on the core value propos
 - priority: critical
 - estimate: 4w
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This document outlines the tactical execution plan for building the **Local Nexus**, the client-side application of the Intelligent Control SaaS.
 
@@ -276,7 +276,7 @@ This document outlines the tactical execution plan for building the **Local Nexu
 - id: implementation.phase1.init
 - estimate: 1d
 - last_checked: 2026-01-24T11:58:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Establish the repository structure to support modular growth into Phases 2 and 3.
 
@@ -305,7 +305,7 @@ Establish the repository structure to support modular growth into Phases 2 and 3
 - blocked_by: [implementation.phase1.init]
 - estimate: 1w
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Implement the persistence layer using DuckDB. This is the "Long-Term Memory" of the system.
 
@@ -314,7 +314,7 @@ Implement the persistence layer using DuckDB. This is the "Long-Term Memory" of 
 - type: task
 - id: implementation.phase1.warehouse.manager
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Create a DatabaseManager class in src/core/database.py.
 
@@ -342,7 +342,7 @@ Create a DatabaseManager class in src/core/database.py.
 - id: implementation.phase1.warehouse.ingest
 - blocked_by: [implementation.phase1.warehouse.manager]
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Create logic to handle user file uploads.
 
@@ -359,7 +359,7 @@ Create logic to handle user file uploads.
 - blocked_by: [implementation.phase1.warehouse]
 - estimate: 1w
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Implement the Streamlit frontend.
 
@@ -368,7 +368,7 @@ Implement the Streamlit frontend.
 - type: task
 - id: implementation.phase1.ui.layout
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 * **Sidebar**: "Data Management". A file uploader widget and a list of currently available tables in DuckDB.
 * **Main Area**: Chat container.
@@ -383,7 +383,7 @@ Implement the Streamlit frontend.
 - id: implementation.phase1.ui.chat
 - blocked_by: [implementation.phase1.ui.layout]
 - last_checked: 2026-01-24T11:54:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Since the Cloud Agents (Phase 3) are not ready, build a **Local Loopback** for testing.
 
@@ -403,7 +403,7 @@ Since the Cloud Agents (Phase 3) are not ready, build a **Local Loopback** for t
 - blocked_by: [implementation.phase1.ui]
 - estimate: 3d
 - last_checked: 2026-01-24T08:35:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Establish comprehensive testing to ensure reliability before packaging.
 
@@ -411,7 +411,7 @@ Establish comprehensive testing to ensure reliability before packaging.
 - status: todo
 - type: task
 - id: implementation.phase1.testing.unit
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - <!-- content -->
 - **Framework**: `pytest`
@@ -424,7 +424,7 @@ Establish comprehensive testing to ensure reliability before packaging.
 - type: task
 - id: implementation.phase1.testing.integration
 - blocked_by: [implementation.phase1.testing.unit]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - <!-- content -->
 - **Flow**: Simulate a full user flow: User uploads CSV -> Ingestion -> stored in DB -> Query retrieves it.
@@ -436,7 +436,7 @@ Establish comprehensive testing to ensure reliability before packaging.
 - blocked_by: [implementation.phase1.testing]
 - estimate: 2d
 - last_checked: 2026-01-24T08:35:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Prepare the application for easy local deployment.
 
@@ -444,7 +444,7 @@ Prepare the application for easy local deployment.
 - status: todo
 - type: task
 - id: implementation.phase1.packaging.deps
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - <!-- content -->
 - Create `requirements.txt` with locked versions.
@@ -454,7 +454,7 @@ Prepare the application for easy local deployment.
 - status: todo
 - type: task
 - id: implementation.phase1.packaging.scripts
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 - <!-- content -->
 - Create `run_app.sh` (Mac/Linux) and `run_app.bat` (Windows) to set up the environment and launch `streamlit run src/app.py`.
@@ -465,7 +465,7 @@ Prepare the application for easy local deployment.
 - id: implementation.phase1.research
 - priority: high
 - last_checked: 2026-01-24T08:35:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 To prepare for the RL Agents in Phase 3, we must treat this phase as the "Data Collection" period.
 
@@ -491,7 +491,7 @@ To prepare for the RL Agents in Phase 3, we must treat this phase as the "Data C
 - estimate: 2w
 - last_checked: 2026-01-24T08:50:00+01:00
 - blocked_by: [implementation.phase1]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This document details the "Cloud Bridge" implementation. The goal is to establish a secure, scalable communication channel between the Local Nexus (Phase 1) and the Cloud Agents (Phase 3) using the Google Cloud Ecosystem.
 
@@ -512,7 +512,7 @@ This document details the "Cloud Bridge" implementation. The goal is to establis
 - type: task
 - id: implementation.phase2.snake
 - estimate: 3d
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 The idea is that we are going to put a small app in the cloud to test functionalities. After that we are going to start with the infrastructure initialization
 
@@ -522,7 +522,7 @@ The idea is that we are going to put a small app in the cloud to test functional
 - id: implementation.phase2.infra
 - estimate: 3d
 - last_checked: 2026-01-24T08:50:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Provision the necessary Google Cloud resources. We will favor "Infrastructure as Code" practices.
 
@@ -531,7 +531,7 @@ Provision the necessary Google Cloud resources. We will favor "Infrastructure as
 - type: task
 - id: implementation.phase2.infra.setup
 - priority: high
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Action**: Create a new GCP Project (e.g., `intelligent-control-prod`).
 *   **Enable APIs**:
@@ -545,7 +545,7 @@ Provision the necessary Google Cloud resources. We will favor "Infrastructure as
 - type: task
 - id: implementation.phase2.infra.iac
 - blocked_by: [implementation.phase2.infra.setup]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Define the infrastructure using Terraform or scriptable `gcloud` commands.
 *   **Workflow**:
@@ -560,7 +560,7 @@ Define the infrastructure using Terraform or scriptable `gcloud` commands.
 - blocked_by: [implementation.phase2.infra]
 - estimate: 1w
 - last_checked: 2026-01-24T08:50:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Secure the bridge. The Local App must authenticate before sending data.
 
@@ -568,7 +568,7 @@ Secure the bridge. The Local App must authenticate before sending data.
 - status: todo
 - type: task
 - id: implementation.phase2.auth.firebase
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Setup**: Initialize a Firebase project linked to the GCP project.
 *   **Client**: Integrate `firebase-admin` in the Cloud API and the JS/Python SDK in the Local App.
@@ -581,7 +581,7 @@ Secure the bridge. The Local App must authenticate before sending data.
 - status: todo
 - type: task
 - id: implementation.phase2.auth.iam
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Service Accounts**: Create a specific Service Account for the Cloud Run instance.
 *   **Permissions**: Grant strictly necessary roles (e.g., `roles/bigquery.dataEditor`, `roles/storage.objectCreator`). **Do not use Owner role.**
@@ -593,7 +593,7 @@ Secure the bridge. The Local App must authenticate before sending data.
 - blocked_by: [implementation.phase2.auth]
 - estimate: 1w
 - last_checked: 2026-01-24T08:50:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Develop and deploy the central REST API.
 
@@ -601,7 +601,7 @@ Develop and deploy the central REST API.
 - status: todo
 - type: task
 - id: implementation.phase2.api.dev
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Create `src/cloud/main.py`.
 *   **Endpoints**:
@@ -614,7 +614,7 @@ Create `src/cloud/main.py`.
 - type: task
 - id: implementation.phase2.api.deploy
 - blocked_by: [implementation.phase2.api.dev]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Docker**: Create `Dockerfile` optimized for Python (multi-stage build).
 *   **CI/CD**: Define a simple deployment script: `gcloud run deploy --source .`.
@@ -626,7 +626,7 @@ Create `src/cloud/main.py`.
 - blocked_by: [implementation.phase2.api]
 - estimate: 1w
 - last_checked: 2026-01-24T08:50:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Mechanisms to move large datasets from Local DuckDB to Cloud BigQuery.
 
@@ -634,7 +634,7 @@ Mechanisms to move large datasets from Local DuckDB to Cloud BigQuery.
 - status: todo
 - type: task
 - id: implementation.phase2.pipeline.gcs
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 For raw files (CSV/Excel) that are too large for JSON payloads.
 *   **Mechanism**: Local App requests a Signed Upload URL from the API.
@@ -645,7 +645,7 @@ For raw files (CSV/Excel) that are too large for JSON payloads.
 - type: task
 - id: implementation.phase2.pipeline.bigquery
 - blocked_by: [implementation.phase2.pipeline.gcs]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Schema Mapping**: Map DuckDB types to BigQuery types.
 *   **Validation**: Check incoming schema against existing BigQuery schema to reject breaking changes (Schema Drift defense).
@@ -661,7 +661,7 @@ For raw files (CSV/Excel) that are too large for JSON payloads.
 - priority: critical
 - estimate: 6w
 - blocked_by: [implementation.phase2]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This document details the implementation of the "Brain" of the Intelligent Control SaaS: a multi-agent system built using the **Google Agent Development Kit (ADK)**.
 
@@ -681,7 +681,7 @@ This document details the implementation of the "Brain" of the Intelligent Contr
 - type: plan
 - id: implementation.phase3.arch
 - estimate: 1w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 We will leverage ADK's pattern for composable agents. The system will consist of a top-level **Coordinator Agent** and two specialized worker agents.
 
@@ -689,7 +689,7 @@ We will leverage ADK's pattern for composable agents. The system will consist of
 - status: todo
 - type: guideline
 - id: implementation.phase3.arch.coordinator
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Instead of a monolithic chain, we use a central `LlmAgent` acting as a router.
 *   **Input**: Natural language user queries + State Context (from Phase 2).
@@ -705,7 +705,7 @@ Instead of a monolithic chain, we use a central `LlmAgent` acting as a router.
 - id: implementation.phase3.analyst
 - blocked_by: [implementation.phase3.arch]
 - estimate: 2w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Role**: "Why is this happening?"
 **Tools**: Code Execution, Data Visualization.
@@ -714,7 +714,7 @@ Instead of a monolithic chain, we use a central `LlmAgent` acting as a router.
 - status: todo
 - type: task
 - id: implementation.phase3.analyst.repo
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 We will build a dedicated Python library (`src/lib_analysis`) that the agent learns to use.
 *   **Structure**:
@@ -732,7 +732,7 @@ We will build a dedicated Python library (`src/lib_analysis`) that the agent lea
 - status: todo
 - type: task
 - id: implementation.phase3.analyst.sandbox
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Mechanism**: The agent writes code that imports `lib_analysis`.
 *   **Security**: Use ADK's `CodeExecutionTool` configured with a restricted environment (or E2B integration if ADK native support is insufficient).
@@ -744,7 +744,7 @@ We will build a dedicated Python library (`src/lib_analysis`) that the agent lea
 - id: implementation.phase3.controller
 - blocked_by: [implementation.phase3.analyst]
 - estimate: 2w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Role**: "Optimize for X."
 **Tools**: Optimization Algorithms, Simulation.
@@ -753,7 +753,7 @@ We will build a dedicated Python library (`src/lib_analysis`) that the agent lea
 - status: todo
 - type: task
 - id: implementation.phase3.controller.integration
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Integrate the external repository [control_algorithms](https://github.com/IgnacioOQ/control_algorithms).
 *   **Step 1**: Submodule or Package integration of the user's repository.
@@ -769,7 +769,7 @@ Integrate the external repository [control_algorithms](https://github.com/Ignaci
 - id: implementation.phase3.ops
 - blocked_by: [implementation.phase3.controller]
 - estimate: 1w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Establish the lifecycle for developing and improving these agents.
 
@@ -777,7 +777,7 @@ Establish the lifecycle for developing and improving these agents.
 - status: todo
 - type: task
 - id: implementation.phase3.ops.eval
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Use Google's Gen AI Evaluation Service to move beyond "vibes-based" testing.
 *   **Trajectory Evaluation**: check if the Analyst Agent *actually* used the `visualize.py` tool or if it tried to hallucinate a plot.
@@ -788,7 +788,7 @@ Use Google's Gen AI Evaluation Service to move beyond "vibes-based" testing.
 - status: todo
 - type: task
 - id: implementation.phase3.ops.deploy
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 *   **Containerize**: Wrap the ADK agent server in a Docker container.
 *   **Deploy**: Push to Cloud Run.
@@ -799,7 +799,7 @@ Use Google's Gen AI Evaluation Service to move beyond "vibes-based" testing.
 - type: plan
 - id: product.saas.commercial
 - last_checked: 2026-01-24T09:40:55+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This section outlines the strategy for monetization, user acquisition, and market validation.
 
@@ -808,7 +808,7 @@ This section outlines the strategy for monetization, user acquisition, and marke
 - type: plan
 - id: product.saas.commercial.frontline
 - estimate: 4w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Validate the product value proposition with real users in a low-stakes environment.
 *   **Approach**: "Do things that don't scale." Direct outreach to friendly SMBs (Retail/Logistics).
@@ -822,7 +822,7 @@ This section outlines the strategy for monetization, user acquisition, and marke
 - id: product.saas.commercial.payment
 - blocked_by: [product.saas.commercial.frontline]
 - estimate: 2w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Build the infrastructure to capture value.
 *   **Tech**: Stripe / Lemon Squeezy integration.
@@ -837,7 +837,7 @@ This section outlines the strategy for monetization, user acquisition, and marke
 - type: plan
 - id: product.saas.commercial.marketing
 - blocked_by: [product.saas.commercial.payment]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Scale awareness and acquisition.
 *   **Content Marketing**: Blog posts/Videos demonstrating "Data Science for Non-Data Scientists" using our app.
@@ -851,7 +851,7 @@ This section outlines the strategy for monetization, user acquisition, and marke
 - type: plan
 - id: legal
 - last_checked: 2026-01-24T09:57:25+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This section details the administrative and legal infrastructure, divided by jurisdiction.
 
@@ -860,7 +860,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: plan
 - id: legal.us
 - owner: user
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Role**: Global Revenue Collection, Cloud Services Contracting, Intellectual Property Holder.
 
@@ -869,7 +869,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: task
 - id: legal.us.banking
 - estimate: 1w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Establish the financial hub.
 *   **Banking**:
@@ -886,7 +886,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: plan
 - id: legal.ar
 - owner: user
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Role**: Talent Acquisition, Software Development Center.
 
@@ -895,7 +895,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: task
 - id: legal.ar.setup
 - estimate: 4w
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Establish a local entity to hire full-time employees without EOR markup.
 *   **Structure**:
@@ -916,7 +916,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: task
 - id: legal.ar.hiring
 - blocked_by: [legal.ar.setup]
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Hire local developers legally.
 *   **Payroll**:
@@ -931,7 +931,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: guideline
 - id: product.saas.security
 - last_checked: 2026-01-23T13:47:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 -   **Indirect Execution**: Clients only submit natural language, never code.
 -   **Repository Scoping**: Generated code can only import whitelisted libraries (`pandas`, `numpy`, `lib_analysis`). No `os` or `sys`.
@@ -943,14 +943,14 @@ This section details the administrative and legal infrastructure, divided by jur
 - type: plan
 - id: product.saas.research
 - last_checked: 2026-01-23T13:47:07+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 
 ### Brainstorming
 - status: active
 - type: plan
 - id: product.saas.research.brainstorming
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 -   **MBRL (DreamerV3)**: Learning World Models from telemetry to simulate environments.
 -   **Safe RL**: Constrained MDPs (Lagrangian Relaxation) to ensure safety during exploration.
@@ -960,7 +960,7 @@ This section details the administrative and legal infrastructure, divided by jur
 - status: todo
 - type: plan
 - id: product.saas.research.rl_protocols
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 [Source Discussion](https://claude.ai/share/b89ac095-3db2-4f1c-9bc1-316d8f691637)
 
@@ -1028,7 +1028,7 @@ The paper argues that the Cooperative Principle isn't encoded in payoff matrices
 - type: plan
 - id: product.saas.research.clawdbot
 - last_checked: 2026-01-25T13:40:40+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 A research direction inspired by the [Clawdbot project](https://github.com/clawdbot/clawdbot) to create a "Personal AI Assistant" that runs locally on a Mac mini but interacts via chat apps (Telegram/iMessage).
 

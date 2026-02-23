@@ -28,7 +28,7 @@
 ## Current Project Housekeeping
 - status: active
 - type: plan
-- label: ['recurring']
+- label: [recurring]
 <!-- content -->
 
 ## Dependency Network

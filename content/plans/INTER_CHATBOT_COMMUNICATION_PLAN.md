@@ -7,7 +7,7 @@
 - estimate: 12w
 - blocked_by: [product.saas.roadmap.phase2]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 This plan defines the architecture and implementation roadmap for enabling **Inter-Chatbot Communication (ICC)** — the capability for our chatbot to interact with external chatbots from other companies. This creates a federated AI ecosystem where specialized agents can delegate tasks, share context, and collaborate across organizational boundaries.
 
@@ -21,7 +21,7 @@ This plan defines the architecture and implementation roadmap for enabling **Int
 - type: documentation
 - id: product.saas.features.inter_chatbot.problem
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Current AI chatbots operate as isolated silos. When a user asks a question outside the bot's domain, the typical response is "I can't help with that." Inter-chatbot communication solves this by allowing:
 
@@ -40,7 +40,7 @@ Current AI chatbots operate as isolated silos. When a user asks a question outsi
 - type: plan
 - id: product.saas.features.inter_chatbot.architecture
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 The ICC system introduces three new architectural layers that integrate with the existing platform.
 
@@ -49,7 +49,7 @@ The ICC system introduces three new architectural layers that integrate with the
 - type: documentation
 - id: product.saas.features.inter_chatbot.architecture.gateway
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 A dedicated service that handles all external bot communications. It sits between our Chatbot App and the outside world, acting as both a **client** (when we call external bots) and a **server** (when external bots call us).
 
@@ -64,7 +64,7 @@ A dedicated service that handles all external bot communications. It sits betwee
 - type: documentation
 - id: product.saas.features.inter_chatbot.architecture.registry
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 A catalog of known external bots with their capabilities, endpoints, authentication requirements, and trust levels.
 
@@ -87,7 +87,7 @@ A catalog of known external bots with their capabilities, endpoints, authenticat
 - type: documentation
 - id: product.saas.features.inter_chatbot.architecture.router
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Extends the existing Agent Orchestrator to detect when a query should be delegated externally. The router maintains a **capability map** that matches user intents to available bots (internal and external).
 
@@ -103,7 +103,7 @@ Extends the existing Agent Orchestrator to detect when a query should be delegat
 - type: guideline
 - id: product.saas.features.inter_chatbot.protocol
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Defines the message format and interaction patterns for bot-to-bot communication.
 
@@ -112,7 +112,7 @@ Defines the message format and interaction patterns for bot-to-bot communication
 - type: guideline
 - id: product.saas.features.inter_chatbot.protocol.envelope
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 All ICC messages use a standardized envelope that wraps the actual payload.
 
@@ -158,7 +158,7 @@ All ICC messages use a standardized envelope that wraps the actual payload.
 - type: guideline
 - id: product.saas.features.inter_chatbot.protocol.patterns
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Supported interaction models between bots:
 
@@ -172,7 +172,7 @@ Supported interaction models between bots:
 - type: guideline
 - id: product.saas.features.inter_chatbot.protocol.context
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning', 'protocol']
+- label: [planning, protocol]
 <!-- content -->
 Defines how conversation context is shared between bots without exposing raw user data.
 
@@ -192,7 +192,7 @@ Defines how conversation context is shared between bots without exposing raw use
 - type: guideline
 - id: product.saas.features.inter_chatbot.security
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Security is paramount when opening communication channels with external systems.
 
@@ -202,7 +202,7 @@ Security is paramount when opening communication channels with external systems.
 - id: product.saas.features.inter_chatbot.security.auth
 - estimate: 2w
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Authentication Methods** (in order of preference):
 1. **Mutual TLS (mTLS)**: Certificate-based identity for high-trust partners.
@@ -219,7 +219,7 @@ Security is paramount when opening communication channels with external systems.
 - type: documentation
 - id: product.saas.features.inter_chatbot.security.trust
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 External bots are classified into trust tiers that determine interaction permissions:
 
@@ -235,7 +235,7 @@ External bots are classified into trust tiers that determine interaction permiss
 - type: guideline
 - id: product.saas.features.inter_chatbot.security.threats
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Identified Threats and Mitigations**:
 
@@ -260,7 +260,7 @@ External bots are classified into trust tiers that determine interaction permiss
 - id: product.saas.features.inter_chatbot.roadmap
 - blocked_by: [product.saas.roadmap.phase2]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Phased implementation to deliver value incrementally while managing complexity.
 
@@ -271,7 +271,7 @@ Phased implementation to deliver value incrementally while managing complexity.
 - estimate: 4w
 - blocked_by: [product.saas.roadmap.phase2]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Enable our chatbot to call external bots (we are the client).
 
@@ -281,7 +281,7 @@ Phased implementation to deliver value incrementally while managing complexity.
 - id: product.saas.features.inter_chatbot.roadmap.phase_a.gateway
 - estimate: 2w
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Build the outbound communication service.
 
@@ -300,7 +300,7 @@ Build the outbound communication service.
 - estimate: 1w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_a.gateway]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Implement the bot catalog as a configuration file (JSON/YAML) for initial rollout.
 
@@ -316,7 +316,7 @@ Implement the bot catalog as a configuration file (JSON/YAML) for initial rollou
 - estimate: 1w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_a.registry]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Extend the existing Orchestrator to support external routing decisions.
 
@@ -333,7 +333,7 @@ Extend the existing Orchestrator to support external routing decisions.
 - estimate: 4w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_a]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Allow external bots to call our chatbot; support multi-turn conversations.
 
@@ -343,7 +343,7 @@ Extend the existing Orchestrator to support external routing decisions.
 - id: product.saas.features.inter_chatbot.roadmap.phase_b.server
 - estimate: 2w
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Expose our chatbot capabilities to external callers.
 
@@ -360,7 +360,7 @@ Expose our chatbot capabilities to external callers.
 - estimate: 1w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_b.server]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Implement persistent conversation state across bot boundaries.
 
@@ -377,7 +377,7 @@ Implement persistent conversation state across bot boundaries.
 - estimate: 1w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_b.threading]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Enable asynchronous task delegation for long-running operations.
 
@@ -394,7 +394,7 @@ Enable asynchronous task delegation for long-running operations.
 - estimate: 4w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_b]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Objective**: Production hardening, trust management, and ecosystem features.
 
@@ -404,7 +404,7 @@ Enable asynchronous task delegation for long-running operations.
 - id: product.saas.features.inter_chatbot.roadmap.phase_c.trust
 - estimate: 1w
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Implement the tiered trust model for bot classification.
 
@@ -421,7 +421,7 @@ Implement the tiered trust model for bot classification.
 - estimate: 2w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_c.trust]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Build the privacy-preserving context sharing system.
 
@@ -438,7 +438,7 @@ Build the privacy-preserving context sharing system.
 - estimate: 1w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_c.privacy]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Create a discovery mechanism for users to find and enable external bot integrations.
 
@@ -453,7 +453,7 @@ Create a discovery mechanism for users to find and enable external bot integrati
 - type: plan
 - id: product.saas.features.inter_chatbot.ux
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 How users interact with and perceive cross-bot functionality.
 
@@ -462,7 +462,7 @@ How users interact with and perceive cross-bot functionality.
 - type: guideline
 - id: product.saas.features.inter_chatbot.ux.transparency
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Users must always know when external bots are involved.
 
@@ -478,7 +478,7 @@ Users must always know when external bots are involved.
 - estimate: 1w
 - blocked_by: [product.saas.features.inter_chatbot.roadmap.phase_a]
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 New UI elements to support ICC:
 
@@ -492,7 +492,7 @@ New UI elements to support ICC:
 - type: documentation
 - id: product.saas.features.inter_chatbot.examples
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Concrete scenarios demonstrating ICC value.
 
@@ -501,7 +501,7 @@ Concrete scenarios demonstrating ICC value.
 - type: documentation
 - id: product.saas.features.inter_chatbot.examples.legal
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Scenario**: User asks our Analyst bot about GDPR compliance for their data handling.
 
@@ -519,7 +519,7 @@ Concrete scenarios demonstrating ICC value.
 - type: documentation
 - id: product.saas.features.inter_chatbot.examples.multibot
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Scenario**: Complex query requiring multiple specialized bots.
 
@@ -537,7 +537,7 @@ User: "Analyze my sales data, translate the report to Spanish, and check if our 
 - type: documentation
 - id: product.saas.features.inter_chatbot.metrics
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 **Key Performance Indicators**:
 
@@ -559,7 +559,7 @@ User: "Analyze my sales data, translate the report to Spanish, and check if our 
 - type: log
 - id: product.saas.features.inter_chatbot.decisions
 - last_checked: 2026-01-25T12:00:00+01:00
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 Tracking key decisions and unresolved questions.
 
@@ -568,7 +568,7 @@ Tracking key decisions and unresolved questions.
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 | Date | Question | Decision | Rationale |
 |------|----------|----------|-----------|
@@ -580,7 +580,7 @@ Tracking key decisions and unresolved questions.
 - status: active
 - type: documentation
 - last_checked: 2026-01-27
-- label: ['planning']
+- label: [planning]
 <!-- content -->
 1. **Billing Model**: How do we handle costs when external bots charge per query?
 2. **SLA Propagation**: How do external bot SLAs affect our user-facing SLAs?

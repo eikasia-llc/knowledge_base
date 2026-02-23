@@ -2,7 +2,7 @@
 - status: active
 - type: agent_skill
 - owner: dev-1
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - context_dependencies: {"app": "app.py", "engine": "src/core/engine.py"}
 <!-- content -->
@@ -11,7 +11,7 @@ This file defines the skill/persona for manipulating the Streamlit UI (`app.py`)
 ## UI Architecture Overview
 - status: active
 - type: documentation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The application is a single-page Streamlit app structured as follows:
 1.  **Configuration**: `st.set_page_config` sets the title and layout.
@@ -31,14 +31,14 @@ The application is a single-page Streamlit app structured as follows:
 ## Modification Protocols
 - status: active
 - type: guideline
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 When modifying `app.py`, adhere to these rules:
 
 ### 1. State Persistence
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Variables lost on rerun must be stored in `st.session_state`.
 ```python
@@ -49,7 +49,7 @@ if "my_feature_enabled" not in st.session_state:
 ### 2. Sidebar Organization
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Maintain the visual hierarchy:
 - **Top**: Content relevant to the user *now* (e.g., "Events this Week").
@@ -59,7 +59,7 @@ Maintain the visual hierarchy:
 ### 3. Async/Blocking Operations
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - Use `st.spinner("Message...")` for any LLM call or network request.
 - Do not run heavy computations outside of user interactions or cached resource loading.
@@ -67,7 +67,7 @@ Maintain the visual hierarchy:
 ### 4. Code Style
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - Keep logic in `src/` modules (e.g., `src/ui/` or `src/core/`) where possible.
 - Keep `app.py` focused on layout and state wiring.
@@ -75,7 +75,7 @@ Maintain the visual hierarchy:
 ## Common Patterns
 - status: active
 - type: guideline
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Adding a Configuration Toggle
@@ -83,7 +83,7 @@ Maintain the visual hierarchy:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Place it at the bottom of the sidebar and pass it to the engine generation call.
 
@@ -99,7 +99,7 @@ with st.sidebar:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 if prompt:
     # ...
@@ -111,7 +111,7 @@ if prompt:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Always append to `st.session_state.messages` immediately after displaying.
 
@@ -124,7 +124,7 @@ with st.chat_message("user"):
 ### Custom CSS for Layout Control
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Use `st.markdown` with `unsafe_allow_html=True` to inject custom CSS. Target Streamlit's internal test IDs:
 
@@ -155,7 +155,7 @@ st.markdown("""
 ### Monthly Calendar with Navigation
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Create an interactive monthly calendar using Python's `calendar` module and session state for navigation:
 
@@ -167,7 +167,7 @@ import calendar
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 if "cal_year" not in st.session_state:
     st.session_state.cal_year = datetime.now().year
@@ -179,7 +179,7 @@ if "cal_month" not in st.session_state:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
@@ -204,7 +204,7 @@ with col3:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 cal = calendar.Calendar(firstweekday=0)  # Monday start
 month_days = cal.monthdayscalendar(st.session_state.cal_year, st.session_state.cal_month)
@@ -215,7 +215,7 @@ month_days = cal.monthdayscalendar(st.session_state.cal_year, st.session_state.c
 ### Interactive Elements Triggering LLM Queries
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 To make UI elements (like calendar day buttons) silently trigger LLM queries:
 
@@ -254,7 +254,7 @@ if "calendar_query_date" in st.session_state:
 ### Highlighting Data-Driven Days
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Load event data to determine which days to highlight:
 
@@ -275,7 +275,7 @@ Then conditionally add CSS classes or render buttons only for those days.
 ### Native Streamlit Calendar Grid
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Build calendars using native Streamlit components for proper interactivity:
 
@@ -290,7 +290,7 @@ month_days = cal.monthdayscalendar(cal_year, cal_month)
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 for week in month_days:
     cols = st.columns(7)
@@ -310,7 +310,7 @@ for week in month_days:
 ### Button Alignment & Consistent Styling
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Enabled and disabled buttons can have different default heights. Fix alignment with explicit CSS:
 
@@ -352,7 +352,7 @@ st.markdown("""
 ### HTML Links Do NOT Work for Interactivity
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Critical limitation**: HTML links (`<a href="...">`) in `st.markdown()` cannot trigger Python callbacks. They navigate to a new page or reload the app.
 
@@ -376,7 +376,7 @@ button {
 ### Zip Download of Source Files
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When the user wants to download a collection of files, generate a ZIP file in-memory using `io.BytesIO` and `zipfile`.
 
@@ -404,7 +404,7 @@ st.download_button(
 ### Avoiding Stale Caching
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Avoid using `@st.cache_resource` or `@st.cache_data` on functions that load mutable system state, such as a file registry that might be updated during the session.
 

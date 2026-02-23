@@ -1,7 +1,7 @@
 # Control Agent Instructions
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Role:** You are the **Control Agent**, a specialist in classical and modern control theory implementation.
 
@@ -10,7 +10,7 @@
 ## Background: Control Theory in RL Environments
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The simulation system contains three environments that are fundamentally **control problems**:
 
@@ -28,7 +28,7 @@ These environments have well-understood dynamics that make them amenable to mode
 ## Core Constraints (Strict)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. **Immutable Core Files:** You **MUST NOT** modify `agents.py`, `model.py`, or `simulation_functions.py` (legacy constraint from AGENTS.md).
 2. **Interface Compliance:** All controllers must implement the `BaseAgent` interface from `src/agents/base.py`.
@@ -39,19 +39,19 @@ These environments have well-understood dynamics that make them amenable to mode
 ## Control Methods to Implement
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Phase 1: Classical Controllers
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 #### 1.1 PID Controller (`src/agents/pid.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Target Environment:** Homeostasis (glucose regulation)
 
@@ -94,7 +94,7 @@ class PIDAgent(BaseAgent):
 #### 1.2 Threshold/Heuristic Controller (`src/agents/threshold.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Target Environment:** Server Load (queue routing)
 
@@ -122,13 +122,13 @@ class ThresholdAgent(BaseAgent):
 ### Phase 2: Optimal Control
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 #### 2.1 LQR Controller (`src/agents/lqr.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Target Environment:** Smart Grid (linearized around equilibrium)
 
@@ -185,7 +185,7 @@ def linearize_dynamics(
 #### 2.2 Model Predictive Control (`src/agents/mpc.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Target Environments:** Homeostasis, Smart Grid
 
@@ -234,13 +234,13 @@ class MPCAgent(BaseAgent):
 ### Phase 3: Hybrid Control-RL Methods
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 #### 3.1 Residual Policy Learning (`src/agents/residual_rl.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 class ResidualPolicyAgent(BaseAgent):
@@ -265,7 +265,7 @@ class ResidualPolicyAgent(BaseAgent):
 #### 3.2 Gain-Scheduled Controller (`src/agents/gain_scheduled.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 class GainScheduledAgent(BaseAgent):
@@ -282,7 +282,7 @@ class GainScheduledAgent(BaseAgent):
 #### 3.3 Safe RL with Control Barrier Functions (`src/agents/cbf_rl.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 class CBFSafeAgent(BaseAgent):
@@ -306,13 +306,13 @@ class CBFSafeAgent(BaseAgent):
 ## Environment-Specific Guidance
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Homeostasis Environment
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Dynamics:** Bergman Minimal Model (3 ODEs)
 ```
@@ -337,7 +337,7 @@ dI/dt = -n*I + gamma*(G - h)^+ + u(t)
 ### Smart Grid Environment
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Dynamics:** BESS with efficiency losses, OU price process
 ```
@@ -359,7 +359,7 @@ Price follows: dP = θ(μ - P)dt + σdW
 ### Server Load Environment
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Dynamics:** M/M/k queueing with Discrete Event Simulation
 
@@ -372,7 +372,7 @@ Price follows: dP = θ(μ - P)dt + σdW
 ## Utility Functions (`src/utils/control_utils.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 def discretize_continuous_system(
@@ -417,13 +417,13 @@ def pole_placement(
 ## Testing Strategy
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Unit Tests (`tests/test_control_agents.py`)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 class TestPIDAgent:
@@ -461,7 +461,7 @@ class TestMPCAgent:
 ### Integration Tests
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 def test_pid_on_homeostasis():
@@ -483,7 +483,7 @@ def test_jsq_on_server_load():
 ### Benchmark Tests
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Compare control baselines against RL agents:
 
@@ -503,13 +503,13 @@ def benchmark_homeostasis_controllers():
 ## Implementation Checklist
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Phase 1: Classical Controllers
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [ ] Implement `PIDAgent` with anti-windup
 - [ ] Implement `ShortestQueueAgent` and `PowerOfTwoChoices`
@@ -519,7 +519,7 @@ def benchmark_homeostasis_controllers():
 ### Phase 2: Optimal Control
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [ ] Implement `linearize_dynamics` utility
 - [ ] Implement `LQRAgent` with DARE solver
@@ -530,7 +530,7 @@ def benchmark_homeostasis_controllers():
 ### Phase 3: Hybrid Methods
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [ ] Implement `ResidualPolicyAgent`
 - [ ] Implement `CBFSafeAgent` for Homeostasis
@@ -539,7 +539,7 @@ def benchmark_homeostasis_controllers():
 ### Documentation
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - [ ] Update `AGENTS.md` with control agent descriptions
 - [ ] Add control theory references to `docs/`
@@ -548,7 +548,7 @@ def benchmark_homeostasis_controllers():
 ## References & Resources
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 **Textbooks (add to `docs/` for context fine-tuning):**
 - Astrom & Murray, "Feedback Systems" (PID, stability)
@@ -562,14 +562,14 @@ def benchmark_homeostasis_controllers():
 ## Agent Log Entry Template
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```markdown
 
 ### [DATE] - Control Agent Implementation (Control Agent)
 - status: active
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 *   **Task:** [Specific controller implemented]
 *   **Actions:**

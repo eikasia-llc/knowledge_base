@@ -3,7 +3,7 @@
 - type: agent_skill
 - id: rags-agent
 - last_checked: 2025-01-28
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 - context_dependencies: {"conventions": "MD_CONVENTIONS.md"}
 - last_checked: 2025-01-28
@@ -14,7 +14,7 @@ This document defines an **agent skill** for analyzing, configuring, and improvi
 - status: active
 - type: guideline
 - id: rags-agent.competencies
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 An agent with this skill can:
 
@@ -28,7 +28,7 @@ An agent with this skill can:
 - status: active
 - type: guideline
 - id: rags-agent.fundamentals
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Before optimizing, ensure the foundational RAG architecture is sound. This section covers the essential components and common pitfalls.
 
@@ -36,7 +36,7 @@ Before optimizing, ensure the foundational RAG architecture is sound. This secti
 - status: active
 - type: documentation
 - id: rags-agent.fundamentals.definition
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 RAG combines three operations:
 
@@ -50,7 +50,7 @@ The quality of a RAG system is bounded by retrieval quality. If relevant documen
 - status: active
 - type: guideline
 - id: rags-agent.fundamentals.components
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 A well-structured RAG system requires:
 
@@ -67,7 +67,7 @@ A well-structured RAG system requires:
 - status: active
 - type: guideline
 - id: rags-agent.fundamentals.chunking
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Chunk size directly impacts retrieval quality:
 
@@ -88,7 +88,7 @@ Recommended approaches by content type:
 - status: active
 - type: guideline
 - id: rags-agent.fundamentals.embeddings
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Choose embedding models based on your constraints:
 
@@ -105,7 +105,7 @@ For most projects, `all-MiniLM-L6-v2` or `text-embedding-3-small` provides the b
 - status: active
 - type: guideline
 - id: rags-agent.fundamentals.failures
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Diagnose RAG issues by checking these failure modes in order:
 
@@ -130,7 +130,7 @@ Diagnose RAG issues by checking these failure modes in order:
 - status: active
 - type: guideline
 - id: rags-agent.fundamentals.optimizations
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Small implementation details can have significant performance impact at scale.
 
@@ -138,7 +138,7 @@ Small implementation details can have significant performance impact at scale.
 - status: active
 - type: documentation
 - id: rags-agent.fundamentals.optimizations.set-check
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When checking for duplicates during document ingestion or retrieval deduplication, prefer **set-based lookups** over **list-based lookups**.
 
@@ -153,7 +153,7 @@ When checking for duplicates during document ingestion or retrieval deduplicatio
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ids = []
 for doc in documents:
@@ -167,7 +167,7 @@ for doc in documents:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ids = []
 used_ids = set()  # Separate set for O(1) lookups
@@ -187,7 +187,7 @@ for doc in documents:
 - status: active
 - type: plan
 - id: rags-agent.retrieval
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This section covers techniques to improve what documents are retrieved for a given query.
 
@@ -196,7 +196,7 @@ This section covers techniques to improve what documents are retrieved for a giv
 - type: guideline
 - id: rags-agent.retrieval.semantic-similarity
 - priority: high
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Understanding how semantic similarity works is essential for optimizing RAG retrieval. The query-retrieval function in RAG systems is **primarily** done by semantic similarity, though modern systems use hybrid approaches.
 
@@ -204,7 +204,7 @@ Understanding how semantic similarity works is essential for optimizing RAG retr
 - status: active
 - type: documentation
 - id: rags-agent.retrieval.semantic-similarity.mechanism
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The semantic similarity process involves three steps:
 
@@ -218,7 +218,7 @@ The semantic similarity process involves three steps:
 - status: active
 - type: guideline
 - id: rags-agent.retrieval.semantic-similarity.metrics
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Different metrics measure vector similarity in different ways:
 
@@ -285,7 +285,7 @@ def dot_product(vec1: np.ndarray, vec2: np.ndarray) -> float:
 - status: active
 - type: documentation
 - id: rags-agent.retrieval.semantic-similarity.rationale
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Semantic embeddings capture meaning beyond exact keyword matches. For example:
 
@@ -301,7 +301,7 @@ This allows RAG systems to retrieve relevant documents even when query terms don
 - id: rags-agent.retrieval.hybrid
 - priority: high
 - estimate: 2h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Combine semantic search with traditional keyword search (BM25) for better retrieval accuracy. This addresses the limitations of pure semantic similarity.
 
@@ -309,7 +309,7 @@ Combine semantic search with traditional keyword search (BM25) for better retrie
 - status: active
 - type: guideline
 - id: rags-agent.retrieval.hybrid.use-cases
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Hybrid search excels when:
 
@@ -323,7 +323,7 @@ Hybrid search excels when:
 - type: task
 - id: rags-agent.retrieval.hybrid.implementation
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 from rank_bm25 import BM25Okapi
@@ -415,7 +415,7 @@ class HybridRetriever:
 - id: rags-agent.retrieval.reranking
 - priority: high
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Use a two-stage retrieval process: fast semantic search followed by accurate reranking. This improves precision without sacrificing recall.
 
@@ -423,7 +423,7 @@ Use a two-stage retrieval process: fast semantic search followed by accurate rer
 - status: active
 - type: guideline
 - id: rags-agent.retrieval.reranking.use-cases
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Reranking is effective when:
 
@@ -437,7 +437,7 @@ Reranking is effective when:
 - type: task
 - id: rags-agent.retrieval.reranking.implementation
 - estimate: 45m
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 from sentence_transformers import CrossEncoder
@@ -553,7 +553,7 @@ class FullRetrievalPipeline:
 - id: rags-agent.retrieval.metadata-filtering
 - priority: medium
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Combine semantic search with metadata filtering to narrow results based on document properties like source, date, category, or access permissions.
 
@@ -561,7 +561,7 @@ Combine semantic search with metadata filtering to narrow results based on docum
 - status: active
 - type: guideline
 - id: rags-agent.retrieval.metadata-filtering.use-cases
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Metadata filtering is essential when:
 
@@ -575,7 +575,7 @@ Metadata filtering is essential when:
 - type: task
 - id: rags-agent.retrieval.metadata-filtering.implementation
 - estimate: 45m
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 from typing import Dict, Any, List
@@ -739,7 +739,7 @@ JSON:"""
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 metadata = {
     'source': 'official_docs',
@@ -754,7 +754,7 @@ metadata = {
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 metadata = {
     'source': 'arxiv',
@@ -769,7 +769,7 @@ metadata = {
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 metadata = {
     'source': 'github',
@@ -789,7 +789,7 @@ metadata = {
 - type: guideline
 - id: rags-agent.retrieval.advanced
 - priority: medium
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Beyond basic semantic similarity, several advanced strategies can further improve retrieval quality.
 
@@ -797,7 +797,7 @@ Beyond basic semantic similarity, several advanced strategies can further improv
 - status: active
 - type: documentation
 - id: rags-agent.retrieval.advanced.mmr
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 MMR balances relevance with diversity to avoid retrieving redundant documents. Instead of just taking the top-k most similar documents, MMR iteratively selects documents that are relevant to the query but diverse from already-selected documents.
 
@@ -809,7 +809,7 @@ MMR balances relevance with diversity to avoid retrieving redundant documents. I
 - status: active
 - type: documentation
 - id: rags-agent.retrieval.advanced.parent-doc
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Retrieve small chunks for precision, but return larger parent documents for context. This gives you the best of both worlds: accurate matching with sufficient surrounding context.
 
@@ -824,7 +824,7 @@ Retrieve small chunks for precision, but return larger parent documents for cont
 - status: active
 - type: documentation
 - id: rags-agent.retrieval.advanced.sentence-window
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Similar to parent document retrieval, but retrieves individual sentences for matching, then expands to include surrounding sentences (e.g., 2 sentences before and after).
 
@@ -834,7 +834,7 @@ Similar to parent document retrieval, but retrieves individual sentences for mat
 - status: active
 - type: guideline
 - id: rags-agent.retrieval.summary
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Decision matrix for choosing retrieval techniques:
 
@@ -868,7 +868,7 @@ Decision matrix for choosing retrieval techniques:
 - id: rags-agent.retrieval.decomposition
 - priority: high
 - estimate: 15m
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Break complex questions into simpler sub-queries before retrieval. This is the highest-impact, lowest-cost improvement.
 
@@ -949,7 +949,7 @@ def retrieve_with_decomposition(question: str, vector_store, llm_client, top_k: 
 - id: rags-agent.retrieval.stepback
 - priority: medium
 - estimate: 30m
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Generate a more abstract, higher-level question to retrieve broader context before answering the specific question.
 
@@ -1021,7 +1021,7 @@ def retrieve_with_stepback(question: str, vector_store, llm_client, top_k: int =
 - status: active
 - type: plan
 - id: rags-agent.generation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This section covers techniques to improve how the LLM uses retrieved context to generate answers.
 
@@ -1031,7 +1031,7 @@ This section covers techniques to improve how the LLM uses retrieved context to 
 - id: rags-agent.generation.self-ask
 - priority: high
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Let the LLM iteratively ask and answer sub-questions, retrieving new context at each step.
 
@@ -1167,7 +1167,7 @@ Iteration 3:
 - id: rags-agent.generation.verify
 - priority: medium
 - estimate: 30m
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Have the LLM explicitly verify its claims against the retrieved context before outputting.
 
@@ -1236,7 +1236,7 @@ FINAL: [final verified answer]"""
 - id: rags-agent.generation.citations
 - priority: medium
 - estimate: 30m
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Require the LLM to cite specific sources for each claim, improving traceability and trust.
 
@@ -1284,7 +1284,7 @@ Answer with citations:"""
 - status: active
 - type: plan
 - id: rags-agent.structured
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 RAG systems often need to query structured data (databases, APIs) alongside documents. This section covers integration patterns, with particular focus on combining RAG with MCP (Model Context Protocol) for hybrid architectures.
 
@@ -1292,7 +1292,7 @@ RAG systems often need to query structured data (databases, APIs) alongside docu
 - status: active
 - type: documentation
 - id: rags-agent.structured.limitation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Pure RAG retrieves semantically similar chunks, but the LLM has no structured way to navigate, filter, or reason over the underlying data schema. The LLM only sees whatever chunks the embedding search returns.
 
@@ -1304,7 +1304,7 @@ The core issue is that the LLM can't "see the database" - it only sees whatever 
 - status: active
 - type: guideline
 - id: rags-agent.structured.when
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Semantic search fails for:
 
@@ -1322,7 +1322,7 @@ For these, you need SQL/API queries or structured tools, not embeddings.
 - type: plan
 - id: rags-agent.structured.hybrid-architecture
 - priority: high
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The combination of RAG and MCP addresses the fundamental limitation: MCP gives the LLM structured tools to navigate data intentionally, while RAG handles fuzzy semantic queries. Together, they cover more query types effectively than either alone.
 
@@ -1330,7 +1330,7 @@ The combination of RAG and MCP addresses the fundamental limitation: MCP gives t
 - status: active
 - type: guideline
 - id: rags-agent.structured.hybrid-architecture.overview
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The hybrid architecture gives the LLM two complementary retrieval mechanisms:
 
@@ -1376,7 +1376,7 @@ The hybrid architecture gives the LLM two complementary retrieval mechanisms:
 - status: active
 - type: guideline
 - id: rags-agent.structured.hybrid-architecture.routing
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The LLM learns to route queries to the appropriate retrieval mechanism:
 
@@ -1393,7 +1393,7 @@ The LLM learns to route queries to the appropriate retrieval mechanism:
 - status: active
 - type: documentation
 - id: rags-agent.structured.hybrid-architecture.benefits
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 1. **Better space partitioning**: The LLM can navigate the data structure intentionally rather than relying solely on embedding similarity.
 
@@ -1411,7 +1411,7 @@ The LLM learns to route queries to the appropriate retrieval mechanism:
 - id: rags-agent.structured.mcp-json
 - priority: high
 - estimate: 3h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Implement an MCP server that exposes structured operations over JSON data files, complementing the semantic search provided by RAG.
 
@@ -1436,7 +1436,7 @@ from mcp.types import Tool, TextContent
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 server = Server("json-data-tools")
 
@@ -1445,7 +1445,7 @@ server = Server("json-data-tools")
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 DATA_DIR = Path("data/json")
 
@@ -1480,7 +1480,7 @@ def load_people() -> list[dict]:
 
 # ============================================================
 - type: agent_skill
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # MCP Tool Definitions
@@ -1488,7 +1488,7 @@ def load_people() -> list[dict]:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 # ============================================================
@@ -1496,7 +1496,7 @@ def load_people() -> list[dict]:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 @server.list_tools()
 async def list_tools() -> list[Tool]:
@@ -1771,7 +1771,7 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
 - status: active
 - type: documentation
 - last_checked: 2026-02-02
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 if __name__ == "__main__":
     import asyncio
@@ -1791,7 +1791,7 @@ if __name__ == "__main__":
 - id: rags-agent.structured.hybrid-engine
 - priority: high
 - estimate: 2h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Implement a hybrid engine that gives the LLM access to both MCP tools and RAG retrieval, letting it choose the best approach for each query.
 
@@ -2096,7 +2096,7 @@ Provide a helpful answer based on these results:"""
 - id: rags-agent.structured.mcp
 - priority: high
 - estimate: 2h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Use Model Context Protocol (MCP) to expose structured data sources as tools.
 
@@ -2297,7 +2297,7 @@ Synthesize a final answer:"""
 - id: rags-agent.structured.lightweight
 - priority: medium
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 For simple cases, implement tool calling without full MCP infrastructure.
 
@@ -2411,7 +2411,7 @@ Final answer:"""
 - status: active
 - type: guideline
 - id: rags-agent.structured.challenges
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 When implementing RAG + MCP hybrid systems, be aware of these challenges:
 
@@ -2439,7 +2439,7 @@ When implementing RAG + MCP hybrid systems, be aware of these challenges:
 - status: active
 - type: plan
 - id: rags-agent.cost
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 RAG systems can get expensive with multiple LLM calls. This section covers cost reduction strategies.
 
@@ -2449,7 +2449,7 @@ RAG systems can get expensive with multiple LLM calls. This section covers cost 
 - id: rags-agent.cost.caching
 - priority: high
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Cache common queries and their decompositions to avoid redundant LLM calls.
 
@@ -2577,7 +2577,7 @@ Return ONLY queries, one per line."""
 - type: guideline
 - id: rags-agent.cost.tiering
 - priority: medium
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Use cheaper models for simple tasks, expensive models only for final generation.
 
@@ -2641,7 +2641,7 @@ Context:
 - status: active
 - type: plan
 - id: rags-agent.evaluation
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Measure RAG performance to guide optimization efforts.
 
@@ -2649,7 +2649,7 @@ Measure RAG performance to guide optimization efforts.
 - status: active
 - type: guideline
 - id: rags-agent.evaluation.metrics
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Track these metrics to evaluate RAG quality:
 
@@ -2668,7 +2668,7 @@ Track these metrics to evaluate RAG quality:
 - id: rags-agent.evaluation.script
 - priority: low
 - estimate: 1h
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 ```python
 """
@@ -2771,7 +2771,7 @@ def print_eval_summary(results: list[EvalResult]) -> None:
 - status: active
 - type: guideline
 - id: rags-agent.quickref
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 Decision matrix for choosing improvements:
 

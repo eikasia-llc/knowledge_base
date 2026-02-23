@@ -584,7 +584,7 @@ This approach has higher latency (N× the LLM calls) but works with any cloud AP
 - type: guideline
 - id: tunable-layer-guideline.preference.schema
 - last_checked: 2026-02-08
-- label: ['protocol']
+- label: [protocol]
 <!-- content -->
 All user feedback must be logged in a consistent format to enable both DPO training and reward model training. The following schema is recommended:
 

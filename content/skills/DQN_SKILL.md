@@ -3,7 +3,7 @@
 - type: agent_skill
 - id: solvers.dqn_agent.skill
 - last_checked: 2026-02-13
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 This document describes the **Deep Q-Network (DQN) Agent** implemented for the Snake Game. It serves as a reference for the agent's architecture, training process, and usage.
 
@@ -14,7 +14,7 @@ This document describes the **Deep Q-Network (DQN) Agent** implemented for the S
 - type: documentation
 - id: solvers.dqn_agent.architecture
 - last_checked: 2026-02-13
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 The `DQNAgent` uses a Convolutional Neural Network (CNN) to process the game grid directly.
 
@@ -22,7 +22,7 @@ The `DQNAgent` uses a Convolutional Neural Network (CNN) to process the game gri
 - type: agent_skill
 - **Shape**: `(4, 32, 32)` corresponding to `(Channels, Height, Width)`.
 - **Channels**: 
-- label: ['agent']
+- label: [agent]
 <!-- content -->
     1.  **Snake Body**: 1.0 where the body segments are, 0.0 otherwise.
     2.  **Snake Head**: 1.0 at the head position.
@@ -37,7 +37,7 @@ The `DQNAgent` uses a Convolutional Neural Network (CNN) to process the game gri
 - **FC1**: Fully Connected Layer (6400 -> 512).
 - **FC2**: Output Layer (512 -> 4 actions).
 - **Activation**: ReLU is used for all hidden layers.
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ## Training Protocol
@@ -45,7 +45,7 @@ The `DQNAgent` uses a Convolutional Neural Network (CNN) to process the game gri
 - type: guideline
 - id: solvers.dqn_agent.training_protocol
 - last_checked: 2026-02-13
-- label: ['agent', 'protocol']
+- label: [agent, protocol]
 <!-- content -->
 The agent is trained using the **Double DQN** algorithm to reduce overestimation bias.
 
@@ -69,7 +69,7 @@ To address the difficulty of sparse rewards on a 32x32 grid, we implement a **Fu
 - **Issue**: Agents often forget early skills (e.g., tight maneuvering) when moving to large open spaces.
 - **Solution**: Every time food is eaten, there is a **33% chance** to respawn the new food at a *past* proximity level (smaller distance).
 - **Effect**: The agent continuously "reviews" earlier sub-problems within the same episode, mixing long-range navigation with short-range maneuvering.
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 - **Monitoring**:
@@ -86,7 +86,7 @@ To address the difficulty of sparse rewards on a 32x32 grid, we implement a **Fu
 - **Learning Rate**: 1e-4 (Adam Optimizer)
 - **Epsilon Decay**: Adaptive per stage (Resets to 1.0, decays to 0.01)
 - **Target Update Frequency**: Every 1000 steps
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Reward Function
@@ -95,7 +95,7 @@ To address the difficulty of sparse rewards on a 32x32 grid, we implement a **Fu
 - **Game Over**: -10.0 (Penalty for death).
 - **Time Step**: -0.1 (Default penalty to encourage efficiency and shortest path).
 - **Early Stopping**: If cumulative reward drops below **-25.0 - proximity**, the episode is terminated. The threshold scales with proximity so harder stages get more patience (e.g., -26 at prox 1, -75 at prox 50).
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Buffer Size Considerations (Optimized)
@@ -176,7 +176,7 @@ agent = DQNAgent(use_per=False)
 - type: documentation
 - id: solvers.dqn_agent.design_decisions
 - last_checked: 2026-02-05
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### 1. Epsilon Decay: Per-Episode vs. Per-Step
@@ -223,7 +223,7 @@ If the agent learns to play well, episodes will no longer take 0.1 seconds (deat
 - type: guideline
 - id: solvers.dqn_agent.usage
 - last_checked: 2026-02-05
-- label: ['agent']
+- label: [agent]
 <!-- content -->
 
 ### Local Training
