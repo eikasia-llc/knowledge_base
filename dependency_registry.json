@@ -3,8 +3,8 @@
   "description": "Knowledge Base Dependency Registry",
   "last_updated": "2026-02-01",
   "files": {
-    "content/guidelines/INFRASTRUCTURE_DEFINITIONS.md": {
-      "path": "content/guidelines/INFRASTRUCTURE_DEFINITIONS.md",
+    "content/guidelines/INFRASTRUCTURE_DEFINITIONS_DOC.md": {
+      "path": "content/guidelines/INFRASTRUCTURE_DEFINITIONS_DOC.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -27,8 +27,8 @@
         "project_root": "README.md"
       }
     },
-    "content/agents/INFRASTRUCTURE_AGENT.md": {
-      "path": "content/agents/INFRASTRUCTURE_AGENT.md",
+    "content/agents/INFRASTRUCTURE_SKILL.md": {
+      "path": "content/agents/INFRASTRUCTURE_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -65,7 +65,7 @@
     "content/plans/MASTER_PLAN.md": {
       "path": "content/plans/MASTER_PLAN.md",
       "dependencies": {
-        "manager": "../agents/MANAGER_AGENT.md",
+        "manager": "../agents/MANAGER_SKILL.md",
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
@@ -80,32 +80,32 @@
         "project_root": "README.md"
       }
     },
-    "content/agents/MANAGER_AGENT.md": {
-      "path": "content/agents/MANAGER_AGENT.md",
+    "content/agents/MANAGER_SKILL.md": {
+      "path": "content/agents/MANAGER_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/CLEANER_AGENT.md": {
-      "path": "content/agents/CLEANER_AGENT.md",
+    "content/agents/CLEANER_SKILL.md": {
+      "path": "content/agents/CLEANER_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/UPDATE_PROTOCOL.md": {
-      "path": "content/agents/UPDATE_PROTOCOL.md",
+    "content/agents/UPDATE_PROTOCOL_GUIDELINE.md": {
+      "path": "content/agents/UPDATE_PROTOCOL_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "project_root": "README.md",
         "agents": "AGENTS.md"
       }
     },
-    "content/agents/CLOUD_SCHEDULER_AGENT.md": {
-      "path": "content/agents/CLOUD_SCHEDULER_AGENT.md",
+    "content/agents/CLOUD_SCHEDULER_SKILL.md": {
+      "path": "content/agents/CLOUD_SCHEDULER_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -113,24 +113,24 @@
         "project_root": "README.md"
       }
     },
-    "content/logs/MEETING_NOTES.md": {
-      "path": "content/logs/MEETING_NOTES.md",
+    "content/logs/MEETING_NOTES_LOG.md": {
+      "path": "content/logs/MEETING_NOTES_LOG.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/guidelines/README_TEMPLATE.md": {
-      "path": "content/guidelines/README_TEMPLATE.md",
+    "content/guidelines/README_TEMPLATE_GUIDELINE.md": {
+      "path": "content/guidelines/README_TEMPLATE_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/guidelines/GCCLOUD_AGENT.md": {
-      "path": "content/guidelines/GCCLOUD_AGENT.md",
+    "content/guidelines/GCCLOUD_AGENT_GUIDELINE.md": {
+      "path": "content/guidelines/GCCLOUD_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "project_root": "README.md",
@@ -153,33 +153,33 @@
         "project_root": "README.md"
       }
     },
-    "content/agents/GCLOUD_AGENT.md": {
-      "path": "content/agents/GCLOUD_AGENT.md",
+    "content/agents/GCLOUD_AGENT_GUIDELINE.md": {
+      "path": "content/agents/GCLOUD_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "project_root": "README.md",
         "agents": "AGENTS.md"
       }
     },
-    "content/agents/RAGS_AGENT.md": {
-      "path": "content/agents/RAGS_AGENT.md",
+    "content/agents/RAGS_SKILL.md": {
+      "path": "content/agents/RAGS_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/plans/UNIFIED_NEXUS_ARCHITECTURE.md": {
-      "path": "content/plans/UNIFIED_NEXUS_ARCHITECTURE.md",
+    "content/plans/UNIFIED_NEXUS_ARCHITECTURE_PLAN.md": {
+      "path": "content/plans/UNIFIED_NEXUS_ARCHITECTURE_PLAN.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
-        "rag_agent": "RAGS_AGENT.md",
+        "rag_agent": "RAGS_SKILL.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/guidelines/PROMPT_README.md": {
-      "path": "content/guidelines/PROMPT_README.md",
+    "content/guidelines/PROMPT_README_GUIDELINE.md": {
+      "path": "content/guidelines/PROMPT_README_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -209,40 +209,40 @@
         "project_root": "README.md"
       }
     },
-    "content/plans/posix_implementation_plan.md": {
-      "path": "content/plans/posix_implementation_plan.md",
+    "content/plans/posix_implementation_plan_PLAN.md": {
+      "path": "content/plans/posix_implementation_plan_PLAN.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/REACT_ASSISTANT.md": {
-      "path": "content/agents/REACT_ASSISTANT.md",
+    "content/agents/REACT_ASSISTANT_SKILL.md": {
+      "path": "content/agents/REACT_ASSISTANT_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/RECSYS_AGENT.md": {
-      "path": "content/agents/RECSYS_AGENT.md",
+    "content/agents/RECSYS_SKILL.md": {
+      "path": "content/agents/RECSYS_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/CONTROL_AGENT.md": {
-      "path": "content/agents/CONTROL_AGENT.md",
+    "content/agents/CONTROL_SKILL.md": {
+      "path": "content/agents/CONTROL_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/UI_DESIG_ASSISTANT.md": {
-      "path": "content/agents/UI_DESIG_ASSISTANT.md",
+    "content/agents/UI_DESIG_ASSISTANT_SKILL.md": {
+      "path": "content/agents/UI_DESIG_ASSISTANT_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -257,32 +257,32 @@
         "project_root": "README.md"
       }
     },
-    "content/agents/AGENTS_ARTIFACTS.md": {
-      "path": "content/agents/AGENTS_ARTIFACTS.md",
+    "content/agents/AGENTS_ARTIFACTS_SKILL.md": {
+      "path": "content/agents/AGENTS_ARTIFACTS_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/LINEARIZE_AGENT.md": {
-      "path": "content/agents/LINEARIZE_AGENT.md",
+    "content/agents/LINEARIZE_SKILL.md": {
+      "path": "content/agents/LINEARIZE_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/MC_AGENT.md": {
-      "path": "content/agents/MC_AGENT.md",
+    "content/agents/MC_SKILL.md": {
+      "path": "content/agents/MC_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/PROJECT_SETUP.md": {
-      "path": "content/agents/PROJECT_SETUP.md",
+    "content/agents/PROJECT_SETUP_PLAN.md": {
+      "path": "content/agents/PROJECT_SETUP_PLAN.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -297,8 +297,8 @@
         "project_root": "README.md"
       }
     },
-    "content/guidelines/temprepo_cleaning_AGENTS_ARTIFACTS.md": {
-      "path": "content/guidelines/temprepo_cleaning_AGENTS_ARTIFACTS.md",
+    "content/guidelines/temprepo_cleaning_AGENTS_ARTIFACTS_SKILL.md": {
+      "path": "content/guidelines/temprepo_cleaning_AGENTS_ARTIFACTS_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -321,8 +321,8 @@
         "project_root": "README.md"
       }
     },
-    "manager/language/example/DAG_Example.md": {
-      "path": "manager/language/example/DAG_Example.md",
+    "manager/language/example/DAG_Example_DOC.md": {
+      "path": "manager/language/example/DAG_Example_DOC.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -337,8 +337,8 @@
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/CLEANER_AGENT.md": {
-      "path": "manager/cleaner/CLEANER_AGENT.md",
+    "manager/cleaner/CLEANER_SKILL.md": {
+      "path": "manager/cleaner/CLEANER_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -361,8 +361,8 @@
         "agents": "AGENTS.md"
       }
     },
-    "META_MCP_AGENT.md": {
-      "path": "META_MCP_AGENT.md",
+    "META_MCP_AGENT_GUIDELINE.md": {
+      "path": "META_MCP_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -381,15 +381,15 @@
       "path": "content/plans/LINKEDIN_KB_PLAN.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
-        "rag_patterns": "RAGS_AGENT.md",
+        "rag_patterns": "RAGS_SKILL.md",
         "graph_reference": "mcmp_graph.md",
         "agents": "AGENTS.md",
         "project_root": "README.md",
         "utils": "src/graph/utils.py"
       }
     },
-    "content/agents/PERSONALITY_AGENT.md": {
-      "path": "content/agents/PERSONALITY_AGENT.md",
+    "content/agents/PERSONALITY_SKILL.md": {
+      "path": "content/agents/PERSONALITY_SKILL.md",
       "dependencies": {
         "guide": "chatbot_personality_guide_gemini.md",
         "conventions": "MD_CONVENTIONS.md",
@@ -397,24 +397,24 @@
         "project_root": "README.md"
       }
     },
-    "content/agents/CLIENT_MCP_AGENT.md": {
-      "path": "content/agents/CLIENT_MCP_AGENT.md",
+    "content/agents/CLIENT_MCP_SKILL.md": {
+      "path": "content/agents/CLIENT_MCP_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/SCRAPER_AGENT.md": {
-      "path": "content/agents/SCRAPER_AGENT.md",
+    "content/agents/SCRAPER_AGENT_GUIDELINE.md": {
+      "path": "content/agents/SCRAPER_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/MCP_AGENT.md": {
-      "path": "content/agents/MCP_AGENT.md",
+    "content/agents/MCP_SKILL.md": {
+      "path": "content/agents/MCP_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "server": "src/mcp/server.py",
@@ -423,16 +423,16 @@
         "project_root": "README.md"
       }
     },
-    "content/agents/PYUI_AGENT.md": {
-      "path": "content/agents/PYUI_AGENT.md",
+    "content/agents/PYUI_SKILL.md": {
+      "path": "content/agents/PYUI_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "content/agents/META_MCP_AGENT.md": {
-      "path": "content/agents/META_MCP_AGENT.md",
+    "content/agents/META_MCP_AGENT_GUIDELINE.md": {
+      "path": "content/agents/META_MCP_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -447,16 +447,16 @@
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/PERSONALITY_AGENT.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/PERSONALITY_AGENT.md",
+    "manager/cleaner/repositories/mcmp_chatbot/PERSONALITY_SKILL.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/PERSONALITY_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/SCRAPER_AGENT.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/SCRAPER_AGENT.md",
+    "manager/cleaner/repositories/mcmp_chatbot/SCRAPER_AGENT_GUIDELINE.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/SCRAPER_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -471,16 +471,16 @@
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/GCLOUD_AGENT.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/GCLOUD_AGENT.md",
+    "manager/cleaner/repositories/mcmp_chatbot/GCLOUD_AGENT_GUIDELINE.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/GCLOUD_AGENT_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/RAGS_AGENT.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/RAGS_AGENT.md",
+    "manager/cleaner/repositories/mcmp_chatbot/RAGS_SKILL.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/RAGS_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -518,8 +518,8 @@
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/MCP_AGENT.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/MCP_AGENT.md",
+    "manager/cleaner/repositories/mcmp_chatbot/MCP_SKILL.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/MCP_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -550,16 +550,16 @@
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/PYUI_AGENT.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/PYUI_AGENT.md",
+    "manager/cleaner/repositories/mcmp_chatbot/PYUI_SKILL.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/PYUI_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
         "project_root": "README.md"
       }
     },
-    "manager/cleaner/repositories/mcmp_chatbot/UNIFIED_NEXUS_ARCHITECTURE.md": {
-      "path": "manager/cleaner/repositories/mcmp_chatbot/UNIFIED_NEXUS_ARCHITECTURE.md",
+    "manager/cleaner/repositories/mcmp_chatbot/UNIFIED_NEXUS_ARCHITECTURE_PLAN.md": {
+      "path": "manager/cleaner/repositories/mcmp_chatbot/UNIFIED_NEXUS_ARCHITECTURE_PLAN.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -597,8 +597,8 @@
         "project_root": "README.md"
       }
     },
-    "content/guidelines/LEOPOLD_PERSONA.md": {
-      "path": "content/guidelines/LEOPOLD_PERSONA.md",
+    "content/guidelines/LEOPOLD_PERSONA_DOC.md": {
+      "path": "content/guidelines/LEOPOLD_PERSONA_DOC.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md",
@@ -620,8 +620,8 @@
         "prototype": "mcp_rl_protocol.py"
       }
     },
-    "content/agents/LATENCY_AGENT.md": {
-      "path": "content/agents/LATENCY_AGENT.md",
+    "content/agents/LATENCY_SKILL.md": {
+      "path": "content/agents/LATENCY_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "engine": "src/core/engine.py",
@@ -630,24 +630,24 @@
         "tools": "src/mcp/tools.py"
       }
     },
-    "content/guidelines/MCP_EXPLANATION.md": {
-      "path": "content/guidelines/MCP_EXPLANATION.md",
+    "content/guidelines/MCP_EXPLANATION_GUIDELINE.md": {
+      "path": "content/guidelines/MCP_EXPLANATION_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
-        "architecture": "UNIFIED_NEXUS_ARCHITECTURE.md"
+        "architecture": "UNIFIED_NEXUS_ARCHITECTURE_PLAN.md"
       }
     },
-    "content/guidelines/MCP_EXPLANATION (1).md": {
-      "path": "content/guidelines/MCP_EXPLANATION (1).md",
+    "content/guidelines/MCP_EXPLANATION (1)_GUIDELINE.md": {
+      "path": "content/guidelines/MCP_EXPLANATION (1)_GUIDELINE.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
-        "architecture": "UNIFIED_NEXUS_ARCHITECTURE.md"
+        "architecture": "UNIFIED_NEXUS_ARCHITECTURE_PLAN.md"
       }
     },
     "content/guidelines/ENGINE_EXPLANATION.md": {
       "path": "content/guidelines/ENGINE_EXPLANATION.md",
       "dependencies": {
-        "mcp": "MCP_EXPLANATION.md",
+        "mcp": "MCP_EXPLANATION_GUIDELINE.md",
         "conventions": "MD_CONVENTIONS.md"
       }
     }

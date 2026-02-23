@@ -1259,7 +1259,7 @@ The Client MCP Agent should work harmoniously with your existing agent documenta
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │   Layer 1: Agent Persona (.md files)                            │
-│   ├── CLIENT_MCP_AGENT.md     → This skill (how to use Nexus)   │
+│   ├── CLIENT_MCP_SKILL.md     → This skill (how to use Nexus)   │
 │   ├── DOMAIN_KNOWLEDGE.md     → Business concepts               │
 │   └── COMMUNICATION_STYLE.md  → Tone and formatting             │
 │                                                                 │
@@ -1289,4 +1289,4 @@ The data layer **holds the actual knowledge**.
 <!-- content -->
 | Date | Version | Changes |
 |------|---------|---------|
-| 2025-01-29 | 1.0.0 | Initial skill definition adapted from MCP_AGENT.md |
+| 2025-01-29 | 1.0.0 | Initial skill definition adapted from MCP_SKILL.md |

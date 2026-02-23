@@ -49,7 +49,7 @@ Capture the raw evidence of the failure or inefficiency.
 <!-- content -->
 Analyze the root cause. Ask:
 - *Why did the code fail?* (e.g., "The filename pattern didn't match 'DEFINITIONS'.")
-- *Why did I make that mistake?* (e.g., "The instructions in `CLEANER_AGENT.md` didn't specify checking that file.")
+- *Why did I make that mistake?* (e.g., "The instructions in `CLEANER_SKILL.md` didn't specify checking that file.")
 - *Is this a one-off or a systemic issue?*
 
 ### C. Decide
@@ -96,14 +96,14 @@ Learning is only valid if it is **codified**—written down in a way that preven
     - If a heuristic failed, update the **Script**.
     - If a dependency was missing, update the **Metadata**.
 3.  **Log the Learning**: In `AGENTS_LOG.md` (or the specific agent's log), explicitly state what was learned:
-    > "Updated `apply_types.py` to support content scanning because filename matching failed for `INFRASTRUCTURE_DEFINITIONS.md`."
+    > "Updated `apply_types.py` to support content scanning because filename matching failed for `INFRASTRUCTURE_DEFINITIONS_DOC.md`."
 
 ## 4. Example Case Study
 - status: active
 - type: documentation
 - label: ['agent']
 <!-- content -->
-**Incident**: `apply_types.py` skipped `INFRASTRUCTURE_DEFINITIONS.md` because "DEFINITIONS" wasn't in its allowlist.
+**Incident**: `apply_types.py` skipped `INFRASTRUCTURE_DEFINITIONS_DOC.md` because "DEFINITIONS" wasn't in its allowlist.
 **Observation**: The file existed but had no metadata type.
 **Orientation**: The script relied only on filenames. This is brittle.
 **Decision**: Level 2 Update (Tool Update). Add "DEFINITIONS" to keywords AND implement content scanning fallback.

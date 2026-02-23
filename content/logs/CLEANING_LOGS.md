@@ -58,7 +58,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Modifications**:
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`.
-    - Manually refined metadata for: `INFRASTRUCTURE_DEFINITIONS.md`, `INFRASTRUCTURE_AGENT.md`, `INFRASTRUCTURE_PLAN.md`, `AGENTS_ARTIFACTS.md` (updated types and IDs).
+    - Manually refined metadata for: `INFRASTRUCTURE_DEFINITIONS_DOC.md`, `INFRASTRUCTURE_SKILL.md`, `INFRASTRUCTURE_PLAN.md`, `AGENTS_ARTIFACTS_SKILL.md` (updated types and IDs).
 
 ### 2026-01-25: Import multiagentrecommendation
 - id: cleaning_process_logs.execution_history.2026_01_25_import_multiagentrecommendation
@@ -74,7 +74,7 @@ This file tracks the execution history of the cleaning process, recording import
 - **Modifications**:
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`.
-    - Manually refined context dependencies for `RECSYS_AGENT.md`, `LINEARIZE_AGENT.md`, `MC_AGENT.md`.
+    - Manually refined context dependencies for `RECSYS_SKILL.md`, `LINEARIZE_SKILL.md`, `MC_SKILL.md`.
     - Manually fixed `TODOS.md` (type: task) and `MD_REPRESENTATION_CONVENTIONS.md` (type: guideline).
 
 ### 2026-01-25: Re-import control_tower
@@ -92,8 +92,8 @@ This file tracks the execution history of the cleaning process, recording import
     - Ran `clean_repo.py`.
     - Ran `apply_types.py`.
     - Manually corrected types for:
-        - `INFRASTRUCTURE_AGENT.md` (context -> agent_skill)
-        - `AGENTS_ARTIFACTS.md` (agent_skill -> guideline)
+        - `INFRASTRUCTURE_SKILL.md` (context -> agent_skill)
+        - `AGENTS_ARTIFACTS_SKILL.md` (agent_skill -> guideline)
         - `INFRASTRUCTURE_PLAN.md` (context -> plan)
         - `2026-01-25_001_research-basic-game_plan.md` (context -> plan)
 

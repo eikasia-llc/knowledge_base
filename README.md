@@ -15,7 +15,7 @@ This repository serves as the central nervous system for **Prompt Context Manage
 ### 1. Context Tracking & Storage
 - type: documentation
 - **Centralized Knowledge**: Stores critical project documentation in `content/`, organized by type (Agents, Guidelines, Protocols).
-- **Dependency Resolution**: Implements a strict **Depth-First Dependency Resolution** protocol. If you need `MC_AGENT.md`, the system automatically ensures you also get `AGENTS.md` and `MD_CONVENTIONS.md` in the correct order.
+- **Dependency Resolution**: Implements a strict **Depth-First Dependency Resolution** protocol. If you need `MC_SKILL.md`, the system automatically ensures you also get `AGENTS.md` and `MD_CONVENTIONS.md` in the correct order.
 - **Dependency Registry**: Maintains a `dependency_registry.json` that maps every file to its required dependencies, ensuring no context is missing.
 <!-- content -->
 
@@ -52,7 +52,7 @@ A built-in Streamlit application allows users to visually browse and assemble pr
 - `HOUSEKEEPING.md`: Routine maintenance protocols.
 - `INFRASTRUCTURE.md`: Deployment and cloud resource documentation.
 - `MD_CONVENTIONS.md`: The Markdown-JSON Hybrid Schema specification.
-- `META_MCP_AGENT.md`: Meta-Agent documentation and MCP server specifications.
+- `META_MCP_AGENT_GUIDELINE.md`: Meta-Agent documentation and MCP server specifications.
 - `dependency_registry.json`: The source of truth for file relationships.
 <!-- content -->
 

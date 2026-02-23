@@ -24,9 +24,9 @@ Most recent event comes first
     - Updated `src/app.py` to generate ZIP files using `zipfile` instead of text.
     - Updated `dependency_registry.json` to correct file paths (removed stale `content/core` references).
     - Removed `@st.cache_resource` from `app.py` to prevent stale registry data.
-    - Documented "Zip Download" and "Stale Caching" patterns in `PYUI_AGENT.md`.
+    - Documented "Zip Download" and "Stale Caching" patterns in `PYUI_SKILL.md`.
     - Moved `AGENTS.md` and `MD_CONVENTIONS.md` to root and cleaned `content/core`.
-- **Files Modified:** `src/app.py`, `dependency_registry.json`, `content/agents/PYUI_AGENT.md`, `AGENTS.md`, `MD_CONVENTIONS.md`.
+- **Files Modified:** `src/app.py`, `dependency_registry.json`, `content/agents/PYUI_SKILL.md`, `AGENTS.md`, `MD_CONVENTIONS.md`.
 
 ### Feature: Remove Metadata Tool
 - status: active

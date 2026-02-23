@@ -148,7 +148,7 @@ data/
 **Required files:**
 ```
 AI_AGENTS/
-├── REACT_ASSISTANT.md       # Guide for React + FastAPI setup
+├── REACT_ASSISTANT_SKILL.md       # Guide for React + FastAPI setup
 ├── Student_Instructions.md  # Human-readable project guide
 └── UI_DESIGN_ASSISTANT.md   # UI/UX design guidelines
 ```

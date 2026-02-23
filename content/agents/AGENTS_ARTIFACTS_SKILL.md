@@ -1,4 +1,4 @@
-# AGENTS_ARTIFACTS
+# AGENTS_ARTIFACTS_SKILL
 - id: central_planner.agents_artifacts.readme
 - status: in-progress
 - priority: low

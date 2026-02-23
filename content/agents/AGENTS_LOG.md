@@ -116,13 +116,13 @@ Most recent event comes first
 - **Task**: Synchronize local knowledge base with `mcmp_chatbot` remote repository.
 - **Actions**:
     - Ran `clean_repo.py` and `compare_and_merge.py` according to protocol.
-    - **Updated**: `PERSONALITY_AGENT.md`, `SCRAPER_AGENT.md`, `HOUSEKEEPING.md`, `GCLOUD_AGENT.md`, `RAGS_AGENT.md`, `MCP_AGENT.md`, `AGENTS_LOG.md`, `PYUI_AGENT.md`.
-    - **New**: Imported `personality.md` as reference to `content/guidelines/LEOPOLD_PERSONA.md`.
+    - **Updated**: `PERSONALITY_SKILL.md`, `SCRAPER_AGENT_GUIDELINE.md`, `HOUSEKEEPING.md`, `GCLOUD_AGENT_GUIDELINE.md`, `RAGS_SKILL.md`, `MCP_SKILL.md`, `AGENTS_LOG.md`, `PYUI_SKILL.md`.
+    - **New**: Imported `personality.md` as reference to `content/guidelines/LEOPOLD_PERSONA_DOC.md`.
     - **Ignore**: `TODOS.md` (generic), `rag_improvements.md` (missing from remote).
     - **Protocol Update**: 
-        - Added "Cleanup" step to `CLEANER_AGENT.md` (Step 10).
-        - Added "Update Registry" step to `CLEANER_AGENT.md` (Step 11).
-        - Merged redundant `manager/cleaner/CLEANER_AGENT.md` into `content/agents/CLEANER_AGENT.md` and deleted the former.
+        - Added "Cleanup" step to `CLEANER_SKILL.md` (Step 10).
+        - Added "Update Registry" step to `CLEANER_SKILL.md` (Step 11).
+        - Merged redundant `manager/cleaner/CLEANER_SKILL.md` into `content/agents/CLEANER_SKILL.md` and deleted the former.
 - **Outcome**: Knowledge base updated and cleaner protocol refined.
 
 ### 2026-02-02: Re-implement MCP Awareness (Antigravity)

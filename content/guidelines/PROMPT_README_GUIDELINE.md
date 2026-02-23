@@ -9,7 +9,7 @@ This module provides tools for managing Markdown file dependencies and generatin
 - type: guideline
 <!-- content -->
 1. **Structured Dependency Tracking**: Replace inline `context_dependencies` annotations with a centralized registry
-2. **Automatic Dependency Resolution**: When you say "Read CLEANER_AGENT.md", automatically include all dependencies
+2. **Automatic Dependency Resolution**: When you say "Read CLEANER_SKILL.md", automatically include all dependencies
 3. **Prompt Generation**: Generate ready-to-use prompts that force AI assistants to read files in the correct order
 
 ## Quick Start
@@ -25,7 +25,7 @@ This module provides tools for managing Markdown file dependencies and generatin
 <!-- content -->
 ```bash
 cd manager/prompting
-python prompt_generator.py CLEANER_AGENT.md
+python prompt_generator.py CLEANER_SKILL.md
 ```
 
 Output:
@@ -34,7 +34,7 @@ Read these files in order:
 1. README.md
 2. MD_CONVENTIONS.md
 3. AGENTS.md
-4. manager/cleaner/CLEANER_AGENT.md (target)
+4. manager/cleaner/CLEANER_SKILL.md (target)
 ```
 
 ### Scan and Update Registry
@@ -90,7 +90,7 @@ python dependency_manager.py scan --patterns "AI_AGENTS/**/*.md" "manager/**/*.m
 <!-- content -->
 Show the dependency resolution order for a file:
 ```bash
-python dependency_manager.py resolve manager/cleaner/CLEANER_AGENT.md
+python dependency_manager.py resolve manager/cleaner/CLEANER_SKILL.md
 ```
 
 #### prompt
@@ -101,9 +101,9 @@ python dependency_manager.py resolve manager/cleaner/CLEANER_AGENT.md
 <!-- content -->
 Generate prompt injection text:
 ```bash
-python dependency_manager.py prompt CLEANER_AGENT.md
-python dependency_manager.py prompt CLEANER_AGENT.md --format xml
-python dependency_manager.py prompt CLEANER_AGENT.md --format list
+python dependency_manager.py prompt CLEANER_SKILL.md
+python dependency_manager.py prompt CLEANER_SKILL.md --format xml
+python dependency_manager.py prompt CLEANER_SKILL.md --format list
 ```
 
 #### add/remove
@@ -160,7 +160,7 @@ A streamlined tool for generating AI prompts.
 - type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
-python prompt_generator.py CLEANER_AGENT.md
+python prompt_generator.py CLEANER_SKILL.md
 
 # Verbose mode (shows resolution process)
 - id: verbose_mode_shows_resolution_process
@@ -168,7 +168,7 @@ python prompt_generator.py CLEANER_AGENT.md
 - type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
-python prompt_generator.py CLEANER_AGENT.md --verbose
+python prompt_generator.py CLEANER_SKILL.md --verbose
 
 # Copy to clipboard (macOS)
 - id: copy_to_clipboard_macos
@@ -176,7 +176,7 @@ python prompt_generator.py CLEANER_AGENT.md --verbose
 - type: documentation
 - last_checked: 2026-01-27
 <!-- content -->
-python prompt_generator.py CLEANER_AGENT.md --copy
+python prompt_generator.py CLEANER_SKILL.md --copy
 ```
 
 ### Prompt Styles
@@ -191,25 +191,25 @@ Read these files in order:
 1. README.md
 2. MD_CONVENTIONS.md
 3. AGENTS.md
-4. manager/cleaner/CLEANER_AGENT.md (target)
+4. manager/cleaner/CLEANER_SKILL.md (target)
 ```
 
 **Polite**:
 ```bash
-python prompt_generator.py CLEANER_AGENT.md --style polite
+python prompt_generator.py CLEANER_SKILL.md --style polite
 ```
 ```
-Please read the following files in order to understand CLEANER_AGENT.md:
+Please read the following files in order to understand CLEANER_SKILL.md:
 
 1. README.md
 2. MD_CONVENTIONS.md
 3. AGENTS.md
-4. manager/cleaner/CLEANER_AGENT.md
+4. manager/cleaner/CLEANER_SKILL.md
 ```
 
 **Structured (XML)**:
 ```bash
-python prompt_generator.py CLEANER_AGENT.md --style structured
+python prompt_generator.py CLEANER_SKILL.md --style structured
 ```
 ```xml
 <!-- DEPENDENCY INJECTION: Read these files in order -->
@@ -217,7 +217,7 @@ python prompt_generator.py CLEANER_AGENT.md --style structured
   <file order="1" role="dependency">README.md</file>
   <file order="2" role="dependency">MD_CONVENTIONS.md</file>
   <file order="3" role="dependency">AGENTS.md</file>
-  <file order="4" role="target">manager/cleaner/CLEANER_AGENT.md</file>
+  <file order="4" role="target">manager/cleaner/CLEANER_SKILL.md</file>
 </dependency_chain>
 ```
 
@@ -228,7 +228,7 @@ python prompt_generator.py CLEANER_AGENT.md --style structured
 - last_checked: 2026-01-27
 <!-- content -->
 ```bash
-python prompt_generator.py CLEANER_AGENT.md --rationale
+python prompt_generator.py CLEANER_SKILL.md --rationale
 ```
 Adds explanation of why dependencies are needed.
 
@@ -243,8 +243,8 @@ The registry is a JSON file that maps MD files to their dependencies:
   "version": "1.0.0",
   "last_updated": "2026-01-25",
   "files": {
-    "manager/cleaner/CLEANER_AGENT.md": {
-      "path": "manager/cleaner/CLEANER_AGENT.md",
+    "manager/cleaner/CLEANER_SKILL.md": {
+      "path": "manager/cleaner/CLEANER_SKILL.md",
       "dependencies": {
         "conventions": "MD_CONVENTIONS.md",
         "agents": "AGENTS.md"
@@ -314,7 +314,7 @@ Dependencies are resolved **depth-first**, following the protocol in `MD_CONVENT
 > If File A depends on B, and B depends on C, the agent reads C, then B, then A.
 
 Example:
-- `CLEANER_AGENT.md` depends on `AGENTS.md` and `MD_CONVENTIONS.md`
+- `CLEANER_SKILL.md` depends on `AGENTS.md` and `MD_CONVENTIONS.md`
 - `AGENTS.md` depends on `MD_CONVENTIONS.md` and `README.md`
 - `MD_CONVENTIONS.md` depends on `README.md`
 
@@ -322,4 +322,4 @@ Resolution order:
 1. `README.md` (leaf dependency)
 2. `MD_CONVENTIONS.md` (depends only on README)
 3. `AGENTS.md` (depends on above)
-4. `CLEANER_AGENT.md` (target)
+4. `CLEANER_SKILL.md` (target)

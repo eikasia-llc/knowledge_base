@@ -1070,7 +1070,7 @@ pytest tests/test_publications_tool.py -v
 - label: ['agent']
 <!-- content -->
 
-Add an entry to this document (`MCP_AGENT.md`) under a "Available Tools" section:
+Add an entry to this document (`MCP_SKILL.md`) under a "Available Tools" section:
 
 ```markdown
 ### get_publications

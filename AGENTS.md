@@ -60,7 +60,7 @@
 You cannot "fine-tune" an AI agent (change its underlying neural network weights) with files in this repository. **However**, you **CAN** achieve a similar result using **Context**.
 
 **How it works (The "Context" Approach):**
-If you add textbooks or guides to the repository (preferably as Markdown `.md` or text files), agents can read them. You should then update the relevant agent instructions (e.g., `AI_AGENTS/specialists/LINEARIZE_AGENT.md` or `AI_AGENTS/specialists/CLOUD_SCHEDULER_AGENT.md`) to include a directive like:
+If you add textbooks or guides to the repository (preferably as Markdown `.md` or text files), agents can read them. You should then update the relevant agent instructions (e.g., `AI_AGENTS/specialists/LINEARIZE_SKILL.md` or `AI_AGENTS/specialists/CLOUD_SCHEDULER_SKILL.md`) to include a directive like:
 
 > "Before implementing changes, read `docs/linearization_textbook.md` and `docs/jax_guide.md`. Use the specific techniques described in Chapter 4 for sparse matrix operations."
 
@@ -72,5 +72,5 @@ If you add textbooks or guides to the repository (preferably as Markdown `.md` o
 If you want to teach an agent a new language (like JAX) or technique:
 1.  Add the relevant chapters as **text/markdown** files.
     *   **Best Practice:** Organize these files using the **Markdown-JSON Hybrid Schema** (see `MD_CONVENTIONS.md`). This allows agents to understand the hierarchy of the concepts and metadata like `difficulty` or `topic`, and enables programmatic manipulation via JSON.
-2.  Update the agent's instruction file (e.g., `AI_AGENTS/LINEARIZE_AGENT.md`) to reference them.
+2.  Update the agent's instruction file (e.g., `AI_AGENTS/LINEARIZE_SKILL.md`) to reference them.
 3.  Ask the agent to "Refactor the code using the techniques in [File X]".
