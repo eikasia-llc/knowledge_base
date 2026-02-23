@@ -9,7 +9,7 @@
 <!-- content -->
 - The whole trick is providing the AI Assistants with context, and this is done using the *.md files (AGENTS.md, content/logs/AGENTS_LOG.md, and the AI_AGENTS folder)
 - Make sure that when writing *.md files, you use the proper syntax protocol as defined in MD_CONVENTIONS.md. If necessary, you can always use the scripts in the language folder to help you with this.
-- Learn how to work the Github, explained below.
+- Learn how to work the Github.
 - Keep logs of changes in content/logs/AGENTS_LOG.md
 - Make sure to execute the HOUSEKEEPING.md protocol often.
 - Always ask several forms of verification, so because the self-loop of the chain of thought improves performance.
@@ -51,7 +51,7 @@ You cannot "fine-tune" an AI agent (change its underlying neural network weights
 **How it works (The "Context" Approach):**
 If you add textbooks or guides to the repository (preferably as Markdown `.md` or text files), agents can read them. You should then update the relevant agent instructions (e.g., `AI_AGENTS/specialists/LINEARIZE_SKILL.md` or `AI_AGENTS/specialists/CLOUD_SCHEDULER_SKILL.md`) to include a directive like:
 
-> "Before implementing changes, read `docs/linearization_textbook.md` and `docs/jax_guide.md`. Use the specific techniques described in Chapter 4 for sparse matrix operations."
+> "Before implementing changes, read `MD_CONVENTIONS.md`."
 
 **Why this is effective:**
 1.  **Specific Knowledge:** Adding a specific textbook helps if you want a *specific style* of implementation (e.g., using `jax.lax.scan` vs `vmap` in a particular way).
