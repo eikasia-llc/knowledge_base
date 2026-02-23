@@ -2,10 +2,6 @@
 - status: active
 - type: guideline
 <!-- content -->
-<!-- MERGED FROM NEWER VERSION -->
-
-- context_dependencies: {"conventions": "MD_CONVENTIONS.md", "project_root": "README.md"}
-<!-- content -->
 
 ## SHORT ADVICE
 - status: active
@@ -23,17 +19,10 @@
 - status: active
 - type: agent_skill
 <!-- content -->
-1. Open the assistant and load the ai-agents-branch into their local repositories. Do this by commanding them to first of all read the AGENTS.md file.
+1. Open the assistant and load the ai-agents-branch into their local repositories. Do this by commanding them to first of all read the README.md, AGENTS.md, and MD_CONVENTIONS.md files.
 2. Work on the ASSISTANT, making requests, modifying code, etc.
-3. IMPORTANT: GIT MECHANISM
-    3.1. This is basically solved in Antigravity and VSCode, but Jules (and maybe Claude) push the changes into a newly generated branch. In my case, this is `jules-sync-main-v1-15491954756027628005`. **This is different from the `ai-agents-branch`!!**
-    3.2. So what you need to do is merge the newly generated branch and the `ai-agents-branch` often. Usually in the direction from `jules-sync-main-v1-15491954756027628005` to `ai-agents-branch`. I do this by:
-        3.2.1. Going to pull requests.
-        3.2.2. New Pull request
-        3.2.3. Base: `ai-agents-branch`, Compare: `jules-sync-main-v1-15491954756027628005` (arrow in the right direction).
-        3.2.4. Follow through. It should allow to merge and there should not be incompatibilities. If there are incompatibilities, you can delete the `ai-agents-branch` and create a new one cloning the `jules-sync-main-v1-15491954756027628005` one. After deleting `ai-agents-branch`, go to the `jules-sync-main-v1-15491954756027628005` branch, look at the dropdown bar with the branches (not the link), and create a new copy.
-4. It is very useful to use specialized agents for different sectors of the code. 
-5. Enjoy!
+3. It is very useful to use specialized agents for different sectors of the code. 
+4. Enjoy!
 
 ## WORKFLOW & TOOLING
 - status: active
