@@ -36,7 +36,7 @@ The following recent publications directly inform this guideline:
 - id: tunable-layer-guideline.placement
 - last_checked: 2026-02-08
 <!-- content -->
-The three tunable layers map to specific points in the existing Unified Nexus pipeline. The diagram below shows where each intervention sits relative to the components defined in `UNIFIED_NEXUS_ARCHITECTURE_PLAN.md`.
+The three tunable layers map to specific points in the existing Unified Nexus pipeline. The diagram below shows where each intervention sits relative to the components defined in `KG_UNIFIED_NEXUS_ARCHITECTURE_PLAN.md`.
 
 ```
 ┌─────────────────────────────────────────────────────┐
