@@ -420,3 +420,25 @@ def get_manager():
 def get_manager():
     return DependencyManager() # GOOD: Reloads fresh data on each rerun
 ```
+
+### Safe Streamlit CSS & Native Widgets
+- status: active
+- type: agent_skill
+- label: [agent]
+<!-- content -->
+**Critical limitation**: Streamlit React components (like `st.button`) render *outside* of manually injected HTML `<div>` blocks. You cannot use `st.markdown('<div class="wrapper">', unsafe_allow_html=True)` to wrap a native widget and style it via CSS.
+
+**Attempted approaches that DON'T work:**
+```python
+# BROKEN: The button renders outside the div in the DOM 
+st.markdown('<div class="my-wrapper">', unsafe_allow_html=True)
+st.button("Click Me")
+st.markdown('</div>', unsafe_allow_html=True)
+```
+
+**The Solution**: 
+Rely on a native-first Streamlit aesthetic. 
+1. Use default layout columns (`st.columns`) and tighten their padding via CSS using Streamlit's `data-testid` attributes.
+2. Use native widget themes (like `type="primary"`).
+3. If you must inject indicators (like events on a calendar), use Unicode emojis inside the button label instead of complex CSS overlays.
+4. Target Streamlit elements explicitly through their `data-testid` properties (e.g., `[data-testid="stSidebar"] [data-testid="column"]`).
