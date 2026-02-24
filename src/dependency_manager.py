@@ -133,6 +133,43 @@ class DependencyManager:
         except Exception:
             return None
 
+    @staticmethod
+    def _extract_sentences(text: str, count: int = 2) -> Optional[str]:
+        """Extract the first `count` sentences from a block of text."""
+        import re
+        if not text:
+            return None
+        # Strip markdown formatting artifacts
+        clean = text.strip()
+        # Split on sentence-ending punctuation followed by whitespace or end
+        sentences = re.split(r'(?<=[.!?])\s+', clean)
+        # Take the first `count` non-empty sentences
+        result = []
+        for s in sentences:
+            s = s.strip()
+            if s:
+                result.append(s)
+            if len(result) >= count:
+                break
+        return ' '.join(result) if result else None
+
+    def extract_description_from_file(self, file_path: Path) -> Optional[str]:
+        """Extract a two-sentence description from a markdown file's content."""
+        try:
+            root_node = self.parser.parse_file(str(file_path))
+            # Try root content first
+            desc = self._extract_sentences(root_node.content)
+            if desc:
+                return desc
+            # Fallback: try first child's content
+            if root_node.children:
+                desc = self._extract_sentences(root_node.children[0].content)
+                if desc:
+                    return desc
+            return None
+        except Exception:
+            return None
+
     def scan_project(self, patterns: Optional[List[str]] = None) -> Dict[str, Dict]:
         """
         Scan the project for MD files and extract their dependencies.
@@ -190,11 +227,13 @@ class DependencyManager:
                         deps[alias] = dep_name
 
                 file_type = self.extract_type_from_file(md_file)
+                description = self.extract_description_from_file(md_file)
 
                 scanned[rel_path] = {
                     "path": rel_path,
                     "dependencies": deps,
-                    "type": file_type
+                    "type": file_type,
+                    "description": description
                 }
 
         return scanned
@@ -226,7 +265,8 @@ class DependencyManager:
             self.registry["files"][rel_path] = {
                 "path": rel_path,
                 "dependencies": merged_deps,
-                "type": info.get("type")
+                "type": info.get("type"),
+                "description": info.get("description")
             }
 
         self._save_registry()
