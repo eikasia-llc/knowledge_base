@@ -1,6 +1,6 @@
 {
     "servers": {
-        "kb-knowledge": {
+        "kb_mcp": {
             "type": "stdio",
             "command": "python3",
             "args": [

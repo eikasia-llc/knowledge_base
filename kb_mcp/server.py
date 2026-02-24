@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("kb_mcp_server")
 
 # Initialize FastMCP
-mcp = FastMCP("kb-knowledge-mcp")
+mcp = FastMCP("kb_mcp")
 
 
 # ---------------------------------------------------------------------------
