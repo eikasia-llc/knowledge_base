@@ -13,6 +13,7 @@ sys.path.append(str(current_dir))
 
 from dependency_manager import DependencyManager
 from git_manager import GitManager
+from md_parser import MarkdownParser
 
 # Helper for token counting
 @st.cache_resource
@@ -110,53 +111,32 @@ except FileNotFoundError:
 
 files = registry.get("files", {})
 
-# Categorize Files
-categories = {
-    "Core": [],
-    "Skills": [],
-    "Guidelines": [],
-    "Protocols": [],
-    "Logs": [],
-    "Plans": [],
-    "Context": [],
-    "Manager": [],
-    "Uncategorized": []
+# Categorize Files — by parsing the 'type' metadata field from each markdown
+TYPE_DISPLAY_NAMES = {
+    "agent_skill": "Skills",
+    "guideline": "Guidelines",
+    "plan": "Plans",
+    "log": "Logs",
+    "documentation": "Documentation",
+    "task": "Tasks",
 }
 
-# Core files pattern heuristics
-# strictly these files or files in content/core.
-# We will be stricter in the loop to avoid grabbing manager/AGENTS.md
+@st.cache_data
+def get_file_type(abs_path: str) -> str:
+    """Parse a markdown file and return its root-level 'type' metadata."""
+    try:
+        parser = MarkdownParser()
+        root = parser.parse_file(abs_path)
+        return root.metadata.get("type", None)
+    except Exception:
+        return None
 
-for path, info in files.items():
-    lower_path = path.lower()
-    filename = os.path.basename(path)
-    
-    # Categorization Priority:
-    # 1. Manager (anything in hierarchy manager/)
-    if path.startswith("manager/"):
-         categories["Manager"].append(path)
-    
-    # 2. Core (README.md at root, or anything in content/core/)
-    elif path in ["README.md", "AGENTS.md", "MD_CONVENTIONS.md", "dependency_registry.json"] or path.startswith("content/core/"):
-        categories["Core"].append(path)
-
-    # 3. Rest of Content
-    elif "agent" in lower_path and "skill" in lower_path:
-        categories["Skills"].append(path)
-    elif "guideline" in lower_path or "convention" in lower_path:
-         categories["Guidelines"].append(path)
-    elif "protocol" in lower_path or "housekeeping" in lower_path:
-         categories["Protocols"].append(path)
-    elif "log" in lower_path:
-         categories["Logs"].append(path)
-    elif "plan" in lower_path:
-         categories["Plans"].append(path)
-    else:
-        # Check if it looks like an Agent definition
-        if path.endswith("_AGENT.md") or path.endswith("_ASSISTANT.md"):
-             categories["Skills"].append(path)
-        else:
-             categories["Uncategorized"].append(path)
+categories = {}
+for path in files:
+    abs_path = str(manager.project_root / path)
+    file_type = get_file_type(abs_path)
+    display = TYPE_DISPLAY_NAMES.get(file_type, "Other")
+    categories.setdefault(display, []).append(path)
 
 # UI for Selection
 selected_files = []
@@ -164,7 +144,7 @@ selected_files = []
 for category, items in categories.items():
     if items:
         # Default expand Core, Skills, Protocols, Manager
-        is_expanded = category in ["Core", "Skills", "Protocols", "Manager"]
+        is_expanded = category in ["Core", "Skills"]
         with st.expander(f"{category} ({len(items)})", expanded=is_expanded):
             for item in sorted(items):
                 # Show only filename as label, but use full path as key/value
